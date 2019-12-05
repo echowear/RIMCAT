@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/address_prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="336dp"
+        android:layout_marginLeft="336dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="336dp"
+        android:layout_marginRight="336dp"
+        android:text="@string/address_prompt"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/input_street"
+        android:inputType="text"
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="237dp"
+        android:layout_marginLeft="237dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="237dp"
+        android:layout_marginRight="237dp"
+        android:hint="@string/address_street"
+        android:textSize="25sp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/address_prompt" />
+
+    <EditText
+        android:id="@+id/input_city"
+        android:inputType="text"
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="237dp"
+        android:layout_marginLeft="237dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="237dp"
+        android:layout_marginRight="237dp"
+        android:hint="@string/address_city"
+        android:textSize="25sp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_street" />
+
+    <EditText
+        android:id="@+id/input_state"
+        android:inputType="text"
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="237dp"
+        android:layout_marginLeft="237dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="237dp"
+        android:layout_marginRight="237dp"
+        android:hint="@string/address_state"
+        android:background="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_city" />
+
+    <EditText
+        android:id="@+id/input_zip"
+        android:inputType="number"
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="237dp"
+        android:layout_marginLeft="237dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="237dp"
+        android:layout_marginRight="237dp"
+        android:hint="@string/address_zip"
+        android:background="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_state" />
+</android.support.constraint.ConstraintLayout>
