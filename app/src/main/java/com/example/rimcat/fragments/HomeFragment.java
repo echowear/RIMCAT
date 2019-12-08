@@ -24,7 +24,8 @@ public class HomeFragment extends QuestionFragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         inputPatientID = view.findViewById(R.id.input_patientID);
 
-        //TODO: Start fade-in animation
+        cardView = view.findViewById(R.id.card);
+        startAnimation(true);
 
         return view;
     }
@@ -36,9 +37,9 @@ public class HomeFragment extends QuestionFragment {
 //        dataLogModel.patientID = inputPatientID.getText().toString();
         return true;
     }
-    
-    public void startAnimation() {
-        //TODO: Start fade-out animation and add this code to animation callback
+
+    @Override
+    public void moveToNextPage() {
         ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
     }
 }

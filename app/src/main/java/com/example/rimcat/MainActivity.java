@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     public void getFragmentData(View view) {
         QuestionFragment fragment = (QuestionFragment) fragmentManager.findFragmentByTag(fragmentTag);
         if (fragment.loadDataModel(logData)) {
-            fragment.startAnimation();
+            fragment.startAnimation(false);
         } else {
             Toast.makeText(this, "Please fill out all fields before proceeding.", Toast.LENGTH_SHORT).show();
         }

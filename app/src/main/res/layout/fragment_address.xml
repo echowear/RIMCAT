@@ -6,86 +6,95 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/address_prompt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="336dp"
-        android:layout_marginLeft="336dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="336dp"
-        android:layout_marginRight="336dp"
-        android:text="@string/address_prompt"
-        android:textSize="25sp"
+    <android.support.v7.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="610dp"
+        android:layout_height="393dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/input_street"
-        android:inputType="text"
-        android:layout_width="258dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="237dp"
-        android:layout_marginLeft="237dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="237dp"
-        android:layout_marginRight="237dp"
-        android:hint="@string/address_street"
-        android:textSize="25sp"
-        android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address_prompt" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/input_city"
-        android:inputType="text"
-        android:layout_width="258dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="237dp"
-        android:layout_marginLeft="237dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="237dp"
-        android:layout_marginRight="237dp"
-        android:hint="@string/address_city"
-        android:textSize="25sp"
-        android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_street" />
+            <EditText
+                android:id="@+id/input_state"
+                android:layout_width="258dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="46dp"
+                android:hint="@string/address_state"
+                android:inputType="text"
+                android:textSize="35sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_street" />
 
-    <EditText
-        android:id="@+id/input_state"
-        android:inputType="text"
-        android:layout_width="258dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="237dp"
-        android:layout_marginLeft="237dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="237dp"
-        android:layout_marginRight="237dp"
-        android:hint="@string/address_state"
-        android:background="@color/white"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_city" />
+            <EditText
+                android:id="@+id/input_street"
+                android:layout_width="258dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="62dp"
+                android:hint="@string/address_street"
+                android:inputType="text"
+                android:textSize="35sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/address_prompt" />
 
-    <EditText
-        android:id="@+id/input_zip"
-        android:inputType="number"
-        android:layout_width="258dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="237dp"
-        android:layout_marginLeft="237dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="237dp"
-        android:layout_marginRight="237dp"
-        android:hint="@string/address_zip"
-        android:background="@color/white"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_state" />
+            <EditText
+                android:id="@+id/input_city"
+                android:layout_width="258dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="65dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:hint="@string/address_city"
+                android:inputType="text"
+                android:textSize="35sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/address_prompt" />
+
+            <EditText
+                android:id="@+id/input_zip"
+                android:layout_width="258dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:hint="@string/address_zip"
+                android:inputType="number"
+                android:textSize="35sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_city" />
+
+            <TextView
+                android:id="@+id/address_prompt"
+                android:layout_width="256dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="177dp"
+                android:layout_marginLeft="177dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="177dp"
+                android:layout_marginRight="177dp"
+                android:text="@string/address_prompt"
+                android:textSize="35sp"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
 </android.support.constraint.ConstraintLayout>

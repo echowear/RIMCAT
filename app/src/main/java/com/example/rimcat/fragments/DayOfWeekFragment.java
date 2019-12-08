@@ -27,7 +27,9 @@ public class DayOfWeekFragment extends QuestionFragment {
         adapter = ArrayAdapter.createFromResource(getActivity(), R.array.day_of_week_array, R.layout.spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dayOfWeekSpinner.setAdapter(adapter);
-        //TODO: Start fade-in animation
+
+        cardView = view.findViewById(R.id.card);
+        startAnimation(true);
 
         return view;
     }
@@ -41,7 +43,7 @@ public class DayOfWeekFragment extends QuestionFragment {
     }
 
     @Override
-    public void startAnimation() {
+    public void moveToNextPage() {
         ((MainActivity)getActivity()).addFragment(new SeasonFragment(), "SeasonFragment");
     }
 }

@@ -33,7 +33,8 @@ public class AddressFragment extends QuestionFragment {
         inputState.setImeOptions(EditorInfo.IME_ACTION_DONE);
         inputZipCode.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
-        //TODO: Start fade-in animation
+        cardView = view.findViewById(R.id.card);
+        startAnimation(true);
 
         return view;
     }
@@ -54,7 +55,7 @@ public class AddressFragment extends QuestionFragment {
     }
 
     @Override
-    public void startAnimation() {
+    public void moveToNextPage() {
         ((MainActivity)getActivity()).addFragment(new TodayDateFragment(), "TodayDateFragment");
     }
 }

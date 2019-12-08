@@ -30,7 +30,8 @@ public class SeasonFragment extends QuestionFragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         seasonSpinner.setAdapter(adapter);
 
-        //TODO: Start fade-in animation
+        cardView = view.findViewById(R.id.card);
+        startAnimation(true);
 
         return view;
     }
@@ -44,7 +45,7 @@ public class SeasonFragment extends QuestionFragment {
     }
 
     @Override
-    public void startAnimation() {
+    public void moveToNextPage() {
         Toast.makeText(getActivity(), "You're finished!", Toast.LENGTH_LONG).show();
     }
 }

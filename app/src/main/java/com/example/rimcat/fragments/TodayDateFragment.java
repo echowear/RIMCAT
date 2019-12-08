@@ -25,7 +25,9 @@ public class TodayDateFragment extends QuestionFragment {
         inputDay = view.findViewById(R.id.input_today_day);
         inputMonth = view.findViewById(R.id.input_today_month);
         inputYear = view.findViewById(R.id.input_today_year);
-        //TODO: Start fade-in animation
+
+        cardView = view.findViewById(R.id.card);
+        startAnimation(true);
 
         return view;
     }
@@ -44,7 +46,7 @@ public class TodayDateFragment extends QuestionFragment {
     }
 
     @Override
-    public void startAnimation() {
+    public void moveToNextPage() {
         ((MainActivity)getActivity()).addFragment(new DayOfWeekFragment(), "DayOfWeekFragment");
     }
 }

@@ -20,14 +20,20 @@ public class InstructionsFragment extends QuestionFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_instructions, container, false);
+        View view = inflater.inflate(R.layout.fragment_instructions, container, false);
+
+        cardView = view.findViewById(R.id.card);
+        startAnimation(true);
+
+        return view;
     }
 
     public boolean loadDataModel(DataLogModel dataLogModel) {
         return true;
     }
 
-    public void startAnimation() {
-        ((MainActivity)getActivity()).addFragment(new NameFragment(), "NameFragment");
+    @Override
+    public void moveToNextPage() {
+        ((MainActivity)getActivity()).addFragment(new EducationFragment(), "NameFragment");
     }
 }

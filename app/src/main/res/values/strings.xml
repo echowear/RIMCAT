@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">RIMCAT</string>
 
+    <string name="next_text">Next</string>
     <string name="home_patientID">Patient ID</string>
     <string name="instructions_appInst">First, I am going to ask you to verify some information for me and answer some questions.</string>
     <string name="instructions_buttonInst">After you\'re finished, press this button to move on.</string>
