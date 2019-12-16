@@ -3,6 +3,7 @@ package com.example.rimcat.fragments;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.rimcat.DataLogModel;
+import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 
 public class SeasonFragment extends QuestionFragment {
@@ -38,14 +40,14 @@ public class SeasonFragment extends QuestionFragment {
 
     @Override
     public boolean loadDataModel(DataLogModel dataLogModel) {
-        if (seasonSpinner.getSelectedItem().toString().equals("") || dataLogModel == null)
-            return false;
-        dataLogModel.educationLevel = seasonSpinner.getSelectedItem().toString();
+//        if (seasonSpinner.getSelectedItem().toString().equals("") || dataLogModel == null)
+//            return false;
+//        dataLogModel.educationLevel = seasonSpinner.getSelectedItem().toString();
         return true;
     }
 
     @Override
     public void moveToNextPage() {
-        Toast.makeText(getActivity(), "You're finished!", Toast.LENGTH_LONG).show();
+        ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
     }
 }

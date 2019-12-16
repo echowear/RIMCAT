@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">RIMCAT</string>
+    <string name="error">Error</string>
 
     <string name="next_text">Next</string>
     <string name="home_patientID">Patient ID</string>
@@ -50,4 +51,17 @@
         <item>Summer</item>
         <item>Fall</item>
     </string-array>
+    <string name="instructions_verbalInst">
+        You will be presented with a list of words one at a time. Read and listen to each word carefully
+        and try to remember it. Once the list is complete, you will be asked to recall as many words as
+        you can remember. It does not matter in what order you recall them. Just try to remember as
+        many as you can.
+    </string>
+    <string name="verbal_readyBtn">Ready</string>
+    <string name="verbal_readyPrompt">Press the button below when you are ready to start.</string>
+    <string name="vresponse_prompt">
+        Now type in all the words you can remember. Just try to your best to recall as many as you can.
+    </string>
+    <string name="vresponse_addBtn">Add</string>
+    <string name="vresponse_recallHint">Recall Word</string>
 </resources>

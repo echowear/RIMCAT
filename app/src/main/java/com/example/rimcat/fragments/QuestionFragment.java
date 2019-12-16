@@ -13,6 +13,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.example.rimcat.DataLogModel;
+import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 
 public abstract class QuestionFragment extends Fragment {
@@ -45,8 +46,10 @@ public abstract class QuestionFragment extends Fragment {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                if (!isFadeIn)
+                if (!isFadeIn) {
                     moveToNextPage();
+                    ((MainActivity)getActivity()).incrementViewNumber();
+                }
             }
 
             @Override
