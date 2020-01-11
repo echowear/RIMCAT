@@ -31,7 +31,7 @@ public class HomeFragment extends QuestionFragment {
     }
 
     @Override
-    public boolean loadDataModel(DataLogModel dataLogModel) {
+    public boolean loadDataModel() {
 //        if (inputPatientID.getText().toString().equals("") || dataLogModel == null)
 //            return false;
 //        dataLogModel.patientID = inputPatientID.getText().toString();

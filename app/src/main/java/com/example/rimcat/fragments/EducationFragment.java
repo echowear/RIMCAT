@@ -38,7 +38,7 @@ public class EducationFragment extends QuestionFragment {
     }
 
     @Override
-    public boolean loadDataModel(DataLogModel dataLogModel) {
+    public boolean loadDataModel() {
 //        if (educationSpinner.getSelectedItem().toString().equals("") || dataLogModel == null)
 //            return false;
 //        dataLogModel.educationLevel = educationSpinner.getSelectedItem().toString();

@@ -40,7 +40,7 @@ public class AddressFragment extends QuestionFragment {
     }
 
     @Override
-    public boolean loadDataModel(DataLogModel dataLogModel) {
+    public boolean loadDataModel() {
 //        if (    inputStreet.getText().toString().equals("") ||
 //                inputCity.getText().toString().equals("") ||
 //                inputState.getText().toString().equals("") ||

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.rimcat.fragments.HomeFragment;
 import com.example.rimcat.fragments.QuestionFragment;
 
+//TODO: Find a way to log the data for the first section.
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private FragmentManager     fragmentManager;
@@ -46,12 +47,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void getFragmentData(View view) {
         QuestionFragment fragment = (QuestionFragment) fragmentManager.findFragmentByTag(fragmentTag);
-        if (fragment.loadDataModel(logData)) {
+        if (fragment.loadDataModel()) {
             fragment.startAnimation(false);
             // TODO: Make method for checking this stuff. Final Screen, Verbal screen for hiding next button, etc.
-            if (viewNumber == DataLogModel.FINAL_SCREEN)
-                callLogData();
-            else if (viewNumber == DataLogModel.VERBAL_LEARNING_INST_VIEW) {
+            if (viewNumber == DataLogModel.VERBAL_LEARNING_INST_VIEW) {
                 nextText.setVisibility(View.INVISIBLE);
                 nextButton.hide();
             }

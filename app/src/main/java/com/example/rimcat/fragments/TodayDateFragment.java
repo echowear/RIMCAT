@@ -33,7 +33,7 @@ public class TodayDateFragment extends QuestionFragment {
     }
 
     @Override
-    public boolean loadDataModel(DataLogModel dataLogModel) {
+    public boolean loadDataModel() {
 //        if (    inputDay.getText().toString().equals("") ||
 //                inputMonth.getText().toString().equals("") ||
 //                inputYear.getText().toString().equals("") ||

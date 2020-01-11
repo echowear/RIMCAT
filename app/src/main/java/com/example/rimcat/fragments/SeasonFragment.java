@@ -39,7 +39,7 @@ public class SeasonFragment extends QuestionFragment {
     }
 
     @Override
-    public boolean loadDataModel(DataLogModel dataLogModel) {
+    public boolean loadDataModel() {
 //        if (seasonSpinner.getSelectedItem().toString().equals("") || dataLogModel == null)
 //            return false;
 //        dataLogModel.educationLevel = seasonSpinner.getSelectedItem().toString();

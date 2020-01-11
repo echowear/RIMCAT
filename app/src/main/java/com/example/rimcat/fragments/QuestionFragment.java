@@ -27,7 +27,7 @@ public abstract class QuestionFragment extends Fragment {
         return null;
     }
 
-    public abstract boolean loadDataModel(DataLogModel dataLogModel);
+    public abstract boolean loadDataModel();
 
     public abstract void moveToNextPage();
 

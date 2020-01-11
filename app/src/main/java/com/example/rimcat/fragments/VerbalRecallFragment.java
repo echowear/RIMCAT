@@ -85,7 +85,7 @@ public class VerbalRecallFragment extends QuestionFragment {
     }
 
     @Override
-    public boolean loadDataModel(DataLogModel dataLogModel) {
+    public boolean loadDataModel() {
         return true;
     }
 

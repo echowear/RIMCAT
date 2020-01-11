@@ -51,7 +51,7 @@ public class InstructionsFragment extends QuestionFragment {
         return view;
     }
 
-    public boolean loadDataModel(DataLogModel dataLogModel) {
+    public boolean loadDataModel() {
         return true;
     }
 
