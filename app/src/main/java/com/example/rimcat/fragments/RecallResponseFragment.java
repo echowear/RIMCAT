@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.rimcat.DataLogModel;
+import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 
 import java.util.ArrayList;
@@ -58,11 +59,11 @@ public class RecallResponseFragment extends QuestionFragment {
 
     @Override
     public boolean loadDataModel() {
-        return false;
+        return true;
     }
 
     @Override
     public void moveToNextPage() {
-
+        ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
     }
 }

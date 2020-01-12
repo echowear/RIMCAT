@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         if (fragment.loadDataModel()) {
             fragment.startAnimation(false);
             // TODO: Make method for checking this stuff. Final Screen, Verbal screen for hiding next button, etc.
-            if (viewNumber == DataLogModel.VERBAL_LEARNING_INST_VIEW) {
+            if (viewNumber == DataLogModel.VERBAL_LEARNING_INST_VIEW || viewNumber == DataLogModel.IMAGE_NAMING_INST_VIEW) {
                 nextText.setVisibility(View.INVISIBLE);
                 nextButton.hide();
             }
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void incrementViewNumber() {
         viewNumber++;
+        Log.d(TAG, "incrementViewNumber: View number is " + viewNumber);
     }
 
     @Override

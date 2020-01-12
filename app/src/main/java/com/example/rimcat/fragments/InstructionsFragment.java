@@ -40,6 +40,10 @@ public class InstructionsFragment extends QuestionFragment {
                 instructionsText.setText(R.string.instructions_verbalInst);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
                 break;
+            case DataLogModel.IMAGE_NAMING_INST_VIEW:
+                instructionsText.setText(R.string.instructions_imageInst);
+                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
+                break;
             default:
                 instructionsText.setText(R.string.error);
                 break;
@@ -63,6 +67,9 @@ public class InstructionsFragment extends QuestionFragment {
                 break;
             case DataLogModel.VERBAL_LEARNING_INST_VIEW:
                 ((MainActivity)getActivity()).addFragment(new VerbalRecallFragment(), "VerbalRecallFragment");
+                break;
+            case DataLogModel.IMAGE_NAMING_INST_VIEW:
+                ((MainActivity)getActivity()).addFragment(new ImageNameFragment(), "ImageNameFragment");
                 break;
             default:
                 Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
