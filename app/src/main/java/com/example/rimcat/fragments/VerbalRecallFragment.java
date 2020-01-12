@@ -68,9 +68,11 @@ public class VerbalRecallFragment extends QuestionFragment {
         trialListCounter = new CountDownTimer(TRIAL_LIST_ONE.length * 2000, 1980) {
             @Override
             public void onTick(long millisUntilFinished) {
-                Log.d(TAG, "onTick: Changing text --- " + TRIAL_LIST_ONE[timerIndex]);
-                verbalText.setText("" + TRIAL_LIST_ONE[timerIndex]);
-                timerIndex++;
+                if (timerIndex < TRIAL_LIST_ONE.length) {
+                    Log.d(TAG, "onTick: Changing text --- " + TRIAL_LIST_ONE[timerIndex]);
+                    verbalText.setText("" + TRIAL_LIST_ONE[timerIndex]);
+                    timerIndex++;
+                }
             }
 
             @Override
