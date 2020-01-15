@@ -67,4 +67,18 @@
     <string name="instructions_imageInst">
         Please select the correct name for each object as quickly as you can
     </string>
+    <string-array name="image_name_array">
+        <item></item>
+        <item>Tree</item>
+        <item>Bush</item>
+        <item>Branch</item>
+
+        <item>Tricycle</item>
+        <item>Bicycle</item>
+        <item>Motorcycle</item>
+
+        <item>Hut</item>
+        <item>House</item>
+        <item>Shed</item>
+    </string-array>
 </resources>

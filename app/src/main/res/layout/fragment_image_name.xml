@@ -39,7 +39,7 @@
             android:layout_height="match_parent" >
 
             <Button
-                android:id="@+id/btn_name3"
+                android:id="@+id/image_nm_btn_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -47,6 +47,7 @@
                 android:layout_marginRight="32dp"
                 android:layout_marginBottom="32dp"
                 android:background="@color/colorAccent"
+                android:onClick="getFragmentData"
                 android:text="@string/vresponse_addBtn"
                 android:textColor="@color/white"
                 android:textSize="35sp"
@@ -55,7 +56,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/btn_name2"
+                android:id="@+id/image_nm_btn_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="215dp"
@@ -69,12 +70,12 @@
                 android:textColor="@color/white"
                 android:textSize="35sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btn_name3"
-                app:layout_constraintStart_toEndOf="@+id/btn_name1"
+                app:layout_constraintEnd_toStartOf="@+id/image_nm_btn_3"
+                app:layout_constraintStart_toEndOf="@+id/image_nm_btn_1"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/btn_name1"
+                android:id="@+id/image_nm_btn_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
