@@ -65,10 +65,9 @@
     <string name="vresponse_addBtn">Add</string>
     <string name="vresponse_recallHint">Recall Word</string>
     <string name="instructions_imageInst">
-        Please select the correct name for each object as quickly as you can
+        Please select the correct name for each object as quickly as you can.
     </string>
     <string-array name="image_name_array">
-        <item></item>
         <item>Tree</item>
         <item>Bush</item>
         <item>Branch</item>
