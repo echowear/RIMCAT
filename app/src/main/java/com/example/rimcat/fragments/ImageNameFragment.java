@@ -83,9 +83,15 @@ public class ImageNameFragment extends QuestionFragment {
                 // This is where the answer will be recorded
                 Log.d(TAG, "onClick: Button value: " + test.getText().toString());
 
-                Animation fadeOutAnimation =  AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out);
-                fadeOutAnimation.setAnimationListener(animationListener);
-                imageNamePage.startAnimation(fadeOutAnimation);
+                if (imageCount + 1 == IMAGE_NAMES.length) {
+                    ((MainActivity)getActivity()).getFragmentData(null);
+                }
+                else {
+                    Animation fadeOutAnimation =  AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out);
+                    fadeOutAnimation.setAnimationListener(animationListener);
+                    imageNamePage.startAnimation(fadeOutAnimation);
+                }
+
             }
         };
 
@@ -97,7 +103,7 @@ public class ImageNameFragment extends QuestionFragment {
         btn2.setText(buttonOptions[1]);
         btn3.setText(buttonOptions[2]);
 
-        cardView = view.findViewById(R.id.card);
+        cardView = view.findViewById(R.id.image_name_page);
 
         startAnimation(true);
 
@@ -106,9 +112,7 @@ public class ImageNameFragment extends QuestionFragment {
 
 
     @Override
-    public boolean loadDataModel() {
-        return true;
-    }
+    public boolean loadDataModel() { return true; }
 
     @Override
     public void moveToNextPage() {
