@@ -44,6 +44,10 @@ public class InstructionsFragment extends QuestionFragment {
                 instructionsText.setText(R.string.instructions_imageInst);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 break;
+            case DataLogModel.FIGURE_STUDY_INST_VIEW:
+                instructionsText.setText(R.string.instructions_figureStudy);
+                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
+                break;
             default:
                 instructionsText.setText(R.string.error);
                 break;

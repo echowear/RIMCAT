@@ -5,6 +5,7 @@ public class DataLogModel {
     public static final int FINAL_SCREEN = 2;
     public static final int VERBAL_LEARNING_INST_VIEW = 7;
     public static final int IMAGE_NAMING_INST_VIEW = 10;
+    public static final int FIGURE_STUDY_INST_VIEW = 12;
 
     public String patientID;
     public String educationLevel;

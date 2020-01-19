@@ -80,4 +80,8 @@
         <item>House</item>
         <item>Shed</item>
     </string-array>
+    <string name="instructions_figureStudy">
+        You will now be shown a series of figures. You will have 10 seconds to
+        study each figure so that you can remember them later.
+    </string>
 </resources>
