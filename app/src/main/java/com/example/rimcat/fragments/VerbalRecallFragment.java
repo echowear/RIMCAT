@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.rimcat.DataLogModel;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 
@@ -39,7 +38,7 @@ public class VerbalRecallFragment extends QuestionFragment {
 
         cardView = view.findViewById(R.id.card);
         verbalText = view.findViewById(R.id.verbalText);
-        readyBtn = view.findViewById(R.id.verbal_readyBtn);
+        readyBtn = view.findViewById(R.id.figure_readyBtn);
         readyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

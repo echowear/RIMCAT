@@ -75,6 +75,9 @@ public class InstructionsFragment extends QuestionFragment {
             case DataLogModel.IMAGE_NAMING_INST_VIEW:
                 ((MainActivity)getActivity()).addFragment(new ImageNameFragment(), "ImageNameFragment");
                 break;
+            case DataLogModel.FIGURE_STUDY_INST_VIEW:
+                ((MainActivity)getActivity()).addFragment(new FigureStudyFragment(), "FigureStudyFragment");
+                break;
             default:
                 Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
         }

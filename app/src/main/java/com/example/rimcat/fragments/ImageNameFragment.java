@@ -79,9 +79,9 @@ public class ImageNameFragment extends QuestionFragment {
         recordImageChoice = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Button test = (Button) view;
+                Button selectedButton = (Button) view;
                 // This is where the answer will be recorded
-                Log.d(TAG, "onClick: Button value: " + test.getText().toString());
+                Log.d(TAG, "onClick: Button value: " + selectedButton.getText().toString());
 
                 if (imageCount + 1 == IMAGE_NAMES.length) {
                     ((MainActivity)getActivity()).getFragmentData(null);

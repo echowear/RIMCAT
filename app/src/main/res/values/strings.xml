@@ -84,4 +84,21 @@
         You will now be shown a series of figures. You will have 10 seconds to
         study each figure so that you can remember them later.
     </string>
+    <string-array name="figure_prompt_array">
+        <item>Here is the 1st figure, you will have 6 seconds to study it.</item>
+        <item>Here is the 2nd figure, you will have 10 seconds to study it.</item>
+<!--        <item>Here is the 3rd figure, you will have 10 seconds to study it.</item>-->
+
+<!--        <item>Here is the 4th figure, you will have 10 seconds to study it.</item>-->
+<!--        <item>Here is the 5th figure, you will have 10 seconds to study it.</item>-->
+        <item>
+            You will now be shown four figures on the screen at once. Select the
+            correct figure that you have seen before.
+        </item>
+
+        <item>Hut</item>
+        <item>House</item>
+        <item>Shed</item>
+    </string-array>
+    <string name="figure_select_prompt">Select the correct figure that you have seen before.</string>
 </resources>
