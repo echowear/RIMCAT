@@ -8,6 +8,7 @@ import android.util.Log;
 
 import java.io.File;
 
+// Commit change
 public class GenerateDirectory  extends Application {
 
     private static String PATIENT_ID;
