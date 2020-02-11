@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager     fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private String              fragmentTag;
-    private DataLogModel        logData;
     private int                 viewNumber = 0;
     private FloatingActionButton nextButton;
     private TextView            nextText;
@@ -42,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         // Initialize views and model
         nextButton = findViewById(R.id.floatingActionButton);
         nextText = findViewById(R.id.nextText);
-        logData = new DataLogModel();
     }
 
     public void getFragmentData(View view) {
@@ -71,14 +69,6 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.container, nextFragment, fragmentTag);
         fragmentTransaction.commit();
-    }
-
-    private void callLogData() {
-        String resultString = "";
-        if (logData != null) {
-            // Create log string
-            DataLogService.log(this, resultString);
-        }
     }
 
     public int getViewNumber() {

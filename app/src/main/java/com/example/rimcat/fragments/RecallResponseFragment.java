@@ -53,12 +53,17 @@ public class RecallResponseFragment extends QuestionFragment {
 
         cardView = view.findViewById(R.id.vresponse_layout);
         startAnimation(true);
+        logStartTime();
 
         return view;
     }
 
     @Override
     public boolean loadDataModel() {
+        for (int i = 0; i < listItems.size(); i++) {
+            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall," + listItems.get(i));
+        }
+
         return true;
     }
 

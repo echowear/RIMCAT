@@ -34,6 +34,7 @@ public class SeasonFragment extends QuestionFragment {
 
         cardView = view.findViewById(R.id.card);
         startAnimation(true);
+        logStartTime();
 
         return view;
     }
@@ -42,7 +43,7 @@ public class SeasonFragment extends QuestionFragment {
     public boolean loadDataModel() {
 //        if (seasonSpinner.getSelectedItem().toString().equals("") || dataLogModel == null)
 //            return false;
-//        dataLogModel.educationLevel = seasonSpinner.getSelectedItem().toString();
+        logEndTimeAndData(getActivity().getApplicationContext(), "season," + seasonSpinner.getSelectedItem().toString());
         return true;
     }
 

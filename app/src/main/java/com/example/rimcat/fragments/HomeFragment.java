@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.rimcat.DataLogModel;
+import com.example.rimcat.DataLogService;
+import com.example.rimcat.GenerateDirectory;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 
@@ -34,7 +36,7 @@ public class HomeFragment extends QuestionFragment {
     public boolean loadDataModel() {
 //        if (inputPatientID.getText().toString().equals("") || dataLogModel == null)
 //            return false;
-//        dataLogModel.patientID = inputPatientID.getText().toString();
+        GenerateDirectory.setPatientID(inputPatientID.getText().toString());
         return true;
     }
 

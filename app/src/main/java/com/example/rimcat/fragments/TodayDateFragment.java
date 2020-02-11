@@ -28,6 +28,7 @@ public class TodayDateFragment extends QuestionFragment {
 
         cardView = view.findViewById(R.id.card);
         startAnimation(true);
+        logStartTime();
 
         return view;
     }
@@ -39,9 +40,10 @@ public class TodayDateFragment extends QuestionFragment {
 //                inputYear.getText().toString().equals("") ||
 //                dataLogModel == null)
 //            return false;
-//        dataLogModel.todayDay = Integer.parseInt(inputDay.getText().toString());
-//        dataLogModel.todayMonth = Integer.parseInt(inputMonth.getText().toString());
-//        dataLogModel.todayYear = Integer.parseInt(inputYear.getText().toString());
+        String todayDateResult =    Integer.parseInt(inputMonth.getText().toString()) + "/" +
+                                    Integer.parseInt(inputDay.getText().toString()) + "/" +
+                                    Integer.parseInt(inputYear.getText().toString());
+        logEndTimeAndData(getActivity().getApplicationContext(), "todays_date," + todayDateResult);
         return true;
     }
 

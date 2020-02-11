@@ -26,11 +26,6 @@
         <item>Masters</item>
         <item>Doctorate / PHD</item>
     </string-array>
-    <string name="address_prompt">What is your address?</string>
-    <string name="address_street">Street</string>
-    <string name="address_city">City</string>
-    <string name="address_state">State</string>
-    <string name="address_zip">Zip Code</string>
     <string name="today_prompt">Without looking at a calendar, type TODAY\'s date</string>
     <string name="day_of_week_prompt">What day of the week is it?</string>
     <string-array name="day_of_week_array">

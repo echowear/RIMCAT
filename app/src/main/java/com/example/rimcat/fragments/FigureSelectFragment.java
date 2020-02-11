@@ -13,7 +13,7 @@ import com.example.rimcat.R;
 public class FigureSelectFragment extends QuestionFragment {
 
     private static final String TAG = "FigureSelectFragment";
-    private ImageView figure1, figure2, figure3, figure4;
+    private ImageView figure1, figure2, figure3, figure4, selectedImage;
 
     @Nullable
     @Override
@@ -29,11 +29,15 @@ public class FigureSelectFragment extends QuestionFragment {
         figure2.setAlpha(0.8f);
         figure3.setAlpha(0.8f);
         figure4.setAlpha(0.8f);
+        figure1.setTag(1);
+        figure2.setTag(2);
+        figure3.setTag(3);
+        figure4.setTag(4);
 
         View.OnClickListener onSelectFigure = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageView selectedImage =  (ImageView) v;
+                selectedImage =  (ImageView) v;
                 figure1.setAlpha(0.8f);
                 figure2.setAlpha(0.8f);
                 figure3.setAlpha(0.8f);
@@ -48,6 +52,7 @@ public class FigureSelectFragment extends QuestionFragment {
         figure4.setOnClickListener(onSelectFigure);
 
         startAnimation(true);
+        logStartTime();
 
         return view;
     }
@@ -56,7 +61,11 @@ public class FigureSelectFragment extends QuestionFragment {
 
     @Override
     public boolean loadDataModel() {
-        return false;
+        if (selectedImage == null) {
+            return false;
+        }
+        logEndTimeAndData(getActivity().getApplicationContext(), "figure_select,image" + selectedImage.getTag().toString());
+        return true;
     }
 
     @Override

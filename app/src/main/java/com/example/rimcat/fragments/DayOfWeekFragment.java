@@ -30,6 +30,7 @@ public class DayOfWeekFragment extends QuestionFragment {
 
         cardView = view.findViewById(R.id.card);
         startAnimation(true);
+        logStartTime();
 
         return view;
     }
@@ -38,7 +39,7 @@ public class DayOfWeekFragment extends QuestionFragment {
     public boolean loadDataModel() {
 //        if (dayOfWeekSpinner.getSelectedItem().toString().equals("") || dataLogModel == null)
 //            return false;
-//        dataLogModel.dayOfTheWeek = dayOfWeekSpinner.getSelectedItem().toString();
+        logEndTimeAndData(getActivity().getApplicationContext(), "day_of_week," + dayOfWeekSpinner.getSelectedItem().toString());
         return true;
     }
 

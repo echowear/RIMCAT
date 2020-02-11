@@ -82,6 +82,7 @@ public class ImageNameFragment extends QuestionFragment {
                 Button selectedButton = (Button) view;
                 // This is where the answer will be recorded
                 Log.d(TAG, "onClick: Button value: " + selectedButton.getText().toString());
+                logEndTimeAndData(getActivity().getApplicationContext(), "image_name," + selectedButton.getText().toString());
 
                 if (imageCount + 1 == IMAGE_NAMES.length) {
                     ((MainActivity)getActivity()).getFragmentData(null);
@@ -106,6 +107,7 @@ public class ImageNameFragment extends QuestionFragment {
         cardView = view.findViewById(R.id.image_name_page);
 
         startAnimation(true);
+        logStartTime();
 
         return view;
     }

@@ -33,6 +33,7 @@ public class EducationFragment extends QuestionFragment {
 
         cardView = view.findViewById(R.id.card);
         startAnimation(true);
+        logStartTime();
 
         return view;
     }
@@ -42,11 +43,12 @@ public class EducationFragment extends QuestionFragment {
 //        if (educationSpinner.getSelectedItem().toString().equals("") || dataLogModel == null)
 //            return false;
 //        dataLogModel.educationLevel = educationSpinner.getSelectedItem().toString();
+        logEndTimeAndData(getActivity().getApplicationContext(), "education_level," + educationSpinner.getSelectedItem().toString());
         return true;
     }
 
     @Override
     public void moveToNextPage() {
-        ((MainActivity)getActivity()).addFragment(new AddressFragment(), "AddressFragment");
+        ((MainActivity)getActivity()).addFragment(new TodayDateFragment(), "TodayDateFragment");
     }
 }

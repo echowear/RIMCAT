@@ -5,9 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class DataLogService extends IntentService {
     private static final String TAG = "DataLogService";
-    private static final String HEADER = "rimcat.data";
+    private static final String HEADER = "question,response,start_time,end_time,date";
+    private static final String EXTRA_FILE_DESTINATION = "rimcat.file_destination";
     private static final String EXTRA_DATA = "rimcat.data";
 
     /**
@@ -23,8 +28,9 @@ public class DataLogService extends IntentService {
         super("DataLogService");
     }
 
-    public static void log(Context context, String data) {
+    public static void log(Context context, File file, String data) {
         Intent intent = new Intent(context, DataLogService.class);
+        intent.putExtra(EXTRA_FILE_DESTINATION, file.getAbsolutePath());
         intent.putExtra(EXTRA_DATA, data);
         context.startService(intent);
     }
@@ -34,6 +40,39 @@ public class DataLogService extends IntentService {
         if (intent == null || !intent.hasExtra(EXTRA_DATA)) {
             return;
         }
-        Log.d(TAG, "onHandleIntent: Here");
+
+        // if this file is new, create the file and flag as new.
+        boolean newFile = false;
+        File file = new File(intent.getStringExtra(EXTRA_FILE_DESTINATION));
+        if (!file.exists()) {
+            newFile = true;
+            file.getParentFile().mkdirs();
+            try {
+                if (!file.createNewFile()) {
+                    return;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // write to the file
+        try
+        {
+            FileOutputStream fileOutputStream = new FileOutputStream(file, true);
+            if (newFile)
+            {
+                // if flagged as a new file, apply the header before the data.
+                fileOutputStream.write(intent.getStringExtra(HEADER).getBytes());
+                fileOutputStream.write("\n".getBytes());
+            }
+            fileOutputStream.write(intent.getStringExtra(EXTRA_DATA).getBytes());
+            fileOutputStream.write("\n".getBytes());
+            fileOutputStream.flush();
+            fileOutputStream.close();
+            Log.i(TAG, "Data successfully logged.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

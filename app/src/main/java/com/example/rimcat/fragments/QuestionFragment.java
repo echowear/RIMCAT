@@ -1,5 +1,6 @@
 package com.example.rimcat.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,13 +14,24 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.example.rimcat.DataLogModel;
+import com.example.rimcat.DataLogService;
+import com.example.rimcat.GenerateDirectory;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public abstract class QuestionFragment extends Fragment {
     private static final String TAG = "QuestionFragment";
+    private static final String DATE_FORMAT_1 = "HH:mm:ss";
+    private static final String DATE_FORMAT_2 = "HH:mm:ss,MM/dd/yyyy";
 
     protected View cardView;
+    protected String startTime;
+    protected String endTime;
 
     @Nullable
     @Override
@@ -62,5 +74,23 @@ public abstract class QuestionFragment extends Fragment {
         } else {
 
         }
+    }
+
+    public void logStartTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_1);
+        Date today = Calendar.getInstance().getTime();
+        startTime = dateFormat.format(today);
+        Log.d(TAG, "logStartTime: " + startTime);
+    }
+
+    public void logEndTimeAndData(Context context, String data) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_2);
+        Date today = Calendar.getInstance().getTime();
+        endTime = dateFormat.format(today);
+        String resultString = data + "," + startTime + "," + endTime;
+
+        Log.d(TAG, "logEndTimeAndData: Logging the following result... \n" + resultString);
+
+        DataLogService.log(context, new File(GenerateDirectory.getRootFile(context), "responses"),resultString);
     }
 }
