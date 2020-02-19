@@ -32,7 +32,7 @@ public class DataLogService extends IntentService {
         Intent intent = new Intent(context, DataLogService.class);
         intent.putExtra(EXTRA_FILE_DESTINATION, file.getAbsolutePath());
         intent.putExtra(EXTRA_DATA, data);
-        context.startService(intent);
+//        context.startService(intent);
     }
 
     @Override

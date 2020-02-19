@@ -22,7 +22,17 @@ public class ImageNameFragment extends QuestionFragment {
     private static final int NUM_CHOICES = 3;
     private static final int[] IMAGE_NAMES = new int[] {
             R.drawable.tree,
-            R.drawable.bicycle
+            R.drawable.bicycle,
+            R.drawable.house,
+            R.drawable.butterfly,
+            R.drawable.giraffe,
+            R.drawable.kayak,
+            R.drawable.pear,
+            R.drawable.hippo,
+            R.drawable.watermelon,
+            R.drawable.daisy,
+            R.drawable.grapefruit,
+            R.drawable.accordion
     };
     private String[] buttonOptions;
     private int stringArrCount = 0, imageCount = 0;
@@ -32,6 +42,7 @@ public class ImageNameFragment extends QuestionFragment {
     private Button btn1, btn2, btn3;
     private View.OnClickListener recordImageChoice;
     private Animation.AnimationListener animationListener;
+    private boolean isAnimationActive;
 
     @Nullable
     @Override
@@ -55,7 +66,7 @@ public class ImageNameFragment extends QuestionFragment {
             public void onAnimationEnd(Animation animation) {
                 if (isFadingOut) {
                     stringArrCount += NUM_CHOICES;
-                    imageCount++;
+
                     if (imageCount < IMAGE_NAMES.length) {
                         imageView.setImageResource(IMAGE_NAMES[imageCount]);
                         btn1.setText(buttonOptions[stringArrCount]);
@@ -66,6 +77,9 @@ public class ImageNameFragment extends QuestionFragment {
                         fadeInAnimation.setAnimationListener(animationListener);
                         imageNamePage.startAnimation(fadeInAnimation);
                     }
+                }
+                else {
+                    isAnimationActive = false;
                 }
                 isFadingOut = !isFadingOut;
             }
@@ -79,20 +93,23 @@ public class ImageNameFragment extends QuestionFragment {
         recordImageChoice = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Button selectedButton = (Button) view;
-                // This is where the answer will be recorded
-                Log.d(TAG, "onClick: Button value: " + selectedButton.getText().toString());
-                logEndTimeAndData(getActivity().getApplicationContext(), "image_name," + selectedButton.getText().toString());
+                if (!isAnimationActive) {
+                    isAnimationActive = true;
+                    Button selectedButton = (Button) view;
+                    // This is where the answer will be recorded
+                    Log.d(TAG, "onClick: Button value: " + selectedButton.getText().toString());
+                    logEndTimeAndData(getActivity().getApplicationContext(), "image_name," + selectedButton.getText().toString());
 
-                if (imageCount + 1 == IMAGE_NAMES.length) {
-                    ((MainActivity)getActivity()).getFragmentData(null);
+                    imageCount++;
+                    if (imageCount == IMAGE_NAMES.length) {
+                        ((MainActivity)getActivity()).getFragmentData(null);
+                    }
+                    else {
+                        Animation fadeOutAnimation =  AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out);
+                        fadeOutAnimation.setAnimationListener(animationListener);
+                        imageNamePage.startAnimation(fadeOutAnimation);
+                    }
                 }
-                else {
-                    Animation fadeOutAnimation =  AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out);
-                    fadeOutAnimation.setAnimationListener(animationListener);
-                    imageNamePage.startAnimation(fadeOutAnimation);
-                }
-
             }
         };
 

@@ -74,6 +74,42 @@
         <item>Hut</item>
         <item>House</item>
         <item>Shed</item>
+
+        <item>Butterfly</item>
+        <item>Caterpillar</item>
+        <item>Fly</item>
+
+        <item>Zebra</item>
+        <item>Horse</item>
+        <item>Giraffe</item>
+
+        <item>Kayak</item>
+        <item>Canoe</item>
+        <item>Ship</item>
+
+        <item>Banana</item>
+        <item>Pear</item>
+        <item>Apple</item>
+
+        <item>Rhinoceros</item>
+        <item>Wildebeest</item>
+        <item>Hippopotamus</item>
+
+        <item>Cantaloupe</item>
+        <item>Pumpkin</item>
+        <item>Watermelon</item>
+
+        <item>Daisy</item>
+        <item>Tulip</item>
+        <item>Rose</item>
+
+        <item>Jackfruit</item>
+        <item>Grapefruit</item>
+        <item>Starfruit</item>
+
+        <item>Harmonica</item>
+        <item>Accordion</item>
+        <item>Saxophone</item>
     </string-array>
     <string name="instructions_figureStudy">
         You will now be shown a series of figures. You will have 10 seconds to

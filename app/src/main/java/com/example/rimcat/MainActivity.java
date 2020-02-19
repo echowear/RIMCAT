@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rimcat.fragments.HomeFragment;
+import com.example.rimcat.fragments.ImageNameFragment;
 import com.example.rimcat.fragments.QuestionFragment;
 
 //TODO: Find a way to log the data for the first section.
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager     fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private String              fragmentTag;
-    private int                 viewNumber = 0;
+    private int                 viewNumber = 10;
     private FloatingActionButton nextButton;
     private TextView            nextText;
 
@@ -33,9 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Initially change view to home fragment
         fragmentManager = getSupportFragmentManager();
-        fragmentTag = "HomeFragment";
+        fragmentTag = "ImageNameFragment";
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.container, new HomeFragment(), "HomeFragment");
+        fragmentTransaction.add(R.id.container, new ImageNameFragment(), "ImageNameFragment");
         fragmentTransaction.commit();
 
         // Initialize views and model
