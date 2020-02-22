@@ -91,6 +91,6 @@ public abstract class QuestionFragment extends Fragment {
 
         Log.d(TAG, "logEndTimeAndData: Logging the following result... \n" + resultString);
 
-        DataLogService.log(context, new File(GenerateDirectory.getRootFile(context), "responses"),resultString);
+        DataLogService.log(context, new File(GenerateDirectory.getRootFile(context), "responses.csv"),resultString);
     }
 }

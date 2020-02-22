@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager     fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private String              fragmentTag;
-    private int                 viewNumber = 10;
+    private int                 viewNumber = 0;
     private FloatingActionButton nextButton;
     private TextView            nextText;
 
@@ -34,9 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Initially change view to home fragment
         fragmentManager = getSupportFragmentManager();
-        fragmentTag = "ImageNameFragment";
+        fragmentTag = "HomeFragment";
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.container, new ImageNameFragment(), "ImageNameFragment");
+        fragmentTransaction.add(R.id.container, new HomeFragment(), "HomeFragment");
         fragmentTransaction.commit();
 
         // Initialize views and model
@@ -49,9 +49,10 @@ public class MainActivity extends AppCompatActivity {
         if (fragment.loadDataModel()) {
             fragment.startAnimation(false);
             // TODO: Make method for checking this stuff. Final Screen, Verbal screen for hiding next button, etc.
-            if (    viewNumber == DataLogModel.VERBAL_LEARNING_INST_VIEW ||
-                    viewNumber == DataLogModel.IMAGE_NAMING_INST_VIEW ||
-                    viewNumber == DataLogModel.FIGURE_STUDY_INST_VIEW) {
+            if (    viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_2 ||
+                    viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_3 ||
+                    viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_4 ||
+                    viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_5) {
                 nextText.setVisibility(View.INVISIBLE);
                 nextButton.hide();
             }

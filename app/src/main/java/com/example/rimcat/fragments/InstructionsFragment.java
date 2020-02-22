@@ -32,19 +32,23 @@ public class InstructionsFragment extends QuestionFragment {
 
         currentView = ((MainActivity)getActivity()).getViewNumber();
         switch (currentView) {
-            case DataLogModel.APP_INST_VIEW:
+            case DataLogModel.INSTRUCTIONS_SCREEN_1:
                 instructionsText.setText(R.string.instructions_appInst);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 break;
-            case DataLogModel.VERBAL_LEARNING_INST_VIEW:
+            case DataLogModel.INSTRUCTIONS_SCREEN_2:
                 instructionsText.setText(R.string.instructions_verbalInst);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
                 break;
-            case DataLogModel.IMAGE_NAMING_INST_VIEW:
+            case DataLogModel.INSTRUCTIONS_SCREEN_3:
+                instructionsText.setText(R.string.instructions_verbalInst2);
+                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
+                break;
+            case DataLogModel.INSTRUCTIONS_SCREEN_4:
                 instructionsText.setText(R.string.instructions_imageInst);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 break;
-            case DataLogModel.FIGURE_STUDY_INST_VIEW:
+            case DataLogModel.INSTRUCTIONS_SCREEN_5:
                 instructionsText.setText(R.string.instructions_figureStudy);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 break;
@@ -66,16 +70,19 @@ public class InstructionsFragment extends QuestionFragment {
     @Override
     public void moveToNextPage() {
         switch (currentView) {
-            case DataLogModel.APP_INST_VIEW:
+            case DataLogModel.INSTRUCTIONS_SCREEN_1:
                 ((MainActivity)getActivity()).addFragment(new EducationFragment(), "NameFragment");
                 break;
-            case DataLogModel.VERBAL_LEARNING_INST_VIEW:
+            case DataLogModel.INSTRUCTIONS_SCREEN_2:
                 ((MainActivity)getActivity()).addFragment(new VerbalRecallFragment(), "VerbalRecallFragment");
                 break;
-            case DataLogModel.IMAGE_NAMING_INST_VIEW:
+            case DataLogModel.INSTRUCTIONS_SCREEN_3:
+                ((MainActivity)getActivity()).addFragment(new VerbalRecallFragment(), "VerbalRecallFragment");
+                break;
+            case DataLogModel.INSTRUCTIONS_SCREEN_4:
                 ((MainActivity)getActivity()).addFragment(new ImageNameFragment(), "ImageNameFragment");
                 break;
-            case DataLogModel.FIGURE_STUDY_INST_VIEW:
+            case DataLogModel.INSTRUCTIONS_SCREEN_5:
                 ((MainActivity)getActivity()).addFragment(new FigureStudyFragment(), "FigureStudyFragment");
                 break;
             default:

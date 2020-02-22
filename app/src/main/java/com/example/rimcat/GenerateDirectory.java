@@ -29,9 +29,9 @@ public class GenerateDirectory  extends Application {
         }
         File directory;
         if (PATIENT_ID == null || PATIENT_ID.equals("")) {
-            directory = new File(root, ".RIMCAT");
+            directory = new File(root, "RIMCAT");
         } else {
-            directory = new File(root, ".RIMCAT/" + PATIENT_ID);
+            directory = new File(root, "RIMCAT/" + PATIENT_ID);
         }
         if (!directory.exists()) {
             if (directory.mkdirs()) {

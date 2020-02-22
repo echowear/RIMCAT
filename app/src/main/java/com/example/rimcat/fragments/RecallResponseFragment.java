@@ -60,8 +60,12 @@ public class RecallResponseFragment extends QuestionFragment {
 
     @Override
     public boolean loadDataModel() {
+        int currentView = ((MainActivity)getActivity()).getViewNumber();
         for (int i = 0; i < listItems.size(); i++) {
-            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall," + listItems.get(i));
+            if (currentView == DataLogModel.RECALL_RESPONSE_SCREEN_1)
+                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_1," + listItems.get(i));
+            else if (currentView == DataLogModel.RECALL_RESPONSE_SCREEN_2)
+                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_2," + listItems.get(i));
         }
 
         return true;

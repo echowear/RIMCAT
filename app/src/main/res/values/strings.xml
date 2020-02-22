@@ -52,6 +52,12 @@
         you can remember. It does not matter in what order you recall them. Just try to remember as
         many as you can.
     </string>
+    <string name="instructions_verbalInst2">
+        Now you will see the same list again, and once again when it is complete, you will be asked to
+        recall as many words as you can remember, including words you said the first time. It does not
+        matter in what order you recall them. Just recall as many words as you can remember whether or
+        not you said them before.
+    </string>
     <string name="verbal_readyBtn">Ready</string>
     <string name="verbal_readyPrompt">Press the button below when you are ready to start.</string>
     <string name="vresponse_prompt">
