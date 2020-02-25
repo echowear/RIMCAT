@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +35,14 @@ public class RecallResponseFragment extends QuestionFragment {
         listView = view.findViewById(R.id.vresponse_list);
         adapter = new ArrayAdapter<>(getActivity(), R.layout.list_white_text, R.id.list_content, listItems);
         listView.setAdapter(adapter);
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                listItems.remove(position);
+                adapter.notifyDataSetChanged();
+                return false;
+            }
+        });
 
         // Initialize other views
         responseText = view.findViewById(R.id.vresponse_recall_word);
@@ -44,7 +53,7 @@ public class RecallResponseFragment extends QuestionFragment {
             @Override
             public void onClick(View v) {
                 if (!responseText.getText().toString().equals("")) {
-                    listItems.add(responseText.getText().toString());
+                    listItems.add(0, responseText.getText().toString());
                     adapter.notifyDataSetChanged();
                     responseText.setText("");
                 }

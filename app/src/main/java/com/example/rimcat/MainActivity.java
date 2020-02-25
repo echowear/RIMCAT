@@ -12,9 +12,18 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.rimcat.fragments.DayOfWeekFragment;
+import com.example.rimcat.fragments.EducationFragment;
+import com.example.rimcat.fragments.FigureSelectFragment;
+import com.example.rimcat.fragments.FigureStudyFragment;
 import com.example.rimcat.fragments.HomeFragment;
 import com.example.rimcat.fragments.ImageNameFragment;
+import com.example.rimcat.fragments.InstructionsFragment;
 import com.example.rimcat.fragments.QuestionFragment;
+import com.example.rimcat.fragments.RecallResponseFragment;
+import com.example.rimcat.fragments.SeasonFragment;
+import com.example.rimcat.fragments.TodayDateFragment;
+import com.example.rimcat.fragments.VerbalRecallFragment;
 
 //TODO: Find a way to log the data for the first section.
 public class MainActivity extends AppCompatActivity {
@@ -48,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         QuestionFragment fragment = (QuestionFragment) fragmentManager.findFragmentByTag(fragmentTag);
         if (fragment.loadDataModel()) {
             fragment.startAnimation(false);
-            // TODO: Make method for checking this stuff. Final Screen, Verbal screen for hiding next button, etc.
+            // Checks to hide or show the Next button
             if (    viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_2 ||
                     viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_3 ||
                     viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_4 ||
@@ -80,6 +89,67 @@ public class MainActivity extends AppCompatActivity {
     public void incrementViewNumber() {
         viewNumber++;
         Log.d(TAG, "incrementViewNumber: View number is " + viewNumber);
+    }
+
+    //TODO: Make this shorter!!
+    private void debugScreenSelect(int viewNumber) {
+        this.viewNumber = viewNumber;
+        fragmentTransaction = fragmentManager.beginTransaction();
+
+        switch (viewNumber) {
+            case DataLogModel.HOME_SCREEN:
+                fragmentTransaction.replace(R.id.container, new HomeFragment(), "HomeFragment");
+                break;
+            case DataLogModel.INSTRUCTIONS_SCREEN_1:
+                fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
+                break;
+            case DataLogModel.EDUCATION_SCREEN:
+                fragmentTransaction.replace(R.id.container, new EducationFragment(), "EducationFragment");
+                break;
+            case DataLogModel.TODAYS_DATE_SCREEN:
+                fragmentTransaction.replace(R.id.container, new TodayDateFragment(), "TodayDateFragment");
+                break;
+            case DataLogModel.DAY_OF_WEEK_SCREEN:
+                fragmentTransaction.replace(R.id.container, new DayOfWeekFragment(), "DayOfWeekFragment");
+                break;
+            case DataLogModel.SEASON_SCREEN:
+                fragmentTransaction.replace(R.id.container, new SeasonFragment(), "SeasonFragment");
+                break;
+            case DataLogModel.INSTRUCTIONS_SCREEN_2:
+                fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
+                break;
+            case DataLogModel.VERBAL_RECALL_SCREEN:
+                fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "VerbalRecallFragment");
+                break;
+            case DataLogModel.RECALL_RESPONSE_SCREEN_1:
+                fragmentTransaction.replace(R.id.container, new RecallResponseFragment(), "RecallResponseFragment");
+                break;
+            case DataLogModel.INSTRUCTIONS_SCREEN_3:
+                fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
+                break;
+            case DataLogModel.RECALL_RESPONSE_SCREEN_2:
+                fragmentTransaction.replace(R.id.container, new RecallResponseFragment(), "RecallResponseFragment");
+                break;
+            case DataLogModel.VERBAL_RECALL_SCREEN_3:
+                fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "VerbalRecallFragment");
+                break;
+            case DataLogModel.INSTRUCTIONS_SCREEN_4:
+                fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
+                break;
+            case DataLogModel.IMAGE_NAME_SCREEN:
+                fragmentTransaction.replace(R.id.container, new ImageNameFragment(), "ImageNameFragment");
+                break;
+            case DataLogModel.INSTRUCTIONS_SCREEN_5:
+                fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
+                break;
+            case DataLogModel.FIGURE_STUDY_SCREEN:
+                fragmentTransaction.replace(R.id.container, new FigureStudyFragment(), "FigureStudyFragment");
+                break;
+            case DataLogModel.FIGURE_SELECT_SCREEN:
+                fragmentTransaction.replace(R.id.container, new FigureSelectFragment(), "FigureSelectFragment");
+                break;
+        }
+        fragmentTransaction.commit();
     }
 
     @Override
