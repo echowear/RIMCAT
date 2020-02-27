@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -24,6 +26,9 @@ import com.example.rimcat.fragments.RecallResponseFragment;
 import com.example.rimcat.fragments.SeasonFragment;
 import com.example.rimcat.fragments.TodayDateFragment;
 import com.example.rimcat.fragments.VerbalRecallFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 //TODO: Find a way to log the data for the first section.
 public class MainActivity extends AppCompatActivity {
@@ -92,64 +97,109 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //TODO: Make this shorter!!
-    private void debugScreenSelect(int viewNumber) {
-        this.viewNumber = viewNumber;
+    private void debugScreenSelect(int itemID) {
         fragmentTransaction = fragmentManager.beginTransaction();
 
-        switch (viewNumber) {
-            case DataLogModel.HOME_SCREEN:
+        switch (itemID) {
+            case R.id.screen_home_om:
+                this.viewNumber = DataLogModel.HOME_SCREEN;
+                fragmentTag = "HomeFragment";
                 fragmentTransaction.replace(R.id.container, new HomeFragment(), "HomeFragment");
                 break;
-            case DataLogModel.INSTRUCTIONS_SCREEN_1:
+            case R.id.screen_inst_1_om:
+                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_1;
+                fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
-            case DataLogModel.EDUCATION_SCREEN:
+            case R.id.screen_education_om:
+                this.viewNumber = DataLogModel.EDUCATION_SCREEN;
+                fragmentTag = "EducationFragment";
                 fragmentTransaction.replace(R.id.container, new EducationFragment(), "EducationFragment");
                 break;
-            case DataLogModel.TODAYS_DATE_SCREEN:
+            case R.id.screen_date_om:
+                this.viewNumber = DataLogModel.TODAYS_DATE_SCREEN;
+                fragmentTag = "TodayDateFragment";
                 fragmentTransaction.replace(R.id.container, new TodayDateFragment(), "TodayDateFragment");
                 break;
-            case DataLogModel.DAY_OF_WEEK_SCREEN:
+            case R.id.screen_day_om:
+                this.viewNumber = DataLogModel.DAY_OF_WEEK_SCREEN;
+                fragmentTag = "DayOfWeekFragment";
                 fragmentTransaction.replace(R.id.container, new DayOfWeekFragment(), "DayOfWeekFragment");
                 break;
-            case DataLogModel.SEASON_SCREEN:
+            case R.id.screen_season_om:
+                this.viewNumber = DataLogModel.SEASON_SCREEN;
+                fragmentTag = "SeasonFragment";
                 fragmentTransaction.replace(R.id.container, new SeasonFragment(), "SeasonFragment");
                 break;
-            case DataLogModel.INSTRUCTIONS_SCREEN_2:
+            case R.id.screen_inst_2_om:
+                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_2;
+                fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
-            case DataLogModel.VERBAL_RECALL_SCREEN:
+            case R.id.screen_verbal_1_om:
+                this.viewNumber = DataLogModel.VERBAL_RECALL_SCREEN_1;
+                fragmentTag = "VerbalRecallFragment";
                 fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "VerbalRecallFragment");
                 break;
-            case DataLogModel.RECALL_RESPONSE_SCREEN_1:
+            case R.id.screen_recall_1_om:
+                this.viewNumber = DataLogModel.RECALL_RESPONSE_SCREEN_1;
+                fragmentTag = "RecallResponseFragment";
                 fragmentTransaction.replace(R.id.container, new RecallResponseFragment(), "RecallResponseFragment");
                 break;
-            case DataLogModel.INSTRUCTIONS_SCREEN_3:
+            case R.id.screen_inst_3_om:
+                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_3;
+                fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
-            case DataLogModel.RECALL_RESPONSE_SCREEN_2:
+            case R.id.screen_verbal_2_om:
+                this.viewNumber = DataLogModel.RECALL_RESPONSE_SCREEN_2;
+                fragmentTag = "RecallResponseFragment";
                 fragmentTransaction.replace(R.id.container, new RecallResponseFragment(), "RecallResponseFragment");
                 break;
-            case DataLogModel.VERBAL_RECALL_SCREEN_3:
+            case R.id.screen_recall_2_om:
+                this.viewNumber = DataLogModel.VERBAL_RECALL_SCREEN_2;
+                fragmentTag = "VerbalRecallFragment";
                 fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "VerbalRecallFragment");
                 break;
-            case DataLogModel.INSTRUCTIONS_SCREEN_4:
+            case R.id.screen_inst_4_om:
+                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_4;
+                fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
-            case DataLogModel.IMAGE_NAME_SCREEN:
+            case R.id.screen_img_nm_om:
+                this.viewNumber = DataLogModel.IMAGE_NAME_SCREEN;
+                fragmentTag = "ImageNameFragment";
                 fragmentTransaction.replace(R.id.container, new ImageNameFragment(), "ImageNameFragment");
                 break;
-            case DataLogModel.INSTRUCTIONS_SCREEN_5:
+            case R.id.screen_inst_5_om:
+                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_5;
+                fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
-            case DataLogModel.FIGURE_STUDY_SCREEN:
+            case R.id.screen_fig_study_om:
+                this.viewNumber = DataLogModel.FIGURE_STUDY_SCREEN;
+                fragmentTag = "FigureStudyFragment";
                 fragmentTransaction.replace(R.id.container, new FigureStudyFragment(), "FigureStudyFragment");
                 break;
-            case DataLogModel.FIGURE_SELECT_SCREEN:
+            case R.id.screen_fig_select_om:
+                this.viewNumber = DataLogModel.FIGURE_SELECT_SCREEN;
+                fragmentTag = "FigureSelectFragment";
                 fragmentTransaction.replace(R.id.container, new FigureSelectFragment(), "FigureSelectFragment");
                 break;
         }
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.overflow_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        debugScreenSelect(item.getItemId());
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -1,4 +1,25 @@
 <resources>
+    <!--  Screen Names  -->
+    <string name="screen_home">Home</string>
+    <string name="screen_inst_1">Instructions 1</string>
+    <string name="screen_education">Education</string>
+    <string name="screen_date">Date</string>
+    <string name="screen_day">Day of Week</string>
+    <string name="screen_season">Season</string>
+    <string name="screen_inst_2">Instructions 2</string>
+    <string name="screen_verbal_1">Verbal Recall 1</string>
+    <string name="screen_recall_1">Recall Response 1</string>
+    <string name="screen_inst_3">Instructions 3</string>
+    <string name="screen_verbal_2">Verbal Recall 2</string>
+    <string name="screen_recall_2">Recall Response 2</string>
+    <string name="screen_inst_4">Instructions 4</string>
+    <string name="screen_img_nm">Image Name</string>
+    <string name="screen_inst_5">Instructions 5</string>
+    <string name="screen_fig_study">Figure Study</string>
+    <string name="screen_fig_select">Figure Select</string>
+
+
+
     <string name="app_name">RIMCAT</string>
     <string name="error">Error</string>
 
