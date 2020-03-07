@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 
 public class FigureSelectFragment extends QuestionFragment {
@@ -70,6 +71,6 @@ public class FigureSelectFragment extends QuestionFragment {
 
     @Override
     public void moveToNextPage() {
-
+        ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
     }
 }

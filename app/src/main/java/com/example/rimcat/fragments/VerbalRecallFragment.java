@@ -52,7 +52,8 @@ public class VerbalRecallFragment extends QuestionFragment {
             @Override
             public void onTick(long millisUntilFinished) {
                 Log.d(TAG, "onTick: Tick: " + timerIndex);
-                verbalText.setText("" + timerIndex);
+                if (timerIndex > 0)
+                    verbalText.setText("" + timerIndex);
                 timerIndex--;
             }
 

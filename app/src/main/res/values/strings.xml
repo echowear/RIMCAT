@@ -17,8 +17,8 @@
     <string name="screen_inst_5">Instructions 5</string>
     <string name="screen_fig_study">Figure Study</string>
     <string name="screen_fig_select">Figure Select</string>
-
-
+    <string name="screen_inst_6">Instructions 6</string>
+    <string name="screen_read_comp">Reading Comp.</string>
 
     <string name="app_name">RIMCAT</string>
     <string name="error">Error</string>
@@ -159,4 +159,59 @@
         <item>Shed</item>
     </string-array>
     <string name="figure_select_prompt">Select the correct figure that you have seen before.</string>
+    <string name="instructions_reading_comp">
+        Next, you will have to read a story, then answer the questions that follow.
+    </string>
+    <string name="reading_comp_prompt">
+        On Monday morning, Sarah drove her new car to work. During lunch, she
+        drove to the store to purchase groceries. In the parking lot she ran into her
+        friend, Maria. Distracted by the conversation, she left the full and unsecured
+        bag of groceries in the backseat. Driving back, she halted to a stop and the
+        groceries went flying. The brand new floor mats were covered with 8 broken
+        eggs and half a carton of blueberries.
+    </string>
+    <string name="reading_comp_instr">
+        Respond by pressing the correct response to the question about the story.
+    </string>
+    <string-array name="reading_comp_questions">
+        <item><b>The story begins on:</b></item>
+        <item><b>Is the story is about a woman who meets a friend for lunch?</b></item>
+        <item><b>Is the story is about a woman who ran over her groceries?</b></item>
+        <item><b>Did the woman run into her friend in the grocery aisle?</b></item>
+        <item><b>Is the story is about a woman who meets a friend for lunch?</b></item>
+        <item><b>The main character’s name was:</b></item>
+        <item><b>Did the woman run into her friend in the grocery aisle?</b></item>
+        <item><b>The woman’s bag was not secure because:</b></item>
+        <item><b>What was broken?</b></item>
+        <item><b>How many eggs were broke?</b></item>
+        <item><b>The woman saw what fruit on the floor mat:</b></item>
+    </string-array>
+    <string name="reading_yes">Yes</string>
+    <string name="reading_no">No</string>
+    <string-array name="reading_comp_answers">
+        <item>Monday morning</item>
+        <item>Wednesday afternoon</item>
+        <item>Thursday at dawn</item>
+        <item>Tuesday at lunch break</item>
+
+        <item>Maria</item>
+        <item>Cara</item>
+        <item>Mariah</item>
+        <item>Sarah</item>
+
+        <item>Her trunk was left unlocked</item>
+        <item>The grocery handle had broken</item>
+        <item>She was distracted</item>
+        <item>She is not very bright</item>
+
+        <item>The car breaks</item>
+        <item>Eggs</item>
+        <item>A finger nail</item>
+        <item>The woman’s spirits</item>
+
+        <item>Raspberries</item>
+        <item>Bananas</item>
+        <item>Blueberries</item>
+        <item>Grapes</item>
+    </string-array>
 </resources>

@@ -41,6 +41,7 @@
                 android:text="@string/verbal_readyBtn"
                 android:textColor="@color/white"
                 android:textSize="35sp"
+                android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.494"

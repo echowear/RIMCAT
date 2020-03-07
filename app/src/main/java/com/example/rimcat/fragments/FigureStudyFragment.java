@@ -58,7 +58,8 @@ public class FigureStudyFragment extends QuestionFragment {
             @Override
             public void onTick(long millisUntilFinished) {
                 Log.d(TAG, "onTick: Tick: " + timerIndex);
-                figureText.setText("" + timerIndex);
+                if (timerIndex > 0)
+                    figureText.setText("" + timerIndex);
                 timerIndex--;
             }
 

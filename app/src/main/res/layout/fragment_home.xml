@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="224dp"
         android:layout_marginLeft="224dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="225dp"
         android:layout_marginRight="225dp"
         android:background="@color/white"
@@ -21,14 +21,16 @@
         android:inputType="textPersonName"
         android:text=""
         android:textSize="35sp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="522dp"
+        android:layout_height="273dp"
         android:layout_marginStart="245dp"
         android:layout_marginLeft="245dp"
         android:layout_marginTop="48dp"

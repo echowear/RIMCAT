@@ -1,5 +1,9 @@
 package com.example.rimcat;
 
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.TransitionDrawable;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -22,6 +26,7 @@ import com.example.rimcat.fragments.HomeFragment;
 import com.example.rimcat.fragments.ImageNameFragment;
 import com.example.rimcat.fragments.InstructionsFragment;
 import com.example.rimcat.fragments.QuestionFragment;
+import com.example.rimcat.fragments.ReadingCompFragment;
 import com.example.rimcat.fragments.RecallResponseFragment;
 import com.example.rimcat.fragments.SeasonFragment;
 import com.example.rimcat.fragments.TodayDateFragment;
@@ -33,10 +38,12 @@ import java.util.List;
 //TODO: Find a way to log the data for the first section.
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    private static final int    BACKGROUND_TRANSITION_TIME = 2000;
     private FragmentManager     fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private String              fragmentTag;
     private int                 viewNumber = 0;
+    private ConstraintLayout    appBackground;
     private FloatingActionButton nextButton;
     private TextView            nextText;
 
@@ -45,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        appBackground = findViewById(R.id.app_background);
 
         // Initially change view to home fragment
         fragmentManager = getSupportFragmentManager();
@@ -61,19 +69,10 @@ public class MainActivity extends AppCompatActivity {
     public void getFragmentData(View view) {
         QuestionFragment fragment = (QuestionFragment) fragmentManager.findFragmentByTag(fragmentTag);
         if (fragment.loadDataModel()) {
+            changeBackground();
             fragment.startAnimation(false);
             // Checks to hide or show the Next button
-            if (    viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_2 ||
-                    viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_3 ||
-                    viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_4 ||
-                    viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_5) {
-                nextText.setVisibility(View.INVISIBLE);
-                nextButton.hide();
-            }
-            else if (nextText.getVisibility() == View.INVISIBLE) {
-                nextText.setVisibility(View.VISIBLE);
-                nextButton.show();
-            }
+            viewButtonVisibility();
         } else {
             Toast.makeText(this, "Please fill out all fields before proceeding.", Toast.LENGTH_SHORT).show();
         }
@@ -87,6 +86,14 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+    public void changeBackground() {
+        TransitionDrawable trans = (TransitionDrawable) appBackground.getBackground();
+        if (viewNumber == 0 || viewNumber % 2 == 0)
+            trans.startTransition(BACKGROUND_TRANSITION_TIME);
+        else
+            trans.reverseTransition(BACKGROUND_TRANSITION_TIME);
+    }
+
     public int getViewNumber() {
         return viewNumber;
     }
@@ -94,6 +101,21 @@ public class MainActivity extends AppCompatActivity {
     public void incrementViewNumber() {
         viewNumber++;
         Log.d(TAG, "incrementViewNumber: View number is " + viewNumber);
+    }
+
+    private void viewButtonVisibility() {
+        if (    viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_2 ||
+                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_3 ||
+                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_4 ||
+                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_5 ||
+                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_6) {
+            nextText.setVisibility(View.INVISIBLE);
+            nextButton.hide();
+        }
+        else if (nextText.getVisibility() == View.INVISIBLE) {
+            nextText.setVisibility(View.VISIBLE);
+            nextButton.show();
+        }
     }
 
     //TODO: Make this shorter!!
@@ -186,7 +208,18 @@ public class MainActivity extends AppCompatActivity {
                 fragmentTag = "FigureSelectFragment";
                 fragmentTransaction.replace(R.id.container, new FigureSelectFragment(), "FigureSelectFragment");
                 break;
+            case R.id.screen_inst_6_om:
+                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_6;
+                fragmentTag = "InstructionsFragment";
+                fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
+                break;
+            case R.id.screen_read_comp:
+                this.viewNumber = DataLogModel.READING_COMP_SCREEN;
+                fragmentTag = "ReadingCompFragment";
+                fragmentTransaction.replace(R.id.container, new ReadingCompFragment(), "ReadingCompFragment");
+                break;
         }
+        viewButtonVisibility();
         fragmentTransaction.commit();
     }
 
