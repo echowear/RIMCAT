@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,7 @@ public class ReadingCompFragment extends QuestionFragment {
      */
     private static final int[] QUESTION_TYPE = new int[] {
             //TODO: Figure out what to do with second to last value, which should be a 2
-            1, 0, 0, 1, 0, 1, 1, 0, 1
+            1, 0, 0, 1, 0, 1, 1, 1, 1
     };
     private CardView card1, card2;
     private TextView questionsText;
@@ -74,16 +75,19 @@ public class ReadingCompFragment extends QuestionFragment {
             @Override
             public void onClick(View v) {
                 // Record the data based on current question
-//                if (QUESTION_TYPE[questionCount] == 0)
-//                    logEndTimeAndData(getActivity().getApplicationContext(), "reading_comp," + twoQuestionGrp.);
+                // TODO: Clean this whole thing up
+                if (QUESTION_TYPE[questionCount] == 0 && twoQuestionGrp.getCheckedRadioButtonId() != -1)
+                    resetRadioGroup(twoQuestionGrp);
+                else if (QUESTION_TYPE[questionCount] == 1 && fourQuestionGrp.getCheckedRadioButtonId() != -1)
+                    resetRadioGroup(fourQuestionGrp);
                 questionCount++;
-                questionsText.setText(questionsArray[questionCount]);
 
-                if (questionCount <= QUESTION_TYPE.length) {
+                if (questionCount < QUESTION_TYPE.length) {
+                    questionsText.setText(questionsArray[questionCount]);
                     // Prepare view for next question
                     if (QUESTION_TYPE[questionCount] == 0) {
-                        twoQuestionGrp.setVisibility(View.VISIBLE);
                         fourQuestionGrp.setVisibility(View.INVISIBLE);
+                        twoQuestionGrp.setVisibility(View.VISIBLE);
                     } else if (QUESTION_TYPE[questionCount] == 1) {
                         twoQuestionGrp.setVisibility(View.INVISIBLE);
                         fourQuestionGrp.setVisibility(View.VISIBLE);
@@ -92,6 +96,7 @@ public class ReadingCompFragment extends QuestionFragment {
                         radioButton2.setText(answersArray[(fourAnswerCount * 4) + 1]);
                         radioButton3.setText(answersArray[(fourAnswerCount * 4) + 2]);
                         radioButton4.setText(answersArray[(fourAnswerCount * 4) + 3]);
+
                     }
                 } else {
                     ((MainActivity)getActivity()).getFragmentData(null);
@@ -103,7 +108,18 @@ public class ReadingCompFragment extends QuestionFragment {
         startAnimation(true);
         logStartTime();
 
+        Log.d(TAG, "onCreateView: " + questionsArray.length);
+        Log.d(TAG, "onCreateView: " + QUESTION_TYPE.length);
         return view;
+    }
+
+    private void resetRadioGroup(RadioGroup group) {
+        int radioButtonID = group.getCheckedRadioButtonId();
+        View radioButton = group.findViewById(radioButtonID);
+        int idx = group.indexOfChild(radioButton);
+        RadioButton r = (RadioButton) group.getChildAt(idx);
+        logEndTimeAndData(getActivity().getApplicationContext(), "reading_comp," + r.getText().toString());
+        r.setChecked(false);
     }
 
     @Override
