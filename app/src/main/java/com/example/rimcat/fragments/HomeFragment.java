@@ -34,8 +34,6 @@ public class HomeFragment extends QuestionFragment {
 
     @Override
     public boolean loadDataModel() {
-//        if (inputPatientID.getText().toString().equals("") || dataLogModel == null)
-//            return false;
         GenerateDirectory.setPatientID(inputPatientID.getText().toString());
         return true;
     }

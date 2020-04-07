@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,20 +33,19 @@ import com.example.rimcat.fragments.SeasonFragment;
 import com.example.rimcat.fragments.TodayDateFragment;
 import com.example.rimcat.fragments.VerbalRecallFragment;
 
-import java.util.ArrayList;
-import java.util.List;
 
-//TODO: Find a way to log the data for the first section.
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
-    private static final int    BACKGROUND_TRANSITION_TIME = 2000;
-    private FragmentManager     fragmentManager;
-    private FragmentTransaction fragmentTransaction;
-    private String              fragmentTag;
-    private int                 viewNumber = 0;
-    private ConstraintLayout    appBackground;
-    private FloatingActionButton nextButton;
-    private TextView            nextText;
+    private static final String     TAG = "MainActivity";
+    private static final int        BACKGROUND_TRANSITION_TIME = 2000;
+    private static final int        NUM_SCREENS = 18;
+    private FragmentManager         fragmentManager;
+    private FragmentTransaction     fragmentTransaction;
+    private String                  fragmentTag;
+    private int                     viewNumber = 0;
+    private ConstraintLayout        appBackground;
+    private FloatingActionButton    nextButton;
+    private TextView                nextText;
+    private ProgressBar             appProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
         // Initialize views and model
         nextButton = findViewById(R.id.floatingActionButton);
         nextText = findViewById(R.id.nextText);
+        appProgress = findViewById(R.id.app_progress);
+        appProgress.setMax(NUM_SCREENS);
     }
 
     public void getFragmentData(View view) {
@@ -100,15 +102,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void incrementViewNumber() {
         viewNumber++;
+        appProgress.setProgress(viewNumber);
         Log.d(TAG, "incrementViewNumber: View number is " + viewNumber);
     }
 
     private void viewButtonVisibility() {
+        Log.d(TAG, "viewButtonVisibility: View Number: " + viewNumber);
         if (    viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_2 ||
                 viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_3 ||
                 viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_4 ||
                 viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_5 ||
-                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_6) {
+                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_6 ||
+                viewNumber == DataLogModel.VERBAL_RECALL_SCREEN_1 ||
+                viewNumber == DataLogModel.VERBAL_RECALL_SCREEN_2) {
             nextText.setVisibility(View.INVISIBLE);
             nextButton.hide();
         }
@@ -219,6 +225,7 @@ public class MainActivity extends AppCompatActivity {
                 fragmentTransaction.replace(R.id.container, new ReadingCompFragment(), "ReadingCompFragment");
                 break;
         }
+        appProgress.setProgress(viewNumber);
         viewButtonVisibility();
         fragmentTransaction.commit();
     }

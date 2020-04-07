@@ -85,6 +85,7 @@
         Now type in all the words you can remember. Just try to your best to recall as many as you can.
     </string>
     <string name="vresponse_addBtn">Add</string>
+    <string name="vresponse_doneRecalling">Done Recalling</string>
     <string name="vresponse_recallHint">Recall Word</string>
     <string name="instructions_imageInst">
         Please select the correct name for each object as quickly as you can.
