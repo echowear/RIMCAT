@@ -26,15 +26,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Spinner
+            <android.support.v7.widget.AppCompatSpinner
                 android:id="@+id/day_of_week_spinner"
-                android:layout_width="442dp"
-                android:layout_height="45dp"
+                android:layout_width="452dp"
+                android:layout_height="76dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="64dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
+                android:background="@drawable/spinner_background"
                 android:textSize="35sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -51,6 +52,7 @@
                 android:layout_marginRight="337dp"
                 android:text="@string/day_of_week_prompt"
                 android:textSize="35sp"
+                android:layout_gravity="center"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

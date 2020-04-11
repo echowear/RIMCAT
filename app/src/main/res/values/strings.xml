@@ -82,7 +82,7 @@
     <string name="verbal_readyBtn">Ready</string>
     <string name="verbal_readyPrompt">Press the button below when you are ready to start.</string>
     <string name="vresponse_prompt">
-        Now type in all the words you can remember. Just try to your best to recall as many as you can.
+        Now type in all the words you can remember. Just try your best to recall as many as you can.
     </string>
     <string name="vresponse_addBtn">Add</string>
     <string name="vresponse_doneRecalling">Done Recalling</string>

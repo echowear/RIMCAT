@@ -25,7 +25,7 @@ public class DayOfWeekFragment extends QuestionFragment {
         View view = inflater.inflate(R.layout.fragment_day_of_week, container, false);
         dayOfWeekSpinner = view.findViewById(R.id.day_of_week_spinner);
         adapter = ArrayAdapter.createFromResource(getActivity(), R.array.day_of_week_array, R.layout.spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         dayOfWeekSpinner.setAdapter(adapter);
 
         cardView = view.findViewById(R.id.card);

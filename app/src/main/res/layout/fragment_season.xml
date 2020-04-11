@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -25,15 +26,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Spinner
+            <android.support.v7.widget.AppCompatSpinner
                 android:id="@+id/season_spinner"
-                android:layout_width="442dp"
-                android:layout_height="45dp"
+                android:layout_width="455dp"
+                android:layout_height="77dp"
                 android:layout_marginStart="145dp"
                 android:layout_marginLeft="145dp"
                 android:layout_marginTop="64dp"
                 android:layout_marginEnd="144dp"
                 android:layout_marginRight="144dp"
+                android:background="@drawable/spinner_background"
                 android:textSize="35sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

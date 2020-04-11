@@ -29,7 +29,7 @@ public class SeasonFragment extends QuestionFragment {
 
         seasonSpinner = view.findViewById(R.id.season_spinner);
         adapter = ArrayAdapter.createFromResource(getActivity(), R.array.season_array, R.layout.spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         seasonSpinner.setAdapter(adapter);
 
         cardView = view.findViewById(R.id.card);

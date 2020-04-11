@@ -28,7 +28,7 @@ public class EducationFragment extends QuestionFragment {
 
         educationSpinner = view.findViewById(R.id.education_spinner);
         adapter = ArrayAdapter.createFromResource(getActivity(), R.array.education_array, R.layout.spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         educationSpinner.setAdapter(adapter);
 
         cardView = view.findViewById(R.id.card);
