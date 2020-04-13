@@ -1,10 +1,10 @@
 package com.example.rimcat;
 
-import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.GradientDrawable;
+
 import android.graphics.drawable.TransitionDrawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -34,7 +34,7 @@ import com.example.rimcat.fragments.TodayDateFragment;
 import com.example.rimcat.fragments.VerbalRecallFragment;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RetryDialog.RetryDialogListener {
     private static final String     TAG = "MainActivity";
     private static final int        BACKGROUND_TRANSITION_TIME = 2000;
     private static final int        NUM_SCREENS = 18;
@@ -228,6 +228,18 @@ public class MainActivity extends AppCompatActivity {
         appProgress.setProgress(viewNumber);
         viewButtonVisibility();
         fragmentTransaction.commit();
+    }
+
+    public void showNoticeDialog() {
+        // Create an instance of the dialog fragment and show it
+        RetryDialog dialog = new RetryDialog();
+        dialog.show(getSupportFragmentManager(), "RetryDialog");
+    }
+
+    @Override
+    public void onRetryDialogPositiveClick(DialogFragment dialog) {
+        RecallResponseFragment fragment = (RecallResponseFragment) fragmentManager.findFragmentByTag(fragmentTag);
+        fragment.executePostMessageSetup();
     }
 
     @Override

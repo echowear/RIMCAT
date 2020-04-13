@@ -20,4 +20,8 @@
         <item name="android:popupBackground">#DFFFFFFF</item>
     </style>
 
+    <style name="DialogTitle" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textSize">18sp</item>
+    </style>
+
 </resources>

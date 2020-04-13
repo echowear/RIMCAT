@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AppCompatDialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,11 +21,12 @@ import android.widget.Toast;
 import com.example.rimcat.DataLogModel;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
+import com.example.rimcat.RetryDialog;
 
 import java.util.ArrayList;
 
 public class RecallResponseFragment extends QuestionFragment {
-
+    private static final String     TAG = "RecallResponseFragment";
     private Context                 mContext;
     private EditText                responseText;
     private Button                  addBtn, doneRecallingBtn;
@@ -53,6 +56,9 @@ public class RecallResponseFragment extends QuestionFragment {
                     if (!firstWordRecalled || doneRecallingBtn.getVisibility() == View.INVISIBLE) {
                         firstWordRecalled = true;
                         doneRecallingTimer.start();
+                    } else {
+                        doneRecallingTimer.cancel();
+                        doneRecallingTimer.start();
                     }
                 }
             }
@@ -63,10 +69,7 @@ public class RecallResponseFragment extends QuestionFragment {
             public void onClick(View v) {
                 if (doneRecallingBtn.getVisibility() == View.VISIBLE) {
                     if (!firstFinish) {
-                        Toast.makeText(mContext, "Keep trying! You can do it!", Toast.LENGTH_LONG).show();
-                        firstFinish = true;
-                        doneRecallingBtn.setVisibility(View.INVISIBLE);
-                        doneRecallingTimer.start();
+                        ((MainActivity)getActivity()).showNoticeDialog();
                     } else {
                         ((MainActivity)getActivity()).getFragmentData(null);
                     }
@@ -77,8 +80,11 @@ public class RecallResponseFragment extends QuestionFragment {
         doneRecallingBtn.setVisibility(View.INVISIBLE);
         // Creates the timer that counts down the verbal recall section
         doneRecallingTimer = new CountDownTimer(15000, 15000) {
+            int count = 0;
             @Override
-            public void onTick(long millisUntilFinished) {}
+            public void onTick(long millisUntilFinished) {
+                Log.d(TAG, "onTick: Timer ticked" + ++count);
+            }
 
             @Override
             public void onFinish() {
@@ -91,6 +97,12 @@ public class RecallResponseFragment extends QuestionFragment {
         logStartTime();
 
         return view;
+    }
+
+    public void executePostMessageSetup() {
+        firstFinish = true;
+        doneRecallingBtn.setVisibility(View.INVISIBLE);
+        doneRecallingTimer.start();
     }
 
     @Override
