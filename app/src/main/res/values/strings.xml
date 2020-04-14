@@ -88,6 +88,7 @@
     <string name="vresponse_doneRecalling">Done Recalling</string>
     <string name="vresponse_recallHint">Recall Word</string>
     <string name="vresponse_message1">Keep trying for a little longer. You can do it!</string>
+    <string name="vresponse_message2">Are you sure you want to move on?</string>
     <string name="instructions_imageInst">
         Please select the correct name for each object as quickly as you can.
     </string>

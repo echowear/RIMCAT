@@ -1,33 +1,33 @@
 package com.example.rimcat.fragments;
 
 import android.content.Context;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AppCompatDialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.rimcat.DataLogModel;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
-import com.example.rimcat.RetryDialog;
 
 import java.util.ArrayList;
 
 public class RecallResponseFragment extends QuestionFragment {
     private static final String     TAG = "RecallResponseFragment";
     private Context                 mContext;
+    private Vibrator                mVibrator;
     private EditText                responseText;
     private Button                  addBtn, doneRecallingBtn;
     private ArrayList<String>       responses;
@@ -39,6 +39,7 @@ public class RecallResponseFragment extends QuestionFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recall_response, container, false);
         mContext = view.getContext();
+        mVibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
 
         // Initialize views
         responseText = view.findViewById(R.id.vresponse_recall_word);
@@ -53,6 +54,7 @@ public class RecallResponseFragment extends QuestionFragment {
                 if (!responseText.getText().toString().equals("")) {
                     responses.add(responseText.getText().toString());
                     responseText.setText("");
+                    vibrateAndExecuteSound();
                     if (!firstWordRecalled || doneRecallingBtn.getVisibility() == View.INVISIBLE) {
                         firstWordRecalled = true;
                         doneRecallingTimer.start();
@@ -69,9 +71,9 @@ public class RecallResponseFragment extends QuestionFragment {
             public void onClick(View v) {
                 if (doneRecallingBtn.getVisibility() == View.VISIBLE) {
                     if (!firstFinish) {
-                        ((MainActivity)getActivity()).showNoticeDialog();
+                        ((MainActivity)getActivity()).showRetryDialog();
                     } else {
-                        ((MainActivity)getActivity()).getFragmentData(null);
+                        ((MainActivity)getActivity()).showRecallFinishDialog();
                     }
                 }
             }
@@ -103,6 +105,22 @@ public class RecallResponseFragment extends QuestionFragment {
         firstFinish = true;
         doneRecallingBtn.setVisibility(View.INVISIBLE);
         doneRecallingTimer.start();
+    }
+
+    private void vibrateAndExecuteSound() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && mVibrator != null) {
+            mVibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else if (mVibrator != null) {
+            //deprecated in API 26
+            mVibrator.vibrate(500);
+        }
+        try {
+            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            Ringtone r = RingtoneManager.getRingtone(mContext, notification);
+            r.play();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

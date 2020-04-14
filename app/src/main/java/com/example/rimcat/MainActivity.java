@@ -19,6 +19,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.rimcat.dialogs.RecallFinishDialog;
+import com.example.rimcat.dialogs.RetryDialog;
 import com.example.rimcat.fragments.DayOfWeekFragment;
 import com.example.rimcat.fragments.EducationFragment;
 import com.example.rimcat.fragments.FigureSelectFragment;
@@ -34,7 +36,7 @@ import com.example.rimcat.fragments.TodayDateFragment;
 import com.example.rimcat.fragments.VerbalRecallFragment;
 
 
-public class MainActivity extends AppCompatActivity implements RetryDialog.RetryDialogListener {
+public class MainActivity extends AppCompatActivity implements RetryDialog.RetryDialogListener, RecallFinishDialog.RecallFinishDialogListener {
     private static final String     TAG = "MainActivity";
     private static final int        BACKGROUND_TRANSITION_TIME = 2000;
     private static final int        NUM_SCREENS = 18;
@@ -230,16 +232,25 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         fragmentTransaction.commit();
     }
 
-    public void showNoticeDialog() {
-        // Create an instance of the dialog fragment and show it
+    public void showRetryDialog() {
         RetryDialog dialog = new RetryDialog();
         dialog.show(getSupportFragmentManager(), "RetryDialog");
+    }
+
+    public void showRecallFinishDialog() {
+        RecallFinishDialog dialog = new RecallFinishDialog();
+        dialog.show(getSupportFragmentManager(), "RecallFinishDialog");
     }
 
     @Override
     public void onRetryDialogPositiveClick(DialogFragment dialog) {
         RecallResponseFragment fragment = (RecallResponseFragment) fragmentManager.findFragmentByTag(fragmentTag);
         fragment.executePostMessageSetup();
+    }
+
+    @Override
+    public void onFinishDialogPositiveClick(DialogFragment dialog) {
+        getFragmentData(null);
     }
 
     @Override

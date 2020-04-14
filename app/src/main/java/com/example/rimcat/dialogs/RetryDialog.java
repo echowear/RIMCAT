@@ -1,4 +1,4 @@
-package com.example.rimcat;
+package com.example.rimcat.dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -6,10 +6,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AppCompatDialogFragment;
 import android.util.Log;
-import android.view.Gravity;
 import android.widget.TextView;
+
+import com.example.rimcat.R;
 
 public class RetryDialog extends DialogFragment {
     private static final String TAG =  "RetryDialog";
