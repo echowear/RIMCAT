@@ -1,5 +1,6 @@
 package com.example.rimcat.fragments;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -21,6 +22,7 @@ public class InstructionsFragment extends QuestionFragment {
     private static final String TAG = "InstructionsFragment";
     private int currentView;
     private TextView instructionsText;
+    private MediaPlayer mediaPlayer;
 
     @Nullable
     @Override
@@ -35,6 +37,7 @@ public class InstructionsFragment extends QuestionFragment {
             case DataLogModel.INSTRUCTIONS_SCREEN_1:
                 instructionsText.setText(R.string.instructions_appInst);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
+                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.rimcat_inst1_test);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_2:
                 instructionsText.setText(R.string.instructions_verbalInst);
@@ -63,6 +66,8 @@ public class InstructionsFragment extends QuestionFragment {
         Log.d(TAG, "onCreateView: Current number: " + ((MainActivity)getActivity()).getViewNumber());
 
         startAnimation(true);
+
+        mediaPlayer.start();
 
         return view;
     }
