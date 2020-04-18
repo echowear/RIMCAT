@@ -32,7 +32,6 @@ public class RecallResponseFragment extends QuestionFragment {
     private Button                  addBtn, doneRecallingBtn;
     private ArrayList<String>       responses;
     private boolean                 firstWordRecalled, firstFinish;
-    private CountDownTimer          doneRecallingTimer;
 
     @Nullable
     @Override
@@ -45,6 +44,7 @@ public class RecallResponseFragment extends QuestionFragment {
         responseText = view.findViewById(R.id.vresponse_recall_word);
         addBtn = view.findViewById(R.id.vresponse_addBtn);
         doneRecallingBtn = view.findViewById(R.id.done_recalling_btn);
+        doneRecallingBtn.setVisibility(View.VISIBLE);
         responses = new ArrayList<String>();
 
         // Set add button on click
@@ -55,13 +55,6 @@ public class RecallResponseFragment extends QuestionFragment {
                     responses.add(responseText.getText().toString());
                     responseText.setText("");
                     vibrateAndExecuteSound();
-                    if (!firstWordRecalled || doneRecallingBtn.getVisibility() == View.INVISIBLE) {
-                        firstWordRecalled = true;
-                        doneRecallingTimer.start();
-                    } else {
-                        doneRecallingTimer.cancel();
-                        doneRecallingTimer.start();
-                    }
                 }
             }
         });
@@ -69,30 +62,13 @@ public class RecallResponseFragment extends QuestionFragment {
         doneRecallingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (doneRecallingBtn.getVisibility() == View.VISIBLE) {
-                    if (!firstFinish) {
-                        ((MainActivity)getActivity()).showRetryDialog();
-                    } else {
-                        ((MainActivity)getActivity()).showRecallFinishDialog();
-                    }
+                if (!firstFinish) {
+                    ((MainActivity)getActivity()).showRetryDialog();
+                } else {
+                    ((MainActivity)getActivity()).showRecallFinishDialog();
                 }
             }
         });
-
-        doneRecallingBtn.setVisibility(View.INVISIBLE);
-        // Creates the timer that counts down the verbal recall section
-        doneRecallingTimer = new CountDownTimer(15000, 15000) {
-            int count = 0;
-            @Override
-            public void onTick(long millisUntilFinished) {
-                Log.d(TAG, "onTick: Timer ticked" + ++count);
-            }
-
-            @Override
-            public void onFinish() {
-                doneRecallingBtn.setVisibility(View.VISIBLE);
-            }
-        };
 
         cardView = view.findViewById(R.id.vresponse_layout);
         startAnimation(true);
@@ -103,8 +79,6 @@ public class RecallResponseFragment extends QuestionFragment {
 
     public void executePostMessageSetup() {
         firstFinish = true;
-        doneRecallingBtn.setVisibility(View.INVISIBLE);
-        doneRecallingTimer.start();
     }
 
     private void vibrateAndExecuteSound() {

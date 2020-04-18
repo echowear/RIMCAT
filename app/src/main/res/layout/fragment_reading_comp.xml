@@ -119,27 +119,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/reading_yes"
-                    android:textSize="25sp"
-                    android:paddingBottom="10dp" />
+                    android:textSize="30sp"
+                    android:padding="20dp" />
 
                 <RadioButton
                     android:id="@+id/read_no_ans"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/reading_no"
-                    android:textSize="25sp"
-                    android:paddingBottom="10dp"/>
+                    android:textSize="30sp"
+                    android:padding="20dp"/>
 
             </RadioGroup>
 
             <TextView
                 android:id="@+id/reading_comp_instr"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="656dp"
+                android:layout_height="59dp"
                 android:layout_marginTop="32dp"
                 android:text="@string/reading_comp_instr"
-                android:textSize="20sp"
-
+                android:textSize="22sp"
+                android:gravity="center"
+                android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -148,8 +149,14 @@
                 android:id="@+id/reading_comp_question"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
                 android:layout_marginTop="32dp"
-                android:textSize="20sp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/reading_comp_instr" />
@@ -173,32 +180,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textSize="25sp"
-                    android:paddingBottom="10dp"/>
+                    android:textSize="30sp"
+                    android:padding="12dp"/>
 
                 <RadioButton
                     android:id="@+id/read_ans2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textSize="25sp"
-                    android:paddingBottom="10dp"/>
+                    android:textSize="30sp"
+                    android:padding="12dp"/>
 
                 <RadioButton
                     android:id="@+id/read_ans3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textSize="25sp"
-                    android:paddingBottom="10dp"/>
+                    android:textSize="30sp"
+                    android:padding="12dp"/>
 
                 <RadioButton
                     android:id="@+id/read_ans4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textSize="25sp"
-                    android:paddingBottom="10dp"/>
+                    android:textSize="30sp"
+                    android:padding="12dp"/>
             </RadioGroup>
         </android.support.constraint.ConstraintLayout>
 

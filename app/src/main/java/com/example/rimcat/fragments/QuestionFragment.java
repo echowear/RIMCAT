@@ -1,6 +1,7 @@
 package com.example.rimcat.fragments;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -32,6 +33,7 @@ public abstract class QuestionFragment extends Fragment {
     protected View cardView;
     protected String startTime;
     protected String endTime;
+    protected MediaPlayer mediaPlayer;
 
     @Nullable
     @Override
@@ -58,7 +60,13 @@ public abstract class QuestionFragment extends Fragment {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                if (!isFadeIn) {
+                if (isFadeIn) {
+                    if (mediaPlayer != null) {
+                        mediaPlayer.start();
+                        mediaPlayer = null;
+                    }
+                }
+                else {
                     moveToNextPage();
                     ((MainActivity)getActivity()).incrementViewNumber();
                 }

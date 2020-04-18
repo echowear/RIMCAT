@@ -22,7 +22,7 @@ public class InstructionsFragment extends QuestionFragment {
     private static final String TAG = "InstructionsFragment";
     private int currentView;
     private TextView instructionsText;
-    private MediaPlayer mediaPlayer;
+
 
     @Nullable
     @Override
@@ -66,8 +66,6 @@ public class InstructionsFragment extends QuestionFragment {
         Log.d(TAG, "onCreateView: Current number: " + ((MainActivity)getActivity()).getViewNumber());
 
         startAnimation(true);
-
-        mediaPlayer.start();
 
         return view;
     }

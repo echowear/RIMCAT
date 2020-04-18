@@ -1,5 +1,6 @@
 package com.example.rimcat.fragments;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -45,6 +46,7 @@ public class ReadingCompFragment extends QuestionFragment {
         card1 = view.findViewById(R.id.card1);
         card2 = view.findViewById(R.id.card2);
         questionsText = view.findViewById(R.id.reading_comp_question);
+        questionsText.setTypeface(null, Typeface.BOLD);
         readyBtn = view.findViewById(R.id.read_rdy_btn);
         nextBtn = view.findViewById(R.id.read_next_btn);
         questionsArray = getResources().getStringArray(R.array.reading_comp_questions);

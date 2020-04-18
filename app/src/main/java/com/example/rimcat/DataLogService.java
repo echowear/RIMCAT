@@ -32,7 +32,7 @@ public class DataLogService extends IntentService {
         Intent intent = new Intent(context, DataLogService.class);
         intent.putExtra(EXTRA_FILE_DESTINATION, file.getAbsolutePath());
         intent.putExtra(EXTRA_DATA, data);
-//        context.startService(intent);
+        context.startService(intent);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class DataLogService extends IntentService {
             if (newFile)
             {
                 // if flagged as a new file, apply the header before the data.
-                fileOutputStream.write(intent.getStringExtra(HEADER).getBytes());
+                fileOutputStream.write(HEADER.getBytes());
                 fileOutputStream.write("\n".getBytes());
             }
             fileOutputStream.write(intent.getStringExtra(EXTRA_DATA).getBytes());
