@@ -1,6 +1,7 @@
 package com.example.rimcat.fragments;
 
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -29,13 +30,20 @@ public class ReadingCompFragment extends QuestionFragment {
             //TODO: Figure out what to do with second to last value, which should be a 2
             1, 0, 0, 1, 0, 1, 1, 1, 1
     };
-    private CardView card1, card2;
-    private TextView questionsText;
-    private Button readyBtn, nextBtn;
-    private String[] questionsArray, answersArray;
-    private RadioGroup twoQuestionGrp, fourQuestionGrp;
+    private static final int[] READING_COMP_SECTIONS = {
+            R.string.reading_comp_prompt_1, R.string.reading_comp_prompt_2, R.string.reading_comp_prompt_3
+    };
+    private static final int[] READING_COMP_AUDIO = {
+            R.raw.reading_comp_1, R.raw.reading_comp_2, R.raw.reading_comp_3
+    };
+    private CardView    card1, card2;
+    private TextView    storyText, questionsText;
+    private Button      nextBtn;
+    private String[]    questionsArray, answersArray;
+    private RadioGroup  twoQuestionGrp, fourQuestionGrp;
     private RadioButton radioButton1, radioButton2, radioButton3, radioButton4;
-    private int questionCount, fourAnswerCount;
+    private int         reading_comp_sec, questionCount, fourAnswerCount;
+    private MediaPlayer storyMedia;
 
     @Nullable
     @Override
@@ -45,9 +53,9 @@ public class ReadingCompFragment extends QuestionFragment {
         // Initialize all views
         card1 = view.findViewById(R.id.card1);
         card2 = view.findViewById(R.id.card2);
+        storyText = view.findViewById(R.id.ready_inst1);
         questionsText = view.findViewById(R.id.reading_comp_question);
         questionsText.setTypeface(null, Typeface.BOLD);
-        readyBtn = view.findViewById(R.id.read_rdy_btn);
         nextBtn = view.findViewById(R.id.read_next_btn);
         questionsArray = getResources().getStringArray(R.array.reading_comp_questions);
         answersArray = getResources().getStringArray(R.array.reading_comp_answers);
@@ -66,13 +74,6 @@ public class ReadingCompFragment extends QuestionFragment {
         radioButton4.setText(answersArray[(fourAnswerCount * 4) + 3]);
         card2.setVisibility(View.INVISIBLE);
         twoQuestionGrp.setVisibility(View.INVISIBLE);
-        readyBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                card1.setVisibility(View.INVISIBLE);
-                card2.setVisibility(View.VISIBLE);
-            }
-        });
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,6 +106,29 @@ public class ReadingCompFragment extends QuestionFragment {
                 }
             }
         });
+
+        // Set up media player
+        MediaPlayer.OnCompletionListener onCompletionListener = new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                reading_comp_sec++;
+                if (mediaPlayer != null) {
+                    mediaPlayer.release();
+                }
+                Log.d(TAG, "onCompletion: Reading comp sec " + reading_comp_sec);
+                if (reading_comp_sec < READING_COMP_SECTIONS.length) {
+                    storyText.setText(READING_COMP_SECTIONS[reading_comp_sec]);
+                    mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), READING_COMP_AUDIO[reading_comp_sec]);
+                    mediaPlayer.setOnCompletionListener(this);
+                    mediaPlayer.start();
+                } else {
+                    card1.setVisibility(View.INVISIBLE);
+                    card2.setVisibility(View.VISIBLE);
+                }
+            }
+        };
+        mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), READING_COMP_AUDIO[reading_comp_sec]);
+        mediaPlayer.setOnCompletionListener(onCompletionListener);
 
         cardView = view.findViewById(R.id.read_main_page);
         startAnimation(true);

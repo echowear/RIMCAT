@@ -165,11 +165,17 @@
     <string name="instructions_reading_comp">
         Next, you will have to read a story, then answer the questions that follow.
     </string>
-    <string name="reading_comp_prompt">
+    <string name="reading_comp_prompt_1">
         On Monday morning, Sarah drove her new car to work. During lunch, she
-        drove to the store to purchase groceries. In the parking lot she ran into her
+        drove to the store to purchase groceries.
+    </string>
+    <string name="reading_comp_prompt_2">
+        In the parking lot she ran into her
         friend, Maria. Distracted by the conversation, she left the full and unsecured
-        bag of groceries in the backseat. Driving back, she halted to a stop and the
+        bag of groceries in the backseat.
+    </string>
+    <string name="reading_comp_prompt_3">
+        Driving back, she halted to a stop and the
         groceries went flying. The brand new floor mats were covered with 8 broken
         eggs and half a carton of blueberries.
     </string>
