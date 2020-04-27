@@ -21,4 +21,6 @@ public class DataLogModel {
     public static final int FIGURE_SELECT_SCREEN = 16;
     public static final int INSTRUCTIONS_SCREEN_6 = 17;
     public static final int READING_COMP_SCREEN = 18;
+    public static final int INSTRUCTIONS_SCREEN_7 = 19;
+    public static final int SEMANTIC_CHOICE_SCREEN = 20;
 }

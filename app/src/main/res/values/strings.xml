@@ -19,6 +19,8 @@
     <string name="screen_fig_select">Figure Select</string>
     <string name="screen_inst_6">Instructions 6</string>
     <string name="screen_read_comp">Reading Comp.</string>
+    <string name="screen_inst_7">Instructions 7</string>
+    <string name="screen_semantic_choice">Semantic Choice</string>
 
     <string name="app_name">RIMCAT</string>
     <string name="error">Error</string>
@@ -224,6 +226,42 @@
         <item>Raspberries</item>
         <item>Bananas</item>
         <item>Blueberries</item>
+        <item>Grapes</item>
+    </string-array>
+
+    <string name="instructions_semanticChoice">
+        You will see a category at the top of
+        the page and words below. Please tap
+        any words that belong in that
+        category as quickly as you can.
+    </string>
+    <string name="semantic_choice_ready">You\'ll have 5 seconds to select as many correct words as you can.</string>
+    <string-array name="semantic_choice_prompts">
+        <item>Animals</item>
+        <item>Fruits</item>
+        <item>Articles of Clothing</item>
+    </string-array>
+
+    <string-array name="semantic_choices_1">
+        <item>Dog</item>
+        <item>Barn</item>
+        <item>Apple</item>
+        <item>Milk</item>
+        <item>Goose</item>
+        <item>Grass</item>
+        <item>Chair</item>
+        <item>Frog</item>
+        <item>Squirrel</item>
+    </string-array>
+    <string-array name="semantic_choices_2">
+        <item>Banana</item>
+        <item>Moon</item>
+        <item>Cheetah</item>
+        <item>Puddle</item>
+        <item>Raspberries</item>
+        <item>Window</item>
+        <item>Blueberries</item>
+        <item>Cheese</item>
         <item>Grapes</item>
     </string-array>
 </resources>

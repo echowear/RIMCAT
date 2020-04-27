@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Button
+            <android.support.v7.widget.AppCompatButton
                 android:id="@+id/figure_readyBtn"
                 android:layout_width="217dp"
                 android:layout_height="65dp"
@@ -37,7 +37,7 @@
                 android:layout_marginEnd="213dp"
                 android:layout_marginRight="213dp"
                 android:layout_marginBottom="16dp"
-                android:background="@color/colorAccent"
+                app:backgroundTint="@color/colorAccent"
                 android:text="@string/verbal_readyBtn"
                 android:textColor="@color/white"
                 android:textSize="35sp"
@@ -61,6 +61,7 @@
                 android:layout_marginBottom="8dp"
                 android:text="@string/verbal_readyPrompt"
                 android:textAlignment="center"
+                android:gravity="center"
                 android:textSize="35sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

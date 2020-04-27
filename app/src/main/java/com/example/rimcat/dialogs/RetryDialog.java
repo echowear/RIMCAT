@@ -7,13 +7,16 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.rimcat.R;
 
 public class RetryDialog extends DialogFragment {
     private static final String TAG =  "RetryDialog";
-    private static final int    PADDING = 15;
+    private static final float  TEXT_SIZE = 25f;
+    private static final int    PADDING = 20;
 
     public interface RetryDialogListener {
         void onRetryDialogPositiveClick(DialogFragment dialog);
@@ -47,16 +50,25 @@ public class RetryDialog extends DialogFragment {
                         RetryDialog.this.getDialog().cancel();
                     }
                 });
-        return builder.create();
+        final AlertDialog alert = builder.create();
+        alert.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+
+                params.setMargins(PADDING,0,0,0);
+                Button btnPositive = alert.getButton(Dialog.BUTTON_POSITIVE);
+                btnPositive.setTextSize(TEXT_SIZE);
+                btnPositive.setTextColor(getResources().getColor(R.color.white));
+                btnPositive.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                btnPositive.setLayoutParams(params);
+            }
+        });
+
+        return alert;
     }
 }
 
-/** In case you need to do any button modifications...
- *
- * dialog.setOnShowListener( new OnShowListener() {
- *     @Override
- *     public void onShow(DialogInterface arg0) {
- *         dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(COLOR_I_WANT);
- *     }
- * });
- */

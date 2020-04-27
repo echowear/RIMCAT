@@ -7,13 +7,16 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.rimcat.R;
 
 public class RecallFinishDialog extends DialogFragment {
     private static final String TAG =  "RecallFinishDialog";
-    private static final int    PADDING = 15;
+    private static final float  TEXT_SIZE = 20f;
+    private static final int    PADDING = 20;
 
     public interface RecallFinishDialogListener {
         void onFinishDialogPositiveClick(DialogFragment dialog);
@@ -53,6 +56,31 @@ public class RecallFinishDialog extends DialogFragment {
                         RecallFinishDialog.this.getDialog().cancel();
                     }
                 });
-        return builder.create();
+
+        final AlertDialog alert = builder.create();
+        alert.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+                params.setMargins(PADDING,0,0,0);
+
+                Button btnPositive = alert.getButton(Dialog.BUTTON_POSITIVE);
+                btnPositive.setTextSize(TEXT_SIZE);
+                btnPositive.setTextColor(getResources().getColor(R.color.white));
+                btnPositive.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                btnPositive.setLayoutParams(params);
+
+                Button btnNegative = alert.getButton(Dialog.BUTTON_NEGATIVE);
+                btnNegative.setTextSize(TEXT_SIZE);
+                btnNegative.setTextColor(getResources().getColor(R.color.white));
+                btnNegative.setBackgroundColor(getResources().getColor(R.color.backgroundColor));
+                btnNegative.setLayoutParams(params);
+            }
+        });
+
+        return alert;
     }
 }

@@ -52,11 +52,16 @@
         android:id="@+id/screen_fig_select_om"
         android:title="@string/screen_fig_select"/>
     <item
-    android:id="@+id/screen_inst_6_om"
-    android:title="@string/screen_inst_6"/>
-
+        android:id="@+id/screen_inst_6_om"
+        android:title="@string/screen_inst_6"/>
     <item
         android:id="@+id/screen_read_comp"
         android:title="@string/screen_read_comp"/>
+    <item
+        android:id="@+id/screen_inst_7_om"
+        android:title="@string/screen_inst_7"/>
+    <item
+        android:id="@+id/screen_semantic_choice_om"
+        android:title="@string/screen_semantic_choice"/>
 
 </menu>

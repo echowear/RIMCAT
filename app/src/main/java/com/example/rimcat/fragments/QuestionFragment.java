@@ -63,7 +63,13 @@ public abstract class QuestionFragment extends Fragment {
                 if (isFadeIn) {
                     if (mediaPlayer != null) {
                         mediaPlayer.start();
-                        mediaPlayer = null;
+                        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                            @Override
+                            public void onCompletion(MediaPlayer mp) {
+                                mediaPlayer.release();
+                                mediaPlayer = null;
+                            }
+                        });
                     }
                 }
                 else {
@@ -100,5 +106,14 @@ public abstract class QuestionFragment extends Fragment {
         Log.d(TAG, "logEndTimeAndData: Logging the following result... \n" + resultString);
 
         DataLogService.log(context, new File(GenerateDirectory.getRootFile(context), "responses.csv"),resultString);
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+        super.onDestroy();
     }
 }

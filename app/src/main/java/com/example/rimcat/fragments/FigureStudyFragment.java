@@ -92,7 +92,6 @@ public class FigureStudyFragment extends QuestionFragment {
                     figureReadyBtn.setVisibility(View.VISIBLE);
                     promptCard.setVisibility(View.VISIBLE);
                 } else {
-                    // TODO: Take us to the next page
                     ((MainActivity)getActivity()).getFragmentData(null);
                 }
             }

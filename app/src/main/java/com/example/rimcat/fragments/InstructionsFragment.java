@@ -59,6 +59,10 @@ public class InstructionsFragment extends QuestionFragment {
                 instructionsText.setText(R.string.instructions_reading_comp);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 break;
+            case DataLogModel.INSTRUCTIONS_SCREEN_7:
+                instructionsText.setText(R.string.instructions_semanticChoice);
+                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
+                break;
             default:
                 instructionsText.setText(R.string.error);
                 break;
@@ -94,6 +98,9 @@ public class InstructionsFragment extends QuestionFragment {
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_6:
                 ((MainActivity)getActivity()).addFragment(new ReadingCompFragment(), "ReadingCompFragment");
+                break;
+            case DataLogModel.INSTRUCTIONS_SCREEN_7:
+                ((MainActivity)getActivity()).addFragment(new SemanticChoiceFragment(), "SemanticChoiceFragment");
                 break;
             default:
                 Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();

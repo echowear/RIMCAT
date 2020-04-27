@@ -32,6 +32,7 @@ import com.example.rimcat.fragments.QuestionFragment;
 import com.example.rimcat.fragments.ReadingCompFragment;
 import com.example.rimcat.fragments.RecallResponseFragment;
 import com.example.rimcat.fragments.SeasonFragment;
+import com.example.rimcat.fragments.SemanticChoiceFragment;
 import com.example.rimcat.fragments.TodayDateFragment;
 import com.example.rimcat.fragments.VerbalRecallFragment;
 
@@ -115,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_4 ||
                 viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_5 ||
                 viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_6 ||
+                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_7 ||
                 viewNumber == DataLogModel.VERBAL_RECALL_SCREEN_1 ||
                 viewNumber == DataLogModel.VERBAL_RECALL_SCREEN_2) {
             nextText.setVisibility(View.INVISIBLE);
@@ -225,6 +227,16 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 this.viewNumber = DataLogModel.READING_COMP_SCREEN;
                 fragmentTag = "ReadingCompFragment";
                 fragmentTransaction.replace(R.id.container, new ReadingCompFragment(), "ReadingCompFragment");
+                break;
+            case R.id.screen_inst_7_om:
+                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_7;
+                fragmentTag = "InstructionsFragment";
+                fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
+                break;
+            case R.id.screen_semantic_choice_om:
+                this.viewNumber = DataLogModel.SEMANTIC_CHOICE_SCREEN;
+                fragmentTag = "SemanticChoiceFragment";
+                fragmentTransaction.replace(R.id.container, new SemanticChoiceFragment(), "SemanticChoiceFragment");
                 break;
         }
         appProgress.setProgress(viewNumber);
