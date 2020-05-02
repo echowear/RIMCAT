@@ -68,15 +68,15 @@
 
             <Button
                 android:id="@+id/read_next_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="146dp"
+                android:layout_height="67dp"
                 android:layout_marginBottom="32dp"
+                android:background="@drawable/roundbutton"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
                 android:text="@string/next_text"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:background="@color/colorAccent"
                 android:textSize="35sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

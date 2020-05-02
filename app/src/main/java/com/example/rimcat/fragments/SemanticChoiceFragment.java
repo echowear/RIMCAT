@@ -49,8 +49,8 @@ public class SemanticChoiceFragment extends QuestionFragment {
 
         layout1 = view.findViewById(R.id.semantic_layout1);
         layout2 = view.findViewById(R.id.semantic_layout2);
-        layout1.setVisibility(View.INVISIBLE);
-        layout2.setVisibility(View.VISIBLE);
+        layout1.setVisibility(View.VISIBLE);
+        layout2.setVisibility(View.INVISIBLE);
 
         choiceList = new ArrayList<>();
         choiceButtons = new Button[] {
@@ -68,7 +68,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
         semanticReadyText = view.findViewById(R.id.semantic_ready_text);
         semanticChoicePrompt = view.findViewById(R.id.semantic_prompt);
         semanticPrompts = getResources().getStringArray(R.array.semantic_choice_prompts);
-        semanticChoicePrompt.setText(semanticPrompts[pageCount]);
+        semanticChoicePrompt.setText("Category: " + semanticPrompts[pageCount]);
         semanticChoicePrompt.setTypeface(null, Typeface.BOLD);
 
         readyButton = view.findViewById(R.id.semantic_ready_btn);
