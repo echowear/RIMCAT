@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/semantic_choice_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -67,6 +67,17 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/semantic_countdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="35sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
                 android:id="@+id/semantic_prompt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -101,9 +112,9 @@
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/scb1"
-                        android:layout_margin="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_margin="5dp"
                         android:text=""
                         android:textAllCaps="false"
                         android:textColor="@color/white"
@@ -112,9 +123,9 @@
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/scb2"
-                        android:layout_margin="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_margin="5dp"
                         android:text=""
                         android:textAllCaps="false"
                         android:textColor="@color/white"
@@ -123,9 +134,9 @@
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/scb3"
-                        android:layout_margin="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_margin="5dp"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="25sp"
@@ -139,9 +150,9 @@
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/scb4"
-                        android:layout_margin="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_margin="5dp"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="25sp"
@@ -149,9 +160,9 @@
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/scb5"
-                        android:layout_margin="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_margin="5dp"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="25sp"
@@ -159,9 +170,9 @@
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/scb6"
-                        android:layout_margin="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_margin="5dp"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="25sp"
@@ -175,9 +186,9 @@
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/scb7"
-                        android:layout_margin="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_margin="5dp"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="25sp"
@@ -185,9 +196,9 @@
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/scb8"
-                        android:layout_margin="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_margin="5dp"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="25sp"
@@ -195,9 +206,9 @@
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/scb9"
-                        android:layout_margin="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_margin="5dp"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
                         android:textSize="25sp"

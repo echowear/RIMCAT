@@ -1,13 +1,17 @@
 package com.example.rimcat;
 
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.TransitionDrawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,6 +43,8 @@ import com.example.rimcat.fragments.VerbalRecallFragment;
 
 public class MainActivity extends AppCompatActivity implements RetryDialog.RetryDialogListener, RecallFinishDialog.RecallFinishDialogListener {
     private static final String     TAG = "MainActivity";
+    private static final int        MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1400;
+    private static final int        MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1401;
     private static final int        BACKGROUND_TRANSITION_TIME = 2000;
     private static final int        NUM_SCREENS = 18;
     private FragmentManager         fragmentManager;
@@ -72,14 +78,20 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     }
 
     public void getFragmentData(View view) {
-        QuestionFragment fragment = (QuestionFragment) fragmentManager.findFragmentByTag(fragmentTag);
-        if (fragment.loadDataModel()) {
-            changeBackground();
-            fragment.startAnimation(false);
-            // Checks to hide or show the Next button
-            viewButtonVisibility();
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+        } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
         } else {
-            Toast.makeText(this, "Please fill out all fields before proceeding.", Toast.LENGTH_SHORT).show();
+            QuestionFragment fragment = (QuestionFragment) fragmentManager.findFragmentByTag(fragmentTag);
+            if (fragment.loadDataModel()) {
+                changeBackground();
+                fragment.startAnimation(false);
+                // Checks to hide or show the Next button
+                viewButtonVisibility();
+            } else {
+                Toast.makeText(this, "Please fill out all fields before proceeding.", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -263,6 +275,13 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     @Override
     public void onFinishDialogPositiveClick(DialogFragment dialog) {
         getFragmentData(null);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions, int[] grantResults) {
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            getFragmentData(null);
     }
 
     @Override

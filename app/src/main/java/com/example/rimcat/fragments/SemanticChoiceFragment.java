@@ -14,8 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.GridLayout;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -27,11 +25,9 @@ import java.util.List;
 
 public class SemanticChoiceFragment extends QuestionFragment {
     private static final String TAG = "SemanticChoiceFragment";
-    private static final int    NUM_OF_SIMILAR_PROMPTS = 3;
-    private static final int    PADDING = 5;
     private ConstraintLayout    layout1, layout2;
     private TableLayout         semanticGrid;
-    private TextView            semanticChoicePrompt, semanticReadyText;
+    private TextView            semanticChoicePrompt, semanticCountdownText;
     private ArrayList<String>   choiceList;
     private ArrayList<Button>   buttonList;
     private Button              readyButton;
@@ -40,13 +36,12 @@ public class SemanticChoiceFragment extends QuestionFragment {
     private String[][]          semanticChoices;
     private String[]            semanticPrompts;
     private int                 pageCount, timerIndex = 3;
-    TableRow tr;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_semantic_choice, container, false);
-
+        cardView = view.findViewById(R.id.semantic_choice_page);
         layout1 = view.findViewById(R.id.semantic_layout1);
         layout2 = view.findViewById(R.id.semantic_layout2);
         layout1.setVisibility(View.VISIBLE);
@@ -63,9 +58,10 @@ public class SemanticChoiceFragment extends QuestionFragment {
                 getResources().getStringArray(R.array.semantic_choices_2)
         };
         semanticGrid = view.findViewById(R.id.semantic_grid);
+        semanticGrid.setVisibility(View.INVISIBLE);
         initializeGrid();
 
-        semanticReadyText = view.findViewById(R.id.semantic_ready_text);
+        semanticCountdownText = view.findViewById(R.id.semantic_countdown);
         semanticChoicePrompt = view.findViewById(R.id.semantic_prompt);
         semanticPrompts = getResources().getStringArray(R.array.semantic_choice_prompts);
         semanticChoicePrompt.setText("Category: " + semanticPrompts[pageCount]);
@@ -75,6 +71,8 @@ public class SemanticChoiceFragment extends QuestionFragment {
         readyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                layout1.setVisibility(View.INVISIBLE);
+                layout2.setVisibility(View.VISIBLE);
                 readyCountdown.start();
             }
         });
@@ -84,15 +82,15 @@ public class SemanticChoiceFragment extends QuestionFragment {
             public void onTick(long millisUntilFinished) {
                 Log.d(TAG, "onTick: Tick: " + timerIndex);
                 if (timerIndex > 0)
-                    semanticReadyText.setText("" + timerIndex);
+                    semanticCountdownText.setText("" + timerIndex);
                 timerIndex--;
             }
 
             @Override
             public void onFinish() {
                 timerIndex = 0;
-                layout1.setVisibility(View.INVISIBLE);
-                layout2.setVisibility(View.VISIBLE);
+                semanticCountdownText.setVisibility(View.INVISIBLE);
+                semanticGrid.setVisibility(View.VISIBLE);
             }
         };
 
