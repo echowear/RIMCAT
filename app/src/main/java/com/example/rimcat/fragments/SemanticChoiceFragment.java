@@ -18,20 +18,22 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO: Reorder choices for semantic choice
 public class SemanticChoiceFragment extends QuestionFragment {
     private static final String TAG = "SemanticChoiceFragment";
     private ConstraintLayout    layout1, layout2;
     private TableLayout         semanticGrid;
     private TextView            semanticChoicePrompt, semanticCountdownText;
     private ArrayList<String>   choiceList;
-    private ArrayList<Button>   buttonList;
     private Button              readyButton;
     private Button[]            choiceButtons;
+    private View.OnClickListener choiceListener;
     private CountDownTimer      readyCountdown, selectionCountdown;
     private String[][]          semanticChoices;
     private String[]            semanticPrompts;
@@ -52,7 +54,8 @@ public class SemanticChoiceFragment extends QuestionFragment {
         choiceButtons = new Button[] {
                 view.findViewById(R.id.scb1), view.findViewById(R.id.scb2), view.findViewById(R.id.scb3),
                 view.findViewById(R.id.scb4), view.findViewById(R.id.scb5), view.findViewById(R.id.scb6),
-                view.findViewById(R.id.scb7), view.findViewById(R.id.scb8), view.findViewById(R.id.scb9)
+                view.findViewById(R.id.scb7), view.findViewById(R.id.scb8), view.findViewById(R.id.scb9),
+                view.findViewById(R.id.scb10), view.findViewById(R.id.scb11), view.findViewById(R.id.scb12)
         };
         semanticChoices = new String[][] {
                 getResources().getStringArray(R.array.semantic_choices_1),
@@ -60,7 +63,10 @@ public class SemanticChoiceFragment extends QuestionFragment {
                 getResources().getStringArray(R.array.semantic_choices_3),
                 getResources().getStringArray(R.array.semantic_choices_4),
                 getResources().getStringArray(R.array.semantic_choices_5),
-                getResources().getStringArray(R.array.semantic_choices_6)
+                getResources().getStringArray(R.array.semantic_choices_6),
+                getResources().getStringArray(R.array.semantic_choices_7),
+                getResources().getStringArray(R.array.semantic_choices_8),
+                getResources().getStringArray(R.array.semantic_choices_9)
         };
         semanticGrid = view.findViewById(R.id.semantic_grid);
         semanticGrid.setVisibility(View.INVISIBLE);
@@ -78,6 +84,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
             public void onClick(View v) {
                 layout1.setVisibility(View.INVISIBLE);
                 layout2.setVisibility(View.VISIBLE);
+                timerIndex = 3;
                 readyCountdown.start();
             }
         });
@@ -96,6 +103,19 @@ public class SemanticChoiceFragment extends QuestionFragment {
                 timerIndex = 0;
                 semanticCountdownText.setVisibility(View.INVISIBLE);
                 semanticGrid.setVisibility(View.VISIBLE);
+                selectionCountdown.start();
+            }
+        };
+
+        selectionCountdown = new CountDownTimer(5000, 980) {
+            @Override
+            public void onTick(long millisUntilFinished) { }
+
+            @Override
+            public void onFinish() {
+                layout1.setVisibility(View.VISIBLE);
+                layout2.setVisibility(View.INVISIBLE);
+                prepareNextGrid();
             }
         };
 
@@ -105,7 +125,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
     }
 
     private void initializeGrid() {
-        View.OnClickListener choiceListener = new View.OnClickListener() {
+         choiceListener = new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
@@ -119,14 +139,35 @@ public class SemanticChoiceFragment extends QuestionFragment {
                 }
             }
         };
-        changeButtonText(choiceListener);
+        changeButtonText();
     }
 
-    private void changeButtonText(View.OnClickListener choiceListener) {
+    private void changeButtonText() {
         String[] currentChoices = semanticChoices[pageCount];
         for (int i = 0; i < choiceButtons.length; i++) {
             choiceButtons[i].setText(currentChoices[i]);
-            choiceButtons[i].setOnClickListener(choiceListener);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                choiceButtons[i].getBackground().setTint(getResources().getColor(R.color.backgroundColor));
+            }
+            if (choiceListener != null)
+                choiceButtons[i].setOnClickListener(choiceListener);
+        }
+    }
+
+    private void prepareNextGrid() {
+        pageCount++;
+        if (pageCount < semanticChoices.length) {
+            // Log text into CSV and change button text
+            for (String choice : choiceList) {
+                logEndTimeAndData(getActivity().getApplicationContext(), "semantic_choice_page" + pageCount + "," + choice);
+            }
+            changeButtonText();
+            // Change category text
+            semanticChoicePrompt.setText("Category: " + semanticPrompts[pageCount]);
+            semanticCountdownText.setVisibility(View.VISIBLE);
+            semanticGrid.setVisibility(View.INVISIBLE);
+        } else {
+            ((MainActivity)getActivity()).getFragmentData(null);
         }
     }
 

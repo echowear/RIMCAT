@@ -238,107 +238,140 @@
     <string name="semantic_choice_ready">You\'ll have 5 seconds to select as many correct words as you can.</string>
     <string-array name="semantic_choice_prompts">
         <item>Animals</item>
+        <item>Animals</item>
+        <item>Animals</item>
         <item>Fruits</item>
-        <item>Articles of Clothing</item>
+        <item>Fruits</item>
+        <item>Fruits</item>
+        <item>Clothing</item>
+        <item>Clothing</item>
+        <item>Clothing</item>
     </string-array>
 
     <string-array name="semantic_choices_1">
-        <item>Dog</item>
-        <item>Barn</item>
-        <item>Apple</item>
-        <item>Milk</item>
-        <item>Goose</item>
-        <item>Grass</item>
-        <item>Chair</item>
+        <item>Lynx</item>
+        <item>Whale</item>
+        <item>Hyena</item>
+        <item>Buffalo</item>
+        <item>Cobra</item>
         <item>Frog</item>
-        <item>Squirrel</item>
+        <item>Nest</item>
+        <item>Pioneer</item>
+        <item>Ivory</item>
+        <item>Zoo</item>
+        <item>Lung</item>
+        <item>Skull</item>
     </string-array>
     <string-array name="semantic_choices_2">
-        <item>Paint</item>
-        <item>Camel</item>
-        <item>Daisy</item>
-        <item>Baboon</item>
-        <item>Silk</item>
-        <item>Mule</item>
-        <item>Raccoon</item>
-        <item>Computer</item>
-        <item>Dart</item>
+        <item>Otter</item>
+        <item>Chipmunk</item>
+        <item>Wolf</item>
+        <item>Moose</item>
+        <item>Turtle</item>
+        <item>Penguin</item>
+        <item>Eraser</item>
+        <item>Mouth</item>
+        <item>Defect</item>
+        <item>Latch</item>
+        <item>Rebel</item>
+        <item>Canyon</item>
     </string-array>
     <string-array name="semantic_choices_3">
-        <item>Mouse</item>
-        <item>House</item>
-        <item>Badger</item>
+        <item>Beaver</item>
+        <item>Sloth</item>
         <item>Fox</item>
-        <item>Wheat</item>
-        <item>Bottle</item>
-        <item>Museum</item>
-        <item>Deer</item>
-        <item>Tower</item>
+        <item>Lizard</item>
+        <item>Eel</item>
+        <item>Ferret</item>
+        <item>Tooth</item>
+        <item>Puddle</item>
+        <item>Pasture</item>
+        <item>Hymn</item>
+        <item>Medal</item>
+        <item>Grate</item>
     </string-array>
     <string-array name="semantic_choices_4">
-        <item>Banana</item>
-        <item>Moon</item>
-        <item>Cheetah</item>
-        <item>Puddle</item>
-        <item>Raspberries</item>
-        <item>Window</item>
-        <item>Blueberries</item>
-        <item>Cheese</item>
-        <item>Grapes</item>
+        <item>Cherry</item>
+        <item>Papaya</item>
+        <item>Cranberry</item>
+        <item>Tangerine</item>
+        <item>Pineapple</item>
+        <item>Currant</item>
+        <item>Thistle</item>
+        <item>Literature</item>
+        <item>Mash</item>
+        <item>Vein</item>
+        <item>Flute</item>
+        <item>Hammer</item>
     </string-array>
     <string-array name="semantic_choices_5">
-        <item>Apple</item>
-        <item>Drapes</item>
-        <item>Peach</item>
+        <item>Plum</item>
+        <item>Raspberry</item>
         <item>Pear</item>
-        <item>Truck</item>
-        <item>Road</item>
-        <item>Couch</item>
-        <item>Blueberries</item>
-        <item>Bush</item>
+        <item>Apricot</item>
+        <item>Lime</item>
+        <item>Melon</item>
+        <item>Chart</item>
+        <item>Saint</item>
+        <item>Stomach</item>
+        <item>Bacon</item>
+        <item>Knuckle</item>
+        <item>Foam</item>
     </string-array>
     <string-array name="semantic_choices_6">
-        <item>Shirt</item>
-        <item>Building</item>
-        <item>Melon</item>
-        <item>Table</item>
-        <item>Plum</item>
-        <item>Carpet</item>
-        <item>Pineapple</item>
+        <item>Strawberry</item>
+        <item>Grape</item>
         <item>Lemon</item>
-        <item>Highway</item>
+        <item>Blackberry</item>
+        <item>Nectarine</item>
+        <item>Pomegranate</item>
+        <item>Lace</item>
+        <item>Feast</item>
+        <item>Quilt</item>
+        <item>Ribbon</item>
+        <item>Twig</item>
+        <item>Oak</item>
     </string-array>
     <string-array name="semantic_choices_7">
-        <item>Strawberry</item>
+        <item>Slippers</item>
         <item>Pants</item>
-        <item>Hat</item>
-        <item>Motorcycle</item>
         <item>Tie</item>
-        <item>Ocean</item>
-        <item>Horse</item>
-        <item>Socks</item>
-        <item>Cheese</item>
+        <item>Skirt</item>
+        <item>Belt</item>
+        <item>Poncho</item>
+        <item>Concert</item>
+        <item>Elastic</item>
+        <item>Ballet</item>
+        <item>Acid</item>
+        <item>Hurricane</item>
+        <item>Harvest</item>
     </string-array>
     <string-array name="semantic_choices_8">
-        <item>Scarf</item>
-        <item>Room</item>
-        <item>Blouse</item>
-        <item>Slacks</item>
-        <item>Room</item>
-        <item>Door</item>
-        <item>Boat</item>
-        <item>Shirt</item>
-        <item>Horn</item>
+        <item>Gown</item>
+        <item>Jacket</item>
+        <item>Hat</item>
+        <item>Blazer</item>
+        <item>Robe</item>
+        <item>Gloves</item>
+        <item>Organ</item>
+        <item>Galaxy</item>
+        <item>Yacht</item>
+        <item>Noodle</item>
+        <item>Sapphire</item>
+        <item>Purse</item>
     </string-array>
     <string-array name="semantic_choices_9">
-        <item>Moon</item>
-        <item>Coat</item>
-        <item>Belt</item>
-        <item>Sheep</item>
-        <item>Orange</item>
+        <item>Scarf</item>
         <item>Shorts</item>
-        <item>Iron</item>
-        <item>Slippers</item>
-        <item>Field</item>
+        <item>Bikini</item>
+        <item>Blouse</item>
+        <item>Cardigan</item>
+        <item>Stockings</item>
+        <item>Kale</item>
+        <item>Parade</item>
+        <item>Rocket</item>
+        <item>Reed</item>
+        <item>Ink</item>
+        <item>Mineral</item>
     </string-array>
 </resources>

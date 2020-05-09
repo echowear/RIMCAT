@@ -141,12 +141,6 @@
                         android:textColor="@color/white"
                         android:textSize="25sp"
                         app:backgroundTint="@color/backgroundColor" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1">
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/scb4"
@@ -157,6 +151,12 @@
                         android:textColor="@color/white"
                         android:textSize="25sp"
                         app:backgroundTint="@color/backgroundColor" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/scb5"
@@ -177,12 +177,6 @@
                         android:textColor="@color/white"
                         android:textSize="25sp"
                         app:backgroundTint="@color/backgroundColor" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1">
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/scb7"
@@ -203,6 +197,12 @@
                         android:textColor="@color/white"
                         android:textSize="25sp"
                         app:backgroundTint="@color/backgroundColor" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
 
                     <android.support.v7.widget.AppCompatButton
                         android:id="@+id/scb9"
@@ -213,7 +213,38 @@
                         android:textColor="@color/white"
                         android:textSize="25sp"
                         app:backgroundTint="@color/backgroundColor" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/scb10"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        app:backgroundTint="@color/backgroundColor" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/scb11"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        app:backgroundTint="@color/backgroundColor" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/scb12"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        app:backgroundTint="@color/backgroundColor" />
                 </TableRow>
+
             </TableLayout>
         </android.support.constraint.ConstraintLayout>
 

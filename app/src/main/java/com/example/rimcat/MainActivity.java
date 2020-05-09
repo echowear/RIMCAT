@@ -130,7 +130,8 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_6 ||
                 viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_7 ||
                 viewNumber == DataLogModel.VERBAL_RECALL_SCREEN_1 ||
-                viewNumber == DataLogModel.VERBAL_RECALL_SCREEN_2) {
+                viewNumber == DataLogModel.VERBAL_RECALL_SCREEN_2 ||
+                viewNumber == DataLogModel.FIGURE_STUDY_SCREEN) {
             nextText.setVisibility(View.INVISIBLE);
             nextButton.hide();
         }
