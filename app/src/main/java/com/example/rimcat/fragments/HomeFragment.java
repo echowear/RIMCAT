@@ -34,7 +34,7 @@ public class HomeFragment extends QuestionFragment {
 
     @Override
     public boolean loadDataModel() {
-        GenerateDirectory.setPatientID(inputPatientID.getText().toString());
+        QuestionFragment.PATIENT_ID = inputPatientID.getText().toString();
         return true;
     }
 

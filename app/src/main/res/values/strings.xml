@@ -254,6 +254,28 @@
         <item>Squirrel</item>
     </string-array>
     <string-array name="semantic_choices_2">
+        <item>Paint</item>
+        <item>Camel</item>
+        <item>Daisy</item>
+        <item>Baboon</item>
+        <item>Silk</item>
+        <item>Mule</item>
+        <item>Raccoon</item>
+        <item>Computer</item>
+        <item>Dart</item>
+    </string-array>
+    <string-array name="semantic_choices_3">
+        <item>Mouse</item>
+        <item>House</item>
+        <item>Badger</item>
+        <item>Fox</item>
+        <item>Wheat</item>
+        <item>Bottle</item>
+        <item>Museum</item>
+        <item>Deer</item>
+        <item>Tower</item>
+    </string-array>
+    <string-array name="semantic_choices_4">
         <item>Banana</item>
         <item>Moon</item>
         <item>Cheetah</item>
@@ -263,5 +285,60 @@
         <item>Blueberries</item>
         <item>Cheese</item>
         <item>Grapes</item>
+    </string-array>
+    <string-array name="semantic_choices_5">
+        <item>Apple</item>
+        <item>Drapes</item>
+        <item>Peach</item>
+        <item>Pear</item>
+        <item>Truck</item>
+        <item>Road</item>
+        <item>Couch</item>
+        <item>Blueberries</item>
+        <item>Bush</item>
+    </string-array>
+    <string-array name="semantic_choices_6">
+        <item>Shirt</item>
+        <item>Building</item>
+        <item>Melon</item>
+        <item>Table</item>
+        <item>Plum</item>
+        <item>Carpet</item>
+        <item>Pineapple</item>
+        <item>Lemon</item>
+        <item>Highway</item>
+    </string-array>
+    <string-array name="semantic_choices_7">
+        <item>Strawberry</item>
+        <item>Pants</item>
+        <item>Hat</item>
+        <item>Motorcycle</item>
+        <item>Tie</item>
+        <item>Ocean</item>
+        <item>Horse</item>
+        <item>Socks</item>
+        <item>Cheese</item>
+    </string-array>
+    <string-array name="semantic_choices_8">
+        <item>Scarf</item>
+        <item>Room</item>
+        <item>Blouse</item>
+        <item>Slacks</item>
+        <item>Room</item>
+        <item>Door</item>
+        <item>Boat</item>
+        <item>Shirt</item>
+        <item>Horn</item>
+    </string-array>
+    <string-array name="semantic_choices_9">
+        <item>Moon</item>
+        <item>Coat</item>
+        <item>Belt</item>
+        <item>Sheep</item>
+        <item>Orange</item>
+        <item>Shorts</item>
+        <item>Iron</item>
+        <item>Slippers</item>
+        <item>Field</item>
     </string-array>
 </resources>

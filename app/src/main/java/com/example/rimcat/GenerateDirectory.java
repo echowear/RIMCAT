@@ -11,12 +11,6 @@ import java.io.File;
 // Commit change
 public class GenerateDirectory  extends Application {
 
-    private static String PATIENT_ID;
-
-    public static void setPatientID(String id) {
-        PATIENT_ID = id;
-    }
-
     public static File getRootFile(Context context) {
         File root;
         root = new File("/storage/sdcard1");
@@ -27,17 +21,14 @@ public class GenerateDirectory  extends Application {
                 root = new File(Environment.getExternalStorageDirectory(), "Documents");
             }
         }
-        File directory;
-        if (PATIENT_ID == null || PATIENT_ID.equals("")) {
-            directory = new File(root, "RIMCAT");
-        } else {
-            directory = new File(root, "RIMCAT/" + PATIENT_ID);
-        }
+        File directory = new File(root, "RIMCAT");
+
         if (!directory.exists()) {
             if (directory.mkdirs()) {
                 Log.d("MAIN", "Made parent directories");
             }
         }
+
         return directory;
     }
 }

@@ -29,6 +29,7 @@ public abstract class QuestionFragment extends Fragment {
     private static final String TAG = "QuestionFragment";
     private static final String DATE_FORMAT_1 = "HH:mm:ss";
     private static final String DATE_FORMAT_2 = "HH:mm:ss,MM/dd/yyyy";
+    public static String PATIENT_ID;
 
     protected View cardView;
     protected String startTime;
@@ -101,11 +102,16 @@ public abstract class QuestionFragment extends Fragment {
         SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_2);
         Date today = Calendar.getInstance().getTime();
         endTime = dateFormat.format(today);
-        String resultString = data + "," + startTime + "," + endTime;
+        String resultString;
+        if (QuestionFragment.PATIENT_ID != null)
+            resultString = QuestionFragment.PATIENT_ID + "," + data + "," + startTime + "," + endTime;
+        else
+            resultString = "null" + "," + data + "," + startTime + "," + endTime;
+
 
         Log.d(TAG, "logEndTimeAndData: Logging the following result... \n" + resultString);
 
-        DataLogService.log(context, new File(GenerateDirectory.getRootFile(context), "responses.csv"),resultString);
+        DataLogService.log(context, new File(GenerateDirectory.getRootFile(context), "patient_answers.csv"),resultString);
     }
 
     @Override

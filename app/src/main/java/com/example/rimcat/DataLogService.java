@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class DataLogService extends IntentService {
     private static final String TAG = "DataLogService";
-    private static final String HEADER = "question,response,start_time,end_time,date";
+    private static final String HEADER = "patient_id,question,response,start_time,end_time,date";
     private static final String EXTRA_FILE_DESTINATION = "rimcat.file_destination";
     private static final String EXTRA_DATA = "rimcat.data";
 
@@ -57,11 +57,9 @@ public class DataLogService extends IntentService {
         }
 
         // write to the file
-        try
-        {
+        try {
             FileOutputStream fileOutputStream = new FileOutputStream(file, true);
-            if (newFile)
-            {
+            if (newFile) {
                 // if flagged as a new file, apply the header before the data.
                 fileOutputStream.write(HEADER.getBytes());
                 fileOutputStream.write("\n".getBytes());

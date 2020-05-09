@@ -9,14 +9,14 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/card"
-        android:layout_width="661dp"
-        android:layout_height="129dp"
+        android:layout_width="940dp"
+        android:layout_height="582dp"
         android:layout_gravity="center"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,60 +30,69 @@
                 android:id="@+id/figure_select_prompt"
                 android:layout_width="585dp"
                 android:layout_height="37dp"
+                android:stretchColumns="*"
                 android:text="@string/figure_select_prompt"
                 android:textSize="25dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.076" />
+
+            <TableLayout
+                android:layout_width="593dp"
+                android:layout_height="344dp"
+                android:layout_weight="1"
+                android:stretchColumns="*"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/figure_select_prompt">
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/figure_choice1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/fig1_choice1" />
+
+                    <ImageView
+                        android:id="@+id/figure_choice2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/fig1_select2" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/figure_choice3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:maxWidth="400dp"
+                        android:maxHeight="400dp"
+                        app:srcCompat="@drawable/fig1_select3" />
+
+                    <ImageView
+                        android:id="@+id/figure_choice4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/fig1_select4" />
+                </TableRow>
+
+            </TableLayout>
+
         </android.support.constraint.ConstraintLayout>
 
     </android.support.v7.widget.CardView>
-
-    <ImageView
-        android:id="@+id/figure_choice1"
-        android:layout_width="266dp"
-        android:layout_height="171dp"
-        android:layout_marginStart="232dp"
-        android:layout_marginLeft="232dp"
-        android:layout_marginTop="27dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card"
-        app:srcCompat="@drawable/fig1_choice1" />
-
-    <ImageView
-        android:id="@+id/figure_choice2"
-        android:layout_width="193dp"
-        android:layout_height="185dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="248dp"
-        android:layout_marginRight="248dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card"
-        app:srcCompat="@drawable/fig1_select2" />
-
-    <ImageView
-        android:id="@+id/figure_choice3"
-        android:layout_width="235dp"
-        android:layout_height="176dp"
-        android:layout_marginStart="252dp"
-        android:layout_marginLeft="252dp"
-        android:layout_marginTop="28dp"
-        android:maxWidth="400dp"
-        android:maxHeight="400dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/figure_choice1"
-        app:srcCompat="@drawable/fig1_select3" />
-
-    <ImageView
-        android:id="@+id/figure_choice4"
-        android:layout_width="206dp"
-        android:layout_height="171dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="235dp"
-        android:layout_marginRight="235dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/figure_choice2"
-        app:srcCompat="@drawable/fig1_select4" />
 
 </android.support.constraint.ConstraintLayout>

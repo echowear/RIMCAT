@@ -32,7 +32,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
     private ArrayList<Button>   buttonList;
     private Button              readyButton;
     private Button[]            choiceButtons;
-    private CountDownTimer      readyCountdown;
+    private CountDownTimer      readyCountdown, selectionCountdown;
     private String[][]          semanticChoices;
     private String[]            semanticPrompts;
     private int                 pageCount, timerIndex = 3;
@@ -41,6 +41,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_semantic_choice, container, false);
+        // Layout initialization
         cardView = view.findViewById(R.id.semantic_choice_page);
         layout1 = view.findViewById(R.id.semantic_layout1);
         layout2 = view.findViewById(R.id.semantic_layout2);
@@ -55,7 +56,11 @@ public class SemanticChoiceFragment extends QuestionFragment {
         };
         semanticChoices = new String[][] {
                 getResources().getStringArray(R.array.semantic_choices_1),
-                getResources().getStringArray(R.array.semantic_choices_2)
+                getResources().getStringArray(R.array.semantic_choices_2),
+                getResources().getStringArray(R.array.semantic_choices_3),
+                getResources().getStringArray(R.array.semantic_choices_4),
+                getResources().getStringArray(R.array.semantic_choices_5),
+                getResources().getStringArray(R.array.semantic_choices_6)
         };
         semanticGrid = view.findViewById(R.id.semantic_grid);
         semanticGrid.setVisibility(View.INVISIBLE);
@@ -100,7 +105,6 @@ public class SemanticChoiceFragment extends QuestionFragment {
     }
 
     private void initializeGrid() {
-        String[] currentChoices = semanticChoices[pageCount];
         View.OnClickListener choiceListener = new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
@@ -115,6 +119,11 @@ public class SemanticChoiceFragment extends QuestionFragment {
                 }
             }
         };
+        changeButtonText(choiceListener);
+    }
+
+    private void changeButtonText(View.OnClickListener choiceListener) {
+        String[] currentChoices = semanticChoices[pageCount];
         for (int i = 0; i < choiceButtons.length; i++) {
             choiceButtons[i].setText(currentChoices[i]);
             choiceButtons[i].setOnClickListener(choiceListener);
