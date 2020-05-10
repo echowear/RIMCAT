@@ -9,6 +9,9 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.AppCompatButton;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +27,6 @@ import com.example.rimcat.R;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO: Reorder choices for semantic choice
 public class SemanticChoiceFragment extends QuestionFragment {
     private static final String TAG = "SemanticChoiceFragment";
     private ConstraintLayout    layout1, layout2;
@@ -75,7 +77,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
         semanticCountdownText = view.findViewById(R.id.semantic_countdown);
         semanticChoicePrompt = view.findViewById(R.id.semantic_prompt);
         semanticPrompts = getResources().getStringArray(R.array.semantic_choice_prompts);
-        semanticChoicePrompt.setText("Category: " + semanticPrompts[pageCount]);
+        changeHeaderText();
         semanticChoicePrompt.setTypeface(null, Typeface.BOLD);
 
         readyButton = view.findViewById(R.id.semantic_ready_btn);
@@ -163,7 +165,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
             }
             changeButtonText();
             // Change category text
-            semanticChoicePrompt.setText("Category: " + semanticPrompts[pageCount]);
+            changeHeaderText();
             semanticCountdownText.setVisibility(View.VISIBLE);
             semanticGrid.setVisibility(View.INVISIBLE);
         } else {
@@ -171,6 +173,15 @@ public class SemanticChoiceFragment extends QuestionFragment {
         }
     }
 
+    private void changeHeaderText() {
+        String headerText = "Category: " + semanticPrompts[pageCount];
+        SpannableString ss = new SpannableString(headerText);
+
+        ForegroundColorSpan fcs = new ForegroundColorSpan(getResources().getColor(R.color.colorAccent));
+        ss.setSpan(fcs, 9, headerText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        semanticChoicePrompt.setText(ss);
+    }
 
     @Override
     public boolean loadDataModel() {

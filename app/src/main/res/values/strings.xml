@@ -70,16 +70,16 @@
         <item>Fall</item>
     </string-array>
     <string name="instructions_verbalInst">
-        You will be presented with a list of words one at a time. Read and listen to each word carefully
-        and try to remember it. Once the list is complete, you will be asked to recall as many words as
-        you can remember. It does not matter in what order you recall them. Just try to remember as
+        \u2022 You will be presented with a list of words one at a time. Read and listen to each word carefully
+        and try to remember it. \n \n
+        \u2022 Once the list is complete, you will be asked to recall as many words as
+        you can remember. \n \n
+        \u2022 It does not matter in what order you recall them. Just try to remember as
         many as you can.
     </string>
     <string name="instructions_verbalInst2">
-        Now you will see the same list again, and once again when it is complete, you will be asked to
-        recall as many words as you can remember, including words you said the first time. It does not
-        matter in what order you recall them. Just recall as many words as you can remember whether or
-        not you said them before.
+        \u2022 Now you will see the same list again. \n \n
+        \u2022 Please remember as many words as you can, in any order, whether or not you said them before.
     </string>
     <string name="verbal_readyBtn">Ready</string>
     <string name="verbal_readyPrompt">Press the button below when you are ready to start.</string>
@@ -250,128 +250,128 @@
 
     <string-array name="semantic_choices_1">
         <item>Lynx</item>
-        <item>Whale</item>
         <item>Hyena</item>
         <item>Buffalo</item>
-        <item>Cobra</item>
-        <item>Frog</item>
         <item>Nest</item>
+        <item>Whale</item>
         <item>Pioneer</item>
         <item>Ivory</item>
         <item>Zoo</item>
         <item>Lung</item>
+        <item>Frog</item>
+        <item>Cobra</item>
         <item>Skull</item>
     </string-array>
     <string-array name="semantic_choices_2">
-        <item>Otter</item>
-        <item>Chipmunk</item>
-        <item>Wolf</item>
-        <item>Moose</item>
-        <item>Turtle</item>
-        <item>Penguin</item>
         <item>Eraser</item>
-        <item>Mouth</item>
-        <item>Defect</item>
-        <item>Latch</item>
         <item>Rebel</item>
+        <item>Wolf</item>
+        <item>Mouth</item>
+        <item>Moose</item>
+        <item>Chipmunk</item>
+        <item>Defect</item>
+        <item>Turtle</item>
+        <item>Latch</item>
+        <item>Otter</item>
+        <item>Penguin</item>
         <item>Canyon</item>
     </string-array>
     <string-array name="semantic_choices_3">
+        <item>Pasture</item>
+        <item>Puddle</item>
         <item>Beaver</item>
         <item>Sloth</item>
         <item>Fox</item>
-        <item>Lizard</item>
-        <item>Eel</item>
         <item>Ferret</item>
         <item>Tooth</item>
-        <item>Puddle</item>
-        <item>Pasture</item>
+        <item>Lizard</item>
         <item>Hymn</item>
         <item>Medal</item>
+        <item>Eel</item>
         <item>Grate</item>
     </string-array>
     <string-array name="semantic_choices_4">
-        <item>Cherry</item>
-        <item>Papaya</item>
+        <item>Literature</item>
+        <item>Thistle</item>
+        <item>Currant</item>
         <item>Cranberry</item>
         <item>Tangerine</item>
-        <item>Pineapple</item>
-        <item>Currant</item>
-        <item>Thistle</item>
-        <item>Literature</item>
         <item>Mash</item>
+        <item>Papaya</item>
         <item>Vein</item>
+        <item>Pineapple</item>
         <item>Flute</item>
         <item>Hammer</item>
+        <item>Cherry</item>
     </string-array>
     <string-array name="semantic_choices_5">
         <item>Plum</item>
-        <item>Raspberry</item>
-        <item>Pear</item>
-        <item>Apricot</item>
-        <item>Lime</item>
         <item>Melon</item>
         <item>Chart</item>
         <item>Saint</item>
         <item>Stomach</item>
         <item>Bacon</item>
+        <item>Raspberry</item>
+        <item>Pear</item>
+        <item>Apricot</item>
+        <item>Lime</item>
         <item>Knuckle</item>
         <item>Foam</item>
     </string-array>
     <string-array name="semantic_choices_6">
-        <item>Strawberry</item>
         <item>Grape</item>
-        <item>Lemon</item>
-        <item>Blackberry</item>
-        <item>Nectarine</item>
         <item>Pomegranate</item>
         <item>Lace</item>
         <item>Feast</item>
         <item>Quilt</item>
+        <item>Lemon</item>
         <item>Ribbon</item>
+        <item>Nectarine</item>
         <item>Twig</item>
+        <item>Blackberry</item>
+        <item>Strawberry</item>
         <item>Oak</item>
     </string-array>
     <string-array name="semantic_choices_7">
-        <item>Slippers</item>
         <item>Pants</item>
-        <item>Tie</item>
-        <item>Skirt</item>
-        <item>Belt</item>
-        <item>Poncho</item>
-        <item>Concert</item>
         <item>Elastic</item>
-        <item>Ballet</item>
-        <item>Acid</item>
+        <item>Belt</item>
+        <item>Slippers</item>
+        <item>Poncho</item>
+        <item>Skirt</item>
+        <item>Concert</item>
         <item>Hurricane</item>
+        <item>Acid</item>
+        <item>Ballet</item>
         <item>Harvest</item>
+        <item>Tie</item>
     </string-array>
     <string-array name="semantic_choices_8">
-        <item>Gown</item>
-        <item>Jacket</item>
         <item>Hat</item>
-        <item>Blazer</item>
-        <item>Robe</item>
-        <item>Gloves</item>
         <item>Organ</item>
+        <item>Gown</item>
         <item>Galaxy</item>
         <item>Yacht</item>
         <item>Noodle</item>
+        <item>Blazer</item>
+        <item>Gloves</item>
+        <item>Robe</item>
         <item>Sapphire</item>
         <item>Purse</item>
+        <item>Jacket</item>
     </string-array>
     <string-array name="semantic_choices_9">
         <item>Scarf</item>
         <item>Shorts</item>
         <item>Bikini</item>
-        <item>Blouse</item>
-        <item>Cardigan</item>
         <item>Stockings</item>
+        <item>Cardigan</item>
         <item>Kale</item>
-        <item>Parade</item>
-        <item>Rocket</item>
         <item>Reed</item>
+        <item>Parade</item>
+        <item>Blouse</item>
         <item>Ink</item>
         <item>Mineral</item>
+        <item>Rocket</item>
     </string-array>
 </resources>
