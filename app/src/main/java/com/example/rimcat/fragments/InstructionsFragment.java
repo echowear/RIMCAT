@@ -44,22 +44,27 @@ public class InstructionsFragment extends QuestionFragment {
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_3:
-                instructionsText.setText(R.string.instructions_verbalInst2);
-                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
-                break;
             case DataLogModel.INSTRUCTIONS_SCREEN_4:
-                instructionsText.setText(R.string.instructions_imageInst);
+                instructionsText.setText(R.string.instructions_verbalInst2);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_5:
-                instructionsText.setText(R.string.instructions_figureStudy);
-                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
+                instructionsText.setText(R.string.instructions_verbalInst3);
+                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_6:
-                instructionsText.setText(R.string.instructions_reading_comp);
+                instructionsText.setText(R.string.instructions_imageInst);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_7:
+                instructionsText.setText(R.string.instructions_figureStudy);
+                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
+                break;
+            case DataLogModel.INSTRUCTIONS_SCREEN_8:
+                instructionsText.setText(R.string.instructions_reading_comp);
+                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
+                break;
+            case DataLogModel.INSTRUCTIONS_SCREEN_9:
                 instructionsText.setText(R.string.instructions_semanticChoice);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 break;
@@ -85,21 +90,21 @@ public class InstructionsFragment extends QuestionFragment {
                 ((MainActivity)getActivity()).addFragment(new EducationFragment(), "NameFragment");
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_2:
-                ((MainActivity)getActivity()).addFragment(new VerbalRecallFragment(), "VerbalRecallFragment");
-                break;
             case DataLogModel.INSTRUCTIONS_SCREEN_3:
-                ((MainActivity)getActivity()).addFragment(new VerbalRecallFragment(), "VerbalRecallFragment");
-                break;
             case DataLogModel.INSTRUCTIONS_SCREEN_4:
-                ((MainActivity)getActivity()).addFragment(new ImageNameFragment(), "ImageNameFragment");
-                break;
             case DataLogModel.INSTRUCTIONS_SCREEN_5:
-                ((MainActivity)getActivity()).addFragment(new FigureStudyFragment(), "FigureStudyFragment");
+                ((MainActivity)getActivity()).addFragment(new VerbalRecallFragment(), "VerbalRecallFragment");
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_6:
-                ((MainActivity)getActivity()).addFragment(new ReadingCompFragment(), "ReadingCompFragment");
+                ((MainActivity)getActivity()).addFragment(new ImageNameFragment(), "ImageNameFragment");
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_7:
+                ((MainActivity)getActivity()).addFragment(new FigureStudyFragment(), "FigureStudyFragment");
+                break;
+            case DataLogModel.INSTRUCTIONS_SCREEN_8:
+                ((MainActivity)getActivity()).addFragment(new ReadingCompFragment(), "ReadingCompFragment");
+                break;
+            case DataLogModel.INSTRUCTIONS_SCREEN_9:
                 ((MainActivity)getActivity()).addFragment(new SemanticChoiceFragment(), "SemanticChoiceFragment");
                 break;
             default:

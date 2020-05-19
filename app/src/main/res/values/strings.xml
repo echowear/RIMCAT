@@ -13,13 +13,19 @@
     <string name="screen_verbal_2">Verbal Recall 2</string>
     <string name="screen_recall_2">Recall Response 2</string>
     <string name="screen_inst_4">Instructions 4</string>
-    <string name="screen_img_nm">Image Name</string>
+    <string name="screen_verbal_3">Verbal Recall 3</string>
+    <string name="screen_recall_3">Recall Response 3</string>
     <string name="screen_inst_5">Instructions 5</string>
+    <string name="screen_verbal_4">Verbal Recall 4 (Interference)</string>
+    <string name="screen_recall_4">Recall Response 4</string>
+    <string name="screen_inst_6">Instructions 6</string>
+    <string name="screen_img_nm">Image Name</string>
+    <string name="screen_inst_7">Instructions 7</string>
     <string name="screen_fig_study">Figure Study</string>
     <string name="screen_fig_select">Figure Select</string>
-    <string name="screen_inst_6">Instructions 6</string>
+    <string name="screen_inst_8">Instructions 8</string>
     <string name="screen_read_comp">Reading Comp.</string>
-    <string name="screen_inst_7">Instructions 7</string>
+    <string name="screen_inst_9">Instructions 9</string>
     <string name="screen_semantic_choice">Semantic Choice</string>
 
     <string name="app_name">RIMCAT</string>
@@ -70,16 +76,27 @@
         <item>Fall</item>
     </string-array>
     <string name="instructions_verbalInst">
-        \u2022 You will be presented with a list of words one at a time. Read and listen to each word carefully
-        and try to remember it. \n \n
-        \u2022 Once the list is complete, you will be asked to recall as many words as
-        you can remember. \n \n
-        \u2022 It does not matter in what order you recall them. Just try to remember as
-        many as you can.
+        \u2022 \t You will be presented with a list of words one at a
+        \t time. Read and listen to each word carefully to
+        \n \t remember it.
+        \n \n
+        \u2022\u0020\u0020Once the list is complete, you will be asked to
+        \n \t recall as many words as you can remember.
+        \n \n
+        \u2022\u0020\u0020It does not matter in what order you recall them.
+        \n \t Just try to remember as many as you can.
     </string>
     <string name="instructions_verbalInst2">
-        \u2022 Now you will see the same list again. \n \n
-        \u2022 Please remember as many words as you can, in any order, whether or not you said them before.
+        \u2022\tNow you will see the same list
+        \n\tagain. \n \n
+        \u2022\u0020Please remember as many words
+        \n\t as you can, in any order, whether
+        \n\t or not you said them before.
+    </string>
+    <string name="instructions_verbalInst3">
+        \u2022\tNow you will be presented with a new list of words. Read and listen to each word carefully and try to remember it.
+        \u2022\tOnce the list is complete, you will be asked to recall as many words from this new list as you can.
+        \u2022\tIt does not matter in what order you recall the words. Just try to remember as many as you can.
     </string>
     <string name="verbal_readyBtn">Ready</string>
     <string name="verbal_readyPrompt">Press the button below when you are ready to start.</string>
@@ -182,7 +199,7 @@
         eggs and half a carton of blueberries.
     </string>
     <string name="reading_comp_instr">
-        Respond by pressing the correct response to the question about the story.
+        Press the correct response to the question about the story.
     </string>
     <string-array name="reading_comp_questions">
         <item><b>The story begins on:</b></item>

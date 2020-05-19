@@ -34,7 +34,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:lineSpacingMultiplier="1.2"
-                android:textAlignment="textStart"
                 android:textSize="35sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

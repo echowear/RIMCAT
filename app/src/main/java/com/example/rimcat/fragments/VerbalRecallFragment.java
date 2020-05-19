@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.rimcat.DataLogModel;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 
@@ -22,7 +23,7 @@ public class VerbalRecallFragment extends QuestionFragment {
             "Nose", "Turkey"
     };
     private static final String[] TRIAL_LIST_TWO = new String[] {
-            "Desk", "Ranger", "Bird", "Shoe", "Mountain",
+            "Desk", "Ranger", "Bird", "Shoe", "Mountain", "Stove",
             "Glasses", "Towel", "Cloud", "Boat", "Lamb", "Gum"
     };
 
@@ -30,12 +31,21 @@ public class VerbalRecallFragment extends QuestionFragment {
     private Button readyBtn;
     private CountDownTimer countDownTimer, trialListCounter;
     private int timerIndex = 3;
+    private String[] currentWordList;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_verbal_recall, container, false);
 
+        // Set the current word list to the correct trial list words
+        int currentView = ((MainActivity)getActivity()).getViewNumber();
+        if (currentView == DataLogModel.VERBAL_RECALL_SCREEN_4)
+            currentWordList = TRIAL_LIST_TWO;
+        else
+            currentWordList = TRIAL_LIST_ONE;
+
+        // Initialize and prepare views
         cardView = view.findViewById(R.id.card);
         verbalText = view.findViewById(R.id.verbalText);
         readyBtn = view.findViewById(R.id.figure_readyBtn);
@@ -43,6 +53,8 @@ public class VerbalRecallFragment extends QuestionFragment {
             @Override
             public void onClick(View v) {
                 readyBtn.setVisibility(View.INVISIBLE);
+                verbalText.setText("");
+                verbalText.setTextSize(55);
                 countDownTimer.start();
             }
         });
@@ -65,12 +77,12 @@ public class VerbalRecallFragment extends QuestionFragment {
         };
 
         // Creates the timer that handles the word changing event during the verbal recall section
-        trialListCounter = new CountDownTimer(TRIAL_LIST_ONE.length * 2000, 1980) {
+        trialListCounter = new CountDownTimer(currentWordList.length * 2000, 1980) {
             @Override
             public void onTick(long millisUntilFinished) {
-                if (timerIndex < TRIAL_LIST_ONE.length) {
-                    Log.d(TAG, "onTick: Changing text --- " + TRIAL_LIST_ONE[timerIndex]);
-                    verbalText.setText("" + TRIAL_LIST_ONE[timerIndex]);
+                if (timerIndex < currentWordList.length) {
+                    Log.d(TAG, "onTick: Changing text --- " + currentWordList[timerIndex]);
+                    verbalText.setText("" + currentWordList[timerIndex]);
                     timerIndex++;
                 }
             }
