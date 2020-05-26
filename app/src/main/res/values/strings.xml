@@ -19,14 +19,22 @@
     <string name="screen_verbal_4">Verbal Recall 4 (Interference)</string>
     <string name="screen_recall_4">Recall Response 4</string>
     <string name="screen_inst_6">Instructions 6</string>
-    <string name="screen_img_nm">Image Name</string>
+    <string name="screen_verbal_5">Verbal Recall 5 (Short Delay)</string>
+    <string name="screen_recall_5">Recall Response 5</string>
     <string name="screen_inst_7">Instructions 7</string>
+    <string name="screen_img_nm">Image Name</string>
+    <string name="screen_inst_8">Instructions 8</string>
     <string name="screen_fig_study">Figure Study</string>
     <string name="screen_fig_select">Figure Select</string>
-    <string name="screen_inst_8">Instructions 8</string>
-    <string name="screen_read_comp">Reading Comp.</string>
     <string name="screen_inst_9">Instructions 9</string>
+    <string name="screen_read_comp">Reading Comp.</string>
+    <string name="screen_inst_10">Instructions 10</string>
     <string name="screen_semantic_choice">Semantic Choice</string>
+    <string name="screen_inst_11">Instructions 11</string>
+    <string name="screen_verbal_6">Verbal Recall 6 (Long Delay)</string>
+    <string name="screen_recall_6">Recall Response 6</string>
+    <string name="screen_inst_12">Instructions 12</string>
+    <string name="screen_fig_select_2">Figure Select 2</string>
 
     <string name="app_name">RIMCAT</string>
     <string name="error">Error</string>
@@ -94,9 +102,17 @@
         \n\t or not you said them before.
     </string>
     <string name="instructions_verbalInst3">
-        \u2022\tNow you will be presented with a new list of words. Read and listen to each word carefully and try to remember it.
-        \u2022\tOnce the list is complete, you will be asked to recall as many words from this new list as you can.
+        \u2022\tNow you will be presented with a new list of words. Read and listen to each word carefully and try to remember it. \n\n
+        \u2022\tOnce the list is complete, you will be asked to recall as many words from this new list as you can. \n\n
         \u2022\tIt does not matter in what order you recall the words. Just try to remember as many as you can.
+    </string>
+    <string name="instructions_verbalInst4">
+        \u2022\tNow, please type in as many words from the first list that you saw. \n\n
+        \u2022\tAgain, the order in which you recall the words does not matter. Just try to remember as many as you can.
+    </string>
+    <string name="instructions_verbalInst5">
+        \u2022\tDo you remember the lists of words that you saw a while ago? Please type in as many words from the first list, the one you saw several times.\n\n
+        \u2022\tThe order in which you recall the words does not matter. Just try to remember as many as you can.
     </string>
     <string name="verbal_readyBtn">Ready</string>
     <string name="verbal_readyPrompt">Press the button below when you are ready to start.</string>
@@ -165,12 +181,12 @@
         study each figure so that you can remember them later.
     </string>
     <string-array name="figure_prompt_array">
-        <item>Here is the 1st figure, you will have 6 seconds to study it.</item>
+        <item>Here is the 1st figure, you will have 10 seconds to study it.</item>
         <item>Here is the 2nd figure, you will have 10 seconds to study it.</item>
-<!--        <item>Here is the 3rd figure, you will have 10 seconds to study it.</item>-->
-
-<!--        <item>Here is the 4th figure, you will have 10 seconds to study it.</item>-->
-<!--        <item>Here is the 5th figure, you will have 10 seconds to study it.</item>-->
+        <item>Here is the 3rd figure, you will have 10 seconds to study it.</item>
+        <item>Here is the 4th figure, you will have 10 seconds to study it.</item>
+        <item>Here is the 5th figure, you will have 10 seconds to study it.</item>
+        <item>Here is the 6th figure, you will have 10 seconds to study it.</item>
         <item>
             You will now be shown four figures on the screen at once. Select the
             correct figure that you have seen before.
@@ -391,4 +407,5 @@
         <item>Mineral</item>
         <item>Rocket</item>
     </string-array>
+    <string name="instructions_figureSelect2">You will now be shown four figures on the screen at once. Select the correct figure that you have seen before.</string>
 </resources>

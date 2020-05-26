@@ -61,7 +61,7 @@
                         android:layout_height="match_parent"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
-                        app:srcCompat="@drawable/fig1_select1" />
+                        app:srcCompat="@drawable/figure_a_2" />
 
                     <ImageView
                         android:id="@+id/figure_choice2"
@@ -69,7 +69,7 @@
                         android:layout_height="match_parent"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
-                        app:srcCompat="@drawable/fig1_select2" />
+                        app:srcCompat="@drawable/figure_a_1" />
 
                 </TableRow>
 
@@ -84,7 +84,7 @@
                         android:layout_height="match_parent"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
-                        app:srcCompat="@drawable/fig1_select3" />
+                        app:srcCompat="@drawable/figure_a_3" />
 
                     <ImageView
                         android:id="@+id/figure_choice4"
@@ -92,7 +92,7 @@
                         android:layout_height="match_parent"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
-                        app:srcCompat="@drawable/fig1_select4" />
+                        app:srcCompat="@drawable/figure_a_4" />
                 </TableRow>
 
             </TableLayout>

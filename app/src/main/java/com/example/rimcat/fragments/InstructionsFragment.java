@@ -53,19 +53,31 @@ public class InstructionsFragment extends QuestionFragment {
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_6:
-                instructionsText.setText(R.string.instructions_imageInst);
+                instructionsText.setText(R.string.instructions_verbalInst4);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_7:
-                instructionsText.setText(R.string.instructions_figureStudy);
+                instructionsText.setText(R.string.instructions_imageInst);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_8:
-                instructionsText.setText(R.string.instructions_reading_comp);
+                instructionsText.setText(R.string.instructions_figureStudy);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_9:
+                instructionsText.setText(R.string.instructions_reading_comp);
+                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
+                break;
+            case DataLogModel.INSTRUCTIONS_SCREEN_10:
                 instructionsText.setText(R.string.instructions_semanticChoice);
+                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
+                break;
+            case DataLogModel.INSTRUCTIONS_SCREEN_11:
+                instructionsText.setText(R.string.instructions_verbalInst5);
+                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
+                break;
+            case DataLogModel.INSTRUCTIONS_SCREEN_12:
+                instructionsText.setText(R.string.instructions_figureSelect2);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 break;
             default:
@@ -93,19 +105,24 @@ public class InstructionsFragment extends QuestionFragment {
             case DataLogModel.INSTRUCTIONS_SCREEN_3:
             case DataLogModel.INSTRUCTIONS_SCREEN_4:
             case DataLogModel.INSTRUCTIONS_SCREEN_5:
+            case DataLogModel.INSTRUCTIONS_SCREEN_6:
+            case DataLogModel.INSTRUCTIONS_SCREEN_11:
                 ((MainActivity)getActivity()).addFragment(new VerbalRecallFragment(), "VerbalRecallFragment");
                 break;
-            case DataLogModel.INSTRUCTIONS_SCREEN_6:
+            case DataLogModel.INSTRUCTIONS_SCREEN_7:
                 ((MainActivity)getActivity()).addFragment(new ImageNameFragment(), "ImageNameFragment");
                 break;
-            case DataLogModel.INSTRUCTIONS_SCREEN_7:
+            case DataLogModel.INSTRUCTIONS_SCREEN_8:
                 ((MainActivity)getActivity()).addFragment(new FigureStudyFragment(), "FigureStudyFragment");
                 break;
-            case DataLogModel.INSTRUCTIONS_SCREEN_8:
+            case DataLogModel.INSTRUCTIONS_SCREEN_9:
                 ((MainActivity)getActivity()).addFragment(new ReadingCompFragment(), "ReadingCompFragment");
                 break;
-            case DataLogModel.INSTRUCTIONS_SCREEN_9:
+            case DataLogModel.INSTRUCTIONS_SCREEN_10:
                 ((MainActivity)getActivity()).addFragment(new SemanticChoiceFragment(), "SemanticChoiceFragment");
+                break;
+            case DataLogModel.INSTRUCTIONS_SCREEN_12:
+                ((MainActivity)getActivity()).addFragment(new FigureSelectFragment(), "FigureSelectFragment");
                 break;
             default:
                 Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();

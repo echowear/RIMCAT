@@ -185,12 +185,12 @@ public class SemanticChoiceFragment extends QuestionFragment {
 
     @Override
     public boolean loadDataModel() {
-        return false;
+        return true;
     }
 
     @Override
     public void moveToNextPage() {
-
+        ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
     }
 
     @Override

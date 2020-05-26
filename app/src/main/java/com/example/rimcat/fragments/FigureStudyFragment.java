@@ -19,7 +19,9 @@ public class FigureStudyFragment extends QuestionFragment {
 
     public static final String TAG = "FigureStudyFragment";
     private static final int[] FIGURE_LIST = new int[] {
-            R.drawable.fig1, R.drawable.fig2
+            R.drawable.figure_a_1, R.drawable.figure_b_1,
+            R.drawable.figure_c_4, R.drawable.figure_d_1,
+            R.drawable.figure_e_1, R.drawable.figure_f_1
     };
     private CountDownTimer countDownTimer, figureListCounter;
     private String[] figurePrompts;
@@ -35,6 +37,7 @@ public class FigureStudyFragment extends QuestionFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_figure_study, container, false);
 
+
         figurePrompts = getResources().getStringArray(R.array.figure_prompt_array);
         figureImage = view.findViewById(R.id.figure_image);
         figureText = view.findViewById(R.id.figure_ready_text);
@@ -48,6 +51,8 @@ public class FigureStudyFragment extends QuestionFragment {
             public void onClick(View v) {
                 if (figCount < FIGURE_LIST.length) {
                     figureReadyBtn.setVisibility(View.INVISIBLE);
+                    figureText.setText("");
+                    figureText.setTextSize(55);
                     countDownTimer.start();
                 }
             }
@@ -68,14 +73,17 @@ public class FigureStudyFragment extends QuestionFragment {
                 timerIndex = 0;
                 promptCard.setVisibility(View.INVISIBLE);
                 figureImage.setVisibility(View.VISIBLE);
+                figureText.setTextSize(35);
                 figureListCounter.start();
             }
         };
 
         // Creates the timer that handles the word changing event during the verbal recall section
         figureListCounter = new CountDownTimer(10000, 10000) {
+            int count = 0;
             @Override
             public void onTick(long millisUntilFinished) {
+                count++;
             }
 
             @Override

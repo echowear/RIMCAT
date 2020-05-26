@@ -109,6 +109,10 @@ public class RecallResponseFragment extends QuestionFragment {
                 logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_3," + responses.get(i));
             else if (currentView == DataLogModel.RECALL_RESPONSE_SCREEN_4)
                 logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_4," + responses.get(i));
+            else if (currentView == DataLogModel.RECALL_RESPONSE_SCREEN_5)
+                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_5," + responses.get(i));
+            else if (currentView == DataLogModel.RECALL_RESPONSE_SCREEN_6)
+                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_6," + responses.get(i));
         }
 
         return true;
