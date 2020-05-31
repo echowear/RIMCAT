@@ -105,5 +105,11 @@
     <item
         android:id="@+id/screen_fig_select_2_om"
         android:title="@string/screen_fig_select_2"/>
+    <item
+        android:id="@+id/screen_inst_13_om"
+        android:title="@string/screen_inst_13"/>
+    <item
+        android:id="@+id/screen_semantic_relatedness_om"
+        android:title="@string/screen_semantic_relatedness"/>
 
 </menu>

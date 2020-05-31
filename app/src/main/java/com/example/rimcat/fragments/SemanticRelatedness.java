@@ -18,17 +18,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class SemanticChoiceFragment extends QuestionFragment {
-    private static final String TAG = "SemanticChoiceFragment";
+public class SemanticRelatedness extends QuestionFragment {
+    private static final String TAG = "SemanticRelatedness";
     private ConstraintLayout    layout1, layout2;
     private TableLayout         semanticGrid;
     private TextView            semanticChoicePrompt, semanticCountdownText;
@@ -45,43 +43,47 @@ public class SemanticChoiceFragment extends QuestionFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_semantic_choice, container, false);
+        View view = inflater.inflate(R.layout.fragment_semantic_relatedness, container, false);
         // Layout initialization
-        cardView = view.findViewById(R.id.semantic_choice_page);
-        layout1 = view.findViewById(R.id.semantic_layout1);
-        layout2 = view.findViewById(R.id.semantic_layout2);
+        cardView = view.findViewById(R.id.sr_page);
+        layout1 = view.findViewById(R.id.sr_layout1);
+        layout2 = view.findViewById(R.id.sr_layout2);
         layout1.setVisibility(View.VISIBLE);
         layout2.setVisibility(View.INVISIBLE);
 
         choiceList = new ArrayList<>();
         choiceButtons = new Button[] {
-                view.findViewById(R.id.scb1), view.findViewById(R.id.scb2), view.findViewById(R.id.scb3),
-                view.findViewById(R.id.scb4), view.findViewById(R.id.scb5), view.findViewById(R.id.scb6),
-                view.findViewById(R.id.scb7), view.findViewById(R.id.scb8), view.findViewById(R.id.scb9),
-                view.findViewById(R.id.scb10), view.findViewById(R.id.scb11), view.findViewById(R.id.scb12)
+                view.findViewById(R.id.srb1), view.findViewById(R.id.srb2),
+                view.findViewById(R.id.srb3), view.findViewById(R.id.srb4)
         };
         semanticChoices = new String[][] {
-                getResources().getStringArray(R.array.semantic_choices_1),
-                getResources().getStringArray(R.array.semantic_choices_2),
-                getResources().getStringArray(R.array.semantic_choices_3),
-                getResources().getStringArray(R.array.semantic_choices_4),
-                getResources().getStringArray(R.array.semantic_choices_5),
-                getResources().getStringArray(R.array.semantic_choices_6),
-                getResources().getStringArray(R.array.semantic_choices_7),
-                getResources().getStringArray(R.array.semantic_choices_8),
-                getResources().getStringArray(R.array.semantic_choices_9)
+                getResources().getStringArray(R.array.semantic_relatedness_1),
+                getResources().getStringArray(R.array.semantic_relatedness_2),
+                getResources().getStringArray(R.array.semantic_relatedness_3),
+                getResources().getStringArray(R.array.semantic_relatedness_4),
+                getResources().getStringArray(R.array.semantic_relatedness_5),
+                getResources().getStringArray(R.array.semantic_relatedness_6),
+                getResources().getStringArray(R.array.semantic_relatedness_7),
+                getResources().getStringArray(R.array.semantic_relatedness_8),
+                getResources().getStringArray(R.array.semantic_relatedness_9),
+                getResources().getStringArray(R.array.semantic_relatedness_10),
+                getResources().getStringArray(R.array.semantic_relatedness_11),
+                getResources().getStringArray(R.array.semantic_relatedness_12),
+                getResources().getStringArray(R.array.semantic_relatedness_13),
+                getResources().getStringArray(R.array.semantic_relatedness_14),
+                getResources().getStringArray(R.array.semantic_relatedness_15)
         };
-        semanticGrid = view.findViewById(R.id.semantic_grid);
+        semanticGrid = view.findViewById(R.id.sr_grid);
         semanticGrid.setVisibility(View.INVISIBLE);
         initializeGrid();
 
-        semanticCountdownText = view.findViewById(R.id.semantic_countdown);
-        semanticChoicePrompt = view.findViewById(R.id.semantic_prompt);
-        semanticPrompts = getResources().getStringArray(R.array.semantic_choice_prompts);
+        semanticCountdownText = view.findViewById(R.id.sr_countdown);
+        semanticChoicePrompt = view.findViewById(R.id.sr_prompt);
+        semanticPrompts = getResources().getStringArray(R.array.semantic_relatedness_headers);
         changeHeaderText();
         semanticChoicePrompt.setTypeface(null, Typeface.BOLD);
 
-        readyButton = view.findViewById(R.id.semantic_ready_btn);
+        readyButton = view.findViewById(R.id.sr_ready_btn);
         readyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,7 +132,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
     }
 
     private void initializeGrid() {
-         choiceListener = new View.OnClickListener() {
+        choiceListener = new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
@@ -166,7 +168,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
         if (pageCount < semanticChoices.length) {
             // Log text into CSV and change button text
             for (String choice : choiceList) {
-                logEndTimeAndData(getActivity().getApplicationContext(), "semantic_choice_page" + pageCount + "," + choice);
+                logEndTimeAndData(getActivity().getApplicationContext(), "semantic_relatedness_page" + pageCount + "," + choice);
             }
             changeButtonText();
             // Change category text
@@ -179,30 +181,22 @@ public class SemanticChoiceFragment extends QuestionFragment {
     }
 
     private void changeHeaderText() {
-        String headerText = "Category: " + semanticPrompts[pageCount];
+        String headerText = "Word: " + semanticPrompts[pageCount];
         SpannableString ss = new SpannableString(headerText);
 
         ForegroundColorSpan fcs = new ForegroundColorSpan(getResources().getColor(R.color.colorAccent));
-        ss.setSpan(fcs, 9, headerText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(fcs, 5, headerText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         semanticChoicePrompt.setText(ss);
     }
 
     @Override
     public boolean loadDataModel() {
-        return true;
+        return false;
     }
 
     @Override
     public void moveToNextPage() {
-        ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
-    }
 
-    @Override
-    public void onDestroy() {
-        if (readyCountdown != null) {
-            readyCountdown.cancel();
-        }
-        super.onDestroy();
     }
 }

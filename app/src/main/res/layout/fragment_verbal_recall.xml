@@ -1,23 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vresponse_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <android.support.v7.widget.CardView
         android:id="@+id/card"
-        android:layout_width="605dp"
-        android:layout_height="285dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="769dp"
+        android:layout_height="533dp"
+        android:layout_gravity="start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,48 +20,82 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/figure_readyBtn"
-                android:layout_width="217dp"
-                android:layout_height="65dp"
-                android:layout_marginStart="213dp"
-                android:layout_marginLeft="213dp"
-                android:layout_marginTop="113dp"
-                android:layout_marginEnd="213dp"
-                android:layout_marginRight="213dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/roundbutton"
-                android:text="@string/verbal_readyBtn"
-                android:textColor="@color/white"
-                android:textSize="35sp"
-                android:textAllCaps="false"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.494"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
-
             <TextView
-                android:id="@+id/verbalText"
-                android:layout_width="500dp"
-                android:layout_height="115dp"
+                android:id="@+id/vresponse_text"
+                android:layout_width="640dp"
+                android:layout_height="105dp"
+                android:layout_gravity="start"
                 android:layout_marginStart="228dp"
                 android:layout_marginLeft="228dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="227dp"
                 android:layout_marginRight="227dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/verbal_readyPrompt"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:textSize="35sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/vresponse_prompt"
+                android:textAlignment="textStart"
+                android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.502"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.222" />
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/vresponse_addBtn"
+                android:layout_width="153dp"
+                android:layout_height="67dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:background="@drawable/roundbutton"
+                android:text="@string/vresponse_addBtn"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="35sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/vresponse_recall_word"
+                android:layout_width="239dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:ems="10"
+                android:hint="@string/vresponse_recallHint"
+                android:inputType="textPersonName"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/done_recalling_btn"
+                android:layout_width="307dp"
+                android:layout_height="67dp"
+                android:layout_marginBottom="38dp"
+                android:background="@drawable/roundbutton"
+                android:padding="10dp"
+                android:text="@string/vresponse_doneRecalling"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="35sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/recall_audio_btn"
+                android:layout_width="153dp"
+                android:layout_height="67dp"
+                android:text="Speech"
+                android:background="@drawable/roundbutton"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="35sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/vresponse_addBtn"
+                app:layout_constraintStart_toEndOf="@+id/vresponse_recall_word"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
 

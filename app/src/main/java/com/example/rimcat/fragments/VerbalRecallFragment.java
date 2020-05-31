@@ -1,110 +1,150 @@
 package com.example.rimcat.fragments;
 
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.Intent;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.CountDownTimer;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
+import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.rimcat.DataLogModel;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 
-public class VerbalRecallFragment extends QuestionFragment {
-    private static final String TAG = "VerbalRecallFragment";
-    private static final String[] TRIAL_LIST_ONE = new String[] {
-            "Drum", "Curtain", "Bell", "Coffee", "School",
-            "Parent", "Moon", "Garden", "Hat", "Farmer",
-            "Nose", "Turkey"
-    };
-    private static final String[] TRIAL_LIST_TWO = new String[] {
-            "Desk", "Ranger", "Bird", "Shoe", "Mountain", "Stove",
-            "Glasses", "Towel", "Cloud", "Boat", "Lamb", "Gum"
-    };
+import java.util.ArrayList;
 
-    private TextView verbalText;
-    private Button readyBtn;
-    private CountDownTimer countDownTimer, trialListCounter;
-    private int timerIndex = 3;
-    private String[] currentWordList;
+public class VerbalRecallFragment extends QuestionFragment {
+    private static final String     TAG = "RecallResponseFragment";
+    private static final int        RESULT_SPEECH = 140;
+    private Context                 mContext;
+    private Vibrator                mVibrator;
+    private EditText                responseText;
+    private Button                  addBtn, doneRecallingBtn, audioBtn;
+    private ArrayList<String>       responses;
+    private boolean                 firstWordRecalled, firstFinish;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_verbal_recall, container, false);
+        final View view = inflater.inflate(R.layout.fragment_verbal_recall, container, false);
+        mContext = view.getContext();
+        mVibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
 
-        // Set the current word list to the correct trial list words
-        int currentView = ((MainActivity)getActivity()).getViewNumber();
-        if (currentView == DataLogModel.VERBAL_RECALL_SCREEN_4)
-            currentWordList = TRIAL_LIST_TWO;
-        else
-            currentWordList = TRIAL_LIST_ONE;
+        // Initialize views
+        responseText = view.findViewById(R.id.vresponse_recall_word);
+        audioBtn = view.findViewById(R.id.recall_audio_btn);
+        addBtn = view.findViewById(R.id.vresponse_addBtn);
+        doneRecallingBtn = view.findViewById(R.id.done_recalling_btn);
+        doneRecallingBtn.setVisibility(View.VISIBLE);
+        responses = new ArrayList<String>();
 
-        // Initialize and prepare views
-        cardView = view.findViewById(R.id.card);
-        verbalText = view.findViewById(R.id.verbalText);
-        readyBtn = view.findViewById(R.id.figure_readyBtn);
-        readyBtn.setOnClickListener(new View.OnClickListener() {
+        audioBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                readyBtn.setVisibility(View.INVISIBLE);
-                verbalText.setText("");
-                verbalText.setTextSize(55);
-                countDownTimer.start();
+                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US");
+
+                try {
+                    startActivityForResult(intent, RESULT_SPEECH);
+                    responseText.setText("");
+                } catch (ActivityNotFoundException a) {
+                    Toast t = Toast.makeText(view.getContext(),
+                            "Opps! Your device doesn't support Speech to Text",
+                            Toast.LENGTH_SHORT);
+                    t.show();
+                }
             }
         });
 
-        // Creates the timer that counts down the verbal recall section
-        countDownTimer = new CountDownTimer(3000, 980) {
+        addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onTick(long millisUntilFinished) {
-                Log.d(TAG, "onTick: Tick: " + timerIndex);
-                if (timerIndex > 0)
-                    verbalText.setText("" + timerIndex);
-                timerIndex--;
-            }
-
-            @Override
-            public void onFinish() {
-                timerIndex = 0;
-                trialListCounter.start();
-            }
-        };
-
-        // Creates the timer that handles the word changing event during the verbal recall section
-        trialListCounter = new CountDownTimer(currentWordList.length * 2000, 1980) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                if (timerIndex < currentWordList.length) {
-                    Log.d(TAG, "onTick: Changing text --- " + currentWordList[timerIndex]);
-                    verbalText.setText("" + currentWordList[timerIndex]);
-                    timerIndex++;
+            public void onClick(View v) {
+                if (!responseText.getText().toString().equals("")) {
+                    responses.add(responseText.getText().toString());
+                    responseText.setText("");
+                    vibrateAndExecuteSound();
                 }
             }
+        });
 
+        doneRecallingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onFinish() {
-                ((MainActivity)getActivity()).getFragmentData(null);
+            public void onClick(View v) {
+                if (!firstFinish) {
+                    ((MainActivity)getActivity()).showRetryDialog();
+                } else {
+                    ((MainActivity)getActivity()).showRecallFinishDialog();
+                }
             }
-        };
+        });
 
+        cardView = view.findViewById(R.id.vresponse_layout);
         startAnimation(true);
+        logStartTime();
 
         return view;
     }
 
+    public void executePostMessageSetup() {
+        firstFinish = true;
+    }
+
+    public void setResponseTextToSpeechText(String speechText) {
+        responseText.setText(speechText);
+    }
+
+    private void vibrateAndExecuteSound() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && mVibrator != null) {
+            mVibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else if (mVibrator != null) {
+            //deprecated in API 26
+            mVibrator.vibrate(500);
+        }
+        try {
+            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            Ringtone r = RingtoneManager.getRingtone(mContext, notification);
+            r.play();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public boolean loadDataModel() {
+        int currentView = ((MainActivity)getActivity()).getViewNumber();
+        for (int i = 0; i < responses.size(); i++) {
+            if (currentView == DataLogModel.VERBAL_RECALL_SCREEN_1)
+                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_1," + responses.get(i));
+            else if (currentView == DataLogModel.VERBAL_RECALL_SCREEN_2)
+                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_2," + responses.get(i));
+            else if (currentView == DataLogModel.VERBAL_RECALL_SCREEN_3)
+                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_3," + responses.get(i));
+            else if (currentView == DataLogModel.VERBAL_RECALL_SCREEN_4)
+                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_4," + responses.get(i));
+            else if (currentView == DataLogModel.VERBAL_RECALL_SCREEN_5)
+                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_5," + responses.get(i));
+            else if (currentView == DataLogModel.VERBAL_RECALL_SCREEN_6)
+                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_6," + responses.get(i));
+        }
+
         return true;
     }
 
     @Override
     public void moveToNextPage() {
-        ((MainActivity)getActivity()).addFragment(new RecallResponseFragment(), "RecallResponseFragment");
+        ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
     }
 }

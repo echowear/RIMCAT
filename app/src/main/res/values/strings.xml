@@ -7,34 +7,36 @@
     <string name="screen_day">Day of Week</string>
     <string name="screen_season">Season</string>
     <string name="screen_inst_2">Instructions 2</string>
-    <string name="screen_verbal_1">Verbal Recall 1</string>
-    <string name="screen_recall_1">Recall Response 1</string>
+    <string name="screen_verbal_1">Verbal Learning 1</string>
+    <string name="screen_recall_1">Verbal Recall 1</string>
     <string name="screen_inst_3">Instructions 3</string>
-    <string name="screen_verbal_2">Verbal Recall 2</string>
-    <string name="screen_recall_2">Recall Response 2</string>
+    <string name="screen_verbal_2">Verbal Learning 2</string>
+    <string name="screen_recall_2">Verbal Recall 2</string>
     <string name="screen_inst_4">Instructions 4</string>
-    <string name="screen_verbal_3">Verbal Recall 3</string>
-    <string name="screen_recall_3">Recall Response 3</string>
+    <string name="screen_verbal_3">Verbal Learning 3</string>
+    <string name="screen_recall_3">Verbal Recall 3</string>
     <string name="screen_inst_5">Instructions 5</string>
-    <string name="screen_verbal_4">Verbal Recall 4 (Interference)</string>
-    <string name="screen_recall_4">Recall Response 4</string>
+    <string name="screen_verbal_4">Verbal Learning 4 (Interference)</string>
+    <string name="screen_recall_4">Verbal Recall 4</string>
     <string name="screen_inst_6">Instructions 6</string>
-    <string name="screen_verbal_5">Verbal Recall 5 (Short Delay)</string>
-    <string name="screen_recall_5">Recall Response 5</string>
+    <string name="screen_verbal_5">Verbal Learning 5 (Short Delay)</string>
+    <string name="screen_recall_5">Verbal Recall 5</string>
     <string name="screen_inst_7">Instructions 7</string>
-    <string name="screen_img_nm">Image Name</string>
+    <string name="screen_img_nm">Image Naming</string>
     <string name="screen_inst_8">Instructions 8</string>
     <string name="screen_fig_study">Figure Study</string>
-    <string name="screen_fig_select">Figure Select</string>
+    <string name="screen_fig_select">Figure Select 1</string>
     <string name="screen_inst_9">Instructions 9</string>
     <string name="screen_read_comp">Reading Comp.</string>
     <string name="screen_inst_10">Instructions 10</string>
     <string name="screen_semantic_choice">Semantic Choice</string>
     <string name="screen_inst_11">Instructions 11</string>
-    <string name="screen_verbal_6">Verbal Recall 6 (Long Delay)</string>
-    <string name="screen_recall_6">Recall Response 6</string>
+    <string name="screen_verbal_6">Verbal Learning 6 (Long Delay)</string>
+    <string name="screen_recall_6">Verbal Recall 6</string>
     <string name="screen_inst_12">Instructions 12</string>
     <string name="screen_fig_select_2">Figure Select 2</string>
+    <string name="screen_inst_13">Instructions 13</string>
+    <string name="screen_semantic_relatedness">Semantic Relatedness</string>
 
     <string name="app_name">RIMCAT</string>
     <string name="error">Error</string>
@@ -408,4 +410,114 @@
         <item>Rocket</item>
     </string-array>
     <string name="instructions_figureSelect2">You will now be shown four figures on the screen at once. Select the correct figure that you have seen before.</string>
+    <string name="instructions_semantic_relatedness">For this task, a word will appear at the top of the screen, and answer choices will appear below. Please choose the word that is most similar to the word at the top. Here is an example question.</string>
+    <string-array name="semantic_relatedness_headers">
+        <item>Flower</item>
+        <item>Cactus</item>
+        <item>Fortune</item>
+        <item>Thorn</item>
+        <item>Bright</item>
+        <item>Despair</item>
+        <item>Quiet</item>
+        <item>Honesty</item>
+        <item>Candle</item>
+        <item>Snake</item>
+        <item>Rain</item>
+        <item>Food</item>
+        <item>Knowledge</item>
+        <item>Lemon</item>
+        <item>Planet</item>
+    </string-array>
+    <string-array name="semantic_relatedness_1">
+        <item>Garden</item>
+        <item>Forest</item>
+        <item>Spider</item>
+        <item>Mountain</item>
+    </string-array>
+    <string-array name="semantic_relatedness_2">
+        <item>Purple</item>
+        <item>Desert</item>
+        <item>Circle</item>
+        <item>Raccoon</item>
+    </string-array>
+    <string-array name="semantic_relatedness_3">
+        <item>Language</item>
+        <item>Collar</item>
+        <item>Finger</item>
+        <item>Money</item>
+    </string-array>
+    <string-array name="semantic_relatedness_4">
+        <item>Berry</item>
+        <item>Rope</item>
+        <item>Rose</item>
+        <item>Basil</item>
+    </string-array>
+    <string-array name="semantic_relatedness_5">
+        <item>Party</item>
+        <item>Shine</item>
+        <item>Office</item>
+        <item>Brave</item>
+    </string-array>
+    <string-array name="semantic_relatedness_6">
+        <item>Hopelessness</item>
+        <item>Loving</item>
+        <item>Wishful</item>
+        <item>Easy</item>
+    </string-array>
+    <string-array name="semantic_relatedness_7">
+        <item>Silence</item>
+        <item>Meadow</item>
+        <item>Startle</item>
+        <item>Candle</item>
+    </string-array>
+    <string-array name="semantic_relatedness_8">
+        <item>Imagine</item>
+        <item>Truth</item>
+        <item>Relax</item>
+        <item>Angry</item>
+    </string-array>
+    <string-array name="semantic_relatedness_9">
+        <item>Sweet</item>
+        <item>Book</item>
+        <item>Glass</item>
+        <item>Flame</item>
+    </string-array>
+    <string-array name="semantic_relatedness_10">
+        <item>Tree</item>
+        <item>Rattle</item>
+        <item>Sparkle</item>
+        <item>River</item>
+    </string-array>
+    <string-array name="semantic_relatedness_11">
+        <item>Thunder</item>
+        <item>Sand</item>
+        <item>Beaver</item>
+        <item>Hill</item>
+    </string-array>
+    <string-array name="semantic_relatedness_12">
+        <item>Sore</item>
+        <item>Fever</item>
+        <item>Smile</item>
+        <item>Hunger</item>
+    </string-array>
+    <string-array name="semantic_relatedness_13">
+        <item>Save</item>
+        <item>Tired</item>
+        <item>Wisdom</item>
+        <item>Perfect</item>
+    </string-array>
+    <string-array name="semantic_relatedness_14">
+        <item>Root</item>
+        <item>Salt</item>
+        <item>Sour</item>
+        <item>Gray</item>
+    </string-array>
+    <string-array name="semantic_relatedness_15">
+        <item>Train</item>
+        <item>Future</item>
+        <item>Moon</item>
+        <item>Liquid</item>
+    </string-array>
+
+    <string name="semantic_relatedness_prompt">Choose the word that is most similar to the word that you\'ll see at the top of the screen.</string>
 </resources>

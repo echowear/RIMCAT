@@ -4,13 +4,11 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,10 +72,14 @@ public class InstructionsFragment extends QuestionFragment {
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_11:
                 instructionsText.setText(R.string.instructions_verbalInst5);
-                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
+                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_12:
                 instructionsText.setText(R.string.instructions_figureSelect2);
+                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
+                break;
+            case DataLogModel.INSTRUCTIONS_SCREEN_13:
+                instructionsText.setText(R.string.instructions_semantic_relatedness);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 break;
             default:
@@ -107,7 +109,7 @@ public class InstructionsFragment extends QuestionFragment {
             case DataLogModel.INSTRUCTIONS_SCREEN_5:
             case DataLogModel.INSTRUCTIONS_SCREEN_6:
             case DataLogModel.INSTRUCTIONS_SCREEN_11:
-                ((MainActivity)getActivity()).addFragment(new VerbalRecallFragment(), "VerbalRecallFragment");
+                ((MainActivity)getActivity()).addFragment(new VerbalLearningFragment(), "VerbalRecallFragment");
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_7:
                 ((MainActivity)getActivity()).addFragment(new ImageNameFragment(), "ImageNameFragment");
@@ -123,6 +125,9 @@ public class InstructionsFragment extends QuestionFragment {
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_12:
                 ((MainActivity)getActivity()).addFragment(new FigureSelectFragment(), "FigureSelectFragment");
+                break;
+            case DataLogModel.INSTRUCTIONS_SCREEN_13:
+                ((MainActivity)getActivity()).addFragment(new SemanticRelatedness(), "SemanticRelatedness");
                 break;
             default:
                 Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
