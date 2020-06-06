@@ -13,6 +13,7 @@ import android.os.Vibrator;
 import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,8 @@ public class VerbalRecallFragment extends QuestionFragment {
     private Context                 mContext;
     private Vibrator                mVibrator;
     private EditText                responseText;
-    private Button                  addBtn, doneRecallingBtn, audioBtn;
+    private Button                  addBtn, doneRecallingBtn;
+    private FloatingActionButton    audioBtn;
     private ArrayList<String>       responses;
     private boolean                 firstWordRecalled, firstFinish;
 

@@ -8,8 +8,8 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/card"
-        android:layout_width="769dp"
-        android:layout_height="533dp"
+        android:layout_width="944dp"
+        android:layout_height="473dp"
         android:layout_gravity="start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,8 +22,8 @@
 
             <TextView
                 android:id="@+id/vresponse_text"
-                android:layout_width="640dp"
-                android:layout_height="105dp"
+                android:layout_width="645dp"
+                android:layout_height="121dp"
                 android:layout_gravity="start"
                 android:layout_marginStart="228dp"
                 android:layout_marginLeft="228dp"
@@ -40,10 +40,10 @@
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/vresponse_addBtn"
-                android:layout_width="153dp"
+                android:layout_width="208dp"
                 android:layout_height="67dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
                 android:background="@drawable/roundbutton"
                 android:text="@string/vresponse_addBtn"
                 android:textAllCaps="false"
@@ -57,15 +57,29 @@
                 android:id="@+id/vresponse_recall_word"
                 android:layout_width="239dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginLeft="100dp"
                 android:ems="10"
                 android:hint="@string/vresponse_recallHint"
                 android:inputType="textPersonName"
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.498" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/recall_audio_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:src="@android:drawable/ic_btn_speak_now"
+                android:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/vresponse_recall_word"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.498" />
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/done_recalling_btn"
@@ -81,20 +95,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
-
-            <Button
-                android:id="@+id/recall_audio_btn"
-                android:layout_width="153dp"
-                android:layout_height="67dp"
-                android:text="Speech"
-                android:background="@drawable/roundbutton"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="35sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/vresponse_addBtn"
-                app:layout_constraintStart_toEndOf="@+id/vresponse_recall_word"
-                app:layout_constraintTop_toTopOf="parent" />
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
