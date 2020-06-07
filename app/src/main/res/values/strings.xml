@@ -27,7 +27,7 @@
     <string name="screen_fig_study">Figure Study</string>
     <string name="screen_fig_select">Figure Select 1</string>
     <string name="screen_inst_9">Instructions 9</string>
-    <string name="screen_read_comp">Reading Comp.</string>
+    <string name="screen_read_comp_story">Story Learning</string>
     <string name="screen_inst_10">Instructions 10</string>
     <string name="screen_semantic_choice">Semantic Choice</string>
     <string name="screen_inst_11">Instructions 11</string>
@@ -36,6 +36,8 @@
     <string name="screen_inst_12">Instructions 12</string>
     <string name="screen_fig_select_2">Figure Select 2</string>
     <string name="screen_inst_13">Instructions 13</string>
+    <string name="screen_read_comp_test">Story Memory</string>
+    <string name="screen_inst_14">Instructions 14</string>
     <string name="screen_semantic_relatedness">Semantic Relatedness</string>
 
     <string name="app_name">RIMCAT</string>
@@ -199,8 +201,11 @@
         <item>Shed</item>
     </string-array>
     <string name="figure_select_prompt">Select the correct figure that you have seen before.</string>
-    <string name="instructions_reading_comp">
-        Next, you will have to read a story, then answer the questions that follow.
+    <string name="instructions_read_comp_story">
+        Next, you will hear a short story. You will be asked questions about this story later.
+    </string>
+    <string name="instructions_read_comp_test">
+        Please answer the following questions about the story you heard earlier.
     </string>
     <string name="reading_comp_prompt_1">
         On Monday morning, Sarah drove her new car to work. During lunch, she

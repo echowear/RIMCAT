@@ -35,7 +35,8 @@ import com.example.rimcat.fragments.HomeFragment;
 import com.example.rimcat.fragments.ImageNameFragment;
 import com.example.rimcat.fragments.InstructionsFragment;
 import com.example.rimcat.fragments.QuestionFragment;
-import com.example.rimcat.fragments.ReadingCompFragment;
+import com.example.rimcat.fragments.ReadCompStoryFragment;
+import com.example.rimcat.fragments.ReadCompTestFragment;
 import com.example.rimcat.fragments.VerbalRecallFragment;
 import com.example.rimcat.fragments.SeasonFragment;
 import com.example.rimcat.fragments.SemanticChoiceFragment;
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     private static final int        MY_PERMISSIONS_REQUEST_RECORD_AUDIO = 1402;
     private static final int        RESULT_SPEECH = 65676;
     private static final int        BACKGROUND_TRANSITION_TIME = 2000;
-    private static final int        NUM_SCREENS = 34;
+    private static final int        NUM_SCREENS = 38;
     private FragmentManager         fragmentManager;
     private FragmentTransaction     fragmentTransaction;
     private String                  fragmentTag;
@@ -144,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_11 ||
                 viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_12 ||
                 viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_13 ||
+                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_14 ||
                 viewNumber == DataLogModel.VERBAL_LEARNING_SCREEN_1 ||
                 viewNumber == DataLogModel.VERBAL_LEARNING_SCREEN_2 ||
                 viewNumber == DataLogModel.VERBAL_LEARNING_SCREEN_3 ||
@@ -299,10 +301,10 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
-            case R.id.screen_read_comp:
-                this.viewNumber = DataLogModel.READING_COMP_SCREEN;
+            case R.id.screen_read_comp_story_om:
+                this.viewNumber = DataLogModel.READ_COMP_STORY_SCREEN;
                 fragmentTag = "ReadingCompFragment";
-                fragmentTransaction.replace(R.id.container, new ReadingCompFragment(), "ReadingCompFragment");
+                fragmentTransaction.replace(R.id.container, new ReadCompStoryFragment(), "ReadingCompFragment");
                 break;
             case R.id.screen_inst_10_om:
                 this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_10;
@@ -341,6 +343,16 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 break;
             case R.id.screen_inst_13_om:
                 this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_13;
+                fragmentTag = "InstructionsFragment";
+                fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
+                break;
+            case R.id.screen_read_comp_test_om:
+                this.viewNumber = DataLogModel.READ_COMP_TEST_SCREEN;
+                fragmentTag = "ReadCompTestFragment";
+                fragmentTransaction.replace(R.id.container, new ReadCompTestFragment(), "ReadCompTestFragment");
+                break;
+            case R.id.screen_inst_14_om:
+                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_14;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;

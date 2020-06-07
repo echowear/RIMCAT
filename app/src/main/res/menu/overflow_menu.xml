@@ -82,8 +82,8 @@
         android:id="@+id/screen_inst_9_om"
         android:title="@string/screen_inst_9"/>
     <item
-        android:id="@+id/screen_read_comp"
-        android:title="@string/screen_read_comp"/>
+        android:id="@+id/screen_read_comp_story_om"
+        android:title="@string/screen_read_comp_story"/>
     <item
         android:id="@+id/screen_inst_10_om"
         android:title="@string/screen_inst_10"/>
@@ -108,6 +108,12 @@
     <item
         android:id="@+id/screen_inst_13_om"
         android:title="@string/screen_inst_13"/>
+    <item
+        android:id="@+id/screen_read_comp_test_om"
+        android:title="@string/screen_read_comp_test"/>
+    <item
+        android:id="@+id/screen_inst_14_om"
+        android:title="@string/screen_inst_14"/>
     <item
         android:id="@+id/screen_semantic_relatedness_om"
         android:title="@string/screen_semantic_relatedness"/>
