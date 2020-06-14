@@ -75,14 +75,18 @@ public class InstructionsFragment extends QuestionFragment {
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_12:
-                instructionsText.setText(R.string.instructions_figureSelect2);
+                instructionsText.setText(R.string.instructions_verbal_rec);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_13:
-                instructionsText.setText(R.string.instructions_read_comp_test);
+                instructionsText.setText(R.string.instructions_figureSelect2);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_14:
+                instructionsText.setText(R.string.instructions_read_comp_test);
+                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
+                break;
+            case DataLogModel.INSTRUCTIONS_SCREEN_15:
                 instructionsText.setText(R.string.instructions_semantic_relatedness);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 break;
@@ -128,12 +132,15 @@ public class InstructionsFragment extends QuestionFragment {
                 ((MainActivity)getActivity()).addFragment(new SemanticChoiceFragment(), "SemanticChoiceFragment");
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_12:
-                ((MainActivity)getActivity()).addFragment(new FigureSelectFragment(), "FigureSelectFragment");
+                ((MainActivity)getActivity()).addFragment(new VerbalRecognitionFragment(), "VerbalRecognitionFragment");
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_13:
-                ((MainActivity)getActivity()).addFragment(new ReadCompTestFragment(), "ReadCompTestFragment");
+                ((MainActivity)getActivity()).addFragment(new FigureSelectFragment(), "FigureSelectFragment");
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_14:
+                ((MainActivity)getActivity()).addFragment(new ReadCompTestFragment(), "ReadCompTestFragment");
+                break;
+            case DataLogModel.INSTRUCTIONS_SCREEN_15:
                 ((MainActivity)getActivity()).addFragment(new SemanticRelatedness(), "SemanticRelatedness");
                 break;
             default:

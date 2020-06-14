@@ -47,7 +47,8 @@
         android:toDegrees="360"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_media_play" />
+        app:srcCompat="@android:drawable/ic_media_play"
+        android:focusable="true" />
 
     <TextView
         android:id="@+id/nextText"

@@ -13,7 +13,10 @@ import android.os.Vibrator;
 import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,8 +39,9 @@ public class VerbalRecallFragment extends QuestionFragment {
     private Button                  addBtn, doneRecallingBtn;
     private FloatingActionButton    audioBtn;
     private ArrayList<String>       responses;
-    private boolean                 firstWordRecalled, firstFinish;
+    private boolean                 firstFinish;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -53,6 +57,23 @@ public class VerbalRecallFragment extends QuestionFragment {
         doneRecallingBtn.setVisibility(View.VISIBLE);
         responses = new ArrayList<String>();
 
+        // Initialize text listener
+        responseText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (responseText.getText().toString().equals("")) {
+                    addBtn.getBackground().setTint(getResources().getColor(R.color.backgroundColor));
+                } else {
+                    addBtn.getBackground().setTint(getResources().getColor(R.color.colorAccent));
+                }
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        });
+
+        // Initialize speech to text button
         audioBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,17 +92,21 @@ public class VerbalRecallFragment extends QuestionFragment {
             }
         });
 
+        // Initialize submit word button
+        addBtn.getBackground().setTint(getResources().getColor(R.color.backgroundColor));
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!responseText.getText().toString().equals("")) {
-                    responses.add(responseText.getText().toString());
+                    String submitText = responseText.getText().toString();
+                    responses.add(submitText);
                     responseText.setText("");
-                    vibrateAndExecuteSound();
+                    vibrateToastAndExecuteSound(submitText);
                 }
             }
         });
 
+        // Initialize done recalling button
         doneRecallingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,13 +133,20 @@ public class VerbalRecallFragment extends QuestionFragment {
         responseText.setText(speechText);
     }
 
-    private void vibrateAndExecuteSound() {
+    private void vibrateToastAndExecuteSound(String submitText) {
+        // Vibrate the device
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && mVibrator != null) {
             mVibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
         } else if (mVibrator != null) {
             //deprecated in API 26
             mVibrator.vibrate(500);
         }
+
+        // Toast affirmative message
+        Toast t = Toast.makeText(getActivity(), "'" + submitText + "' submitted! Keep going!", Toast.LENGTH_LONG);
+        t.show();
+
+        // Execute sound
         try {
             Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             Ringtone r = RingtoneManager.getRingtone(mContext, notification);

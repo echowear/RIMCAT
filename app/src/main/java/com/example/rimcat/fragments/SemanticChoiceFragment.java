@@ -166,7 +166,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
         if (pageCount < semanticChoices.length) {
             // Log text into CSV and change button text
             for (String choice : choiceList) {
-                logEndTimeAndData(getActivity().getApplicationContext(), "semantic_choice_page" + pageCount + "," + choice);
+                logEndTimeAndData(getActivity(), "semantic_choice_page" + pageCount + "," + choice);
             }
             changeButtonText();
             // Change category text

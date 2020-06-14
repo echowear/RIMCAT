@@ -103,17 +103,23 @@
         android:id="@+id/screen_inst_12_om"
         android:title="@string/screen_inst_12"/>
     <item
-        android:id="@+id/screen_fig_select_2_om"
-        android:title="@string/screen_fig_select_2"/>
+        android:id="@+id/screen_verbal_rec_om"
+        android:title="@string/screen_verbal_rec"/>
     <item
         android:id="@+id/screen_inst_13_om"
         android:title="@string/screen_inst_13"/>
     <item
-        android:id="@+id/screen_read_comp_test_om"
-        android:title="@string/screen_read_comp_test"/>
+        android:id="@+id/screen_fig_select_2_om"
+        android:title="@string/screen_fig_select_2"/>
     <item
         android:id="@+id/screen_inst_14_om"
         android:title="@string/screen_inst_14"/>
+    <item
+        android:id="@+id/screen_read_comp_test_om"
+        android:title="@string/screen_read_comp_test"/>
+    <item
+        android:id="@+id/screen_inst_15_om"
+        android:title="@string/screen_inst_15"/>
     <item
         android:id="@+id/screen_semantic_relatedness_om"
         android:title="@string/screen_semantic_relatedness"/>

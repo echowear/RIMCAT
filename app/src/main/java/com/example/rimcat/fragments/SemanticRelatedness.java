@@ -27,18 +27,14 @@ import java.util.ArrayList;
 
 public class SemanticRelatedness extends QuestionFragment {
     private static final String TAG = "SemanticRelatedness";
-    private ConstraintLayout    layout1, layout2;
-    private TableLayout         semanticGrid;
-    private TextView            semanticChoicePrompt, semanticCountdownText;
-    private ArrayList<String>   choiceList;
-    private Button              readyButton;
+    private TextView            semanticChoicePrompt;
+    private String              wordChoice = "";
+    private Button              nextButton;
     private Button[]            choiceButtons;
     private View.OnClickListener choiceListener;
-    private CountDownTimer      readyCountdown, selectionCountdown;
     private String[][]          semanticChoices;
     private String[]            semanticPrompts;
-    private int                 pageCount, timerIndex = 3;
-    private boolean             inSelectionState = false;
+    private int                 pageCount;
 
     @Nullable
     @Override
@@ -46,12 +42,7 @@ public class SemanticRelatedness extends QuestionFragment {
         View view = inflater.inflate(R.layout.fragment_semantic_relatedness, container, false);
         // Layout initialization
         cardView = view.findViewById(R.id.sr_page);
-        layout1 = view.findViewById(R.id.sr_layout1);
-        layout2 = view.findViewById(R.id.sr_layout2);
-        layout1.setVisibility(View.VISIBLE);
-        layout2.setVisibility(View.INVISIBLE);
 
-        choiceList = new ArrayList<>();
         choiceButtons = new Button[] {
                 view.findViewById(R.id.srb1), view.findViewById(R.id.srb2),
                 view.findViewById(R.id.srb3), view.findViewById(R.id.srb4)
@@ -73,58 +64,20 @@ public class SemanticRelatedness extends QuestionFragment {
                 getResources().getStringArray(R.array.semantic_relatedness_14),
                 getResources().getStringArray(R.array.semantic_relatedness_15)
         };
-        semanticGrid = view.findViewById(R.id.sr_grid);
-        semanticGrid.setVisibility(View.INVISIBLE);
         initializeGrid();
 
-        semanticCountdownText = view.findViewById(R.id.sr_countdown);
         semanticChoicePrompt = view.findViewById(R.id.sr_prompt);
         semanticPrompts = getResources().getStringArray(R.array.semantic_relatedness_headers);
         changeHeaderText();
         semanticChoicePrompt.setTypeface(null, Typeface.BOLD);
 
-        readyButton = view.findViewById(R.id.sr_ready_btn);
-        readyButton.setOnClickListener(new View.OnClickListener() {
+        nextButton = view.findViewById(R.id.sr_next_btn);
+        nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                layout1.setVisibility(View.INVISIBLE);
-                layout2.setVisibility(View.VISIBLE);
-                timerIndex = 3;
-                readyCountdown.start();
-            }
-        });
-
-        readyCountdown = new CountDownTimer(3000, 980) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                Log.d(TAG, "onTick: Tick: " + timerIndex);
-                if (timerIndex > 0)
-                    semanticCountdownText.setText("" + timerIndex);
-                timerIndex--;
-            }
-
-            @Override
-            public void onFinish() {
-                timerIndex = 0;
-                semanticCountdownText.setVisibility(View.INVISIBLE);
-                semanticGrid.setVisibility(View.VISIBLE);
-                inSelectionState = true;
-                selectionCountdown.start();
-            }
-        };
-
-        selectionCountdown = new CountDownTimer(5000, 980) {
-            @Override
-            public void onTick(long millisUntilFinished) { }
-
-            @Override
-            public void onFinish() {
-                inSelectionState = false;
-                layout1.setVisibility(View.VISIBLE);
-                layout2.setVisibility(View.INVISIBLE);
                 prepareNextGrid();
             }
-        };
+        });
 
         startAnimation(true);
         logStartTime();
@@ -137,14 +90,12 @@ public class SemanticRelatedness extends QuestionFragment {
             @Override
             public void onClick(View v) {
                 AppCompatButton b = (AppCompatButton) v;
-                if (inSelectionState) {
-                    if (choiceList.contains(b.getText().toString())) {
-                        choiceList.remove(b.getText().toString());
-                        b.getBackground().setTint(getResources().getColor(R.color.backgroundColor));
-                    } else {
-                        choiceList.add(b.getText().toString());
-                        b.getBackground().setTint(getResources().getColor(R.color.colorAccent));
+                if (!b.getText().toString().equals(wordChoice)) {
+                    wordChoice = b.getText().toString();
+                    for (Button button : choiceButtons) {
+                        button.getBackground().setTint(getResources().getColor(R.color.backgroundColor));
                     }
+                    b.getBackground().setTint(getResources().getColor(R.color.colorAccent));
                 }
             }
         };
@@ -167,14 +118,10 @@ public class SemanticRelatedness extends QuestionFragment {
         pageCount++;
         if (pageCount < semanticChoices.length) {
             // Log text into CSV and change button text
-            for (String choice : choiceList) {
-                logEndTimeAndData(getActivity().getApplicationContext(), "semantic_relatedness_page" + pageCount + "," + choice);
-            }
+            logEndTimeAndData(getActivity(), "semantic_relatedness_page" + pageCount + "," + wordChoice);
             changeButtonText();
             // Change category text
             changeHeaderText();
-            semanticCountdownText.setVisibility(View.VISIBLE);
-            semanticGrid.setVisibility(View.INVISIBLE);
         } else {
             ((MainActivity)getActivity()).getFragmentData(null);
         }

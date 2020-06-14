@@ -25,10 +25,9 @@ public class FigureStudyFragment extends QuestionFragment {
     private static final int STUDY_TIME_MILLIS = 6000;
     private static final int[] FIGURE_LIST = new int[] {
             R.drawable.figure_a_1, R.drawable.figure_b_1,
-            R.drawable.figure_c_4, R.drawable.figure_d_1,
+            R.drawable.figure_c_1, R.drawable.figure_d_1,
             R.drawable.figure_e_1, R.drawable.figure_f_1
     };
-    private CountDownTimer countDownTimer, figureListCounter;
     private String[] figurePrompts;
     private ImageView figureImage;
     private TextView figureText;
@@ -61,24 +60,6 @@ public class FigureStudyFragment extends QuestionFragment {
             }
         });
 
-        // Creates the timer that counts down the verbal recall section
-        countDownTimer = new CountDownTimer(3000, 990) {
-            @Override
-            public void onTick(long millisUntilFinished) {}
-
-            @Override
-            public void onFinish() { showFigure(); }
-        };
-
-        // Creates the timer that handles the word changing event during the verbal recall section
-        figureListCounter = new CountDownTimer(STUDY_TIME_MILLIS, STUDY_TIME_MILLIS) {
-            @Override
-            public void onTick(long millisUntilFinished) { }
-
-            @Override
-            public void onFinish() { showPromptOrFinish(); }
-        };
-
         cardView = view.findViewById(R.id.figure_main_page);
 
         startAnimation(true);
@@ -90,7 +71,6 @@ public class FigureStudyFragment extends QuestionFragment {
         promptCard.setVisibility(View.INVISIBLE);
         figureImage.setVisibility(View.VISIBLE);
         figureText.setTextSize(35);
-        figureListCounter.start();
     }
 
     private void showPromptOrFinish() {
@@ -111,8 +91,6 @@ public class FigureStudyFragment extends QuestionFragment {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            // Give the user 3 seconds to prepare
-            countDownTimer.start();
         } else {
             ((MainActivity)getActivity()).getFragmentData(null);
         }

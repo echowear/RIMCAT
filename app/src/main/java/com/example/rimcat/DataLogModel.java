@@ -36,9 +36,11 @@ public class DataLogModel {
     public static final int VERBAL_LEARNING_SCREEN_6 = 31;
     public static final int VERBAL_RECALL_SCREEN_6 = 32;
     public static final int INSTRUCTIONS_SCREEN_12 = 33;
-    public static final int FIGURE_SELECT_SCREEN_2 = 34;
+    public static final int VERBAL_RECOGNITION_SCREEN = 34;
     public static final int INSTRUCTIONS_SCREEN_13 = 35;
-    public static final int READ_COMP_TEST_SCREEN = 36;
+    public static final int FIGURE_SELECT_SCREEN_2 = 36;
     public static final int INSTRUCTIONS_SCREEN_14 = 37;
-    public static final int SEMANTIC_RELATEDNESS_SCREEN = 38;
+    public static final int READ_COMP_TEST_SCREEN = 38;
+    public static final int INSTRUCTIONS_SCREEN_15 = 39;
+    public static final int SEMANTIC_RELATEDNESS_SCREEN = 40;
 }

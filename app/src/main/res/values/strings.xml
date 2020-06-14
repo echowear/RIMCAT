@@ -34,14 +34,17 @@
     <string name="screen_verbal_6">Verbal Learning 6 (Long Delay)</string>
     <string name="screen_recall_6">Verbal Recall 6</string>
     <string name="screen_inst_12">Instructions 12</string>
-    <string name="screen_fig_select_2">Figure Select 2</string>
+    <string name="screen_verbal_rec">Verbal Recognition</string>
     <string name="screen_inst_13">Instructions 13</string>
-    <string name="screen_read_comp_test">Story Memory</string>
+    <string name="screen_fig_select_2">Figure Select 2</string>
     <string name="screen_inst_14">Instructions 14</string>
+    <string name="screen_read_comp_test">Story Memory</string>
+    <string name="screen_inst_15">Instructions 15</string>
     <string name="screen_semantic_relatedness">Semantic Relatedness</string>
 
     <string name="app_name">RIMCAT</string>
     <string name="error">Error</string>
+    <string name="Null">Null</string>
 
     <string name="next_text">Next</string>
     <string name="home_patientID">Patient ID</string>
@@ -123,7 +126,7 @@
     <string name="vresponse_prompt">
         Now type in all the words you can remember or press the microphone button to record them. Just try your best to recall as many as you can.
     </string>
-    <string name="vresponse_addBtn">Add Word</string>
+    <string name="vresponse_addBtn">Submit Word</string>
     <string name="vresponse_doneRecalling">Done Recalling</string>
     <string name="vresponse_recallHint">Type Word</string>
     <string name="vresponse_message1">Keep trying for a little longer. You can do it!</string>
@@ -415,7 +418,7 @@
         <item>Rocket</item>
     </string-array>
     <string name="instructions_figureSelect2">You will now be shown four figures on the screen at once. Select the correct figure that you have seen before.</string>
-    <string name="instructions_semantic_relatedness">For this task, a word will appear at the top of the screen, and answer choices will appear below. Please choose the word that is most similar to the word at the top. Here is an example question.</string>
+    <string name="instructions_semantic_relatedness">For this task, a word will appear at the top of the screen, and answer choices will appear below. Please choose the word that is most similar to the word at the top.</string>
     <string-array name="semantic_relatedness_headers">
         <item>Flower</item>
         <item>Cactus</item>
@@ -525,4 +528,48 @@
     </string-array>
 
     <string name="semantic_relatedness_prompt">Choose the word that is most similar to the word that you\'ll see at the top of the screen.</string>
+
+    <string name="instructions_verbal_rec">Now you will see one word at a time, and you will be asked to indicate whether the word was from the first list of words you saw several times.</string>
+    <string-array name="verbal_recognition_words_1">
+        <item>Bell</item>
+        <item>Window</item>
+        <item>Hat</item>
+        <item>Ranger</item>
+        <item>Nose</item>
+        <item>Weather</item>
+        <item>School</item>
+        <item>Pencil</item>
+        <item>Moon</item>
+        <item>Tree</item>
+        <item>Bird</item>
+        <item>Mountain</item>
+    </string-array>
+    <string-array name="verbal_recognition_words_2">
+        <item>Coffee</item>
+        <item>Towel</item>
+        <item>Curtain</item>
+        <item>Flower</item>
+        <item>Water</item>
+        <item>Desk</item>
+        <item>Gum</item>
+        <item>Crayon</item>
+        <item>Turkey</item>
+        <item>Boat</item>
+        <item>Parent</item>
+        <item>Farmer</item>
+    </string-array>
+    <string-array name="verbal_recognition_words_3">
+        <item>Cloud</item>
+        <item>Garden</item>
+        <item>Glasses</item>
+        <item>Stocking</item>
+        <item>Shoe</item>
+        <item>Teacher</item>
+        <item>Stove</item>
+        <item>Nest</item>
+        <item>Children</item>
+        <item>Drum</item>
+        <item>Lamb</item>
+        <item>Sun</item>
+    </string-array>
 </resources>

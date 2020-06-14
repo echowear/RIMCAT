@@ -32,7 +32,7 @@
                 android:layout_height="37dp"
                 android:stretchColumns="*"
                 android:text="@string/figure_select_prompt"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.501"
@@ -61,7 +61,8 @@
                         android:layout_height="match_parent"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
-                        app:srcCompat="@drawable/figure_a_2" />
+                        app:srcCompat="@drawable/figure_a_2"
+                        android:contentDescription="@string/Null"/>
 
                     <ImageView
                         android:id="@+id/figure_choice2"
@@ -69,7 +70,8 @@
                         android:layout_height="match_parent"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
-                        app:srcCompat="@drawable/figure_a_1" />
+                        app:srcCompat="@drawable/figure_a_1"
+                        android:contentDescription="@string/Null"/>
 
                 </TableRow>
 
@@ -84,7 +86,8 @@
                         android:layout_height="match_parent"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
-                        app:srcCompat="@drawable/figure_a_3" />
+                        app:srcCompat="@drawable/figure_a_3"
+                        android:contentDescription="@string/Null"/>
 
                     <ImageView
                         android:id="@+id/figure_choice4"
@@ -92,7 +95,8 @@
                         android:layout_height="match_parent"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
-                        app:srcCompat="@drawable/figure_a_4" />
+                        app:srcCompat="@drawable/figure_a_4"
+                        android:contentDescription="@string/Null" />
                 </TableRow>
 
             </TableLayout>

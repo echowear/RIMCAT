@@ -18,7 +18,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/tree" />
+        app:srcCompat="@drawable/tree"
+        android:contentDescription="@string/Null"/>
 
     <android.support.v7.widget.CardView
         android:id="@+id/card"
