@@ -31,7 +31,7 @@
                 android:id="@+id/sr_prompt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:text=""
                 android:textSize="35sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -44,11 +44,12 @@
                 android:layout_height="317dp"
                 android:layout_marginStart="128dp"
                 android:layout_marginLeft="128dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="128dp"
                 android:layout_marginRight="128dp"
+                android:layout_marginBottom="16dp"
                 android:stretchColumns="*"
                 android:useDefaultMargins="false"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sr_prompt">
@@ -111,20 +112,6 @@
 
             </TableLayout>
 
-            <Button
-                android:id="@+id/sr_next_btn"
-                android:layout_width="150dp"
-                android:layout_height="67dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/roundbutton"
-                android:padding="10dp"
-                android:text="@string/next_text"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="35sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
         </android.support.constraint.ConstraintLayout>
 
     </android.support.v7.widget.CardView>

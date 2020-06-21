@@ -29,7 +29,6 @@ public class SemanticRelatedness extends QuestionFragment {
     private static final String TAG = "SemanticRelatedness";
     private TextView            semanticChoicePrompt;
     private String              wordChoice = "";
-    private Button              nextButton;
     private Button[]            choiceButtons;
     private View.OnClickListener choiceListener;
     private String[][]          semanticChoices;
@@ -71,14 +70,6 @@ public class SemanticRelatedness extends QuestionFragment {
         changeHeaderText();
         semanticChoicePrompt.setTypeface(null, Typeface.BOLD);
 
-        nextButton = view.findViewById(R.id.sr_next_btn);
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                prepareNextGrid();
-            }
-        });
-
         startAnimation(true);
         logStartTime();
         return view;
@@ -92,10 +83,7 @@ public class SemanticRelatedness extends QuestionFragment {
                 AppCompatButton b = (AppCompatButton) v;
                 if (!b.getText().toString().equals(wordChoice)) {
                     wordChoice = b.getText().toString();
-                    for (Button button : choiceButtons) {
-                        button.getBackground().setTint(getResources().getColor(R.color.backgroundColor));
-                    }
-                    b.getBackground().setTint(getResources().getColor(R.color.colorAccent));
+                    prepareNextGrid();
                 }
             }
         };
@@ -106,9 +94,6 @@ public class SemanticRelatedness extends QuestionFragment {
         String[] currentChoices = semanticChoices[pageCount];
         for (int i = 0; i < choiceButtons.length; i++) {
             choiceButtons[i].setText(currentChoices[i]);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                choiceButtons[i].getBackground().setTint(getResources().getColor(R.color.backgroundColor));
-            }
             if (choiceListener != null)
                 choiceButtons[i].setOnClickListener(choiceListener);
         }

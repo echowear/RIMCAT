@@ -118,9 +118,13 @@ public class SemanticChoiceFragment extends QuestionFragment {
             @Override
             public void onFinish() {
                 inSelectionState = false;
-                layout1.setVisibility(View.VISIBLE);
-                layout2.setVisibility(View.INVISIBLE);
-                prepareNextGrid();
+                pageCount++;
+                if (pageCount < semanticChoices.length) {
+                    prepareNextGrid();
+                } else {
+                    ((MainActivity)getActivity()).getFragmentData(null);
+                }
+
             }
         };
 
@@ -162,20 +166,17 @@ public class SemanticChoiceFragment extends QuestionFragment {
     }
 
     private void prepareNextGrid() {
-        pageCount++;
-        if (pageCount < semanticChoices.length) {
-            // Log text into CSV and change button text
-            for (String choice : choiceList) {
-                logEndTimeAndData(getActivity(), "semantic_choice_page" + pageCount + "," + choice);
-            }
-            changeButtonText();
-            // Change category text
-            changeHeaderText();
-            semanticCountdownText.setVisibility(View.VISIBLE);
-            semanticGrid.setVisibility(View.INVISIBLE);
-        } else {
-            ((MainActivity)getActivity()).getFragmentData(null);
+        layout1.setVisibility(View.VISIBLE);
+        layout2.setVisibility(View.INVISIBLE);
+        // Log text into CSV and change button text
+        for (String choice : choiceList) {
+            logEndTimeAndData(getActivity(), "semantic_choice_page" + pageCount + "," + choice);
         }
+        changeButtonText();
+        // Change category text
+        changeHeaderText();
+        semanticCountdownText.setVisibility(View.VISIBLE);
+        semanticGrid.setVisibility(View.INVISIBLE);
     }
 
     private void changeHeaderText() {

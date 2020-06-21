@@ -17,6 +17,7 @@ import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -144,6 +145,7 @@ public class VerbalRecallFragment extends QuestionFragment {
 
         // Toast affirmative message
         Toast t = Toast.makeText(getActivity(), "'" + submitText + "' submitted! Keep going!", Toast.LENGTH_LONG);
+        t.setGravity(Gravity.TOP, 0, 5);
         t.show();
 
         // Execute sound

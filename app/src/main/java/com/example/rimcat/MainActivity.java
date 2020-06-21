@@ -27,7 +27,9 @@ import android.widget.Toast;
 
 import com.example.rimcat.dialogs.RecallFinishDialog;
 import com.example.rimcat.dialogs.RetryDialog;
+import com.example.rimcat.fragments.ComputationFragment;
 import com.example.rimcat.fragments.DayOfWeekFragment;
+import com.example.rimcat.fragments.DigitSpanFragment;
 import com.example.rimcat.fragments.EducationFragment;
 import com.example.rimcat.fragments.FigureSelectFragment;
 import com.example.rimcat.fragments.FigureStudyFragment;
@@ -148,11 +150,12 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_13 ||
                 viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_14 ||
                 viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_15 ||
+                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_16 ||
+                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_17 ||
                 viewNumber == DataLogModel.VERBAL_LEARNING_SCREEN_1 ||
                 viewNumber == DataLogModel.VERBAL_LEARNING_SCREEN_2 ||
                 viewNumber == DataLogModel.VERBAL_LEARNING_SCREEN_3 ||
                 viewNumber == DataLogModel.VERBAL_LEARNING_SCREEN_4 ||
-                viewNumber == DataLogModel.VERBAL_LEARNING_SCREEN_5 ||
                 viewNumber == DataLogModel.FIGURE_STUDY_SCREEN) {
             nextText.setVisibility(View.INVISIBLE);
             nextButton.hide();
@@ -163,7 +166,6 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         }
     }
 
-    //TODO: Make this shorter!!
     private void debugScreenSelect(int itemID) {
         fragmentTransaction = fragmentManager.beginTransaction();
 
@@ -203,6 +205,16 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
+            case R.id.screen_img_nm_om:
+                this.viewNumber = DataLogModel.IMAGE_NAME_SCREEN;
+                fragmentTag = "ImageNameFragment";
+                fragmentTransaction.replace(R.id.container, new ImageNameFragment(), "ImageNameFragment");
+                break;
+            case R.id.screen_inst_3_om:
+                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_3;
+                fragmentTag = "InstructionsFragment";
+                fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
+                break;
             case R.id.screen_verbal_1_om:
                 this.viewNumber = DataLogModel.VERBAL_LEARNING_SCREEN_1;
                 fragmentTag = "VerbalRecallFragment";
@@ -213,8 +225,8 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 fragmentTag = "RecallResponseFragment";
                 fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "RecallResponseFragment");
                 break;
-            case R.id.screen_inst_3_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_3;
+            case R.id.screen_inst_4_om:
+                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_4;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
@@ -228,8 +240,8 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 fragmentTag = "RecallResponseFragment";
                 fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "RecallResponseFragment");
                 break;
-            case R.id.screen_inst_4_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_4;
+            case R.id.screen_inst_5_om:
+                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_5;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
@@ -243,8 +255,8 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 fragmentTag = "RecallResponseFragment";
                 fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "RecallResponseFragment");
                 break;
-            case R.id.screen_inst_5_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_5;
+            case R.id.screen_inst_6_om:
+                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_6;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
@@ -258,30 +270,15 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 fragmentTag = "RecallResponseFragment";
                 fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "RecallResponseFragment");
                 break;
-            case R.id.screen_inst_6_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_6;
-                fragmentTag = "InstructionsFragment";
-                fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
-                break;
-            case R.id.screen_verbal_5_om:
-                this.viewNumber = DataLogModel.VERBAL_LEARNING_SCREEN_5;
-                fragmentTag = "VerbalRecallFragment";
-                fragmentTransaction.replace(R.id.container, new VerbalLearningFragment(), "VerbalRecallFragment");
-                break;
-            case R.id.screen_recall_5_om:
-                this.viewNumber = DataLogModel.VERBAL_RECALL_SCREEN_5;
-                fragmentTag = "RecallResponseFragment";
-                fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "RecallResponseFragment");
-                break;
             case R.id.screen_inst_7_om:
                 this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_7;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
-            case R.id.screen_img_nm_om:
-                this.viewNumber = DataLogModel.IMAGE_NAME_SCREEN;
-                fragmentTag = "ImageNameFragment";
-                fragmentTransaction.replace(R.id.container, new ImageNameFragment(), "ImageNameFragment");
+            case R.id.screen_recall_5_om:
+                this.viewNumber = DataLogModel.VERBAL_RECALL_SCREEN_5;
+                fragmentTag = "RecallResponseFragment";
+                fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "RecallResponseFragment");
                 break;
             case R.id.screen_inst_8_om:
                 this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_8;
@@ -303,38 +300,43 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
-            case R.id.screen_read_comp_story_om:
-                this.viewNumber = DataLogModel.READ_COMP_STORY_SCREEN;
-                fragmentTag = "ReadingCompFragment";
-                fragmentTransaction.replace(R.id.container, new ReadCompStoryFragment(), "ReadingCompFragment");
+            case R.id.screen_digit_span_om:
+                this.viewNumber = DataLogModel.DIGIT_SPAN_SCREEN;
+                fragmentTag = "DigitSpanFragment";
+                fragmentTransaction.replace(R.id.container, new DigitSpanFragment(), "DigitSpanFragment");
                 break;
             case R.id.screen_inst_10_om:
                 this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_10;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
-            case R.id.screen_semantic_choice_om:
-                this.viewNumber = DataLogModel.SEMANTIC_CHOICE_SCREEN;
-                fragmentTag = "SemanticChoiceFragment";
-                fragmentTransaction.replace(R.id.container, new SemanticChoiceFragment(), "SemanticChoiceFragment");
+            case R.id.screen_read_comp_story_om:
+                this.viewNumber = DataLogModel.READ_COMP_STORY_SCREEN;
+                fragmentTag = "ReadingCompFragment";
+                fragmentTransaction.replace(R.id.container, new ReadCompStoryFragment(), "ReadingCompFragment");
                 break;
             case R.id.screen_inst_11_om:
                 this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_11;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
-            case R.id.screen_verbal_6_om:
-                this.viewNumber = DataLogModel.VERBAL_LEARNING_SCREEN_6;
-                fragmentTag = "VerbalRecallFragment";
-                fragmentTransaction.replace(R.id.container, new VerbalLearningFragment(), "VerbalRecallFragment");
+            case R.id.screen_computation_om:
+                this.viewNumber = DataLogModel.COMPUTATION_SCREEN;
+                fragmentTag = "ComputationFragment";
+                fragmentTransaction.replace(R.id.container, new ComputationFragment(), "ComputationFragment");
+                break;
+            case R.id.screen_inst_12_om:
+                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_12;
+                fragmentTag = "InstructionsFragment";
+                fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
             case R.id.screen_recall_6_om:
                 this.viewNumber = DataLogModel.VERBAL_RECALL_SCREEN_6;
                 fragmentTag = "RecallResponseFragment";
                 fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "RecallResponseFragment");
                 break;
-            case R.id.screen_inst_12_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_12;
+            case R.id.screen_inst_13_om:
+                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_13;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
@@ -343,8 +345,18 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 fragmentTag = "VerbalRecognitionFragment";
                 fragmentTransaction.replace(R.id.container, new VerbalRecognitionFragment(), "VerbalRecognitionFragment");
                 break;
-            case R.id.screen_inst_13_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_13;
+            case R.id.screen_inst_14_om:
+                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_14;
+                fragmentTag = "InstructionsFragment";
+                fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
+                break;
+            case R.id.screen_semantic_choice_om:
+                this.viewNumber = DataLogModel.SEMANTIC_CHOICE_SCREEN;
+                fragmentTag = "SemanticChoiceFragment";
+                fragmentTransaction.replace(R.id.container, new SemanticChoiceFragment(), "SemanticChoiceFragment");
+                break;
+            case R.id.screen_inst_15_om:
+                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_15;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
@@ -353,8 +365,8 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 fragmentTag = "FigureSelectFragment";
                 fragmentTransaction.replace(R.id.container, new FigureSelectFragment(), "FigureSelectFragment");
                 break;
-            case R.id.screen_inst_14_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_14;
+            case R.id.screen_inst_16_om:
+                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_16;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
@@ -363,8 +375,8 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 fragmentTag = "ReadCompTestFragment";
                 fragmentTransaction.replace(R.id.container, new ReadCompTestFragment(), "ReadCompTestFragment");
                 break;
-            case R.id.screen_inst_15_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_15;
+            case R.id.screen_inst_17_om:
+                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_17;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
