@@ -2,6 +2,7 @@ package com.example.rimcat.fragments;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -18,6 +19,8 @@ import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Locale;
 
 public class DigitSpanFragment extends QuestionFragment {
 
@@ -43,8 +46,10 @@ public class DigitSpanFragment extends QuestionFragment {
             { 1, 5, 8, 6, 2 }
     };
     private static final String[] COUNTDOWN_TEXT = { "Ready", "Set", "Go!" };
+    private HashMap<Integer, String> numberToTextMap;
     private int[] currentNumberList;
     private int timerIndex = 0, currentWord = 0;
+    private TextToSpeech textToSpeech;
     private CountDownTimer countDownTimer, trialListCounter;
     private CardView countdownCard, numRecallCard;
     private Button readyBtn, submitNumberBtn, nextBtn;
@@ -56,6 +61,18 @@ public class DigitSpanFragment extends QuestionFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_digit_span, container, false);
+
+        numberToTextMap = new HashMap<>();
+        numberToTextMap.put(0, "Zero");
+        numberToTextMap.put(1, "One");
+        numberToTextMap.put(2, "Two");
+        numberToTextMap.put(3, "Three");
+        numberToTextMap.put(4, "Four");
+        numberToTextMap.put(5, "Five");
+        numberToTextMap.put(6, "Six");
+        numberToTextMap.put(7, "Seven");
+        numberToTextMap.put(8, "Eight");
+        numberToTextMap.put(9, "Nine");
 
         countdownCard = view.findViewById(R.id.countdown_card);
         dsText = view.findViewById(R.id.ds_number_text);
@@ -102,6 +119,7 @@ public class DigitSpanFragment extends QuestionFragment {
                 if (timerIndex < currentNumberList.length) {
                     Log.d(TAG, "onTick: Changing text --- " + currentNumberList[timerIndex]);
                     dsText.setText("" + currentNumberList[timerIndex]);
+                    textToSpeech.speak(numberToTextMap.get(currentNumberList[timerIndex]), TextToSpeech.QUEUE_FLUSH, null);
                     timerIndex++;
                 }
             }
@@ -117,6 +135,15 @@ public class DigitSpanFragment extends QuestionFragment {
                 numRecallCard.setVisibility(View.VISIBLE);
             }
         };
+
+        textToSpeech = new TextToSpeech(getActivity().getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    textToSpeech.setLanguage(Locale.US);
+                }
+            }
+        });
 
         cardView = view.findViewById(R.id.ds_page);
         startAnimation(true);

@@ -2,6 +2,7 @@ package com.example.rimcat.fragments;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 import com.example.rimcat.DataLogModel;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
+
+import java.util.Locale;
 
 public class VerbalLearningFragment extends QuestionFragment {
     private static final String TAG = "VerbalRecallFragment";
@@ -29,6 +32,7 @@ public class VerbalLearningFragment extends QuestionFragment {
 
     private TextView verbalText;
     private Button readyBtn;
+    private TextToSpeech textToSpeech;
     private CountDownTimer countDownTimer, trialListCounter;
     private int timerIndex = 3;
     private String[] currentWordList;
@@ -82,7 +86,8 @@ public class VerbalLearningFragment extends QuestionFragment {
             public void onTick(long millisUntilFinished) {
                 if (timerIndex < currentWordList.length) {
                     Log.d(TAG, "onTick: Changing text --- " + currentWordList[timerIndex]);
-                    verbalText.setText("" + currentWordList[timerIndex]);
+                    verbalText.setText(currentWordList[timerIndex]);
+                    textToSpeech.speak(currentWordList[timerIndex], TextToSpeech.QUEUE_FLUSH, null);
                     timerIndex++;
                 }
             }
@@ -92,6 +97,15 @@ public class VerbalLearningFragment extends QuestionFragment {
                 ((MainActivity)getActivity()).getFragmentData(null);
             }
         };
+
+        textToSpeech = new TextToSpeech(getActivity().getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    textToSpeech.setLanguage(Locale.US);
+                }
+            }
+        });
 
         startAnimation(true);
 
@@ -106,5 +120,14 @@ public class VerbalLearningFragment extends QuestionFragment {
     @Override
     public void moveToNextPage() {
         ((MainActivity)getActivity()).addFragment(new VerbalRecallFragment(), "RecallResponseFragment");
+    }
+
+    @Override
+    public void onPause() {
+        if(textToSpeech !=null){
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
+        super.onPause();
     }
 }
