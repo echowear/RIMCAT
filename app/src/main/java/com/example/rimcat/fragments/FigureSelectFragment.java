@@ -9,14 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-
 import com.example.rimcat.DataLogModel;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
-
 import java.util.ArrayList;
 
-//  TODO: Fix the logged name for each image.
 public class FigureSelectFragment extends QuestionFragment {
 
     private static final String TAG = "FigureSelectFragment";
@@ -63,10 +60,10 @@ public class FigureSelectFragment extends QuestionFragment {
         figure2.setImageResource(currentImageSrcList[1]);
         figure3.setImageResource(currentImageSrcList[2]);
         figure4.setImageResource(currentImageSrcList[3]);
-        figure1.setTag("fig1");
-        figure2.setTag("fig2");
-        figure3.setTag("fig3");
-        figure4.setTag("fig4");
+        figure1.setTag(getResources().getResourceName(currentImageSrcList[0]));
+        figure2.setTag(getResources().getResourceName(currentImageSrcList[1]));
+        figure3.setTag(getResources().getResourceName(currentImageSrcList[2]));
+        figure4.setTag(getResources().getResourceName(currentImageSrcList[3]));
 
         View.OnClickListener onSelectFigure = new View.OnClickListener() {
             @Override
@@ -107,14 +104,15 @@ public class FigureSelectFragment extends QuestionFragment {
         if (selectedImage != null) {
             Log.d(TAG, "recordDataAndPrepareImages: Image - " + selectedImage.getTag());
             selectedImage.setBackgroundColor(getResources().getColor(R.color.white));
-//        logEndTimeAndData(getActivity().getApplicationContext(), "figure_select,image" + selectedImage.getBackground().toString());
+            String imageTag = selectedImage.getTag().toString();
+            logEndTimeAndData(getActivity().getApplicationContext(), "figure_select," + imageTag.substring(imageTag.lastIndexOf("/") + 1));
             selectedImage = null;
             figureCount += 4;
             if (figureCount < currentImageSrcList.length) {
                 int i = 0;
                 for (ImageView image : images) {
                     image.setImageResource(currentImageSrcList[figureCount + i]);
-                    image.setTag("fig" + (figureCount + i));
+                    image.setTag(getResources().getResourceName(currentImageSrcList[figureCount + i]));
                     i++;
                 }
             } else {

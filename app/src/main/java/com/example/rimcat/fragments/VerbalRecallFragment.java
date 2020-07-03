@@ -33,7 +33,6 @@ import java.util.ArrayList;
 
 public class VerbalRecallFragment extends QuestionFragment {
     private static final String     TAG = "RecallResponseFragment";
-    private static final int        RESULT_SPEECH = 140;
     private Context                 mContext;
     private Vibrator                mVibrator;
     private EditText                responseText;
@@ -86,7 +85,7 @@ public class VerbalRecallFragment extends QuestionFragment {
                     responseText.setText("");
                 } catch (ActivityNotFoundException a) {
                     Toast t = Toast.makeText(view.getContext(),
-                            "Opps! Your device doesn't support Speech to Text",
+                            "Oops! Your device doesn't support Speech to Text",
                             Toast.LENGTH_SHORT);
                     t.show();
                 }

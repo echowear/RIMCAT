@@ -29,6 +29,7 @@ public abstract class QuestionFragment extends Fragment {
     private static final String TAG = "QuestionFragment";
     private static final String DATE_FORMAT_1 = "HH:mm:ss";
     private static final String DATE_FORMAT_2 = "HH:mm:ss,MM/dd/yyyy";
+    protected static final int  RESULT_SPEECH = 140;
     public static String PATIENT_ID;
 
     protected View cardView;

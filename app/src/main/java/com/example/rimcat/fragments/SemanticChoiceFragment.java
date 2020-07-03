@@ -119,6 +119,9 @@ public class SemanticChoiceFragment extends QuestionFragment {
             public void onFinish() {
                 inSelectionState = false;
                 pageCount++;
+                for (String choice : choiceList) {
+                    logEndTimeAndData(getActivity(), "semantic_choice_page" + pageCount + "," + choice);
+                }
                 if (pageCount < semanticChoices.length) {
                     prepareNextGrid();
                 } else {
@@ -168,10 +171,6 @@ public class SemanticChoiceFragment extends QuestionFragment {
     private void prepareNextGrid() {
         layout1.setVisibility(View.VISIBLE);
         layout2.setVisibility(View.INVISIBLE);
-        // Log text into CSV and change button text
-        for (String choice : choiceList) {
-            logEndTimeAndData(getActivity(), "semantic_choice_page" + pageCount + "," + choice);
-        }
         changeButtonText();
         // Change category text
         changeHeaderText();

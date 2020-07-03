@@ -101,9 +101,8 @@ public class SemanticRelatedness extends QuestionFragment {
 
     private void prepareNextGrid() {
         pageCount++;
+        logEndTimeAndData(getActivity(), "semantic_relatedness_page" + pageCount + "," + wordChoice);
         if (pageCount < semanticChoices.length) {
-            // Log text into CSV and change button text
-            logEndTimeAndData(getActivity(), "semantic_relatedness_page" + pageCount + "," + wordChoice);
             changeButtonText();
             // Change category text
             changeHeaderText();

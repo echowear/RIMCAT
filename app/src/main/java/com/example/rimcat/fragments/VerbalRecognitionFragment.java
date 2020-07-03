@@ -96,11 +96,10 @@ public class VerbalRecognitionFragment extends QuestionFragment {
 
     private void prepareNextGrid() {
         pageCount++;
+        for (String choice : choiceList) {
+            logEndTimeAndData(getActivity().getApplicationContext(), "verbal_recognition_page" + pageCount + "," + choice);
+        }
         if (pageCount < wordList.length) {
-            // Log text into CSV and change button text
-            for (String choice : choiceList) {
-                logEndTimeAndData(getActivity().getApplicationContext(), "verbal_recognition_page" + pageCount + "," + choice);
-            }
             changeButtonText();
         } else {
             ((MainActivity)getActivity()).getFragmentData(null);

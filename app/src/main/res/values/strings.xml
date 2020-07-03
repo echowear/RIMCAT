@@ -237,7 +237,7 @@
         <item><b>Did the woman run into her friend in the grocery aisle?</b></item>
         <item><b>The woman’s bag was not secure because:</b></item>
         <item><b>What was broken?</b></item>
-        <item><b>How many eggs were broke?</b></item>
+        <item><b>How many eggs were broken?</b></item>
         <item><b>The woman saw what fruit on the floor mat:</b></item>
     </string-array>
     <string name="reading_yes">Yes</string>
@@ -575,10 +575,13 @@
         <item>Sun</item>
     </string-array>
 
-    <string name="instructions_digit_span">You will hear a series of numbers. You will be asked to repeat them back in the same order.</string>
+    <string name="instructions_digit_span">You will hear a series of numbers. You will be asked to repeat them in the same order.</string>
+    <string name="instructions2_digit_span">Now, you will hear some more numbers, and you will be asked to repeat them in reverse order.</string>
     <string name="ds_edit_hint">Type Number</string>
     <string name="ds_submit_text">Submit Number</string>
     <string name="ds_inorder_text">Repeat the full number back in the same order.</string>
     <string name="ds_reverse_text">Repeat the full number back in reverse order.</string>
     <string name="instructions_computation">Please do the following calculations in you head, then write the answer in the given space.</string>
+    <string name="computation_repeat">Repeat</string>
+    <string name="computation_edit_hint">Answer</string>
 </resources>

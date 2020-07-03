@@ -2,6 +2,7 @@ package com.example.rimcat;
 
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.TransitionDrawable;
@@ -21,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -401,6 +403,14 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         dialog.show(getSupportFragmentManager(), "RecallFinishDialog");
     }
 
+    public void hideSoftKeyboard() {
+        InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (this.getCurrentFocus() != null && inputManager != null) {
+            inputManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
+            inputManager.hideSoftInputFromInputMethod(this.getCurrentFocus().getWindowToken(), 0);
+        }
+    }
+
     @Override
     public void onRetryDialogPositiveClick(DialogFragment dialog) {
         VerbalRecallFragment fragment = (VerbalRecallFragment) fragmentManager.findFragmentByTag(fragmentTag);
@@ -416,12 +426,35 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        ArrayList<String> speechText = null;
+
         if (resultCode == RESULT_OK && data != null) {
-            ArrayList<String> speechText = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            VerbalRecallFragment fragment = (VerbalRecallFragment) fragmentManager.findFragmentByTag(fragmentTag);
-            fragment.setResponseTextToSpeechText(speechText.get(0));
+            speechText = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+        }
+        if (speechText != null) {
+            switch (viewNumber) {
+                case DataLogModel.VERBAL_RECALL_SCREEN_1:
+                case DataLogModel.VERBAL_RECALL_SCREEN_2:
+                case DataLogModel.VERBAL_RECALL_SCREEN_3:
+                case DataLogModel.VERBAL_RECALL_SCREEN_4:
+                case DataLogModel.VERBAL_RECALL_SCREEN_5:
+                case DataLogModel.VERBAL_RECALL_SCREEN_6:
+                    VerbalRecallFragment verbalRecallFragment = (VerbalRecallFragment) fragmentManager.findFragmentByTag(fragmentTag);
+                    verbalRecallFragment.setResponseTextToSpeechText(speechText.get(0));
+                    break;
+                case DataLogModel.DIGIT_SPAN_SCREEN:
+                    DigitSpanFragment digitSpanFragment = (DigitSpanFragment) fragmentManager.findFragmentByTag(fragmentTag);
+                    digitSpanFragment.setResponseTextToSpeechText(speechText.get(0));
+                    break;
+                case DataLogModel.COMPUTATION_SCREEN:
+                    ComputationFragment computationFragment = (ComputationFragment) fragmentManager.findFragmentByTag(fragmentTag);
+                    computationFragment.setResponseTextToSpeechText(speechText.get(0));
+                    break;
+            }
+
         }
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
