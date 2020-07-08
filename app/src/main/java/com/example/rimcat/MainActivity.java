@@ -35,6 +35,7 @@ import com.example.rimcat.fragments.DigitSpanFragment;
 import com.example.rimcat.fragments.EducationFragment;
 import com.example.rimcat.fragments.FigureSelectFragment;
 import com.example.rimcat.fragments.FigureStudyFragment;
+import com.example.rimcat.fragments.FinishFragment;
 import com.example.rimcat.fragments.HomeFragment;
 import com.example.rimcat.fragments.ImageNameFragment;
 import com.example.rimcat.fragments.InstructionsFragment;
@@ -44,7 +45,7 @@ import com.example.rimcat.fragments.ReadCompTestFragment;
 import com.example.rimcat.fragments.VerbalRecallFragment;
 import com.example.rimcat.fragments.SeasonFragment;
 import com.example.rimcat.fragments.SemanticChoiceFragment;
-import com.example.rimcat.fragments.SemanticRelatedness;
+import com.example.rimcat.fragments.SemanticRelatednessFragment;
 import com.example.rimcat.fragments.TodayDateFragment;
 import com.example.rimcat.fragments.VerbalLearningFragment;
 import com.example.rimcat.fragments.VerbalRecognitionFragment;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     private static final int        MY_PERMISSIONS_REQUEST_RECORD_AUDIO = 1402;
     private static final int        RESULT_SPEECH = 65676;
     private static final int        BACKGROUND_TRANSITION_TIME = 2000;
-    private static final int        NUM_SCREENS = 40;
+    private static final int        NUM_SCREENS = 43;
     private FragmentManager         fragmentManager;
     private FragmentTransaction     fragmentTransaction;
     private String                  fragmentTag;
@@ -158,7 +159,8 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 viewNumber == DataLogModel.VERBAL_LEARNING_SCREEN_2 ||
                 viewNumber == DataLogModel.VERBAL_LEARNING_SCREEN_3 ||
                 viewNumber == DataLogModel.VERBAL_LEARNING_SCREEN_4 ||
-                viewNumber == DataLogModel.FIGURE_STUDY_SCREEN) {
+                viewNumber == DataLogModel.FIGURE_STUDY_SCREEN ||
+                viewNumber == DataLogModel.FINISH_SCREEN) {
             nextText.setVisibility(View.INVISIBLE);
             nextButton.hide();
         }
@@ -385,7 +387,12 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
             case R.id.screen_semantic_relatedness_om:
                 this.viewNumber = DataLogModel.SEMANTIC_RELATEDNESS_SCREEN;
                 fragmentTag = "SemanticRelatedness";
-                fragmentTransaction.replace(R.id.container, new SemanticRelatedness(), "SemanticRelatedness");
+                fragmentTransaction.replace(R.id.container, new SemanticRelatednessFragment(), "SemanticRelatedness");
+                break;
+            case R.id.screen_finish_om:
+                this.viewNumber = DataLogModel.FINISH_SCREEN;
+                fragmentTag = "FinishFragment";
+                fragmentTransaction.replace(R.id.container, new FinishFragment(), "FinishFragment");
                 break;
         }
         appProgress.setProgress(viewNumber);

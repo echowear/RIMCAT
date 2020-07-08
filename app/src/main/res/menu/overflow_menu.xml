@@ -129,5 +129,7 @@
     <item
         android:id="@+id/screen_semantic_relatedness_om"
         android:title="@string/screen_semantic_relatedness"/>
-
+    <item
+        android:id="@+id/screen_finish_om"
+        android:title="@string/screen_finish"/>
 </menu>

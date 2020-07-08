@@ -45,4 +45,5 @@ public class DataLogModel {
     public static final int READ_COMP_TEST_SCREEN = 40;
     public static final int INSTRUCTIONS_SCREEN_17 = 41;
     public static final int SEMANTIC_RELATEDNESS_SCREEN = 42;
+    public static final int FINISH_SCREEN = 43;
 }

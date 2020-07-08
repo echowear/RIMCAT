@@ -43,6 +43,7 @@
     <string name="screen_computation">Computation</string>
     <string name="screen_inst_16">Instructions 16</string>
     <string name="screen_inst_17">Instructions 17</string>
+    <string name="screen_finish">Finish</string>
 
     <string name="app_name">RIMCAT</string>
     <string name="error">Error</string>
@@ -584,4 +585,7 @@
     <string name="instructions_computation">Please do the following calculations in you head, then write the answer in the given space.</string>
     <string name="computation_repeat">Repeat</string>
     <string name="computation_edit_hint">Answer</string>
+    <string name="finish_line1">Thank you for taking this survey!</string>
+    <string name="finish_line2">You may now quit the application.</string>
+    <string name="finish_quit">Quit</string>
 </resources>

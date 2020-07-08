@@ -25,7 +25,7 @@ import com.example.rimcat.R;
 
 import java.util.ArrayList;
 
-public class SemanticRelatedness extends QuestionFragment {
+public class SemanticRelatednessFragment extends QuestionFragment {
     private static final String TAG = "SemanticRelatedness";
     private TextView            semanticChoicePrompt;
     private String              wordChoice = "";
@@ -123,11 +123,11 @@ public class SemanticRelatedness extends QuestionFragment {
 
     @Override
     public boolean loadDataModel() {
-        return false;
+        return true;
     }
 
     @Override
     public void moveToNextPage() {
-
+        ((MainActivity)getActivity()).addFragment(new FinishFragment(), "FinishFragment");
     }
 }
