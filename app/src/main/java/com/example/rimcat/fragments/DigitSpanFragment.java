@@ -2,6 +2,7 @@ package com.example.rimcat.fragments;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -67,6 +68,7 @@ public class DigitSpanFragment extends QuestionFragment {
     private Button readyBtn, nextBtn;
     private TextView dsNumText, dsRecallText;
     private EditText dsEditText;
+    private MediaPlayer storyMedia;
 
     @Nullable
     @Override
@@ -223,7 +225,6 @@ public class DigitSpanFragment extends QuestionFragment {
             numRecallCard.setVisibility(View.INVISIBLE);
             dsEditText.setText("");
             currentNumberList = FULL_NUMBER_LIST[currentWord];
-            changeCardText();
             trialListCounter = new CountDownTimer(currentNumberList.length * 2000, 1999) {
                 @Override
                 public void onTick(long millisUntilFinished) {
@@ -237,6 +238,7 @@ public class DigitSpanFragment extends QuestionFragment {
             };
             dsNumText.setTextSize(35);
             readyBtn.setVisibility(View.VISIBLE);
+            changeCardText();
             countdownCard.setVisibility(View.VISIBLE);
 
         } else {
@@ -247,27 +249,37 @@ public class DigitSpanFragment extends QuestionFragment {
 
     private void changeCardText() {
         ForegroundColorSpan fcs = new ForegroundColorSpan(getResources().getColor(R.color.colorAccent));
-        String numText = "";
         String recallText = "";
         int highlightTextLength = 0;
         if (currentWord < NUMS_PER_LIST) {
-            numText = getResources().getString(R.string.instructions_digit_span);
             recallText = getResources().getString(R.string.ds_inorder_text);
             highlightTextLength = "same order.".length();
         } else {
-            numText = getResources().getString(R.string.instructions2_digit_span);
             recallText = getResources().getString(R.string.ds_reverse_text);
             highlightTextLength = "reverse order.".length();
         }
-
-        SpannableString numTextSS = new SpannableString(numText);
         SpannableString recallTextSS = new SpannableString(recallText);
-
-        numTextSS.setSpan(fcs, numText.length() - highlightTextLength, numText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         recallTextSS.setSpan(fcs, recallText.length() - highlightTextLength, recallText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        dsNumText.setText(numTextSS);
+        dsNumText.setText(getResources().getString(R.string.verbal_readyPrompt));
         dsRecallText.setText(recallTextSS);
+
+        if (currentWord == NUMS_PER_LIST) {
+            String numText = getResources().getString(R.string.instructions2_digit_span);
+            SpannableString numTextSS = new SpannableString(numText);
+            numTextSS.setSpan(fcs, numText.length() - highlightTextLength, numText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            dsNumText.setText(numTextSS);
+
+            readyBtn.setVisibility(View.INVISIBLE);
+            storyMedia = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.reverse);
+            storyMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    readyBtn.setVisibility(View.VISIBLE);
+                }
+            });
+            storyMedia.start();
+        }
     }
 
 //    public void setResponseTextToSpeechText(String speechText) {
