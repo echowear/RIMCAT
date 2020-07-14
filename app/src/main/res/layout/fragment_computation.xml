@@ -54,26 +54,26 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/comp_audio_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="62dp"
-                android:src="@android:drawable/ic_btn_speak_now"
-                android:tint="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/comp_answer"
-                app:layout_constraintTop_toTopOf="parent" />
+<!--            <android.support.design.widget.FloatingActionButton-->
+<!--                android:id="@+id/comp_audio_btn"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginLeft="16dp"-->
+<!--                android:layout_marginTop="62dp"-->
+<!--                android:src="@android:drawable/ic_btn_speak_now"-->
+<!--                android:tint="@color/white"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/comp_answer"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/comp_next_btn"
                 android:layout_width="157dp"
                 android:layout_height="67dp"
-                android:layout_marginStart="56dp"
-                android:layout_marginLeft="56dp"
                 android:layout_marginTop="62dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
                 android:background="@drawable/roundbutton"
                 android:padding="10dp"
                 android:text="@string/next_text"
@@ -82,7 +82,6 @@
                 android:textSize="35sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/comp_audio_btn"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button

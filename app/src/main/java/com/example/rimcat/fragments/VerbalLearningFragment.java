@@ -3,6 +3,7 @@ package com.example.rimcat.fragments;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.Voice;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -16,7 +17,9 @@ import com.example.rimcat.DataLogModel;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 public class VerbalLearningFragment extends QuestionFragment {
     private static final String TAG = "VerbalRecallFragment";
@@ -98,14 +101,30 @@ public class VerbalLearningFragment extends QuestionFragment {
             }
         };
 
+        // Sets up text to speech to read numbers
         textToSpeech = new TextToSpeech(getActivity().getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
                 if(status != TextToSpeech.ERROR) {
-                    textToSpeech.setLanguage(Locale.US);
+                    Set<String> a = new HashSet<>();
+                    a.add("male");//here you can give male if you want to select male voice.
+                    //Voice v=new Voice("en-us-x-sfg#female_2-local",new Locale("en","US"),400,200,true,a);
+                    Voice v = new Voice("en-us-x-sfg#male_1-local",new Locale("en","US"),400,200,true,a);
+                    textToSpeech.setVoice(v);
+                    textToSpeech.setSpeechRate(0.7f);
+
+                    // int result = T2S.setLanguage(Locale.US);
+                    int result = textToSpeech.setVoice(v);
+
+                    if (result == TextToSpeech.LANG_MISSING_DATA
+                            || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Log.e("TTS", "This Language is not supported");
+                    }
+                } else {
+                    Log.e("TTS", "Initialization Failed!");
                 }
             }
-        });
+        }, "com.google.android.tts");
 
         startAnimation(true);
 

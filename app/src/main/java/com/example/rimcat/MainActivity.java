@@ -449,14 +449,14 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                     VerbalRecallFragment verbalRecallFragment = (VerbalRecallFragment) fragmentManager.findFragmentByTag(fragmentTag);
                     verbalRecallFragment.setResponseTextToSpeechText(speechText.get(0));
                     break;
-                case DataLogModel.DIGIT_SPAN_SCREEN:
-                    DigitSpanFragment digitSpanFragment = (DigitSpanFragment) fragmentManager.findFragmentByTag(fragmentTag);
-                    digitSpanFragment.setResponseTextToSpeechText(speechText.get(0));
-                    break;
-                case DataLogModel.COMPUTATION_SCREEN:
-                    ComputationFragment computationFragment = (ComputationFragment) fragmentManager.findFragmentByTag(fragmentTag);
-                    computationFragment.setResponseTextToSpeechText(speechText.get(0));
-                    break;
+//                case DataLogModel.DIGIT_SPAN_SCREEN:
+//                    DigitSpanFragment digitSpanFragment = (DigitSpanFragment) fragmentManager.findFragmentByTag(fragmentTag);
+//                    digitSpanFragment.setResponseTextToSpeechText(speechText.get(0));
+//                    break;
+//                case DataLogModel.COMPUTATION_SCREEN:
+//                    ComputationFragment computationFragment = (ComputationFragment) fragmentManager.findFragmentByTag(fragmentTag);
+//                    computationFragment.setResponseTextToSpeechText(speechText.get(0));
+//                    break;
             }
 
         }

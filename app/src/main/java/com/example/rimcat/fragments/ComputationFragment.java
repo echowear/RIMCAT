@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.Voice;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -26,11 +26,13 @@ import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 public class ComputationFragment extends QuestionFragment {
     private static final String TAG = "ComputationFragment";
-    private static final int MILLIS_TO_SHOW_COMPUTATION = 2500;
+    private static final int MILLIS_TO_SHOW_COMPUTATION = 3000;
     private static final String[] COMPUTATION_LIST = {
             "6 + 11", "37 + 6", "41 - 5", "34 - 8", "9 x 4", "8 x 6", "32 ÷ 8", "68 ÷ 2"
     };
@@ -40,19 +42,16 @@ public class ComputationFragment extends QuestionFragment {
     private TextView computationText;
     private EditText compEditText;
     private Button nextBtn, repeatBtn;
-    private FloatingActionButton audioBtn;
     private int currentCompNum = 0;
     private String currentCompText;
     private boolean movingToNextActivity = false;
     private boolean hasRepeated = false;
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_computation, container, false);
         compEditText = view.findViewById(R.id.comp_answer);
-        audioBtn = view.findViewById(R.id.comp_audio_btn);
         nextBtn = view.findViewById(R.id.comp_next_btn);
         repeatBtn = view.findViewById(R.id.comp_repeat_btn);
         computationText = view.findViewById(R.id.comp_text);
@@ -60,15 +59,32 @@ public class ComputationFragment extends QuestionFragment {
         numberToTextMap = new HashMap<>();
         numberToTextMap.put("-", "Minus");
         numberToTextMap.put("x", "Times");
+        numberToTextMap.put("÷", "Divided by");
 
+        // Sets up text to speech to read numbers
         textToSpeech = new TextToSpeech(getActivity().getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
                 if(status != TextToSpeech.ERROR) {
-                    textToSpeech.setLanguage(Locale.US);
+                    Set<String> a = new HashSet<>();
+                    a.add("male");//here you can give male if you want to select male voice.
+                    //Voice v=new Voice("en-us-x-sfg#female_2-local",new Locale("en","US"),400,200,true,a);
+                    Voice v = new Voice("en-us-x-sfg#male_1-local",new Locale("en","US"),400,200,true,a);
+                    textToSpeech.setVoice(v);
+                    textToSpeech.setSpeechRate(0.7f);
+
+                    // int result = T2S.setLanguage(Locale.US);
+                    int result = textToSpeech.setVoice(v);
+
+                    if (result == TextToSpeech.LANG_MISSING_DATA
+                            || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Log.e("TTS", "This Language is not supported");
+                    }
+                } else {
+                    Log.e("TTS", "Initialization Failed!");
                 }
             }
-        });
+        }, "com.google.android.tts");
 
         compEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -99,24 +115,6 @@ public class ComputationFragment extends QuestionFragment {
             @Override
             public void onClick(View v) {
                 repeatComputationRead();
-            }
-        });
-
-        audioBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US");
-
-                try {
-                    startActivityForResult(intent, RESULT_SPEECH);
-                    compEditText.setText("");
-                } catch (ActivityNotFoundException a) {
-                    Toast t = Toast.makeText(view.getContext(),
-                            "Oops! Your device doesn't support Speech to Text",
-                            Toast.LENGTH_SHORT);
-                    t.show();
-                }
             }
         });
 
@@ -157,7 +155,6 @@ public class ComputationFragment extends QuestionFragment {
         return view;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void moveToNextComputation() {
         if (!movingToNextActivity && !compEditText.getText().toString().equals("")) {
             logEndTimeAndData(getActivity().getApplicationContext(), "computation," + compEditText.getText().toString());
@@ -181,7 +178,6 @@ public class ComputationFragment extends QuestionFragment {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void readCurrentComputation() {
         // Split the numbers into strings
         String[] numbersToRead = currentCompText.split(" ");
@@ -206,7 +202,10 @@ public class ComputationFragment extends QuestionFragment {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+//    public void setResponseTextToSpeechText(String speechText) {
+//        compEditText.setText(speechText);
+//    }
+
     private void repeatComputationRead() {
         if (!hasRepeated) {
             hasRepeated = true;
@@ -216,14 +215,9 @@ public class ComputationFragment extends QuestionFragment {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onStart() {
         super.onStart();
-    }
-
-    public void setResponseTextToSpeechText(String speechText) {
-        compEditText.setText(speechText);
     }
 
     @Override
