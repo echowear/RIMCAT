@@ -28,7 +28,7 @@ import java.util.Date;
 public abstract class QuestionFragment extends Fragment {
     private static final String TAG = "QuestionFragment";
     private static final String DATE_FORMAT_1 = "HH:mm:ss";
-    private static final String DATE_FORMAT_2 = "HH:mm:ss,MM/dd/yyyy";
+    private static final String DATE_FORMAT_2 = "HH:mm:ss,MM-dd-yyyy";
     protected static final int  RESULT_SPEECH = 140;
     public static String PATIENT_ID;
 
@@ -112,7 +112,8 @@ public abstract class QuestionFragment extends Fragment {
 
         Log.d(TAG, "logEndTimeAndData: Logging the following result... \n" + resultString);
 
-        DataLogService.log(context, new File(GenerateDirectory.getRootFile(context), "patient_answers.csv"),resultString);
+        String dateOfSurvey = endTime.substring(endTime.lastIndexOf(',') + 1);
+        DataLogService.log(context, new File(GenerateDirectory.getRootFile(context), QuestionFragment.PATIENT_ID + '_' + dateOfSurvey + ".csv"),resultString);
     }
 
     @Override

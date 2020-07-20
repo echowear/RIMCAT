@@ -40,9 +40,8 @@ public class EducationFragment extends QuestionFragment {
 
     @Override
     public boolean loadDataModel() {
-//        if (educationSpinner.getSelectedItem().toString().equals("") || dataLogModel == null)
-//            return false;
-//        dataLogModel.educationLevel = educationSpinner.getSelectedItem().toString();
+        if (educationSpinner.getSelectedItem().toString().equals(""))
+            return false;
         logEndTimeAndData(getActivity().getApplicationContext(), "education_level," + educationSpinner.getSelectedItem().toString());
         return true;
     }

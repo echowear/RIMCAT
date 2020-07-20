@@ -42,10 +42,11 @@ public class TodayDateFragment extends QuestionFragment {
             todayDateResult =   Integer.parseInt(inputMonth.getText().toString()) + "/" +
                                 Integer.parseInt(inputDay.getText().toString()) + "/" +
                                 Integer.parseInt(inputYear.getText().toString());
+            logEndTimeAndData(getActivity().getApplicationContext(), "todays_date," + todayDateResult);
+            return true;
         }
 
-        logEndTimeAndData(getActivity().getApplicationContext(), "todays_date," + todayDateResult);
-        return true;
+        return false;
     }
 
     @Override

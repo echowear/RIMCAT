@@ -1,10 +1,16 @@
 package com.example.rimcat.fragments;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.Voice;
@@ -14,6 +20,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,11 +53,17 @@ public class ComputationFragment extends QuestionFragment {
     private String currentCompText;
     private boolean movingToNextActivity = false;
     private boolean hasRepeated = false;
+    private Context mContext;
+    private Vibrator mVibrator;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_computation, container, false);
+
+        mContext = view.getContext();
+        mVibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
+
         compEditText = view.findViewById(R.id.comp_answer);
         nextBtn = view.findViewById(R.id.comp_next_btn);
         repeatBtn = view.findViewById(R.id.comp_repeat_btn);
@@ -158,6 +171,7 @@ public class ComputationFragment extends QuestionFragment {
     private void moveToNextComputation() {
         if (!movingToNextActivity && !compEditText.getText().toString().equals("")) {
             logEndTimeAndData(getActivity().getApplicationContext(), "computation," + compEditText.getText().toString());
+            vibrateToastAndExecuteSound(compEditText.getText().toString());
             currentCompNum++;
             if (currentCompNum < COMPUTATION_LIST.length) {
                 hasRepeated = false;
@@ -200,6 +214,30 @@ public class ComputationFragment extends QuestionFragment {
         // Set the views visibilities
         showComputationTimer.start();
 
+    }
+
+    private void vibrateToastAndExecuteSound(String submitText) {
+        // Vibrate the device
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && mVibrator != null) {
+            mVibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else if (mVibrator != null) {
+            //deprecated in API 26
+            mVibrator.vibrate(500);
+        }
+
+        // Toast affirmative message
+        Toast t = Toast.makeText(getActivity(), "'" + submitText + "' submitted!", Toast.LENGTH_LONG);
+        t.setGravity(Gravity.TOP, 0, 5);
+        t.show();
+
+        // Execute sound
+        try {
+            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            Ringtone r = RingtoneManager.getRingtone(mContext, notification);
+            r.play();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 //    public void setResponseTextToSpeechText(String speechText) {

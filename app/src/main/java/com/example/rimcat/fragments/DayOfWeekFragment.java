@@ -37,8 +37,8 @@ public class DayOfWeekFragment extends QuestionFragment {
 
     @Override
     public boolean loadDataModel() {
-//        if (dayOfWeekSpinner.getSelectedItem().toString().equals("") || dataLogModel == null)
-//            return false;
+        if (dayOfWeekSpinner.getSelectedItem().toString().equals(""))
+            return false;
         logEndTimeAndData(getActivity().getApplicationContext(), "day_of_week," + dayOfWeekSpinner.getSelectedItem().toString());
         return true;
     }

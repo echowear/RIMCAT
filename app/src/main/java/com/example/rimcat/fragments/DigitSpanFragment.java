@@ -1,11 +1,17 @@
 package com.example.rimcat.fragments;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.Voice;
@@ -19,6 +25,7 @@ import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,11 +76,16 @@ public class DigitSpanFragment extends QuestionFragment {
     private TextView dsNumText, dsRecallText;
     private EditText dsEditText;
     private MediaPlayer storyMedia;
+    private Context mContext;
+    private Vibrator mVibrator;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_digit_span, container, false);
+
+        mContext = view.getContext();
+        mVibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
 
         // Creates hashmap for text to speech module
         numberToTextMap = new HashMap<>();
@@ -175,6 +187,7 @@ public class DigitSpanFragment extends QuestionFragment {
                 if (!movingToNextActivity) {
                     if (!dsEditText.getText().toString().equals("")) {
                         logEndTimeAndData(getActivity().getApplicationContext(), "digit_span," + dsEditText.getText().toString());
+                        vibrateToastAndExecuteSound(dsEditText.getText().toString());
                         ((MainActivity)getActivity()).hideSoftKeyboard();
                         moveToNextNumber();
                     }
@@ -279,6 +292,30 @@ public class DigitSpanFragment extends QuestionFragment {
                 }
             });
             storyMedia.start();
+        }
+    }
+
+    private void vibrateToastAndExecuteSound(String submitText) {
+        // Vibrate the device
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && mVibrator != null) {
+            mVibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else if (mVibrator != null) {
+            //deprecated in API 26
+            mVibrator.vibrate(500);
+        }
+
+        // Toast affirmative message
+        Toast t = Toast.makeText(getActivity(), "'" + submitText + "' submitted!", Toast.LENGTH_LONG);
+        t.setGravity(Gravity.TOP, 0, 5);
+        t.show();
+
+        // Execute sound
+        try {
+            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            Ringtone r = RingtoneManager.getRingtone(mContext, notification);
+            r.play();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

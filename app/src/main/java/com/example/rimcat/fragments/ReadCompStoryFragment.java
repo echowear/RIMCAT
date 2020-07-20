@@ -24,10 +24,10 @@ public class ReadCompStoryFragment extends QuestionFragment {
     private static final String TAG = "ReadingCompFragment";
 
     private static final int[] READING_COMP_SECTIONS = {
-            R.string.reading_comp_prompt_1, R.string.reading_comp_prompt_2, R.string.reading_comp_prompt_3
+            R.string.reading_comp_prompt_1, R.string.reading_comp_prompt_2, R.string.reading_comp_prompt_3, R.string.reading_comp_prompt_4
     };
     private static final int[] READING_COMP_AUDIO = {
-            R.raw.reading_comp_1, R.raw.reading_comp_2, R.raw.reading_comp_3
+            R.raw.reading_comp_1, R.raw.reading_comp_2, R.raw.reading_comp_3, R.raw.reading_comp_4
     };
     private TextView    storyText;
     private int         reading_comp_sec;

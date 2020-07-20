@@ -41,8 +41,8 @@ public class SeasonFragment extends QuestionFragment {
 
     @Override
     public boolean loadDataModel() {
-//        if (seasonSpinner.getSelectedItem().toString().equals("") || dataLogModel == null)
-//            return false;
+        if (seasonSpinner.getSelectedItem().toString().equals(""))
+            return false;
         logEndTimeAndData(getActivity().getApplicationContext(), "season," + seasonSpinner.getSelectedItem().toString());
         return true;
     }
