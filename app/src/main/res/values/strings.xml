@@ -591,4 +591,5 @@
     <string name="finish_line1">Thank you for taking this survey!</string>
     <string name="finish_line2">You may now quit the application.</string>
     <string name="finish_quit">Quit</string>
+    <string name="finish_feedback_prompt">Did you experience any technical difficulties when taking this survey?</string>
 </resources>

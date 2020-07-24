@@ -229,15 +229,6 @@ public class ComputationFragment extends QuestionFragment {
         Toast t = Toast.makeText(getActivity(), "'" + submitText + "' submitted!", Toast.LENGTH_LONG);
         t.setGravity(Gravity.TOP, 0, 5);
         t.show();
-
-        // Execute sound
-        try {
-            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-            Ringtone r = RingtoneManager.getRingtone(mContext, notification);
-            r.play();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 //    public void setResponseTextToSpeechText(String speechText) {
