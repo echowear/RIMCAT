@@ -32,7 +32,7 @@ public class FigureStudyFragment extends QuestionFragment {
     private String[] figurePrompts;
     private ImageView figureImage;
     private TextView figureText;
-    private View promptCard;
+    private View promptCard, imageCard;
     private Button figureReadyBtn;
     private int figCount = 0;
 
@@ -46,18 +46,15 @@ public class FigureStudyFragment extends QuestionFragment {
         figureText = view.findViewById(R.id.figure_ready_text);
         figureReadyBtn = view.findViewById(R.id.figure_readyBtn);
         promptCard = view.findViewById(R.id.card);
+        imageCard = view.findViewById(R.id.image_card);
 
-        figureImage.setVisibility(View.INVISIBLE);
+        imageCard.setVisibility(View.INVISIBLE);
         figureText.setText(figurePrompts[figCount]);
+
         figureReadyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                figureReadyBtn.setVisibility(View.INVISIBLE);
-                showFigure();
-                // Push figure text down
-                ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) figureText.getLayoutParams();
-                params.topMargin = 90;
-                figureText.setLayoutParams(params);
+                onReadyClick();
             }
         });
 
@@ -86,9 +83,18 @@ public class FigureStudyFragment extends QuestionFragment {
         return view;
     }
 
+    private void onReadyClick() {
+        figureReadyBtn.setVisibility(View.INVISIBLE);
+        showFigure();
+        // Push figure text down
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) figureText.getLayoutParams();
+        params.topMargin = 90;
+        figureText.setLayoutParams(params);
+    }
+
     private void showFigure() {
         promptCard.setVisibility(View.INVISIBLE);
-        figureImage.setVisibility(View.VISIBLE);
+        imageCard.setVisibility(View.VISIBLE);
         figureText.setTextSize(35);
         figureListCounter.start();
     }
@@ -97,9 +103,10 @@ public class FigureStudyFragment extends QuestionFragment {
         // Increment and change view values
         figCount++;
         if (figCount < FIGURE_LIST.length) {
-            figureImage.setVisibility(View.INVISIBLE);
+            imageCard.setVisibility(View.INVISIBLE);
             // Swap image and prompt text
             figureImage.setImageResource(FIGURE_LIST[figCount]);
+
             figureText.setText(figurePrompts[figCount]);
             // Make prompt visible again
             promptCard.setVisibility(View.VISIBLE);
@@ -117,6 +124,29 @@ public class FigureStudyFragment extends QuestionFragment {
             ((MainActivity)getActivity()).getFragmentData(null);
         }
     }
+//
+//    @Override
+//    public void onPause() {
+//        countDownTimer.cancel();
+//        figureListCounter.cancel();
+//        super.onPause();
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        countDownTimer.cancel();
+//        figureListCounter.cancel();
+//        super.onStop();
+//    }
+//
+//    @Override
+//    public void onResume() {
+//        countDownTimer.cancel();
+//        figureListCounter.cancel();
+//        figCount--;
+//        onReadyClick();
+//        super.onResume();
+//    }
 
     @Override
     public boolean loadDataModel() {

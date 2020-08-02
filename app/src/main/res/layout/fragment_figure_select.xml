@@ -9,13 +9,11 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/card"
-        android:layout_width="822dp"
-        android:layout_height="565dp"
+        android:layout_width="1026dp"
+        android:layout_height="569dp"
         android:layout_gravity="center"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -30,20 +28,20 @@
                 android:id="@+id/figure_select_prompt"
                 android:layout_width="585dp"
                 android:layout_height="37dp"
+                android:layout_marginTop="16dp"
                 android:stretchColumns="*"
                 android:text="@string/figure_select_prompt"
                 android:textSize="25sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.076" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TableLayout
-                android:layout_width="593dp"
-                android:layout_height="344dp"
-                android:layout_weight="1"
+                android:layout_width="900dp"
+                android:layout_height="400dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
                 android:stretchColumns="*"
                 app:layout_constraintBottom_toTopOf="@+id/figure_select_next"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -59,19 +57,19 @@
                         android:id="@+id/figure_choice1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:contentDescription="@string/Null"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
-                        app:srcCompat="@drawable/figure_a_2"
-                        android:contentDescription="@string/Null"/>
+                        app:srcCompat="@drawable/figure_a_2" />
 
                     <ImageView
                         android:id="@+id/figure_choice2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:contentDescription="@string/Null"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
-                        app:srcCompat="@drawable/figure_a_1"
-                        android:contentDescription="@string/Null"/>
+                        app:srcCompat="@drawable/figure_a_1" />
 
                 </TableRow>
 
@@ -84,19 +82,19 @@
                         android:id="@+id/figure_choice3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:contentDescription="@string/Null"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
-                        app:srcCompat="@drawable/figure_a_3"
-                        android:contentDescription="@string/Null"/>
+                        app:srcCompat="@drawable/figure_a_3" />
 
                     <ImageView
                         android:id="@+id/figure_choice4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:contentDescription="@string/Null"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
-                        app:srcCompat="@drawable/figure_a_4"
-                        android:contentDescription="@string/Null" />
+                        app:srcCompat="@drawable/figure_a_4" />
                 </TableRow>
 
             </TableLayout>
@@ -105,7 +103,7 @@
                 android:id="@+id/figure_select_next"
                 android:layout_width="200dp"
                 android:layout_height="67dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/roundbutton"
                 android:text="@string/next_text"
                 android:textAllCaps="false"

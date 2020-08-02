@@ -117,11 +117,11 @@
         \u2022\tIt does not matter in what order you recall the words. Just try to remember as many as you can.
     </string>
     <string name="instructions_verbalInst4">
-        \u2022\tNow, please remember as many words from the first list as you can. \n\n
+        \u2022\tNow, please recall as many words from the first list as you can. \n\n
         \u2022\tAgain, the order in which you recall the words does not matter. Just try to remember as many as you can.
     </string>
     <string name="instructions_verbalInst5">
-        \u2022\tDo you remember the lists of words that you saw a while ago? Please remember as many words from the first list as you can, the one you saw several times.\n\n
+        \u2022\tDo you remember the lists of words that you saw a while ago? Please recall as many words from the first list as you can, the one you saw several times.\n\n
         \u2022\tThe order in which you recall the words does not matter. Just try to remember as many as you can.
     </string>
     <string name="verbal_readyBtn">Ready</string>
