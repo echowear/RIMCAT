@@ -127,7 +127,7 @@ public class VerbalLearningFragment extends QuestionFragment {
         }, "com.google.android.tts");
 
         startAnimation(true);
-
+        nextButtonReady();
         return view;
     }
 

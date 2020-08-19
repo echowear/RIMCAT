@@ -24,6 +24,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 public abstract class QuestionFragment extends Fragment {
     private static final String TAG = "QuestionFragment";
@@ -70,13 +71,14 @@ public abstract class QuestionFragment extends Fragment {
                             public void onCompletion(MediaPlayer mp) {
                                 mediaPlayer.release();
                                 mediaPlayer = null;
+                                nextButtonReady();
                             }
                         });
                     }
                 }
                 else {
                     moveToNextPage();
-                    ((MainActivity)getActivity()).incrementViewNumber();
+                    ((MainActivity) Objects.requireNonNull(getActivity())).incrementViewNumber();
                 }
             }
 
@@ -114,6 +116,10 @@ public abstract class QuestionFragment extends Fragment {
 
         String dateOfSurvey = endTime.substring(endTime.lastIndexOf(',') + 1);
         DataLogService.log(context, new File(GenerateDirectory.getRootFile(context), QuestionFragment.PATIENT_ID + '_' + dateOfSurvey + ".csv"),resultString);
+    }
+
+    public void nextButtonReady() {
+        ((MainActivity) Objects.requireNonNull(getActivity())).nextButtonReady();
     }
 
     @Override

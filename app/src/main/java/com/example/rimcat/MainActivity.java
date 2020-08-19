@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     private ConstraintLayout        appBackground;
     private FloatingActionButton    nextButton;
     private TextView                nextText;
+    private boolean                 isNextButtonReady;
     private ProgressBar             appProgress;
 
     @Override
@@ -92,23 +93,27 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     }
 
     public void getFragmentData(View view) {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-        } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-        } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.RECORD_AUDIO}, MY_PERMISSIONS_REQUEST_RECORD_AUDIO);
-        }else {
-            QuestionFragment fragment = (QuestionFragment) fragmentManager.findFragmentByTag(fragmentTag);
-            if (fragment.loadDataModel()) {
-                changeBackground();
-                fragment.startAnimation(false);
-                // Checks to hide or show the Next button
-                viewButtonVisibility();
-            } else {
-                Toast.makeText(this, "Please fill out all fields before proceeding.", Toast.LENGTH_SHORT).show();
+        if (isNextButtonReady) {
+            isNextButtonReady = false;
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+            } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+            } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.RECORD_AUDIO}, MY_PERMISSIONS_REQUEST_RECORD_AUDIO);
+            }else {
+                QuestionFragment fragment = (QuestionFragment) fragmentManager.findFragmentByTag(fragmentTag);
+                if (fragment.loadDataModel()) {
+                    changeBackground();
+                    fragment.startAnimation(false);
+                    // Checks to hide or show the Next button
+                    viewButtonVisibility();
+                } else {
+                    Toast.makeText(this, "Please fill out all fields before proceeding.", Toast.LENGTH_SHORT).show();
+                }
             }
         }
+
     }
 
     public void addFragment(Fragment nextFragment, String fragmentTag) {
@@ -168,6 +173,10 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
             nextText.setVisibility(View.VISIBLE);
             nextButton.show();
         }
+    }
+
+    public void nextButtonReady() {
+        isNextButtonReady = true;
     }
 
     private void debugScreenSelect(int itemID) {

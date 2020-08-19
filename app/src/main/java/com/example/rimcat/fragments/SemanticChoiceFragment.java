@@ -133,6 +133,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
 
         startAnimation(true);
         logStartTime();
+        nextButtonReady();
         return view;
     }
 

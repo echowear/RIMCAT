@@ -28,7 +28,7 @@ public class HomeFragment extends QuestionFragment {
 
         cardView = view.findViewById(R.id.card);
         startAnimation(true);
-
+        nextButtonReady();
         return view;
     }
 

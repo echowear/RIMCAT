@@ -119,7 +119,7 @@ public class VerbalRecallFragment extends QuestionFragment {
         cardView = view.findViewById(R.id.vresponse_layout);
         startAnimation(true);
         logStartTime();
-
+        nextButtonReady();
         return view;
     }
 

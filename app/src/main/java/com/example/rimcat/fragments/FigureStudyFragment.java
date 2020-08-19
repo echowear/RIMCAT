@@ -79,7 +79,7 @@ public class FigureStudyFragment extends QuestionFragment {
         cardView = view.findViewById(R.id.figure_main_page);
 
         startAnimation(true);
-
+        nextButtonReady();
         return view;
     }
 

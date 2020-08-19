@@ -78,6 +78,7 @@ public class ReadCompTestFragment extends QuestionFragment {
         cardView = view.findViewById(R.id.read_test_main);
         startAnimation(true);
         logStartTime();
+        nextButtonReady();
         return view;
     }
 

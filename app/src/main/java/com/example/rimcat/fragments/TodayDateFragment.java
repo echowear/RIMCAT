@@ -29,16 +29,22 @@ public class TodayDateFragment extends QuestionFragment {
         cardView = view.findViewById(R.id.card);
         startAnimation(true);
         logStartTime();
-
+        nextButtonReady();
         return view;
     }
 
     @Override
     public boolean loadDataModel() {
         String todayDateResult = "";
-        if (    !inputDay.getText().toString().equals("") ||
+        if  (   (!inputDay.getText().toString().equals("") ||
                 !inputMonth.getText().toString().equals("") ||
-                !inputYear.getText().toString().equals("")) {
+                !inputYear.getText().toString().equals(""))
+                &&
+                (inputDay.getText().toString().length() == 2 &&
+                inputMonth.getText().toString().length() == 2 &&
+                inputYear.getText().toString().length() == 4)
+            )
+            {
             todayDateResult =   Integer.parseInt(inputMonth.getText().toString()) + "/" +
                                 Integer.parseInt(inputDay.getText().toString()) + "/" +
                                 Integer.parseInt(inputYear.getText().toString());

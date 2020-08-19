@@ -125,7 +125,7 @@ public class ImageNameFragment extends QuestionFragment {
 
         startAnimation(true);
         logStartTime();
-
+        nextButtonReady();
         return view;
     }
 

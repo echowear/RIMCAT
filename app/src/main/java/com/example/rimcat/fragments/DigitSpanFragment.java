@@ -214,6 +214,7 @@ public class DigitSpanFragment extends QuestionFragment {
         cardView = view.findViewById(R.id.ds_page);
         startAnimation(true);
         logStartTime();
+        nextButtonReady();
         return view;
     }
 
@@ -279,6 +280,7 @@ public class DigitSpanFragment extends QuestionFragment {
 
         if (currentWord == NUMS_PER_LIST) {
             String numText = getResources().getString(R.string.instructions2_digit_span);
+            highlightTextLength = "backwards.".length();
             SpannableString numTextSS = new SpannableString(numText);
             numTextSS.setSpan(fcs, numText.length() - highlightTextLength, numText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             dsNumText.setText(numTextSS);

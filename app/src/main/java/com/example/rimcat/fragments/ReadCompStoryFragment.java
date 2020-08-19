@@ -76,7 +76,7 @@ public class ReadCompStoryFragment extends QuestionFragment {
         cardView = view.findViewById(R.id.read_main_page);
         startAnimation(true);
         logStartTime();
-
+        nextButtonReady();
         return view;
     }
 

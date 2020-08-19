@@ -88,7 +88,7 @@ public class FinishFragment extends QuestionFragment {
         cardView = view.findViewById(R.id.finish_page);
         startAnimation(true);
         logStartTime();
-
+        nextButtonReady();
         return view;
     }
 

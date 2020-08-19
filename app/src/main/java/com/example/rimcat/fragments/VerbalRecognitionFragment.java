@@ -61,6 +61,7 @@ public class VerbalRecognitionFragment extends QuestionFragment {
 
         startAnimation(true);
         logStartTime();
+        nextButtonReady();
         return view;
     }
 

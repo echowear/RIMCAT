@@ -72,6 +72,7 @@ public class SemanticRelatednessFragment extends QuestionFragment {
 
         startAnimation(true);
         logStartTime();
+        nextButtonReady();
         return view;
     }
 

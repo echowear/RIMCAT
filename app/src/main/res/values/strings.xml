@@ -580,7 +580,10 @@
     </string-array>
 
     <string name="instructions_digit_span">You will hear a series of numbers. You will be asked to repeat them in the same order.</string>
-    <string name="instructions2_digit_span">Now, you will hear some more numbers, and you will be asked to repeat them in reverse order.</string>
+    <string name="instructions2_digit_span">
+        Let’s take a deep breath.
+        Now, you will hear some more numbers, and you will be asked to repeat them in reverse order or backwards.  For example, if you hear the numbers 9-4-1, you would type 1-4-9 to repeat them backwards.
+    </string>
     <string name="ds_edit_hint">Type Number</string>
     <string name="ds_submit_text">Submit Number</string>
     <string name="ds_inorder_text">Repeat the full number back in the same order.</string>

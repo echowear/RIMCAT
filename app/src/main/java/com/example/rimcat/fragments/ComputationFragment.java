@@ -165,6 +165,7 @@ public class ComputationFragment extends QuestionFragment {
         cardView = view.findViewById(R.id.comp_card);
         startAnimation(true);
         logStartTime();
+        nextButtonReady();
         return view;
     }
 
