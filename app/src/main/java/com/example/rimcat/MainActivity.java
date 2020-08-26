@@ -152,7 +152,8 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     private void viewButtonVisibility() {
         Log.d(TAG, "viewButtonVisibility: View Number: " + viewNumber);
         // TODO: Add video instructions here when ready
-        if (    viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_3 ||
+        if (    viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_1 ||
+                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_3 ||
                 viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_4 ||
                 viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_5 ||
                 viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_6 ||
@@ -172,6 +173,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 viewNumber == DataLogModel.VERBAL_LEARNING_SCREEN_2 ||
                 viewNumber == DataLogModel.VERBAL_LEARNING_SCREEN_3 ||
                 viewNumber == DataLogModel.VERBAL_LEARNING_SCREEN_4 ||
+                viewNumber == DataLogModel.VIDEO_SCREEN ||
                 viewNumber == DataLogModel.FIGURE_STUDY_SCREEN ||
                 viewNumber == DataLogModel.SEMANTIC_RELATEDNESS_SCREEN) {
             nextText.setVisibility(View.INVISIBLE);
@@ -483,10 +485,10 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                     VerbalRecallFragment verbalRecallFragment = (VerbalRecallFragment) fragmentManager.findFragmentByTag(fragmentTag);
                     verbalRecallFragment.setResponseTextToSpeechText(speechText.get(0));
                     break;
-//                case DataLogModel.DIGIT_SPAN_SCREEN:
-//                    DigitSpanFragment digitSpanFragment = (DigitSpanFragment) fragmentManager.findFragmentByTag(fragmentTag);
-//                    digitSpanFragment.setResponseTextToSpeechText(speechText.get(0));
-//                    break;
+                case DataLogModel.KEYBOARD_SCREEN:
+                    KeyboardFragment keyboardFragment = (KeyboardFragment) fragmentManager.findFragmentByTag(fragmentTag);
+                    keyboardFragment.setResponseTextToSpeechText(speechText.get(0));
+                    break;
 //                case DataLogModel.COMPUTATION_SCREEN:
 //                    ComputationFragment computationFragment = (ComputationFragment) fragmentManager.findFragmentByTag(fragmentTag);
 //                    computationFragment.setResponseTextToSpeechText(speechText.get(0));

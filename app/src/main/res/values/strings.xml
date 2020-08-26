@@ -594,9 +594,11 @@
     <string name="instructions_computation">Please do the following calculations in you head, then write the answer in the given space.</string>
     <string name="computation_repeat">Repeat</string>
     <string name="computation_edit_hint">Answer</string>
-    <string name="finish_line1">Thank you for taking this survey!</string>
+    <string name="finish_line1">Thank you for your time!</string>
     <string name="finish_line2">You may now quit the application.</string>
     <string name="finish_quit">Quit</string>
     <string name="finish_feedback_prompt">Did you experience any technical difficulties when taking this survey?</string>
     <string name="instructions_next">To move on to the next screen, press the "Next" button on the bottom right of the screen after the activity has been finished or the instructions have been read.</string>
+    <string name="video_prompt">Please watch the video below, then complete the next activity.</string>
+    <string name="keyboard_prompt">Please type the word Hello or use the microphone button to record it, then press the Submit button.</string>
 </resources>
