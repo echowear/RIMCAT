@@ -228,6 +228,9 @@ public class ComputationFragment extends QuestionFragment {
 
         // Toast affirmative message
         Toast t = Toast.makeText(getActivity(), "'" + submitText + "' submitted!", Toast.LENGTH_LONG);
+        ViewGroup group = (ViewGroup) t.getView();
+        TextView toastTV = (TextView) group.getChildAt(0);
+        toastTV.setTextSize(20);
         t.setGravity(Gravity.TOP, 0, 5);
         t.show();
     }

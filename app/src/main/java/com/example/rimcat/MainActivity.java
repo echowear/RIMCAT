@@ -22,9 +22,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -116,7 +118,11 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                     // Checks to hide or show the Next button
                     viewButtonVisibility();
                 } else {
-                    Toast.makeText(this, "Please fill out all fields before proceeding.", Toast.LENGTH_SHORT).show();
+                    Toast toast = Toast.makeText(this, "Please fill out all fields before proceeding.", Toast.LENGTH_SHORT);
+                    ViewGroup group = (ViewGroup) toast.getView();
+                    TextView toastTV = (TextView) group.getChildAt(0);
+                    toastTV.setTextSize(20);
+                    toast.show();
                 }
             }
         }

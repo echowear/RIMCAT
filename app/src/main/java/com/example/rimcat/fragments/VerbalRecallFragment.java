@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rimcat.DataLogModel;
@@ -85,6 +86,9 @@ public class VerbalRecallFragment extends QuestionFragment {
                     Toast t = Toast.makeText(view.getContext(),
                             "Oops! Your device doesn't support Speech to Text",
                             Toast.LENGTH_SHORT);
+                    ViewGroup group = (ViewGroup) t.getView();
+                    TextView toastTV = (TextView) group.getChildAt(0);
+                    toastTV.setTextSize(20);
                     t.show();
                 }
             }
@@ -142,6 +146,9 @@ public class VerbalRecallFragment extends QuestionFragment {
 
         // Toast affirmative message
         Toast t = Toast.makeText(getActivity(), "'" + submitText + "' submitted! Keep going!", Toast.LENGTH_LONG);
+        ViewGroup group = (ViewGroup) t.getView();
+        TextView toastTV = (TextView) group.getChildAt(0);
+        toastTV.setTextSize(20);
         t.setGravity(Gravity.TOP, 0, 5);
         t.show();
 

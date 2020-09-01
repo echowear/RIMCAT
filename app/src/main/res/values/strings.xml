@@ -190,8 +190,8 @@
         <item>Saxophone</item>
     </string-array>
     <string name="instructions_figure_study">
-        You will now be shown a series of figures, then you will have to select each figure that you saw. You will have 6 seconds to
-        study each figure, and you\'ll have to remember them later.
+        \u2022 \t You will now be shown a series of figures, then you will have to select each figure that you saw.\n\n
+        \u2022 \t You will have 6 seconds to study each figure, and you\'ll have to remember them later.
     </string>
     <string-array name="figure_prompt_array">
         <item>Here is the 1st figure.</item>
@@ -427,7 +427,9 @@
         <item>Rocket</item>
     </string-array>
     <string name="instructions_figureSelect2">You will now be shown four figures on the screen at once. Select the correct figure that you have seen before.</string>
-    <string name="instructions_semantic_relatedness">For this task, a word will appear at the top of the screen, and answer choices will appear below. Please choose the word that is most similar to the word at the top.</string>
+    <string name="instructions_semantic_relatedness">
+        \u2022 \tFor this task, a word will appear at the top of the screen, and answer choices will appear below.
+        \n\n \u2022 \tPlease choose the word that is most similar to the word at the top.</string>
     <string-array name="semantic_relatedness_headers">
         <item>Flower</item>
         <item>Cactus</item>
@@ -585,7 +587,8 @@
     <string name="instructions_digit_span">You will hear a series of numbers. You will be asked to repeat them in the same order.</string>
     <string name="instructions2_digit_span">
         Let’s take a deep breath.
-        Now, you will hear some more numbers, and you will be asked to repeat them in reverse order or backwards.  For example, if you hear the numbers 9-4-1, you would type 1-4-9 to repeat them backwards.
+        \n\nNow, you will hear some more numbers, and you will be asked to repeat them in reverse order or backwards.
+        \nFor example, if you hear the numbers 9-4-1, you would type 1-4-9 to repeat them backwards.
     </string>
     <string name="ds_edit_hint">Type Number</string>
     <string name="ds_submit_text">Submit Number</string>
@@ -598,7 +601,7 @@
     <string name="finish_line2">You may now quit the application.</string>
     <string name="finish_quit">Quit</string>
     <string name="finish_feedback_prompt">Did you experience any technical difficulties when taking this survey?</string>
-    <string name="instructions_next">To move on to the next screen, press the "Next" button on the bottom right of the screen after the activity has been finished or the instructions have been read.</string>
+    <string name="instructions_next">To move on to the next screen, press the \"Next\" button on the bottom right of the screen after the activity has been finished or the instructions have been read.</string>
     <string name="video_prompt">Please watch the video below, then complete the next activity.</string>
-    <string name="keyboard_prompt">Please type the word Hello or use the microphone button to record it, then press the Submit button.</string>
+    <string name="keyboard_prompt">Please type the word \"Hello\" or use the microphone button to record it, then press the button labeled \"Submit Word\".</string>
 </resources>

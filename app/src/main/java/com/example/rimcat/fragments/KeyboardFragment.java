@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rimcat.MainActivity;
@@ -43,8 +44,14 @@ public class KeyboardFragment extends QuestionFragment {
             public void onClick(View v) {
                 if (responseText.getText().toString() != null && responseText.getText().toString().toLowerCase().equals("hello"))
                     ((MainActivity)getActivity()).getFragmentData(null);
-                else
-                    Toast.makeText(mContext, "Make sure that the text box has the word 'Hello' in it", Toast.LENGTH_SHORT).show();
+                else {
+                    Toast t = Toast.makeText(mContext, "Make sure that the text box has the word 'Hello' in it.", Toast.LENGTH_LONG);
+                    ViewGroup group = (ViewGroup) t.getView();
+                    TextView toastTV = (TextView) group.getChildAt(0);
+                    toastTV.setTextSize(20);
+                    t.show();
+                }
+
             }
         });
 
@@ -62,6 +69,9 @@ public class KeyboardFragment extends QuestionFragment {
                     Toast t = Toast.makeText(mContext,
                             "Oops! Your device doesn't support Speech to Text",
                             Toast.LENGTH_SHORT);
+                    ViewGroup group = (ViewGroup) t.getView();
+                    TextView toastTV = (TextView) group.getChildAt(0);
+                    toastTV.setTextSize(20);
                     t.show();
                 }
             }

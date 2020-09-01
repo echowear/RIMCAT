@@ -40,83 +40,83 @@ public class InstructionsFragment extends QuestionFragment {
             case DataLogModel.INSTRUCTIONS_SCREEN_2:
                 instructionsText.setText(R.string.instructions_appInst);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
-                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst1);
+                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst2);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_3:
                 instructionsText.setText(R.string.instructions_imageInst);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
-                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst2);
+                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst3);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_4:
                 instructionsText.setText(R.string.instructions_verbalInst);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
-                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst3);
+                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst4);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_5:
             case DataLogModel.INSTRUCTIONS_SCREEN_6:
                 instructionsText.setText(R.string.instructions_verbalInst2);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
-                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst4_5);
+                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst5_6);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_7:
                 instructionsText.setText(R.string.instructions_verbalInst3);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
-                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst6);
+                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst7);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_8:
                 instructionsText.setText(R.string.instructions_verbalInst4);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
-                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst7);
+                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst8);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_9:
                 instructionsText.setText(R.string.instructions_figure_study);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
-                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst8);
+                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst9);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_10:
                 instructionsText.setText(R.string.instructions_digit_span);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
-                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst9);
+                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst10);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_11:
                 instructionsText.setText(R.string.instructions_read_comp_story);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
-                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst10);
+                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst11);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_12:
                 instructionsText.setText(R.string.instructions_computation);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
-                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst11);
+                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst12);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_13:
                 instructionsText.setText(R.string.instructions_verbalInst5);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
-                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst12);
+                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst13);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_14:
                 instructionsText.setText(R.string.instructions_verbal_rec);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
-                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst13);
+                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst14);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_15:
                 instructionsText.setText(R.string.instructions_semanticChoice);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
-                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst14);
+                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst15);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_16:
                 instructionsText.setText(R.string.instructions_figureSelect2);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
-                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst15);
+                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst16);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_17:
                 instructionsText.setText(R.string.instructions_read_comp_test);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
-                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst16);
+                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst17);
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_18:
                 instructionsText.setText(R.string.instructions_semantic_relatedness);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
-                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst17);
+                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst18);
                 break;
             default:
                 instructionsText.setText(R.string.error);
@@ -183,7 +183,11 @@ public class InstructionsFragment extends QuestionFragment {
                 ((MainActivity)getActivity()).addFragment(new SemanticRelatednessFragment(), "SemanticRelatedness");
                 break;
             default:
-                Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+                Toast t = Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT);
+                ViewGroup group = (ViewGroup) t.getView();
+                TextView toastTV = (TextView) group.getChildAt(0);
+                toastTV.setTextSize(20);
+                t.show();
         }
 
     }

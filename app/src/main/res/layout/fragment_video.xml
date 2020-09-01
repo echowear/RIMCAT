@@ -8,8 +8,8 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/card"
-        android:layout_width="1211dp"
-        android:layout_height="555dp"
+        android:layout_width="1105dp"
+        android:layout_height="520dp"
         android:layout_gravity="center"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -22,13 +22,13 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="501dp">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/video_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/video_prompt"
                 android:textAlignment="center"
                 android:textSize="30sp"
@@ -38,9 +38,9 @@
 
             <VideoView
                 android:id="@+id/videoView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_width="1044dp"
+                android:layout_height="425dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/video_text" />

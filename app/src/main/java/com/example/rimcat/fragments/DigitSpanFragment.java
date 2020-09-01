@@ -121,6 +121,7 @@ public class DigitSpanFragment extends QuestionFragment {
             public void onClick(View v) {
                 readyBtn.setVisibility(View.INVISIBLE);
                 dsNumText.setText("");
+                dsNumText.setGravity(Gravity.CENTER);
                 dsNumText.setTextSize(55);
                 countDownTimer.start();
             }
@@ -161,15 +162,11 @@ public class DigitSpanFragment extends QuestionFragment {
             public void onInit(int status) {
                 if(status != TextToSpeech.ERROR) {
                     Set<String> a = new HashSet<>();
-                    a.add("male");//here you can give male if you want to select male voice.
-                    //Voice v=new Voice("en-us-x-sfg#female_2-local",new Locale("en","US"),400,200,true,a);
+                    a.add("male");
                     Voice v = new Voice("en-us-x-sfg#male_1-local",new Locale("en","US"),400,200,true,a);
                     textToSpeech.setVoice(v);
                     textToSpeech.setSpeechRate(0.7f);
-
-                    // int result = T2S.setLanguage(Locale.US);
                     int result = textToSpeech.setVoice(v);
-
                     if (result == TextToSpeech.LANG_MISSING_DATA
                             || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                         Log.e("TTS", "This Language is not supported");
@@ -284,6 +281,7 @@ public class DigitSpanFragment extends QuestionFragment {
             SpannableString numTextSS = new SpannableString(numText);
             numTextSS.setSpan(fcs, numText.length() - highlightTextLength, numText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             dsNumText.setText(numTextSS);
+            dsNumText.setGravity(Gravity.LEFT);
 
             readyBtn.setVisibility(View.INVISIBLE);
             storyMedia = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.reverse);
@@ -308,6 +306,9 @@ public class DigitSpanFragment extends QuestionFragment {
 
         // Toast affirmative message
         Toast t = Toast.makeText(getActivity(), "'" + submitText + "' submitted!", Toast.LENGTH_LONG);
+        ViewGroup group = (ViewGroup) t.getView();
+        TextView toastTV = (TextView) group.getChildAt(0);
+        toastTV.setTextSize(20);
         t.setGravity(Gravity.TOP, 0, 5);
         t.show();
 
