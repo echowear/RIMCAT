@@ -1,0 +1,159 @@
+package com.example.rimcat.fragments;
+
+import android.os.Build;
+import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.AppCompatButton;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TableLayout;
+import android.widget.TextView;
+
+import com.example.rimcat.MainActivity;
+import com.example.rimcat.R;
+
+import java.text.DecimalFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Random;
+
+public class ReactionFragment extends QuestionFragment {
+
+    private static final String TAG = "ImageNameFragment";
+    private static DecimalFormat df = new DecimalFormat("0.00");
+    private static final int NUM_ITERATIONS = 10;
+    private ConstraintLayout layout1, layout2;
+    private TableLayout reactionGrid;
+    private View.OnClickListener reactionListener;
+    private CountDownTimer readyCountdown;
+    private TextView reactionCountdownText;
+    private Button readyBtn;
+    private Button[] selectButtons;
+    private long reactionStart, reactionEnd;
+    private int count, timerIndex = 3;
+    boolean inIteration;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_reaction, container, false);
+        cardView = view.findViewById(R.id.reaction_page);
+        layout1 = view.findViewById(R.id.reaction_layout1);
+        layout2 = view.findViewById(R.id.reaction_layout2);
+        layout1.setVisibility(View.VISIBLE);
+        layout2.setVisibility(View.INVISIBLE);
+
+        readyBtn = view.findViewById(R.id.reaction_ready_btn);
+        readyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout1.setVisibility(View.INVISIBLE);
+                layout2.setVisibility(View.VISIBLE);
+                readyCountdown.start();
+            }
+        });
+
+        selectButtons = new Button[] {
+                view.findViewById(R.id.rb1), view.findViewById(R.id.rb2), view.findViewById(R.id.rb3),
+                view.findViewById(R.id.rb4), view.findViewById(R.id.rb5), view.findViewById(R.id.rb6),
+                view.findViewById(R.id.rb7), view.findViewById(R.id.rb8), view.findViewById(R.id.rb9),
+                view.findViewById(R.id.rb10), view.findViewById(R.id.rb11), view.findViewById(R.id.rb12)
+        };
+
+
+        reactionCountdownText = view.findViewById(R.id.reaction_countdown);
+        readyCountdown = new CountDownTimer(3000, 980) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                Log.d(TAG, "onTick: Tick: " + timerIndex);
+                if (timerIndex > 0)
+                    reactionCountdownText.setText("" + timerIndex);
+                timerIndex--;
+            }
+
+            @Override
+            public void onFinish() {
+                timerIndex = 3;
+                reactionCountdownText.setVisibility(View.INVISIBLE);
+                reactionGrid.setVisibility(View.VISIBLE);
+                startNewIteration();
+            }
+        };
+
+        reactionGrid = view.findViewById(R.id.reaction_grid);
+        reactionGrid.setVisibility(View.INVISIBLE);
+        initializeGrid();
+
+        cardView = view.findViewById(R.id.card);
+        startAnimation(true);
+        logStartTime();
+        nextButtonReady();
+        return view;
+    }
+
+    private void initializeGrid() {
+        reactionListener = new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onClick(View v) {
+                if (inIteration) {
+                    AppCompatButton b = (AppCompatButton) v;
+                    if (b.getVisibility() == View.VISIBLE) {
+                        b.setVisibility(View.INVISIBLE);
+                        endIteration();
+                    }
+                }
+            }
+        };
+        for (Button btn : selectButtons) {
+            btn.setOnClickListener(reactionListener);
+            btn.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void startNewIteration() {
+        inIteration = true;
+        Random random = new Random();
+        int buttonToPressIndex = random.nextInt(selectButtons.length);
+        selectButtons[buttonToPressIndex].setVisibility(View.VISIBLE);
+        Calendar calendar = Calendar.getInstance();
+        reactionStart = calendar.getTimeInMillis();
+    }
+
+    private void endIteration() {
+        inIteration = false;
+        Calendar calendar = Calendar.getInstance();
+        reactionEnd = calendar.getTimeInMillis();
+        if (reactionStart < reactionEnd) {
+            double result = (reactionEnd - reactionStart) / 1000.0;
+            logEndTimeAndData(getActivity(), "reaction_" + count + "," + df.format(result));
+        } else {
+            Log.d(TAG, "endIteration: Error calculating time. Could not log data");
+        }
+        count++;
+        if (count < NUM_ITERATIONS) {
+            reactionGrid.setVisibility(View.INVISIBLE);
+            reactionCountdownText.setVisibility(View.VISIBLE);
+            readyCountdown.start();
+        } else {
+            ((MainActivity)getActivity()).getFragmentData(null);
+        }
+    }
+
+    @Override
+    public boolean loadDataModel() {
+        return true;
+    }
+
+    @Override
+    public void moveToNextPage() {
+        ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
+    }
+}

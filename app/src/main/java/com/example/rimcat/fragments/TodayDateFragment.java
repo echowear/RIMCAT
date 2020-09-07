@@ -3,6 +3,8 @@ package com.example.rimcat.fragments;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,15 +18,44 @@ import com.example.rimcat.R;
 public class TodayDateFragment extends QuestionFragment {
 
     private static final String TAG = "TodayDateFragment";
+    private static final int INPUT_LENGTH = 2;
     private EditText inputMonth, inputDay, inputYear;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_today_date, container, false);
-        inputDay = view.findViewById(R.id.input_today_day);
         inputMonth = view.findViewById(R.id.input_today_month);
+        inputDay = view.findViewById(R.id.input_today_day);
         inputYear = view.findViewById(R.id.input_today_year);
+
+        inputMonth.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(inputMonth.getText().toString().length() == INPUT_LENGTH)
+                {
+                    inputDay.requestFocus();
+                }
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
+
+        inputDay.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(inputDay.getText().toString().length() == INPUT_LENGTH)
+                {
+                    inputYear.requestFocus();
+                }
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
 
         cardView = view.findViewById(R.id.card);
         startAnimation(true);

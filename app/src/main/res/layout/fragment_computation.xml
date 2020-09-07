@@ -8,8 +8,8 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/comp_card"
-        android:layout_width="892dp"
-        android:layout_height="333dp"
+        android:layout_width="866dp"
+        android:layout_height="352dp"
         android:layout_gravity="start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,37 +43,34 @@
                 android:layout_width="239dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="100dp"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="62dp"
+                android:layout_marginBottom="64dp"
                 android:autofillHints=""
                 android:ems="10"
                 android:hint="@string/ds_edit_hint"
                 android:inputType="number"
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent" />
 
-<!--            <android.support.design.widget.FloatingActionButton-->
-<!--                android:id="@+id/comp_audio_btn"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="16dp"-->
-<!--                android:layout_marginLeft="16dp"-->
-<!--                android:layout_marginTop="62dp"-->
-<!--                android:src="@android:drawable/ic_btn_speak_now"-->
-<!--                android:tint="@color/white"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintStart_toEndOf="@+id/comp_answer"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
+            <!--            <android.support.design.widget.FloatingActionButton-->
+            <!--                android:id="@+id/comp_audio_btn"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginStart="16dp"-->
+            <!--                android:layout_marginLeft="16dp"-->
+            <!--                android:layout_marginTop="62dp"-->
+            <!--                android:src="@android:drawable/ic_btn_speak_now"-->
+            <!--                android:tint="@color/white"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintStart_toEndOf="@+id/comp_answer"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/comp_next_btn"
                 android:layout_width="157dp"
                 android:layout_height="67dp"
-                android:layout_marginTop="62dp"
                 android:layout_marginEnd="100dp"
-                android:layout_marginRight="100dp"
+                android:layout_marginBottom="64dp"
                 android:background="@drawable/roundbutton"
                 android:padding="10dp"
                 android:text="@string/next_text"
@@ -81,8 +78,7 @@
                 android:textColor="@color/white"
                 android:textSize="35sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <Button
                 android:id="@+id/comp_repeat_btn"

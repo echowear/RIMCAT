@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/reaction_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="1089dp"
+        android:layout_height="498dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/reaction_layout1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible">
+
+            <TextView
+                android:id="@+id/reaction_ready_text"
+                android:layout_width="632dp"
+                android:layout_height="89dp"
+                android:layout_marginTop="112dp"
+                android:gravity="center"
+                android:text="@string/verbal_readyPrompt"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/reaction_ready_btn"
+                android:layout_width="200dp"
+                android:layout_height="67dp"
+                android:layout_marginStart="456dp"
+                android:layout_marginLeft="456dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginEnd="456dp"
+                android:layout_marginRight="456dp"
+                android:background="@drawable/roundbutton"
+                android:text="@string/verbal_readyBtn"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="35sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/reaction_ready_text" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/reaction_layout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/reaction_countdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="35sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/reaction_prompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/reaction_prompt"
+                android:textSize="35sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TableLayout
+                android:id="@+id/reaction_grid"
+                android:layout_width="1021dp"
+                android:layout_height="317dp"
+                android:layout_marginStart="128dp"
+                android:layout_marginLeft="128dp"
+                android:layout_marginTop="128dp"
+                android:layout_marginEnd="128dp"
+                android:layout_marginRight="128dp"
+                android:layout_marginBottom="96dp"
+                android:stretchColumns="*"
+                android:useDefaultMargins="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/rb1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:text=""
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        app:backgroundTint="@color/backgroundColor" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/rb2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:text=""
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        app:backgroundTint="@color/backgroundColor" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/rb3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        app:backgroundTint="@color/backgroundColor" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/rb4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        app:backgroundTint="@color/backgroundColor" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/rb5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        app:backgroundTint="@color/backgroundColor" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/rb6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        app:backgroundTint="@color/backgroundColor" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/rb7"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        app:backgroundTint="@color/backgroundColor" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/rb8"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        app:backgroundTint="@color/backgroundColor" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/rb9"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        app:backgroundTint="@color/backgroundColor" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/rb10"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        app:backgroundTint="@color/backgroundColor" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/rb11"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        app:backgroundTint="@color/backgroundColor" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/rb12"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        app:backgroundTint="@color/backgroundColor" />
+                </TableRow>
+
+            </TableLayout>
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+</android.support.constraint.ConstraintLayout>

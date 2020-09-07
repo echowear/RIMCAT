@@ -31,11 +31,17 @@
         android:id="@+id/screen_inst_3_om"
         android:title="@string/screen_inst_3"/>
     <item
-        android:id="@+id/screen_img_nm_om"
-        android:title="@string/screen_img_nm"/>
+        android:id="@+id/screen_reaction_om"
+        android:title="@string/screen_reaction"/>
     <item
         android:id="@+id/screen_inst_4_om"
         android:title="@string/screen_inst_4"/>
+    <item
+        android:id="@+id/screen_img_nm_om"
+        android:title="@string/screen_img_nm"/>
+    <item
+        android:id="@+id/screen_inst_5_om"
+        android:title="@string/screen_inst_5"/>
     <item
         android:id="@+id/screen_verbal_1_om"
         android:title="@string/screen_verbal_1"/>
@@ -43,8 +49,8 @@
         android:id="@+id/screen_recall_1_om"
         android:title="@string/screen_recall_1"/>
     <item
-        android:id="@+id/screen_inst_5_om"
-        android:title="@string/screen_inst_5"/>
+        android:id="@+id/screen_inst_6_om"
+        android:title="@string/screen_inst_6"/>
     <item
         android:id="@+id/screen_verbal_2_om"
         android:title="@string/screen_verbal_2"/>
@@ -52,8 +58,8 @@
         android:id="@+id/screen_recall_2_om"
         android:title="@string/screen_recall_2"/>
     <item
-        android:id="@+id/screen_inst_6_om"
-        android:title="@string/screen_inst_6"/>
+        android:id="@+id/screen_inst_7_om"
+        android:title="@string/screen_inst_7"/>
     <item
         android:id="@+id/screen_verbal_3_om"
         android:title="@string/screen_verbal_3"/>
@@ -61,8 +67,8 @@
         android:id="@+id/screen_recall_3_om"
         android:title="@string/screen_recall_3"/>
     <item
-        android:id="@+id/screen_inst_7_om"
-        android:title="@string/screen_inst_7"/>
+        android:id="@+id/screen_inst_8_om"
+        android:title="@string/screen_inst_8"/>
     <item
         android:id="@+id/screen_verbal_4_om"
         android:title="@string/screen_verbal_4"/>
@@ -70,14 +76,14 @@
         android:id="@+id/screen_recall_4_om"
         android:title="@string/screen_recall_4"/>
     <item
-        android:id="@+id/screen_inst_8_om"
-        android:title="@string/screen_inst_8"/>
+        android:id="@+id/screen_inst_9_om"
+        android:title="@string/screen_inst_9"/>
     <item
         android:id="@+id/screen_recall_5_om"
         android:title="@string/screen_recall_5"/>
     <item
-        android:id="@+id/screen_inst_9_om"
-        android:title="@string/screen_inst_9"/>
+        android:id="@+id/screen_inst_10_om"
+        android:title="@string/screen_inst_10"/>
     <item
         android:id="@+id/screen_fig_study_om"
         android:title="@string/screen_fig_study"/>
@@ -85,56 +91,56 @@
         android:id="@+id/screen_fig_select_om"
         android:title="@string/screen_fig_select"/>
     <item
-        android:id="@+id/screen_inst_10_om"
-        android:title="@string/screen_inst_10"/>
+        android:id="@+id/screen_inst_11_om"
+        android:title="@string/screen_inst_11"/>
     <item
         android:id="@+id/screen_digit_span_om"
         android:title="@string/screen_digit_span"/>
     <item
-        android:id="@+id/screen_inst_11_om"
-        android:title="@string/screen_inst_11"/>
+        android:id="@+id/screen_inst_12_om"
+        android:title="@string/screen_inst_12"/>
     <item
         android:id="@+id/screen_read_comp_story_om"
         android:title="@string/screen_read_comp_story"/>
     <item
-        android:id="@+id/screen_inst_12_om"
-        android:title="@string/screen_inst_12"/>
+        android:id="@+id/screen_inst_13_om"
+        android:title="@string/screen_inst_13"/>
     <item
         android:id="@+id/screen_computation_om"
         android:title="@string/screen_computation"/>
     <item
-        android:id="@+id/screen_inst_13_om"
-        android:title="@string/screen_inst_13"/>
+        android:id="@+id/screen_inst_14_om"
+        android:title="@string/screen_inst_14"/>
     <item
         android:id="@+id/screen_recall_6_om"
         android:title="@string/screen_recall_6"/>
     <item
-        android:id="@+id/screen_inst_14_om"
-        android:title="@string/screen_inst_14"/>
+        android:id="@+id/screen_inst_15_om"
+        android:title="@string/screen_inst_15"/>
     <item
         android:id="@+id/screen_verbal_rec_om"
         android:title="@string/screen_verbal_rec"/>
     <item
-        android:id="@+id/screen_inst_15_om"
-        android:title="@string/screen_inst_15"/>
+        android:id="@+id/screen_inst_16_om"
+        android:title="@string/screen_inst_16"/>
     <item
         android:id="@+id/screen_semantic_choice_om"
         android:title="@string/screen_semantic_choice"/>
     <item
-        android:id="@+id/screen_inst_16_om"
-        android:title="@string/screen_inst_16"/>
+        android:id="@+id/screen_inst_17_om"
+        android:title="@string/screen_inst_17"/>
     <item
         android:id="@+id/screen_fig_select_2_om"
         android:title="@string/screen_fig_select_2"/>
     <item
-        android:id="@+id/screen_inst_17_om"
-        android:title="@string/screen_inst_17"/>
+        android:id="@+id/screen_inst_18_om"
+        android:title="@string/screen_inst_18"/>
     <item
         android:id="@+id/screen_read_comp_test_om"
         android:title="@string/screen_read_comp_test"/>
     <item
-        android:id="@+id/screen_inst_18_om"
-        android:title="@string/screen_inst_18"/>
+        android:id="@+id/screen_inst_19_om"
+        android:title="@string/screen_inst_19"/>
     <item
         android:id="@+id/screen_semantic_relatedness_om"
         android:title="@string/screen_semantic_relatedness"/>
