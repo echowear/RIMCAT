@@ -124,29 +124,6 @@ public class FigureStudyFragment extends QuestionFragment {
             ((MainActivity)getActivity()).getFragmentData(null);
         }
     }
-//
-//    @Override
-//    public void onPause() {
-//        countDownTimer.cancel();
-//        figureListCounter.cancel();
-//        super.onPause();
-//    }
-//
-//    @Override
-//    public void onStop() {
-//        countDownTimer.cancel();
-//        figureListCounter.cancel();
-//        super.onStop();
-//    }
-//
-//    @Override
-//    public void onResume() {
-//        countDownTimer.cancel();
-//        figureListCounter.cancel();
-//        figCount--;
-//        onReadyClick();
-//        super.onResume();
-//    }
 
     @Override
     public boolean loadDataModel() {

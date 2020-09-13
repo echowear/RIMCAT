@@ -26,7 +26,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,8 +44,8 @@ import com.example.rimcat.fragments.InstructionsFragment;
 import com.example.rimcat.fragments.KeyboardFragment;
 import com.example.rimcat.fragments.QuestionFragment;
 import com.example.rimcat.fragments.ReactionFragment;
-import com.example.rimcat.fragments.ReadCompStoryFragment;
-import com.example.rimcat.fragments.ReadCompTestFragment;
+import com.example.rimcat.fragments.StoryLearningFragment;
+import com.example.rimcat.fragments.StoryMemoryFragment;
 import com.example.rimcat.fragments.VerbalRecallFragment;
 import com.example.rimcat.fragments.SeasonFragment;
 import com.example.rimcat.fragments.SemanticChoiceFragment;
@@ -371,7 +370,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
             case R.id.screen_read_comp_story_om:
                 this.viewNumber = DataLogModel.READ_COMP_STORY_SCREEN;
                 fragmentTag = "ReadingCompFragment";
-                fragmentTransaction.replace(R.id.container, new ReadCompStoryFragment(), "ReadingCompFragment");
+                fragmentTransaction.replace(R.id.container, new StoryLearningFragment(), "ReadingCompFragment");
                 break;
             case R.id.screen_inst_13_om:
                 this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_13;
@@ -431,7 +430,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
             case R.id.screen_read_comp_test_om:
                 this.viewNumber = DataLogModel.READ_COMP_TEST_SCREEN;
                 fragmentTag = "ReadCompTestFragment";
-                fragmentTransaction.replace(R.id.container, new ReadCompTestFragment(), "ReadCompTestFragment");
+                fragmentTransaction.replace(R.id.container, new StoryMemoryFragment(), "ReadCompTestFragment");
                 break;
             case R.id.screen_inst_19_om:
                 this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_19;

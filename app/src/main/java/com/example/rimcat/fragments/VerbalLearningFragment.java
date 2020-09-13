@@ -1,5 +1,6 @@
 package com.example.rimcat.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.speech.tts.TextToSpeech;
@@ -37,8 +38,9 @@ public class VerbalLearningFragment extends QuestionFragment {
     private Button readyBtn;
     private TextToSpeech textToSpeech;
     private CountDownTimer countDownTimer, trialListCounter;
-    private int timerIndex = 3;
+    private int timerIndex;
     private String[] currentWordList;
+    private boolean isTTSInitialized, countdownStarted;
 
     @Nullable
     @Override
@@ -59,10 +61,7 @@ public class VerbalLearningFragment extends QuestionFragment {
         readyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                readyBtn.setVisibility(View.INVISIBLE);
-                verbalText.setText("");
-                verbalText.setTextSize(55);
-                countDownTimer.start();
+                beginCountdownTimer();
             }
         });
 
@@ -90,7 +89,11 @@ public class VerbalLearningFragment extends QuestionFragment {
                 if (timerIndex < currentWordList.length) {
                     Log.d(TAG, "onTick: Changing text --- " + currentWordList[timerIndex]);
                     verbalText.setText(currentWordList[timerIndex]);
-                    textToSpeech.speak(currentWordList[timerIndex], TextToSpeech.QUEUE_FLUSH, null);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && isTTSInitialized) {
+                        textToSpeech.speak(currentWordList[timerIndex], TextToSpeech.QUEUE_FLUSH, null, null);
+                    } else if (isTTSInitialized) {
+                        textToSpeech.speak(currentWordList[timerIndex], TextToSpeech.QUEUE_FLUSH, null);
+                    }
                     timerIndex++;
                 }
             }
@@ -102,33 +105,46 @@ public class VerbalLearningFragment extends QuestionFragment {
         };
 
         // Sets up text to speech to read numbers
-        textToSpeech = new TextToSpeech(getActivity().getApplicationContext(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if(status != TextToSpeech.ERROR) {
-                    Set<String> a = new HashSet<>();
-                    a.add("male");//here you can give male if you want to select male voice.
-                    //Voice v=new Voice("en-us-x-sfg#female_2-local",new Locale("en","US"),400,200,true,a);
-                    Voice v = new Voice("en-us-x-sfg#male_1-local",new Locale("en","US"),400,200,true,a);
-                    textToSpeech.setVoice(v);
-                    textToSpeech.setSpeechRate(0.7f);
-
-                    // int result = T2S.setLanguage(Locale.US);
-                    int result = textToSpeech.setVoice(v);
-
-                    if (result == TextToSpeech.LANG_MISSING_DATA
-                            || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                        Log.e("TTS", "This Language is not supported");
-                    }
-                } else {
-                    Log.e("TTS", "Initialization Failed!");
-                }
-            }
-        }, "com.google.android.tts");
+        setUpTextToSpeech();
 
         startAnimation(true);
         nextButtonReady();
         return view;
+    }
+
+    private void beginCountdownTimer() {
+        timerIndex = 3;
+        countdownStarted = true;
+        readyBtn.setVisibility(View.INVISIBLE);
+        verbalText.setText("");
+        verbalText.setTextSize(55);
+        countDownTimer.start();
+    }
+
+    private void setUpTextToSpeech() {
+        textToSpeech = new TextToSpeech(getActivity().getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    textToSpeech.setLanguage(Locale.US);
+                    isTTSInitialized = true;
+                } else {
+                    Log.e(TAG, "TTS Initialization Failed!");
+                    isTTSInitialized = false;
+                }
+            }
+        });
+    }
+
+    private void stopActivity() {
+        if(textToSpeech != null){
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
+        if (countDownTimer != null)
+            countDownTimer.cancel();
+        if (countDownTimer != null)
+            trialListCounter.cancel();
     }
 
     @Override
@@ -142,11 +158,33 @@ public class VerbalLearningFragment extends QuestionFragment {
     }
 
     @Override
-    public void onPause() {
-        if(textToSpeech !=null){
-            textToSpeech.stop();
-            textToSpeech.shutdown();
+    public void onResume() {
+        Log.d(TAG, "onResume: called");
+        if (countdownStarted) {
+            setUpTextToSpeech();
+            beginCountdownTimer();
         }
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        Log.d(TAG, "onPause: called.");
+        stopActivity();
         super.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        Log.d(TAG, "onStop: called.");
+        stopActivity();
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.d(TAG, "onDestroy: called");
+        stopActivity();
+        super.onDestroy();
     }
 }

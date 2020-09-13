@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 
-public class ReadCompTestFragment extends QuestionFragment {
+public class StoryMemoryFragment extends QuestionFragment {
     private static final String TAG = "ReadCompTestFragment";
     /**
      * 0 = Yes or No (Two Question Group)
@@ -37,7 +37,7 @@ public class ReadCompTestFragment extends QuestionFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_read_comp_test, container, false);
+        View view = inflater.inflate(R.layout.fragment_story_memory, container, false);
         card2 = view.findViewById(R.id.card2);
         questionsText = view.findViewById(R.id.reading_comp_question);
         questionsText.setTypeface(null, Typeface.BOLD);

@@ -8,6 +8,9 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.AppCompatButton;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,11 +32,13 @@ public class ReactionFragment extends QuestionFragment {
     private static final String TAG = "ImageNameFragment";
     private static DecimalFormat df = new DecimalFormat("0.00");
     private static final int NUM_ITERATIONS = 10;
+    private static final double RAN_LOWER_BOUND = 1.0;
+    private static final double RAN_UPPER_BOUND = 4.0;
     private ConstraintLayout layout1, layout2;
     private TableLayout reactionGrid;
     private View.OnClickListener reactionListener;
     private CountDownTimer readyCountdown;
-    private TextView reactionCountdownText;
+    private TextView reactionCountdownText, reactionPrompt;
     private Button readyBtn;
     private Button[] selectButtons;
     private long reactionStart, reactionEnd;
@@ -67,6 +72,14 @@ public class ReactionFragment extends QuestionFragment {
                 view.findViewById(R.id.rb10), view.findViewById(R.id.rb11), view.findViewById(R.id.rb12)
         };
 
+        // Set up prompt and add bold text to it
+        reactionPrompt = view.findViewById(R.id.reaction_prompt);
+        String promptString = getResources().getString(R.string.reaction_prompt);
+        int boldLength = "as quickly as you can.".length();
+        ForegroundColorSpan fcs = new ForegroundColorSpan(getResources().getColor(R.color.colorAccent));
+        SpannableString promptSS = new SpannableString(promptString);
+        promptSS.setSpan(fcs, promptString.length() - boldLength, promptString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        reactionPrompt.setText(promptSS);
 
         reactionCountdownText = view.findViewById(R.id.reaction_countdown);
         readyCountdown = new CountDownTimer(3000, 980) {
@@ -140,11 +153,27 @@ public class ReactionFragment extends QuestionFragment {
         count++;
         if (count < NUM_ITERATIONS) {
             reactionGrid.setVisibility(View.INVISIBLE);
-            reactionCountdownText.setVisibility(View.VISIBLE);
-            readyCountdown.start();
+//            reactionCountdownText.setVisibility(View.VISIBLE);
+            startRandomCountdown();
         } else {
             ((MainActivity)getActivity()).getFragmentData(null);
         }
+    }
+
+    private void startRandomCountdown() {
+        Random random = new Random();
+        double timeInterval = RAN_LOWER_BOUND + (RAN_UPPER_BOUND - RAN_LOWER_BOUND) * random.nextDouble();
+        CountDownTimer readyCountdown = new CountDownTimer((int) timeInterval * 1000, (int) timeInterval * 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {}
+
+            @Override
+            public void onFinish() {
+                reactionGrid.setVisibility(View.VISIBLE);
+                startNewIteration();
+            }
+        };
+        readyCountdown.start();
     }
 
     @Override

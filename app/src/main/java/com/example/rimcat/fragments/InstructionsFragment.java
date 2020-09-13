@@ -170,7 +170,7 @@ public class InstructionsFragment extends QuestionFragment {
                 ((MainActivity)getActivity()).addFragment(new DigitSpanFragment(), "DigitSpanFragment");
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_12:
-                ((MainActivity)getActivity()).addFragment(new ReadCompStoryFragment(), "ReadCompStoryFragment");
+                ((MainActivity)getActivity()).addFragment(new StoryLearningFragment(), "ReadCompStoryFragment");
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_13:
                 ((MainActivity)getActivity()).addFragment(new ComputationFragment(), "ComputationFragment");
@@ -185,7 +185,7 @@ public class InstructionsFragment extends QuestionFragment {
                 ((MainActivity)getActivity()).addFragment(new FigureSelectFragment(), "FigureSelectFragment");
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_18:
-                ((MainActivity)getActivity()).addFragment(new ReadCompTestFragment(), "ReadCompTestFragment");
+                ((MainActivity)getActivity()).addFragment(new StoryMemoryFragment(), "ReadCompTestFragment");
                 break;
             case DataLogModel.INSTRUCTIONS_SCREEN_19:
                 ((MainActivity)getActivity()).addFragment(new SemanticRelatednessFragment(), "SemanticRelatedness");

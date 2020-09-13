@@ -55,6 +55,7 @@ public class ComputationFragment extends QuestionFragment {
     private boolean hasRepeated = false;
     private Context mContext;
     private Vibrator mVibrator;
+    private boolean isTTSInitialized;
 
     @Nullable
     @Override
@@ -79,25 +80,14 @@ public class ComputationFragment extends QuestionFragment {
             @Override
             public void onInit(int status) {
                 if(status != TextToSpeech.ERROR) {
-                    Set<String> a = new HashSet<>();
-                    a.add("male");//here you can give male if you want to select male voice.
-                    //Voice v=new Voice("en-us-x-sfg#female_2-local",new Locale("en","US"),400,200,true,a);
-                    Voice v = new Voice("en-us-x-sfg#male_1-local",new Locale("en","US"),400,200,true,a);
-                    textToSpeech.setVoice(v);
-                    textToSpeech.setSpeechRate(0.7f);
-
-                    // int result = T2S.setLanguage(Locale.US);
-                    int result = textToSpeech.setVoice(v);
-
-                    if (result == TextToSpeech.LANG_MISSING_DATA
-                            || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                        Log.e("TTS", "This Language is not supported");
-                    }
+                    textToSpeech.setLanguage(Locale.US);
+                    isTTSInitialized = true;
                 } else {
-                    Log.e("TTS", "Initialization Failed!");
+                    Log.e(TAG, "TTS Initialization Failed!");
+                    isTTSInitialized = false;
                 }
             }
-        }, "com.google.android.tts");
+        });
 
         compEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -202,7 +192,11 @@ public class ComputationFragment extends QuestionFragment {
             String textSpeech = numberOrSymbol;
             if (numberToTextMap.get(numberOrSymbol) != null)
                 textSpeech = numberToTextMap.get(numberOrSymbol);
-            textToSpeech.speak(textSpeech, TextToSpeech.QUEUE_ADD, null);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && isTTSInitialized) {
+                textToSpeech.speak(textSpeech, TextToSpeech.QUEUE_ADD, null, null);
+            } else if (isTTSInitialized) {
+                textToSpeech.speak(textSpeech, TextToSpeech.QUEUE_ADD, null);
+            }
         }
 
         // Grey out or keep repeat button color
@@ -235,10 +229,6 @@ public class ComputationFragment extends QuestionFragment {
         t.show();
     }
 
-//    public void setResponseTextToSpeechText(String speechText) {
-//        compEditText.setText(speechText);
-//    }
-
     private void repeatComputationRead() {
         if (!hasRepeated) {
             hasRepeated = true;
@@ -246,6 +236,15 @@ public class ComputationFragment extends QuestionFragment {
             computationText.setVisibility(View.VISIBLE);
             readCurrentComputation();
         }
+    }
+
+    private void stopActivity() {
+        if(textToSpeech != null){
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
+        if (showComputationTimer != null)
+            showComputationTimer.cancel();
     }
 
     @Override
@@ -261,5 +260,12 @@ public class ComputationFragment extends QuestionFragment {
     @Override
     public void moveToNextPage() {
         ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.d(TAG, "onDestroy: called");
+        stopActivity();
+        super.onDestroy();
     }
 }

@@ -78,6 +78,7 @@ public class DigitSpanFragment extends QuestionFragment {
     private MediaPlayer storyMedia;
     private Context mContext;
     private Vibrator mVibrator;
+    boolean isTTSInitialized;
 
     @Nullable
     @Override
@@ -157,25 +158,7 @@ public class DigitSpanFragment extends QuestionFragment {
         };
 
         // Sets up text to speech to read numbers
-        textToSpeech = new TextToSpeech(getActivity().getApplicationContext(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if(status != TextToSpeech.ERROR) {
-                    Set<String> a = new HashSet<>();
-                    a.add("male");
-                    Voice v = new Voice("en-us-x-sfg#male_1-local",new Locale("en","US"),400,200,true,a);
-                    textToSpeech.setVoice(v);
-                    textToSpeech.setSpeechRate(0.7f);
-                    int result = textToSpeech.setVoice(v);
-                    if (result == TextToSpeech.LANG_MISSING_DATA
-                            || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                        Log.e("TTS", "This Language is not supported");
-                    }
-                } else {
-                    Log.e("TTS", "Initialization Failed!");
-                }
-            }
-        }, "com.google.android.tts");
+        setUpTextToSpeech();
 
         nextBtn.getBackground().setTint(getResources().getColor(R.color.backgroundColor));
         nextBtn.setOnClickListener(new View.OnClickListener() {
@@ -219,7 +202,11 @@ public class DigitSpanFragment extends QuestionFragment {
         if (timerIndex < currentNumberList.length) {
             Log.d(TAG, "onTick: Changing text --- " + currentNumberList[timerIndex]);
             dsNumText.setText("" + currentNumberList[timerIndex]);
-            textToSpeech.speak(numberToTextMap.get(currentNumberList[timerIndex]), TextToSpeech.QUEUE_FLUSH, null);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && isTTSInitialized) {
+                textToSpeech.speak(numberToTextMap.get(currentNumberList[timerIndex]), TextToSpeech.QUEUE_FLUSH, null, null);
+            } else if (isTTSInitialized) {
+                textToSpeech.speak(numberToTextMap.get(currentNumberList[timerIndex]), TextToSpeech.QUEUE_FLUSH, null);
+            }
             timerIndex++;
         }
     }
@@ -322,9 +309,31 @@ public class DigitSpanFragment extends QuestionFragment {
         }
     }
 
-//    public void setResponseTextToSpeechText(String speechText) {
-//        dsEditText.setText(speechText);
-//    }
+    private void setUpTextToSpeech() {
+        textToSpeech = new TextToSpeech(getActivity().getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    textToSpeech.setLanguage(Locale.US);
+                    isTTSInitialized = true;
+                } else {
+                    Log.e(TAG, "TTS Initialization Failed!");
+                    isTTSInitialized = false;
+                }
+            }
+        });
+    }
+
+    private void stopActivity() {
+        if(textToSpeech != null){
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
+        if (countDownTimer != null)
+            countDownTimer.cancel();
+        if (countDownTimer != null)
+            trialListCounter.cancel();
+    }
 
     @Override
     public boolean loadDataModel() {
@@ -333,6 +342,17 @@ public class DigitSpanFragment extends QuestionFragment {
 
     @Override
     public void moveToNextPage() {
-        ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
+        ((MainActivity) getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.d(TAG, "onDestroy: called");
+        stopActivity();
+        if (storyMedia != null) {
+            storyMedia.release();
+            storyMedia = null;
+        }
+        super.onDestroy();
     }
 }

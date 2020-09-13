@@ -606,6 +606,6 @@
     <string name="instructions_next">To move on to the next screen, press the \"Next\" button on the bottom right of the screen after the activity has been finished or the instructions have been read.</string>
     <string name="video_prompt">Please watch the video below, then complete the next activity.</string>
     <string name="keyboard_prompt">Please type the word \"Hello\" or use the microphone button to record it, then press the button labeled \"Submit Word\".</string>
-    <string name="instructions_reaction">Press the image each time it appears at a random spot on the screen as quickly as you can.</string>
-    <string name="reaction_prompt">Press the image that appears on the screen as quickly as you can.</string>
+    <string name="instructions_reaction">A gray rectangle will appear in a random location on the screen. Press the rectangle as fast as you can.</string>
+    <string name="reaction_prompt">Press the rectangle on the screen as quickly as you can.</string>
 </resources>

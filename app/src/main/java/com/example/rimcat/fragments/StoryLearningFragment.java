@@ -1,25 +1,20 @@
 package com.example.rimcat.fragments;
 
 import android.content.res.AssetFileDescriptor;
-import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 import java.io.IOException;
 
-public class ReadCompStoryFragment extends QuestionFragment {
+public class StoryLearningFragment extends QuestionFragment {
 
     private static final String TAG = "ReadingCompFragment";
 
@@ -36,7 +31,7 @@ public class ReadCompStoryFragment extends QuestionFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_read_comp_story, container, false);
+        View view = inflater.inflate(R.layout.fragment_story_learning, container, false);
 
         // Initialize all views
         storyText = view.findViewById(R.id.ready_inst1);
