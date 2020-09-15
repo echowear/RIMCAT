@@ -34,6 +34,7 @@ public class FigureStudyFragment extends QuestionFragment {
     private TextView figureText;
     private View promptCard, imageCard;
     private Button figureReadyBtn;
+    private int countdown = 3;
     private int figCount = 0;
 
     @Nullable
@@ -61,7 +62,10 @@ public class FigureStudyFragment extends QuestionFragment {
         // Creates the timer that counts down the verbal recall section
         countDownTimer = new CountDownTimer(3000, 990) {
             @Override
-            public void onTick(long millisUntilFinished) {}
+            public void onTick(long millisUntilFinished) {
+                figureText.setText("" + countdown);
+                countdown--;
+            }
 
             @Override
             public void onFinish() { showFigure(); }
@@ -85,11 +89,12 @@ public class FigureStudyFragment extends QuestionFragment {
 
     private void onReadyClick() {
         figureReadyBtn.setVisibility(View.INVISIBLE);
-        showFigure();
+//        showFigure();
         // Push figure text down
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) figureText.getLayoutParams();
         params.topMargin = 90;
         figureText.setLayoutParams(params);
+        countDownTimer.start();
     }
 
     private void showFigure() {
@@ -103,13 +108,13 @@ public class FigureStudyFragment extends QuestionFragment {
         // Increment and change view values
         figCount++;
         if (figCount < FIGURE_LIST.length) {
-            imageCard.setVisibility(View.INVISIBLE);
+//            imageCard.setVisibility(View.INVISIBLE);
             // Swap image and prompt text
             figureImage.setImageResource(FIGURE_LIST[figCount]);
 
-            figureText.setText(figurePrompts[figCount]);
+//            figureText.setText(figurePrompts[figCount]);
             // Make prompt visible again
-            promptCard.setVisibility(View.VISIBLE);
+//            promptCard.setVisibility(View.VISIBLE);
             // Play affirmative sound
             try {
                 Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -119,7 +124,7 @@ public class FigureStudyFragment extends QuestionFragment {
                 e.printStackTrace();
             }
             // Give the user 3 seconds to prepare
-            countDownTimer.start();
+            figureListCounter.start();
         } else {
             ((MainActivity)getActivity()).getFragmentData(null);
         }

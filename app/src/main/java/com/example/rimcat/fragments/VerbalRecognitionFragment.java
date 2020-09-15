@@ -7,6 +7,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.AppCompatButton;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +27,7 @@ public class VerbalRecognitionFragment extends QuestionFragment {
     private ArrayList<String>   choiceList;
     private Button              nextButton;
     private Button[]            choiceButtons;
+    private TextView            verbalRecReminder;
     private View.OnClickListener choiceListener;
     private String[][]            wordList;
     private int                 pageCount;
@@ -35,6 +39,16 @@ public class VerbalRecognitionFragment extends QuestionFragment {
         // Layout initialization
         cardView = view.findViewById(R.id.vr_page);
 
+        // Bold prompt text
+        verbalRecReminder = view.findViewById(R.id.verbal_rec_reminder);
+        ForegroundColorSpan fcs = new ForegroundColorSpan(getResources().getColor(R.color.colorAccent));
+        String reminderText = getResources().getString(R.string.verbal_rec_reminder);
+        int highlightTextLength = "first list.".length();
+        SpannableString reminderTextSS = new SpannableString(reminderText);
+        reminderTextSS.setSpan(fcs, reminderText.length() - highlightTextLength, reminderText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        verbalRecReminder.setText(reminderTextSS);
+
+        // Set up grid
         choiceList = new ArrayList<>();
         choiceButtons = new Button[] {
                 view.findViewById(R.id.vrb1), view.findViewById(R.id.vrb2),
@@ -51,6 +65,7 @@ public class VerbalRecognitionFragment extends QuestionFragment {
         };
         initializeGrid();
 
+        // Set up next button
         nextButton = view.findViewById(R.id.vr_next_btn);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override

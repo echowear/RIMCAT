@@ -70,13 +70,14 @@ public class RecallFinishDialog extends DialogFragment {
                 Button btnPositive = alert.getButton(Dialog.BUTTON_POSITIVE);
                 btnPositive.setTextSize(TEXT_SIZE);
                 btnPositive.setTextColor(getResources().getColor(R.color.white));
-                btnPositive.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                btnPositive.setBackground(getResources().getDrawable(R.drawable.roundbutton));
                 btnPositive.setLayoutParams(params);
 
                 Button btnNegative = alert.getButton(Dialog.BUTTON_NEGATIVE);
                 btnNegative.setTextSize(TEXT_SIZE);
                 btnNegative.setTextColor(getResources().getColor(R.color.white));
-                btnNegative.setBackgroundColor(getResources().getColor(R.color.backgroundColor));
+                btnNegative.setBackground(getResources().getDrawable(R.drawable.roundbutton));
+                btnNegative.getBackground().setTint(getResources().getColor(R.color.backgroundColor));
                 btnNegative.setLayoutParams(params);
             }
         });

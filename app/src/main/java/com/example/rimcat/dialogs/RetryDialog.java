@@ -63,7 +63,7 @@ public class RetryDialog extends DialogFragment {
                 Button btnPositive = alert.getButton(Dialog.BUTTON_POSITIVE);
                 btnPositive.setTextSize(TEXT_SIZE);
                 btnPositive.setTextColor(getResources().getColor(R.color.white));
-                btnPositive.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                btnPositive.setBackground(getResources().getDrawable(R.drawable.roundbutton));
                 btnPositive.setLayoutParams(params);
             }
         });
