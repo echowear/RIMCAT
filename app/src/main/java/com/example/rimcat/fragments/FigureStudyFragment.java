@@ -42,7 +42,7 @@ public class FigureStudyFragment extends QuestionFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_figure_study, container, false);
 
-        figurePrompts = getResources().getStringArray(R.array.figure_prompt_array);
+//        figurePrompts = getResources().getStringArray(R.array.figure_prompt_array);
         figureImage = view.findViewById(R.id.figure_image);
         figureText = view.findViewById(R.id.figure_ready_text);
         figureReadyBtn = view.findViewById(R.id.figure_readyBtn);
@@ -50,7 +50,7 @@ public class FigureStudyFragment extends QuestionFragment {
         imageCard = view.findViewById(R.id.image_card);
 
         imageCard.setVisibility(View.INVISIBLE);
-        figureText.setText(figurePrompts[figCount]);
+        figureText.setText(getResources().getString(R.string.verbal_readyPrompt));
 
         figureReadyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +63,8 @@ public class FigureStudyFragment extends QuestionFragment {
         countDownTimer = new CountDownTimer(3000, 990) {
             @Override
             public void onTick(long millisUntilFinished) {
-                figureText.setText("" + countdown);
+                if (countdown > 0)
+                    figureText.setText("" + countdown);
                 countdown--;
             }
 
@@ -139,4 +140,6 @@ public class FigureStudyFragment extends QuestionFragment {
     public void moveToNextPage() {
         ((MainActivity)getActivity()).addFragment(new FigureSelectFragment(), "FigureSelectFragment");
     }
+
+    //TODO: Add lifecycle code here
 }
