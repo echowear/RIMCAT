@@ -76,18 +76,7 @@ public class ComputationFragment extends QuestionFragment {
         numberToTextMap.put("÷", "Divided by");
 
         // Sets up text to speech to read numbers
-        textToSpeech = new TextToSpeech(getActivity().getApplicationContext(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if(status != TextToSpeech.ERROR) {
-                    textToSpeech.setLanguage(Locale.US);
-                    isTTSInitialized = true;
-                } else {
-                    Log.e(TAG, "TTS Initialization Failed!");
-                    isTTSInitialized = false;
-                }
-            }
-        });
+        setUpTextToSpeech();
 
         compEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -238,6 +227,21 @@ public class ComputationFragment extends QuestionFragment {
         }
     }
 
+    private void setUpTextToSpeech() {
+        textToSpeech = new TextToSpeech(getActivity().getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    textToSpeech.setLanguage(Locale.US);
+                    isTTSInitialized = true;
+                } else {
+                    Log.e(TAG, "TTS Initialization Failed!");
+                    isTTSInitialized = false;
+                }
+            }
+        });
+    }
+
     private void stopActivity() {
         if(textToSpeech != null){
             textToSpeech.stop();
@@ -249,6 +253,7 @@ public class ComputationFragment extends QuestionFragment {
 
     @Override
     public void onStart() {
+        setUpTextToSpeech();
         super.onStart();
     }
 
@@ -263,9 +268,9 @@ public class ComputationFragment extends QuestionFragment {
     }
 
     @Override
-    public void onDestroy() {
-        Log.d(TAG, "onDestroy: called");
+    public void onStop() {
+        Log.d(TAG, "onStop: called");
         stopActivity();
-        super.onDestroy();
+        super.onStop();
     }
 }

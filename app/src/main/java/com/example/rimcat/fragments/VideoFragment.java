@@ -37,7 +37,7 @@ public class VideoFragment extends QuestionFragment {
         });
         videoView.start();
 
-        cardView = view.findViewById(R.id.card);
+        cardView = view.findViewById(R.id.main_page);
         startAnimation(true);
         logStartTime();
         nextButtonReady();

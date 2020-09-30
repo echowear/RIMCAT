@@ -104,9 +104,6 @@ public class VerbalLearningFragment extends QuestionFragment {
             }
         };
 
-        // Sets up text to speech to read numbers
-        setUpTextToSpeech();
-
         startAnimation(true);
         nextButtonReady();
         return view;
@@ -150,6 +147,12 @@ public class VerbalLearningFragment extends QuestionFragment {
     @Override
     public boolean loadDataModel() {
         return true;
+    }
+
+    @Override
+    public void onStart() {
+        setUpTextToSpeech();
+        super.onStart();
     }
 
     @Override

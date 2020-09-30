@@ -119,6 +119,7 @@ public abstract class QuestionFragment extends Fragment {
     }
 
     public void nextButtonReady() {
+        
         ((MainActivity) Objects.requireNonNull(getActivity())).nextButtonReady();
     }
 

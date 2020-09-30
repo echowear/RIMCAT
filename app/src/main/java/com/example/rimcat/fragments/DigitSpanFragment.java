@@ -346,13 +346,19 @@ public class DigitSpanFragment extends QuestionFragment {
     }
 
     @Override
-    public void onDestroy() {
-        Log.d(TAG, "onDestroy: called");
+    public void onStart() {
+        setUpTextToSpeech();
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        Log.d(TAG, "onStop: called");
         stopActivity();
         if (storyMedia != null) {
             storyMedia.release();
             storyMedia = null;
         }
-        super.onDestroy();
+        super.onStop();
     }
 }
