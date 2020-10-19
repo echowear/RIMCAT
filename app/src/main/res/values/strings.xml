@@ -74,12 +74,13 @@
     <string-array name="education_array">
         <item></item>
         <item>No formal education</item>
-        <item>High School</item>
-        <item>College</item>
+        <item>GED</item>
+        <item>High School Graduate</item>
         <item>Vocational Training</item>
-        <item>University</item>
-        <item>Masters</item>
-        <item>Doctorate / PHD</item>
+        <item>Community College / 2-Year Degree</item>
+        <item>University / 4-Year Degree</item>
+        <item>Master\'s Degree</item>
+        <item>Doctorate Degree (e.g., MD, JD, PhD)</item>
     </string-array>
     <string name="today_prompt">Without looking at a calendar, type TODAY\'s date</string>
     <string name="day_of_week_prompt">What day of the week is it?</string>
@@ -612,6 +613,6 @@
     <string name="video_prompt">Please watch the video below, then complete the next activity.</string>
     <string name="keyboard_prompt1">Please type the word \"hello\", then press the button labeled \"Submit Word\".</string>
     <string name="keyboard_prompt2">Use the audio button to record the word \"hello\", then press the button labeled \"Submit Word\".</string>
-    <string name="instructions_reaction">A gray rectangle will appear in a random location on the screen. Press the rectangle as fast as you can.</string>
+    <string name="instructions_reaction">A series of gray rectangles will appear in a random location on the screen, one at a time. Press the rectangles as fast as you can.</string>
     <string name="reaction_prompt">Press the rectangle on the screen as quickly as you can.</string>
 </resources>
