@@ -107,8 +107,8 @@ public class StoryMemoryFragment extends QuestionFragment {
                 radioButton2.setText(answersArray[(fourAnswerCount * 4) + 1]);
                 radioButton3.setText(answersArray[(fourAnswerCount * 4) + 2]);
                 radioButton4.setText(answersArray[(fourAnswerCount * 4) + 3]);
-
             }
+            logStartTime();
         } else {
             ((MainActivity)getActivity()).getFragmentData(null);
         }

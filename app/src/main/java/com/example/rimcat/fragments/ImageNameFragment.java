@@ -80,6 +80,7 @@ public class ImageNameFragment extends QuestionFragment {
                 }
                 else {
                     isAnimationActive = false;
+                    logStartTime();
                 }
                 isFadingOut = !isFadingOut;
             }

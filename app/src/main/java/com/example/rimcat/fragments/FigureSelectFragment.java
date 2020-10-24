@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import com.example.rimcat.DataLogModel;
+import com.example.rimcat.ActivitiesModel;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 import java.util.ArrayList;
@@ -46,7 +46,7 @@ public class FigureSelectFragment extends QuestionFragment {
 
         // Set the current word list to the correct trial list words
         int currentView = ((MainActivity)getActivity()).getViewNumber();
-        if (currentView == DataLogModel.FIGURE_SELECT_SCREEN)
+        if (currentView == ActivitiesModel.FIGURE_SELECT_SCREEN)
             currentImageSrcList = IMAGE_RESOURCES_1;
         else
             currentImageSrcList = IMAGE_RESOURCES_2;
@@ -115,6 +115,7 @@ public class FigureSelectFragment extends QuestionFragment {
                     image.setTag(getResources().getResourceName(currentImageSrcList[figureCount + i]));
                     i++;
                 }
+                logStartTime();
             } else {
                 ((MainActivity)getActivity()).getFragmentData(null);
             }

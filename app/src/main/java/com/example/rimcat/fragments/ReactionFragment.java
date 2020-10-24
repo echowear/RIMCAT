@@ -138,6 +138,7 @@ public class ReactionFragment extends QuestionFragment {
         selectButtons[buttonToPressIndex].setVisibility(View.VISIBLE);
         Calendar calendar = Calendar.getInstance();
         reactionStart = calendar.getTimeInMillis();
+        logStartTime();
     }
 
     private void endIteration() {

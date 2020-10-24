@@ -1,41 +1,26 @@
 package com.example.rimcat.fragments;
 
-import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.Intent;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
-import android.speech.tts.Voice;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
-
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Locale;
-import java.util.Set;
 
 public class ComputationFragment extends QuestionFragment {
     private static final String TAG = "ComputationFragment";
@@ -44,7 +29,6 @@ public class ComputationFragment extends QuestionFragment {
             "6 + 11", "37 + 6", "41 - 5", "34 - 8", "9 x 4", "8 x 6", "32 ÷ 8", "68 ÷ 2"
     };
     private HashMap<String, String> numberToTextMap;
-    private TextToSpeech textToSpeech;
     private CountDownTimer showComputationTimer;
     private TextView computationText;
     private EditText compEditText;
@@ -53,15 +37,11 @@ public class ComputationFragment extends QuestionFragment {
     private String currentCompText;
     private boolean movingToNextActivity = false;
     private boolean hasRepeated = false;
-    private Context mContext;
-    private Vibrator mVibrator;
-    private boolean isTTSInitialized;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_computation, container, false);
-
         mContext = view.getContext();
         mVibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
 
@@ -75,7 +55,6 @@ public class ComputationFragment extends QuestionFragment {
         numberToTextMap.put("x", "Times");
         numberToTextMap.put("÷", "Divided by");
 
-        // Sets up text to speech to read numbers
         setUpTextToSpeech();
 
         compEditText.addTextChangedListener(new TextWatcher() {
@@ -93,8 +72,6 @@ public class ComputationFragment extends QuestionFragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {}
         });
 
-        // Buttons
-
         nextBtn.getBackground().setTint(getResources().getColor(R.color.backgroundColor));
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,15 +79,12 @@ public class ComputationFragment extends QuestionFragment {
                 moveToNextComputation();
             }
         });
-
         repeatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 repeatComputationRead();
             }
         });
-
-        // Timers
 
         showComputationTimer = new CountDownTimer(MILLIS_TO_SHOW_COMPUTATION, MILLIS_TO_SHOW_COMPUTATION) {
             @Override
@@ -151,7 +125,7 @@ public class ComputationFragment extends QuestionFragment {
     private void moveToNextComputation() {
         if (!movingToNextActivity && !compEditText.getText().toString().equals("")) {
             logEndTimeAndData(getActivity().getApplicationContext(), "computation," + compEditText.getText().toString());
-            vibrateToastAndExecuteSound(compEditText.getText().toString());
+            vibrateToastAndExecuteSound(compEditText.getText().toString(), false);
             currentCompNum++;
             if (currentCompNum < COMPUTATION_LIST.length) {
                 hasRepeated = false;
@@ -164,6 +138,7 @@ public class ComputationFragment extends QuestionFragment {
                 computationText.setText(currentCompText);
                 computationText.setVisibility(View.VISIBLE);
                 repeatBtn.setVisibility(View.INVISIBLE);
+                logStartTime();
                 readCurrentComputation();
             } else {
                 movingToNextActivity = true;
@@ -200,24 +175,6 @@ public class ComputationFragment extends QuestionFragment {
 
     }
 
-    private void vibrateToastAndExecuteSound(String submitText) {
-        // Vibrate the device
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && mVibrator != null) {
-            mVibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-        } else if (mVibrator != null) {
-            //deprecated in API 26
-            mVibrator.vibrate(500);
-        }
-
-        // Toast affirmative message
-        Toast t = Toast.makeText(getActivity(), "'" + submitText + "' submitted!", Toast.LENGTH_LONG);
-        ViewGroup group = (ViewGroup) t.getView();
-        TextView toastTV = (TextView) group.getChildAt(0);
-        toastTV.setTextSize(20);
-        t.setGravity(Gravity.TOP, 0, 5);
-        t.show();
-    }
-
     private void repeatComputationRead() {
         if (!hasRepeated) {
             hasRepeated = true;
@@ -227,25 +184,11 @@ public class ComputationFragment extends QuestionFragment {
         }
     }
 
-    private void setUpTextToSpeech() {
-        textToSpeech = new TextToSpeech(getActivity().getApplicationContext(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if(status != TextToSpeech.ERROR) {
-                    textToSpeech.setLanguage(Locale.US);
-                    isTTSInitialized = true;
-                } else {
-                    Log.e(TAG, "TTS Initialization Failed!");
-                    isTTSInitialized = false;
-                }
-            }
-        });
-    }
-
     private void stopActivity() {
         if(textToSpeech != null){
             textToSpeech.stop();
             textToSpeech.shutdown();
+            isTTSInitialized = false;
         }
         if (showComputationTimer != null)
             showComputationTimer.cancel();

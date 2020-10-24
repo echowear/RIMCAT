@@ -3,12 +3,7 @@ package com.example.rimcat.fragments;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
@@ -16,7 +11,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.rimcat.DataLogModel;
+import com.example.rimcat.ActivitiesModel;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 
@@ -33,8 +26,6 @@ import java.util.ArrayList;
 
 public class VerbalRecallFragment extends QuestionFragment {
     private static final String     TAG = "RecallResponseFragment";
-    private Context                 mContext;
-    private Vibrator                mVibrator;
     private EditText                responseText;
     private Button                  addBtn, doneRecallingBtn;
     private FloatingActionButton    audioBtn;
@@ -103,7 +94,8 @@ public class VerbalRecallFragment extends QuestionFragment {
                     String submitText = responseText.getText().toString();
                     responses.add(submitText);
                     responseText.setText("");
-                    vibrateToastAndExecuteSound(submitText);
+                    vibrateToastAndExecuteSound(submitText, true);
+                    logStartTime();
                 }
             }
         });
@@ -135,48 +127,21 @@ public class VerbalRecallFragment extends QuestionFragment {
         responseText.setText(speechText);
     }
 
-    private void vibrateToastAndExecuteSound(String submitText) {
-        // Vibrate the device
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && mVibrator != null) {
-            mVibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-        } else if (mVibrator != null) {
-            //deprecated in API 26
-            mVibrator.vibrate(500);
-        }
-
-        // Toast affirmative message
-        Toast t = Toast.makeText(getActivity(), "'" + submitText + "' submitted! Keep going!", Toast.LENGTH_LONG);
-        ViewGroup group = (ViewGroup) t.getView();
-        TextView toastTV = (TextView) group.getChildAt(0);
-        toastTV.setTextSize(20);
-        t.setGravity(Gravity.TOP, 0, 5);
-        t.show();
-
-        // Execute sound
-        try {
-            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-            Ringtone r = RingtoneManager.getRingtone(mContext, notification);
-            r.play();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public boolean loadDataModel() {
         int currentView = ((MainActivity)getActivity()).getViewNumber();
         for (int i = 0; i < responses.size(); i++) {
-            if (currentView == DataLogModel.VERBAL_RECALL_SCREEN_1)
+            if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_1)
                 logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_1," + responses.get(i));
-            else if (currentView == DataLogModel.VERBAL_RECALL_SCREEN_2)
+            else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_2)
                 logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_2," + responses.get(i));
-            else if (currentView == DataLogModel.VERBAL_RECALL_SCREEN_3)
+            else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_3)
                 logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_3," + responses.get(i));
-            else if (currentView == DataLogModel.VERBAL_RECALL_SCREEN_4)
+            else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_4)
                 logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_4," + responses.get(i));
-            else if (currentView == DataLogModel.VERBAL_RECALL_SCREEN_5)
+            else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_5)
                 logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_5," + responses.get(i));
-            else if (currentView == DataLogModel.VERBAL_RECALL_SCREEN_6)
+            else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_6)
                 logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_6," + responses.get(i));
         }
 

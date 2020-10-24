@@ -1,23 +1,14 @@
 package com.example.rimcat.fragments;
 
-import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.Intent;
 import android.media.MediaPlayer;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
-import android.speech.tts.Voice;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.SpannableString;
@@ -32,15 +23,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
-
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Locale;
-import java.util.Set;
 
 public class DigitSpanFragment extends QuestionFragment {
 
@@ -69,16 +55,12 @@ public class DigitSpanFragment extends QuestionFragment {
     private int[] currentNumberList;
     private int timerIndex = 0, currentWord = 0;
     private boolean movingToNextActivity = false;
-    private TextToSpeech textToSpeech;
     private CountDownTimer countDownTimer, trialListCounter;
     private CardView countdownCard, numRecallCard;
     private Button readyBtn, nextBtn;
     private TextView dsNumText, dsRecallText;
     private EditText dsEditText;
     private MediaPlayer storyMedia;
-    private Context mContext;
-    private Vibrator mVibrator;
-    boolean isTTSInitialized;
 
     @Nullable
     @Override
@@ -167,7 +149,7 @@ public class DigitSpanFragment extends QuestionFragment {
                 if (!movingToNextActivity) {
                     if (!dsEditText.getText().toString().equals("")) {
                         logEndTimeAndData(getActivity().getApplicationContext(), "digit_span," + dsEditText.getText().toString());
-                        vibrateToastAndExecuteSound(dsEditText.getText().toString());
+                        vibrateToastAndExecuteSound(dsEditText.getText().toString(), true);
                         ((MainActivity)getActivity()).hideSoftKeyboard();
                         moveToNextNumber();
                     }
@@ -215,6 +197,7 @@ public class DigitSpanFragment extends QuestionFragment {
         timerIndex = 0;
         countdownCard.setVisibility(View.INVISIBLE);
         numRecallCard.setVisibility(View.VISIBLE);
+        logStartTime();
     }
 
     private void moveToNextNumber() {
@@ -282,52 +265,11 @@ public class DigitSpanFragment extends QuestionFragment {
         }
     }
 
-    private void vibrateToastAndExecuteSound(String submitText) {
-        // Vibrate the device
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && mVibrator != null) {
-            mVibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-        } else if (mVibrator != null) {
-            //deprecated in API 26
-            mVibrator.vibrate(500);
-        }
-
-        // Toast affirmative message
-        Toast t = Toast.makeText(getActivity(), "'" + submitText + "' submitted!", Toast.LENGTH_LONG);
-        ViewGroup group = (ViewGroup) t.getView();
-        TextView toastTV = (TextView) group.getChildAt(0);
-        toastTV.setTextSize(20);
-        t.setGravity(Gravity.TOP, 0, 5);
-        t.show();
-
-        // Execute sound
-        try {
-            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-            Ringtone r = RingtoneManager.getRingtone(mContext, notification);
-            r.play();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void setUpTextToSpeech() {
-        textToSpeech = new TextToSpeech(getActivity().getApplicationContext(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if(status != TextToSpeech.ERROR) {
-                    textToSpeech.setLanguage(Locale.US);
-                    isTTSInitialized = true;
-                } else {
-                    Log.e(TAG, "TTS Initialization Failed!");
-                    isTTSInitialized = false;
-                }
-            }
-        });
-    }
-
     private void stopActivity() {
         if(textToSpeech != null){
             textToSpeech.stop();
             textToSpeech.shutdown();
+            isTTSInitialized = false;
         }
         if (countDownTimer != null)
             countDownTimer.cancel();

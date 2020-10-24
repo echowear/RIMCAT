@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.example.rimcat.DataLogModel;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 

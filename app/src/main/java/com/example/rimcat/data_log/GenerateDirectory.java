@@ -1,4 +1,4 @@
-package com.example.rimcat;
+package com.example.rimcat.data_log;
 
 import android.app.Application;
 import android.content.Context;

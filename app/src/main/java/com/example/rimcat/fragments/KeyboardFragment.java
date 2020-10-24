@@ -105,7 +105,7 @@ public class KeyboardFragment extends QuestionFragment {
             ((MainActivity)getActivity()).hideSoftKeyboard();
             responseText.setText("");
             audioBtn.show();
-            vibrateToastAndExecuteSound("hello");
+            vibrateToastAndExecuteSound("hello", true);
         } else if (wasMicPressed) {
             ((MainActivity)getActivity()).getFragmentData(null);
         } else {
@@ -114,33 +114,6 @@ public class KeyboardFragment extends QuestionFragment {
             TextView toastTV = (TextView) group.getChildAt(0);
             toastTV.setTextSize(20);
             t.show();
-        }
-    }
-
-    private void vibrateToastAndExecuteSound(String submitText) {
-        // Vibrate the device
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && mVibrator != null) {
-            mVibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-        } else if (mVibrator != null) {
-            //deprecated in API 26
-            mVibrator.vibrate(500);
-        }
-
-        // Toast affirmative message
-        Toast t = Toast.makeText(getActivity(), "'" + submitText + "' submitted! Keep going!", Toast.LENGTH_LONG);
-        ViewGroup group = (ViewGroup) t.getView();
-        TextView toastTV = (TextView) group.getChildAt(0);
-        toastTV.setTextSize(20);
-//        t.setGravity(Gravity.TOP, 0, 5);
-        t.show();
-
-        // Execute sound
-        try {
-            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-            Ringtone r = RingtoneManager.getRingtone(mContext, notification);
-            r.play();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

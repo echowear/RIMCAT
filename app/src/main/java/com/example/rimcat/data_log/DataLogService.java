@@ -1,4 +1,4 @@
-package com.example.rimcat;
+package com.example.rimcat.data_log;
 
 import android.app.IntentService;
 import android.content.Context;
@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class DataLogService extends IntentService {
     private static final String TAG = "DataLogService";
-    private static final String HEADER = "patient_id,question,response,start_time,end_time,date";
+    private static final String HEADER = "patient_id,question,response,response_time,start_time,end_time,date";
     private static final String EXTRA_FILE_DESTINATION = "rimcat.file_destination";
     private static final String EXTRA_DATA = "rimcat.data";
 

@@ -4,7 +4,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.speech.tts.TextToSpeech;
-import android.speech.tts.Voice;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -13,14 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.example.rimcat.DataLogModel;
+import com.example.rimcat.ActivitiesModel;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
-
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
 
 public class VerbalLearningFragment extends QuestionFragment {
     private static final String TAG = "VerbalRecallFragment";
@@ -36,11 +30,10 @@ public class VerbalLearningFragment extends QuestionFragment {
 
     private TextView verbalText;
     private Button readyBtn;
-    private TextToSpeech textToSpeech;
     private CountDownTimer countDownTimer, trialListCounter;
     private int timerIndex;
     private String[] currentWordList;
-    private boolean isTTSInitialized, countdownStarted;
+    private boolean countdownStarted;
 
     @Nullable
     @Override
@@ -49,7 +42,7 @@ public class VerbalLearningFragment extends QuestionFragment {
 
         // Set the current word list to the correct trial list words
         int currentView = ((MainActivity)getActivity()).getViewNumber();
-        if (currentView == DataLogModel.VERBAL_LEARNING_SCREEN_4)
+        if (currentView == ActivitiesModel.VERBAL_LEARNING_SCREEN_4)
             currentWordList = TRIAL_LIST_TWO;
         else
             currentWordList = TRIAL_LIST_ONE;
@@ -118,25 +111,11 @@ public class VerbalLearningFragment extends QuestionFragment {
         countDownTimer.start();
     }
 
-    private void setUpTextToSpeech() {
-        textToSpeech = new TextToSpeech(getActivity().getApplicationContext(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if(status != TextToSpeech.ERROR) {
-                    textToSpeech.setLanguage(Locale.US);
-                    isTTSInitialized = true;
-                } else {
-                    Log.e(TAG, "TTS Initialization Failed!");
-                    isTTSInitialized = false;
-                }
-            }
-        });
-    }
-
     private void stopActivity() {
         if(textToSpeech != null){
             textToSpeech.stop();
             textToSpeech.shutdown();
+            isTTSInitialized = false;
         }
         if (countDownTimer != null)
             countDownTimer.cancel();

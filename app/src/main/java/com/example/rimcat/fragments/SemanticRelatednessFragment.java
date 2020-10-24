@@ -3,27 +3,20 @@ package com.example.rimcat.fragments;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.AppCompatButton;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TableLayout;
 import android.widget.TextView;
-
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
-
-import java.util.ArrayList;
 
 public class SemanticRelatednessFragment extends QuestionFragment {
     private static final String TAG = "SemanticRelatedness";
@@ -105,8 +98,8 @@ public class SemanticRelatednessFragment extends QuestionFragment {
         logEndTimeAndData(getActivity(), "semantic_relatedness_page" + pageCount + "," + wordChoice);
         if (pageCount < semanticChoices.length) {
             changeButtonText();
-            // Change category text
             changeHeaderText();
+            logStartTime();
         } else {
             ((MainActivity)getActivity()).getFragmentData(null);
         }

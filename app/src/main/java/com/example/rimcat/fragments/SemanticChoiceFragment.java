@@ -18,14 +18,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
-
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class SemanticChoiceFragment extends QuestionFragment {
     private static final String TAG = "SemanticChoiceFragment";
@@ -108,6 +104,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
                 semanticGrid.setVisibility(View.VISIBLE);
                 inSelectionState = true;
                 selectionCountdown.start();
+                logStartTime();
             }
         };
 
@@ -132,7 +129,6 @@ public class SemanticChoiceFragment extends QuestionFragment {
         };
 
         startAnimation(true);
-        logStartTime();
         nextButtonReady();
         return view;
     }

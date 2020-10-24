@@ -157,32 +157,31 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
 
     private void viewButtonVisibility() {
         Log.d(TAG, "viewButtonVisibility: View Number: " + viewNumber);
-        // TODO: Add video instructions here when ready
-        if (    viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_1 ||
-                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_3 ||
-                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_4 ||
-                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_5 ||
-                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_6 ||
-                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_7 ||
-                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_8 ||
-                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_9 ||
-                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_10 ||
-                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_11 ||
-                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_12 ||
-                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_13 ||
-                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_14 ||
-                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_15 ||
-                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_16 ||
-                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_17 ||
-                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_18 ||
-                viewNumber == DataLogModel.INSTRUCTIONS_SCREEN_19 ||
-                viewNumber == DataLogModel.VERBAL_LEARNING_SCREEN_1 ||
-                viewNumber == DataLogModel.VERBAL_LEARNING_SCREEN_2 ||
-                viewNumber == DataLogModel.VERBAL_LEARNING_SCREEN_3 ||
-                viewNumber == DataLogModel.VERBAL_LEARNING_SCREEN_4 ||
-                viewNumber == DataLogModel.VIDEO_SCREEN ||
-                viewNumber == DataLogModel.FIGURE_STUDY_SCREEN ||
-                viewNumber == DataLogModel.SEMANTIC_RELATEDNESS_SCREEN) {
+        if (    viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_1 ||
+                viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_3 ||
+                viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_4 ||
+                viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_5 ||
+                viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_6 ||
+                viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_7 ||
+                viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_8 ||
+                viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_9 ||
+                viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_10 ||
+                viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_11 ||
+                viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_12 ||
+                viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_13 ||
+                viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_14 ||
+                viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_15 ||
+                viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_16 ||
+                viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_17 ||
+                viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_18 ||
+                viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_19 ||
+                viewNumber == ActivitiesModel.VERBAL_LEARNING_SCREEN_1 ||
+                viewNumber == ActivitiesModel.VERBAL_LEARNING_SCREEN_2 ||
+                viewNumber == ActivitiesModel.VERBAL_LEARNING_SCREEN_3 ||
+                viewNumber == ActivitiesModel.VERBAL_LEARNING_SCREEN_4 ||
+                viewNumber == ActivitiesModel.VIDEO_SCREEN ||
+                viewNumber == ActivitiesModel.FIGURE_STUDY_SCREEN ||
+                viewNumber == ActivitiesModel.SEMANTIC_RELATEDNESS_SCREEN) {
             nextText.setVisibility(View.INVISIBLE);
             nextButton.hide();
         }
@@ -203,247 +202,247 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
 
         switch (itemID) {
             case R.id.screen_home_om:
-                this.viewNumber = DataLogModel.HOME_SCREEN;
+                this.viewNumber = ActivitiesModel.HOME_SCREEN;
                 fragmentTag = "HomeFragment";
                 fragmentTransaction.replace(R.id.container, new HomeFragment(), "HomeFragment");
                 break;
             case R.id.screen_inst_1_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_1;
+                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_1;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
             case R.id.screen_video_om:
-                this.viewNumber = DataLogModel.VIDEO_SCREEN;
+                this.viewNumber = ActivitiesModel.VIDEO_SCREEN;
                 fragmentTag = "VideoFragment";
                 fragmentTransaction.replace(R.id.container, new VideoFragment(), "VideoFragment");
                 break;
             case R.id.screen_keyboard_om:
-                this.viewNumber = DataLogModel.KEYBOARD_SCREEN;
+                this.viewNumber = ActivitiesModel.KEYBOARD_SCREEN;
                 fragmentTag = "KeyboardFragment";
                 fragmentTransaction.replace(R.id.container, new KeyboardFragment(), "KeyboardFragment");
                 break;
             case R.id.screen_inst_2_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_2;
+                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_2;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
             case R.id.screen_education_om:
-                this.viewNumber = DataLogModel.EDUCATION_SCREEN;
+                this.viewNumber = ActivitiesModel.EDUCATION_SCREEN;
                 fragmentTag = "EducationFragment";
                 fragmentTransaction.replace(R.id.container, new EducationFragment(), "EducationFragment");
                 break;
             case R.id.screen_date_om:
-                this.viewNumber = DataLogModel.TODAYS_DATE_SCREEN;
+                this.viewNumber = ActivitiesModel.TODAYS_DATE_SCREEN;
                 fragmentTag = "TodayDateFragment";
                 fragmentTransaction.replace(R.id.container, new TodayDateFragment(), "TodayDateFragment");
                 break;
             case R.id.screen_day_om:
-                this.viewNumber = DataLogModel.DAY_OF_WEEK_SCREEN;
+                this.viewNumber = ActivitiesModel.DAY_OF_WEEK_SCREEN;
                 fragmentTag = "DayOfWeekFragment";
                 fragmentTransaction.replace(R.id.container, new DayOfWeekFragment(), "DayOfWeekFragment");
                 break;
             case R.id.screen_season_om:
-                this.viewNumber = DataLogModel.SEASON_SCREEN;
+                this.viewNumber = ActivitiesModel.SEASON_SCREEN;
                 fragmentTag = "SeasonFragment";
                 fragmentTransaction.replace(R.id.container, new SeasonFragment(), "SeasonFragment");
                 break;
             case R.id.screen_inst_3_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_3;
+                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_3;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
             case R.id.screen_reaction_om:
-                this.viewNumber = DataLogModel.REACTION_SCREEN;
+                this.viewNumber = ActivitiesModel.REACTION_SCREEN;
                 fragmentTag = "ReactionFragment";
                 fragmentTransaction.replace(R.id.container, new ReactionFragment(), "ReactionFragment");
                 break;
             case R.id.screen_inst_4_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_4;
+                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_4;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
             case R.id.screen_img_nm_om:
-                this.viewNumber = DataLogModel.IMAGE_NAME_SCREEN;
+                this.viewNumber = ActivitiesModel.IMAGE_NAME_SCREEN;
                 fragmentTag = "ImageNameFragment";
                 fragmentTransaction.replace(R.id.container, new ImageNameFragment(), "ImageNameFragment");
                 break;
             case R.id.screen_inst_5_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_5;
+                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_5;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
             case R.id.screen_verbal_1_om:
-                this.viewNumber = DataLogModel.VERBAL_LEARNING_SCREEN_1;
+                this.viewNumber = ActivitiesModel.VERBAL_LEARNING_SCREEN_1;
                 fragmentTag = "VerbalRecallFragment";
                 fragmentTransaction.replace(R.id.container, new VerbalLearningFragment(), "VerbalRecallFragment");
                 break;
             case R.id.screen_recall_1_om:
-                this.viewNumber = DataLogModel.VERBAL_RECALL_SCREEN_1;
+                this.viewNumber = ActivitiesModel.VERBAL_RECALL_SCREEN_1;
                 fragmentTag = "RecallResponseFragment";
                 fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "RecallResponseFragment");
                 break;
             case R.id.screen_inst_6_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_6;
+                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_6;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
             case R.id.screen_verbal_2_om:
-                this.viewNumber = DataLogModel.VERBAL_LEARNING_SCREEN_2;
+                this.viewNumber = ActivitiesModel.VERBAL_LEARNING_SCREEN_2;
                 fragmentTag = "VerbalRecallFragment";
                 fragmentTransaction.replace(R.id.container, new VerbalLearningFragment(), "VerbalRecallFragment");
                 break;
             case R.id.screen_recall_2_om:
-                this.viewNumber = DataLogModel.VERBAL_RECALL_SCREEN_2;
+                this.viewNumber = ActivitiesModel.VERBAL_RECALL_SCREEN_2;
                 fragmentTag = "RecallResponseFragment";
                 fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "RecallResponseFragment");
                 break;
             case R.id.screen_inst_7_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_7;
+                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_7;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
             case R.id.screen_verbal_3_om:
-                this.viewNumber = DataLogModel.VERBAL_LEARNING_SCREEN_3;
+                this.viewNumber = ActivitiesModel.VERBAL_LEARNING_SCREEN_3;
                 fragmentTag = "VerbalRecallFragment";
                 fragmentTransaction.replace(R.id.container, new VerbalLearningFragment(), "VerbalRecallFragment");
                 break;
             case R.id.screen_recall_3_om:
-                this.viewNumber = DataLogModel.VERBAL_RECALL_SCREEN_3;
+                this.viewNumber = ActivitiesModel.VERBAL_RECALL_SCREEN_3;
                 fragmentTag = "RecallResponseFragment";
                 fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "RecallResponseFragment");
                 break;
             case R.id.screen_inst_8_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_8;
+                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_8;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
             case R.id.screen_verbal_4_om:
-                this.viewNumber = DataLogModel.VERBAL_LEARNING_SCREEN_4;
+                this.viewNumber = ActivitiesModel.VERBAL_LEARNING_SCREEN_4;
                 fragmentTag = "VerbalRecallFragment";
                 fragmentTransaction.replace(R.id.container, new VerbalLearningFragment(), "VerbalRecallFragment");
                 break;
             case R.id.screen_recall_4_om:
-                this.viewNumber = DataLogModel.VERBAL_RECALL_SCREEN_4;
+                this.viewNumber = ActivitiesModel.VERBAL_RECALL_SCREEN_4;
                 fragmentTag = "RecallResponseFragment";
                 fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "RecallResponseFragment");
                 break;
             case R.id.screen_inst_9_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_9;
+                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_9;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
             case R.id.screen_recall_5_om:
-                this.viewNumber = DataLogModel.VERBAL_RECALL_SCREEN_5;
+                this.viewNumber = ActivitiesModel.VERBAL_RECALL_SCREEN_5;
                 fragmentTag = "RecallResponseFragment";
                 fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "RecallResponseFragment");
                 break;
             case R.id.screen_inst_10_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_10;
+                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_10;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
             case R.id.screen_fig_study_om:
-                this.viewNumber = DataLogModel.FIGURE_STUDY_SCREEN;
+                this.viewNumber = ActivitiesModel.FIGURE_STUDY_SCREEN;
                 fragmentTag = "FigureStudyFragment";
                 fragmentTransaction.replace(R.id.container, new FigureStudyFragment(), "FigureStudyFragment");
                 break;
             case R.id.screen_fig_select_om:
-                this.viewNumber = DataLogModel.FIGURE_SELECT_SCREEN;
+                this.viewNumber = ActivitiesModel.FIGURE_SELECT_SCREEN;
                 fragmentTag = "FigureSelectFragment";
                 fragmentTransaction.replace(R.id.container, new FigureSelectFragment(), "FigureSelectFragment");
                 break;
             case R.id.screen_inst_11_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_11;
+                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_11;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
             case R.id.screen_digit_span_om:
-                this.viewNumber = DataLogModel.DIGIT_SPAN_SCREEN;
+                this.viewNumber = ActivitiesModel.DIGIT_SPAN_SCREEN;
                 fragmentTag = "DigitSpanFragment";
                 fragmentTransaction.replace(R.id.container, new DigitSpanFragment(), "DigitSpanFragment");
                 break;
             case R.id.screen_inst_12_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_12;
+                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_12;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
             case R.id.screen_read_comp_story_om:
-                this.viewNumber = DataLogModel.READ_COMP_STORY_SCREEN;
+                this.viewNumber = ActivitiesModel.READ_COMP_STORY_SCREEN;
                 fragmentTag = "ReadingCompFragment";
                 fragmentTransaction.replace(R.id.container, new StoryLearningFragment(), "ReadingCompFragment");
                 break;
             case R.id.screen_inst_13_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_13;
+                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_13;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
             case R.id.screen_computation_om:
-                this.viewNumber = DataLogModel.COMPUTATION_SCREEN;
+                this.viewNumber = ActivitiesModel.COMPUTATION_SCREEN;
                 fragmentTag = "ComputationFragment";
                 fragmentTransaction.replace(R.id.container, new ComputationFragment(), "ComputationFragment");
                 break;
             case R.id.screen_inst_14_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_14;
+                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_14;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
             case R.id.screen_recall_6_om:
-                this.viewNumber = DataLogModel.VERBAL_RECALL_SCREEN_6;
+                this.viewNumber = ActivitiesModel.VERBAL_RECALL_SCREEN_6;
                 fragmentTag = "RecallResponseFragment";
                 fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "RecallResponseFragment");
                 break;
             case R.id.screen_inst_15_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_15;
+                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_15;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
             case R.id.screen_verbal_rec_om:
-                this.viewNumber = DataLogModel.VERBAL_RECOGNITION_SCREEN;
+                this.viewNumber = ActivitiesModel.VERBAL_RECOGNITION_SCREEN;
                 fragmentTag = "VerbalRecognitionFragment";
                 fragmentTransaction.replace(R.id.container, new VerbalRecognitionFragment(), "VerbalRecognitionFragment");
                 break;
             case R.id.screen_inst_16_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_16;
+                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_16;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
             case R.id.screen_semantic_choice_om:
-                this.viewNumber = DataLogModel.SEMANTIC_CHOICE_SCREEN;
+                this.viewNumber = ActivitiesModel.SEMANTIC_CHOICE_SCREEN;
                 fragmentTag = "SemanticChoiceFragment";
                 fragmentTransaction.replace(R.id.container, new SemanticChoiceFragment(), "SemanticChoiceFragment");
                 break;
             case R.id.screen_inst_17_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_17;
+                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_17;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
             case R.id.screen_fig_select_2_om:
-                this.viewNumber = DataLogModel.FIGURE_SELECT_SCREEN_2;
+                this.viewNumber = ActivitiesModel.FIGURE_SELECT_SCREEN_2;
                 fragmentTag = "FigureSelectFragment";
                 fragmentTransaction.replace(R.id.container, new FigureSelectFragment(), "FigureSelectFragment");
                 break;
             case R.id.screen_inst_18_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_18;
+                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_18;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
             case R.id.screen_read_comp_test_om:
-                this.viewNumber = DataLogModel.READ_COMP_TEST_SCREEN;
+                this.viewNumber = ActivitiesModel.READ_COMP_TEST_SCREEN;
                 fragmentTag = "ReadCompTestFragment";
                 fragmentTransaction.replace(R.id.container, new StoryMemoryFragment(), "ReadCompTestFragment");
                 break;
             case R.id.screen_inst_19_om:
-                this.viewNumber = DataLogModel.INSTRUCTIONS_SCREEN_19;
+                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_19;
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
             case R.id.screen_semantic_relatedness_om:
-                this.viewNumber = DataLogModel.SEMANTIC_RELATEDNESS_SCREEN;
+                this.viewNumber = ActivitiesModel.SEMANTIC_RELATEDNESS_SCREEN;
                 fragmentTag = "SemanticRelatedness";
                 fragmentTransaction.replace(R.id.container, new SemanticRelatednessFragment(), "SemanticRelatedness");
                 break;
             case R.id.screen_finish_om:
-                this.viewNumber = DataLogModel.FINISH_SCREEN;
+                this.viewNumber = ActivitiesModel.FINISH_SCREEN;
                 fragmentTag = "FinishFragment";
                 fragmentTransaction.replace(R.id.container, new FinishFragment(), "FinishFragment");
                 break;
@@ -493,16 +492,16 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         }
         if (speechText != null) {
             switch (viewNumber) {
-                case DataLogModel.VERBAL_RECALL_SCREEN_1:
-                case DataLogModel.VERBAL_RECALL_SCREEN_2:
-                case DataLogModel.VERBAL_RECALL_SCREEN_3:
-                case DataLogModel.VERBAL_RECALL_SCREEN_4:
-                case DataLogModel.VERBAL_RECALL_SCREEN_5:
-                case DataLogModel.VERBAL_RECALL_SCREEN_6:
+                case ActivitiesModel.VERBAL_RECALL_SCREEN_1:
+                case ActivitiesModel.VERBAL_RECALL_SCREEN_2:
+                case ActivitiesModel.VERBAL_RECALL_SCREEN_3:
+                case ActivitiesModel.VERBAL_RECALL_SCREEN_4:
+                case ActivitiesModel.VERBAL_RECALL_SCREEN_5:
+                case ActivitiesModel.VERBAL_RECALL_SCREEN_6:
                     VerbalRecallFragment verbalRecallFragment = (VerbalRecallFragment) fragmentManager.findFragmentByTag(fragmentTag);
                     verbalRecallFragment.setResponseTextToSpeechText(speechText.get(0));
                     break;
-                case DataLogModel.KEYBOARD_SCREEN:
+                case ActivitiesModel.KEYBOARD_SCREEN:
                     KeyboardFragment keyboardFragment = (KeyboardFragment) fragmentManager.findFragmentByTag(fragmentTag);
                     keyboardFragment.setResponseTextToSpeechText(speechText.get(0));
                     break;

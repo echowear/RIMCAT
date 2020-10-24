@@ -109,13 +109,8 @@ public class FigureStudyFragment extends QuestionFragment {
         // Increment and change view values
         figCount++;
         if (figCount < FIGURE_LIST.length) {
-//            imageCard.setVisibility(View.INVISIBLE);
             // Swap image and prompt text
             figureImage.setImageResource(FIGURE_LIST[figCount]);
-
-//            figureText.setText(figurePrompts[figCount]);
-            // Make prompt visible again
-//            promptCard.setVisibility(View.VISIBLE);
             // Play affirmative sound
             try {
                 Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);

@@ -1,6 +1,5 @@
 package com.example.rimcat.fragments;
 
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -117,6 +116,7 @@ public class VerbalRecognitionFragment extends QuestionFragment {
         }
         if (pageCount < wordList.length) {
             changeButtonText();
+            logStartTime();
         } else {
             ((MainActivity)getActivity()).getFragmentData(null);
         }
