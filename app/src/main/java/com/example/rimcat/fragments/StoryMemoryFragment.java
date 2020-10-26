@@ -123,4 +123,9 @@ public class StoryMemoryFragment extends QuestionFragment {
     public void moveToNextPage() {
         ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
     }
+
+    @Override
+    public String getCorrectAnswer() {
+        return null;
+    }
 }

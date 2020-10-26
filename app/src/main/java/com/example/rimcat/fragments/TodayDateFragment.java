@@ -87,4 +87,9 @@ public class TodayDateFragment extends QuestionFragment {
     public void moveToNextPage() {
         ((MainActivity)getActivity()).addFragment(new DayOfWeekFragment(), "DayOfWeekFragment");
     }
+
+    @Override
+    public String getCorrectAnswer() {
+        return null;
+    }
 }

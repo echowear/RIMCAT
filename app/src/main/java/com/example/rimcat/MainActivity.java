@@ -29,6 +29,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.rimcat.data_log.CorrectAnswerDictionary;
 import com.example.rimcat.dialogs.RecallFinishDialog;
 import com.example.rimcat.dialogs.RetryDialog;
 import com.example.rimcat.fragments.ComputationFragment;
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        CorrectAnswerDictionary.loadAnswers();
         appBackground = findViewById(R.id.app_background);
 
         // Initially change view to home fragment

@@ -18,13 +18,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TextView;
-
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
-
 import java.text.DecimalFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Random;
 
 public class ReactionFragment extends QuestionFragment {
@@ -185,5 +182,10 @@ public class ReactionFragment extends QuestionFragment {
     @Override
     public void moveToNextPage() {
         ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
+    }
+
+    @Override
+    public String getCorrectAnswer() {
+        return null;
     }
 }

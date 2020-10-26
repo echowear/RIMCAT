@@ -46,4 +46,9 @@ public class DayOfWeekFragment extends QuestionFragment {
     public void moveToNextPage() {
         ((MainActivity)getActivity()).addFragment(new SeasonFragment(), "SeasonFragment");
     }
+
+    @Override
+    public String getCorrectAnswer() {
+        return null;
+    }
 }

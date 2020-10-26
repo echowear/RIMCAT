@@ -119,6 +119,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
                 for (String choice : choiceList) {
                     logEndTimeAndData(getActivity(), "semantic_choice_page" + pageCount + "," + choice);
                 }
+                choiceList.clear();
                 if (pageCount < semanticChoices.length) {
                     prepareNextGrid();
                 } else {
@@ -193,6 +194,11 @@ public class SemanticChoiceFragment extends QuestionFragment {
     @Override
     public void moveToNextPage() {
         ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
+    }
+
+    @Override
+    public String getCorrectAnswer() {
+        return null;
     }
 
     @Override

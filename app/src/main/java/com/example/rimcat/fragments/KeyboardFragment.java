@@ -3,18 +3,12 @@ package com.example.rimcat.fragments;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,11 +16,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
-
-import java.util.ArrayList;
 
 public class KeyboardFragment extends QuestionFragment {
 
@@ -129,5 +120,10 @@ public class KeyboardFragment extends QuestionFragment {
     @Override
     public void moveToNextPage() {
         ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
+    }
+
+    @Override
+    public String getCorrectAnswer() {
+        return null;
     }
 }

@@ -86,6 +86,11 @@ public class StoryLearningFragment extends QuestionFragment {
     }
 
     @Override
+    public String getCorrectAnswer() {
+        return null;
+    }
+
+    @Override
     public void onDestroy() {
         if (storyMedia != null) {
             storyMedia.release();

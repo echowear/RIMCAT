@@ -22,12 +22,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.rimcat.data_log.DataLogService;
 import com.example.rimcat.data_log.GenerateDirectory;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
-
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -179,6 +177,8 @@ public abstract class QuestionFragment extends Fragment {
     public abstract boolean loadDataModel();
 
     public abstract void moveToNextPage();
+
+    public abstract String getCorrectAnswer();
 
     @Nullable
     @Override

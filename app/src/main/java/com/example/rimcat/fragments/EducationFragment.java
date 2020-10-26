@@ -47,4 +47,9 @@ public class EducationFragment extends QuestionFragment {
     public void moveToNextPage() {
         ((MainActivity)getActivity()).addFragment(new TodayDateFragment(), "TodayDateFragment");
     }
+
+    @Override
+    public String getCorrectAnswer() {
+        return null;
+    }
 }

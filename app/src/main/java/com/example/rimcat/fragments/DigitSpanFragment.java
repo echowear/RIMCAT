@@ -26,7 +26,6 @@ import android.widget.TextView;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 import java.util.HashMap;
-import java.util.Locale;
 
 public class DigitSpanFragment extends QuestionFragment {
 
@@ -285,6 +284,11 @@ public class DigitSpanFragment extends QuestionFragment {
     @Override
     public void moveToNextPage() {
         ((MainActivity) getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
+    }
+
+    @Override
+    public String getCorrectAnswer() {
+        return null;
     }
 
     @Override

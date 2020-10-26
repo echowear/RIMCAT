@@ -21,7 +21,6 @@ import android.widget.Toast;
 import com.example.rimcat.ActivitiesModel;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
-
 import java.util.ArrayList;
 
 public class VerbalRecallFragment extends QuestionFragment {
@@ -151,5 +150,10 @@ public class VerbalRecallFragment extends QuestionFragment {
     @Override
     public void moveToNextPage() {
         ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
+    }
+
+    @Override
+    public String getCorrectAnswer() {
+        return null;
     }
 }

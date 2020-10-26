@@ -199,4 +199,9 @@ public class InstructionsFragment extends QuestionFragment {
         }
 
     }
+
+    @Override
+    public String getCorrectAnswer() {
+        return null;
+    }
 }

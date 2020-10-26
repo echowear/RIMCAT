@@ -136,5 +136,10 @@ public class FigureStudyFragment extends QuestionFragment {
         ((MainActivity)getActivity()).addFragment(new FigureSelectFragment(), "FigureSelectFragment");
     }
 
+    @Override
+    public String getCorrectAnswer() {
+        return null;
+    }
+
     //TODO: Add lifecycle code here
 }

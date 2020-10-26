@@ -8,12 +8,9 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.VideoView;
-
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
-
 import java.util.Objects;
 
 public class VideoFragment extends QuestionFragment {
@@ -52,5 +49,10 @@ public class VideoFragment extends QuestionFragment {
     @Override
     public void moveToNextPage() {
         ((MainActivity)getActivity()).addFragment(new KeyboardFragment(), "KeyboardFragment");
+    }
+
+    @Override
+    public String getCorrectAnswer() {
+        return null;
     }
 }

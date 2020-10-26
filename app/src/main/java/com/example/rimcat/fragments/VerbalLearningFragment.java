@@ -140,6 +140,11 @@ public class VerbalLearningFragment extends QuestionFragment {
     }
 
     @Override
+    public String getCorrectAnswer() {
+        return null;
+    }
+
+    @Override
     public void onResume() {
         Log.d(TAG, "onResume: called");
         if (countdownStarted) {

@@ -211,6 +211,11 @@ public class ComputationFragment extends QuestionFragment {
     }
 
     @Override
+    public String getCorrectAnswer() {
+        return null;
+    }
+
+    @Override
     public void onStop() {
         Log.d(TAG, "onStop: called");
         stopActivity();

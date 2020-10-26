@@ -124,4 +124,9 @@ public class SemanticRelatednessFragment extends QuestionFragment {
     public void moveToNextPage() {
         ((MainActivity)getActivity()).addFragment(new FinishFragment(), "FinishFragment");
     }
+
+    @Override
+    public String getCorrectAnswer() {
+        return null;
+    }
 }

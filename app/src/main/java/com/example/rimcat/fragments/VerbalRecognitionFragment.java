@@ -14,10 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
-
 import java.util.ArrayList;
 
 public class VerbalRecognitionFragment extends QuestionFragment {
@@ -130,5 +128,10 @@ public class VerbalRecognitionFragment extends QuestionFragment {
     @Override
     public void moveToNextPage() {
         ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
+    }
+
+    @Override
+    public String getCorrectAnswer() {
+        return null;
     }
 }
