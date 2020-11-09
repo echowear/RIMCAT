@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import com.example.rimcat.ActivitiesModel;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
+import com.example.rimcat.data_log.CorrectAnswerDictionary;
+
 import java.util.ArrayList;
 
 public class FigureSelectFragment extends QuestionFragment {
@@ -37,7 +39,7 @@ public class FigureSelectFragment extends QuestionFragment {
     private ImageView figure1, figure2, figure3, figure4, selectedImage;
     private ArrayList<ImageView> images;
     private Button nextButton;
-    private int figureCount = 0;
+    private int figureCount = 0, activityIndex = 0;
 
     @Nullable
     @Override
@@ -105,9 +107,10 @@ public class FigureSelectFragment extends QuestionFragment {
             Log.d(TAG, "recordDataAndPrepareImages: Image - " + selectedImage.getTag());
             selectedImage.setBackgroundColor(getResources().getColor(R.color.white));
             String imageTag = selectedImage.getTag().toString();
-            logEndTimeAndData(getActivity().getApplicationContext(), "figure_select," + imageTag.substring(imageTag.lastIndexOf("/") + 1));
+            logEndTimeAndData(getActivity().getApplicationContext(), "figure_select," + imageTag.substring(imageTag.lastIndexOf("/") + 1), getCorrectAnswer());
             selectedImage = null;
             figureCount += 4;
+            activityIndex++;
             if (figureCount < currentImageSrcList.length) {
                 int i = 0;
                 for (ImageView image : images) {
@@ -134,6 +137,6 @@ public class FigureSelectFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
-        return null;
+        return CorrectAnswerDictionary.FIGURE_SELECT_ANSWERS.get(activityIndex);
     }
 }

@@ -19,6 +19,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
+import com.example.rimcat.data_log.CorrectAnswerDictionary;
+
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -124,7 +126,7 @@ public class ComputationFragment extends QuestionFragment {
 
     private void moveToNextComputation() {
         if (!movingToNextActivity && !compEditText.getText().toString().equals("")) {
-            logEndTimeAndData(getActivity().getApplicationContext(), "computation," + compEditText.getText().toString());
+            logEndTimeAndData(getActivity().getApplicationContext(), "computation," + compEditText.getText().toString(), getCorrectAnswer());
             vibrateToastAndExecuteSound(compEditText.getText().toString(), false);
             currentCompNum++;
             if (currentCompNum < COMPUTATION_LIST.length) {
@@ -212,7 +214,7 @@ public class ComputationFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
-        return null;
+        return CorrectAnswerDictionary.COMPUTATION_ANSWERS.get(currentCompNum);
     }
 
     @Override

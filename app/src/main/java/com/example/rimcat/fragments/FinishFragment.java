@@ -67,7 +67,7 @@ public class FinishFragment extends QuestionFragment {
             @Override
             public void onClick(View v) {
                 if (!feedbackText.getText().toString().equals(""))
-                    logEndTimeAndData(getActivity().getApplicationContext(), "finish_feedback," + feedbackText.getText().toString());
+                    logEndTimeAndData(getActivity().getApplicationContext(), "finish_feedback," + feedbackText.getText().toString(), getCorrectAnswer());
                 isAnimationActive = true;
                 Animation fadeOutAnimation =  AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out);
                 fadeOutAnimation.setAnimationListener(animationListener);

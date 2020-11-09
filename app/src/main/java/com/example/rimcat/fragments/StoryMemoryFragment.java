@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
+import com.example.rimcat.data_log.CorrectAnswerDictionary;
 
 public class StoryMemoryFragment extends QuestionFragment {
     private static final String TAG = "ReadCompTestFragment";
@@ -87,7 +88,7 @@ public class StoryMemoryFragment extends QuestionFragment {
         View radioButton = group.findViewById(radioButtonID);
         int idx = group.indexOfChild(radioButton);
         RadioButton r = (RadioButton) group.getChildAt(idx);
-        logEndTimeAndData(getActivity().getApplicationContext(), "reading_comp," + r.getText().toString());
+        logEndTimeAndData(getActivity().getApplicationContext(), "reading_comp," + r.getText().toString(), getCorrectAnswer());
         group.clearCheck();
     }
 
@@ -126,6 +127,6 @@ public class StoryMemoryFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
-        return null;
+        return CorrectAnswerDictionary.STORY_MEMORY_ANSWERS.get(questionCount);
     }
 }

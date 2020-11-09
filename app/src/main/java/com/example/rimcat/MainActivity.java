@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         CorrectAnswerDictionary.loadAnswers();
         appBackground = findViewById(R.id.app_background);
 

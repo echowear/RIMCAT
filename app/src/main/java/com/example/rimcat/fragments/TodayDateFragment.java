@@ -12,6 +12,10 @@ import android.widget.EditText;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class TodayDateFragment extends QuestionFragment {
 
     private static final String TAG = "TodayDateFragment";
@@ -76,7 +80,7 @@ public class TodayDateFragment extends QuestionFragment {
             todayDateResult =   Integer.parseInt(inputMonth.getText().toString()) + "/" +
                                 Integer.parseInt(inputDay.getText().toString()) + "/" +
                                 Integer.parseInt(inputYear.getText().toString());
-            logEndTimeAndData(getActivity().getApplicationContext(), "todays_date," + todayDateResult);
+            logEndTimeAndData(getActivity().getApplicationContext(), "todays_date," + todayDateResult, getCorrectAnswer());
             return true;
         }
 
@@ -90,6 +94,8 @@ public class TodayDateFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
-        return null;
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_1);
+        Date today = Calendar.getInstance().getTime();
+        return dateFormat.format(today);
     }
 }

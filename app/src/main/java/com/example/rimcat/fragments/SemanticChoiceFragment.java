@@ -21,6 +21,8 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
+import com.example.rimcat.data_log.CorrectAnswerDictionary;
+
 import java.util.ArrayList;
 
 public class SemanticChoiceFragment extends QuestionFragment {
@@ -117,7 +119,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
                 inSelectionState = false;
                 pageCount++;
                 for (String choice : choiceList) {
-                    logEndTimeAndData(getActivity(), "semantic_choice_page" + pageCount + "," + choice);
+                    logEndTimeAndData(getActivity(), "semantic_choice_page" + pageCount + "," + choice, getCorrectAnswer());
                 }
                 choiceList.clear();
                 if (pageCount < semanticChoices.length) {
@@ -198,7 +200,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
-        return null;
+        return CorrectAnswerDictionary.SEMANTIC_CHOICE_ANSWERS[pageCount];
     }
 
     @Override

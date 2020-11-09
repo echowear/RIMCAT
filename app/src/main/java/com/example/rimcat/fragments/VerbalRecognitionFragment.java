@@ -8,6 +8,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.widget.AppCompatButton;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
+import com.example.rimcat.data_log.CorrectAnswerDictionary;
+
 import java.util.ArrayList;
 
 public class VerbalRecognitionFragment extends QuestionFragment {
@@ -110,7 +113,7 @@ public class VerbalRecognitionFragment extends QuestionFragment {
     private void prepareNextGrid() {
         pageCount++;
         for (String choice : choiceList) {
-            logEndTimeAndData(getActivity().getApplicationContext(), "verbal_recognition_page" + pageCount + "," + choice);
+            logEndTimeAndData(getActivity().getApplicationContext(), "verbal_recognition_page" + pageCount + "," + choice, getCorrectAnswer());
         }
         if (pageCount < wordList.length) {
             changeButtonText();
@@ -132,6 +135,6 @@ public class VerbalRecognitionFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
-        return null;
+        return TextUtils.join(" ", CorrectAnswerDictionary.TRIAL_LIST_ONE);
     }
 }

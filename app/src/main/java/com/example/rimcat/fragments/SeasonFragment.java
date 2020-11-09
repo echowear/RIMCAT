@@ -12,6 +12,9 @@ import android.widget.Spinner;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class SeasonFragment extends QuestionFragment {
 
     private static final String TAG = "TodayDateFragment";
@@ -39,7 +42,7 @@ public class SeasonFragment extends QuestionFragment {
     public boolean loadDataModel() {
         if (seasonSpinner.getSelectedItem().toString().equals(""))
             return false;
-        logEndTimeAndData(getActivity().getApplicationContext(), "season," + seasonSpinner.getSelectedItem().toString());
+        logEndTimeAndData(getActivity().getApplicationContext(), "season," + seasonSpinner.getSelectedItem().toString(), getCorrectAnswer());
         return true;
     }
 
@@ -50,6 +53,17 @@ public class SeasonFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
-        return null;
+        java.util.Date date= new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int month = cal.get(Calendar.MONTH);
+        if (month == 12 || month < 3) {
+            return "Winter";
+        } else if (month >= 3 && month < 6) {
+            return "Spring";
+        } else if (month >= 6 && month < 9) {
+            return "Summer";
+        }
+        return "Fall";
     }
 }

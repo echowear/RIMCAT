@@ -39,7 +39,7 @@ public class EducationFragment extends QuestionFragment {
     public boolean loadDataModel() {
         if (educationSpinner.getSelectedItem().toString().equals(""))
             return false;
-        logEndTimeAndData(getActivity().getApplicationContext(), "education_level," + educationSpinner.getSelectedItem().toString());
+        logEndTimeAndData(getActivity().getApplicationContext(), "education_level," + educationSpinner.getSelectedItem().toString(), getCorrectAnswer());
         return true;
     }
 
@@ -50,6 +50,6 @@ public class EducationFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
-        return null;
+        return "N/A";
     }
 }

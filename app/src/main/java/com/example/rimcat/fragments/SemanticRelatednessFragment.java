@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
+import com.example.rimcat.data_log.CorrectAnswerDictionary;
 
 public class SemanticRelatednessFragment extends QuestionFragment {
     private static final String TAG = "SemanticRelatedness";
@@ -95,7 +96,7 @@ public class SemanticRelatednessFragment extends QuestionFragment {
 
     private void prepareNextGrid() {
         pageCount++;
-        logEndTimeAndData(getActivity(), "semantic_relatedness_page" + pageCount + "," + wordChoice);
+        logEndTimeAndData(getActivity(), "semantic_relatedness_page" + pageCount + "," + wordChoice, getCorrectAnswer());
         if (pageCount < semanticChoices.length) {
             changeButtonText();
             changeHeaderText();
@@ -127,6 +128,6 @@ public class SemanticRelatednessFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
-        return null;
+        return CorrectAnswerDictionary.SEMANTIC_RELATEDNESS_ANSWERS.get(pageCount - 1);
     }
 }

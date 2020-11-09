@@ -10,6 +10,28 @@ public class CorrectAnswerDictionary {
     public static final HashMap<Integer, String> FIGURE_SELECT_ANSWERS = new HashMap<>();
     public static final HashMap<Integer, String> DIGIT_SPAN_ANSWERS = new HashMap<>();
     public static final HashMap<Integer, String> COMPUTATION_ANSWERS = new HashMap<>();
+    public static final HashMap<Integer, String> STORY_MEMORY_ANSWERS = new HashMap<>();
+    public static final HashMap<Integer, String> SEMANTIC_RELATEDNESS_ANSWERS = new HashMap<>();
+    public static final String[] SEMANTIC_CHOICE_ANSWERS = {
+            "Lynx Hyena Buffalo Whale Frog Cobra",
+            "Wolf Moose Chipmunk Turtle Otter Penguin",
+            "Beaver Sloth Fox Ferret Lizard Eel",
+            "Cranberry Tangerine Papaya Pineapple Cherry",
+            "Plum Melon Raspberry Pear Apricot Lime",
+            "Grape Pomegranate Lemon Nectarine Blackberry Strawberry",
+            "Pants Belt Slippers Poncho Skirt Tie",
+            "Hat Gown Blazer Gloves Robe Purse Jacket",
+            "Scarf Shorts Bikini Stockings Cardigan Blouse"
+    };
+    public static final String[] TRIAL_LIST_ONE = new String[] {
+            "Drum", "Curtain", "Bell", "Coffee", "School",
+            "Parent", "Moon", "Garden", "Hat", "Farmer",
+            "Nose", "Turkey"
+    };
+    public static final String[] TRIAL_LIST_TWO = new String[] {
+            "Desk", "Ranger", "Bird", "Shoe", "Mountain", "Stove",
+            "Glasses", "Towel", "Cloud", "Boat", "Lamb", "Gum"
+    };
 
     public static void loadAnswers() {
         Log.d(TAG, "loadAnswers: loading correct answer dictionaries...");
@@ -17,6 +39,8 @@ public class CorrectAnswerDictionary {
         loadFigureSelectAnswers();
         loadDigitSpanAnswers();
         loadComputationAnswers();
+        loadSemanticRelatednessAnswer();
+        loadStoryMemoryQuestions();
     }
 
     private static void loadImageNameAnswers() {
@@ -35,12 +59,12 @@ public class CorrectAnswerDictionary {
     }
 
     private static void loadFigureSelectAnswers() {
-        FIGURE_SELECT_ANSWERS.put(0, "Tree");
-        FIGURE_SELECT_ANSWERS.put(1, "Bicycle");
-        FIGURE_SELECT_ANSWERS.put(2, "House");
-        FIGURE_SELECT_ANSWERS.put(3, "Butterfly");
-        FIGURE_SELECT_ANSWERS.put(4, "Giraffe");
-        FIGURE_SELECT_ANSWERS.put(5, "Kayak");
+        FIGURE_SELECT_ANSWERS.put(0, "figure_a_1");
+        FIGURE_SELECT_ANSWERS.put(1, "figure_b_1");
+        FIGURE_SELECT_ANSWERS.put(2, "figure_c_1");
+        FIGURE_SELECT_ANSWERS.put(3, "figure_d_1");
+        FIGURE_SELECT_ANSWERS.put(4, "figure_e_1");
+        FIGURE_SELECT_ANSWERS.put(5, "figure_f_1");
     }
 
     private static void loadDigitSpanAnswers() {
@@ -71,5 +95,35 @@ public class CorrectAnswerDictionary {
         COMPUTATION_ANSWERS.put(5, "48");
         COMPUTATION_ANSWERS.put(6, "4");
         COMPUTATION_ANSWERS.put(7, "34");
+    }
+
+    private static void loadSemanticRelatednessAnswer() {
+        SEMANTIC_RELATEDNESS_ANSWERS.put(0, "Garden");
+        SEMANTIC_RELATEDNESS_ANSWERS.put(1, "Desert");
+        SEMANTIC_RELATEDNESS_ANSWERS.put(2, "Money");
+        SEMANTIC_RELATEDNESS_ANSWERS.put(3, "Rose");
+        SEMANTIC_RELATEDNESS_ANSWERS.put(4, "Shine");
+        SEMANTIC_RELATEDNESS_ANSWERS.put(5, "Hopelessness");
+        SEMANTIC_RELATEDNESS_ANSWERS.put(6, "Silence");
+        SEMANTIC_RELATEDNESS_ANSWERS.put(7, "Truth");
+        SEMANTIC_RELATEDNESS_ANSWERS.put(8, "Flame");
+        SEMANTIC_RELATEDNESS_ANSWERS.put(9, "Rattle");
+        SEMANTIC_RELATEDNESS_ANSWERS.put(10, "Thunder");
+        SEMANTIC_RELATEDNESS_ANSWERS.put(11, "Hunger");
+        SEMANTIC_RELATEDNESS_ANSWERS.put(12, "Wisdom");
+        SEMANTIC_RELATEDNESS_ANSWERS.put(13, "Sour");
+        SEMANTIC_RELATEDNESS_ANSWERS.put(14, "Moon");
+    }
+
+    private static void loadStoryMemoryQuestions() {
+        STORY_MEMORY_ANSWERS.put(0, "Monday morning");
+        STORY_MEMORY_ANSWERS.put(1, "No");
+        STORY_MEMORY_ANSWERS.put(2, "No");
+        STORY_MEMORY_ANSWERS.put(3, "Sarah");
+        STORY_MEMORY_ANSWERS.put(4, "Yes");
+        STORY_MEMORY_ANSWERS.put(5, "She was distracted");
+        STORY_MEMORY_ANSWERS.put(6, "Eggs");
+        STORY_MEMORY_ANSWERS.put(7, "8");
+        STORY_MEMORY_ANSWERS.put(8, "Blueberries");
     }
 }

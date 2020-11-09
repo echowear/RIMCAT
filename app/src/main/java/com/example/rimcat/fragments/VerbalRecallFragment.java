@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,8 @@ import android.widget.Toast;
 import com.example.rimcat.ActivitiesModel;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
+import com.example.rimcat.data_log.CorrectAnswerDictionary;
+
 import java.util.ArrayList;
 
 public class VerbalRecallFragment extends QuestionFragment {
@@ -131,17 +134,17 @@ public class VerbalRecallFragment extends QuestionFragment {
         int currentView = ((MainActivity)getActivity()).getViewNumber();
         for (int i = 0; i < responses.size(); i++) {
             if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_1)
-                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_1," + responses.get(i));
+                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_1," + responses.get(i), getCorrectAnswer());
             else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_2)
-                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_2," + responses.get(i));
+                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_2," + responses.get(i), getCorrectAnswer());
             else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_3)
-                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_3," + responses.get(i));
+                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_3," + responses.get(i), getCorrectAnswer());
             else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_4)
-                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_4," + responses.get(i));
+                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_4," + responses.get(i), getCorrectAnswer());
             else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_5)
-                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_5," + responses.get(i));
+                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_5," + responses.get(i), getCorrectAnswer());
             else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_6)
-                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_6," + responses.get(i));
+                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_6," + responses.get(i), getCorrectAnswer());
         }
 
         return true;
@@ -154,6 +157,10 @@ public class VerbalRecallFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
-        return null;
+       int currentView = ((MainActivity)getActivity()).getViewNumber();
+       if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_4)
+           return TextUtils.join(" ", CorrectAnswerDictionary.TRIAL_LIST_TWO);
+       else
+           return TextUtils.join(" ", CorrectAnswerDictionary.TRIAL_LIST_ONE);
     }
 }

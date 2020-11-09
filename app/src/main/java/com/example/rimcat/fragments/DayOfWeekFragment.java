@@ -12,6 +12,10 @@ import android.widget.Spinner;
 import com.example.rimcat.MainActivity;
 import com.example.rimcat.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class DayOfWeekFragment extends QuestionFragment {
 
     private static final String TAG = "DayOfWeekFragment";
@@ -38,7 +42,7 @@ public class DayOfWeekFragment extends QuestionFragment {
     public boolean loadDataModel() {
         if (dayOfWeekSpinner.getSelectedItem().toString().equals(""))
             return false;
-        logEndTimeAndData(getActivity().getApplicationContext(), "day_of_week," + dayOfWeekSpinner.getSelectedItem().toString());
+        logEndTimeAndData(getActivity().getApplicationContext(), "day_of_week," + dayOfWeekSpinner.getSelectedItem().toString(), getCorrectAnswer());
         return true;
     }
 
@@ -49,6 +53,8 @@ public class DayOfWeekFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
-        return null;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE");
+        Date today = Calendar.getInstance().getTime();
+        return dateFormat.format(today);
     }
 }
