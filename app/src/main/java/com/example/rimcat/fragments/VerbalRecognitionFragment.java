@@ -113,9 +113,10 @@ public class VerbalRecognitionFragment extends QuestionFragment {
     private void prepareNextGrid() {
         pageCount++;
         for (String choice : choiceList) {
-            logEndTimeAndData(getActivity().getApplicationContext(), "verbal_recognition_page" + pageCount + "," + choice, getCorrectAnswer());
+            logEndTimeAndData(getActivity().getApplicationContext(), "verbal_recognition_" + pageCount + "," + choice, getCorrectAnswer());
         }
         if (pageCount < wordList.length) {
+            choiceList.clear();
             changeButtonText();
             logStartTime();
         } else {

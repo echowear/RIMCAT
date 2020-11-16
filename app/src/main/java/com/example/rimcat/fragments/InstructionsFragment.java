@@ -18,7 +18,7 @@ import com.example.rimcat.R;
 
 public class InstructionsFragment extends QuestionFragment {
     private static final String TAG = "InstructionsFragment";
-    private int currentView;
+    private int currentView, instructionsNum;
     private TextView instructionsText;
 
 
@@ -31,94 +31,114 @@ public class InstructionsFragment extends QuestionFragment {
         instructionsText = view.findViewById(R.id.plain_inst1);
 
         currentView = ((MainActivity)getActivity()).getViewNumber();
+        releaseMediaPlayer();
         switch (currentView) {
             case ActivitiesModel.INSTRUCTIONS_SCREEN_1:
+                instructionsNum = 1;
                 instructionsText.setText(R.string.instructions_next);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst1);
                 break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_2:
+                instructionsNum = 2;
                 instructionsText.setText(R.string.instructions_appInst);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst2);
                 break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_3:
+                instructionsNum = 3;
                 instructionsText.setText(R.string.instructions_reaction);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst3);
                 break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_4:
+                instructionsNum = 4;
                 instructionsText.setText(R.string.instructions_imageInst);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst4);
                 break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_5:
+                instructionsNum = 5;
                 instructionsText.setText(R.string.instructions_verbalInst);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
                 mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst5);
                 break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_6:
+                instructionsNum = 6;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_7:
+                if (instructionsNum != 6) instructionsNum = 7;
                 instructionsText.setText(R.string.instructions_verbalInst2);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst6_7);
                 break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_8:
+                instructionsNum = 8;
                 instructionsText.setText(R.string.instructions_verbalInst3);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
                 mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst8);
                 break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_9:
+                instructionsNum = 9;
                 instructionsText.setText(R.string.instructions_verbalInst4);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst9);
                 break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_10:
+                instructionsNum = 10;
                 instructionsText.setText(R.string.instructions_figure_study);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst10);
                 break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_11:
+                instructionsNum = 11;
                 instructionsText.setText(R.string.instructions_digit_span);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst11);
                 break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_12:
+                instructionsNum = 12;
                 instructionsText.setText(R.string.instructions_read_comp_story);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst12);
                 break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_13:
+                instructionsNum = 13;
                 instructionsText.setText(R.string.instructions_computation);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst13);
                 break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_14:
+                instructionsNum = 14;
                 instructionsText.setText(R.string.instructions_verbalInst5);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
                 mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst14);
                 break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_15:
+                instructionsNum = 15;
                 instructionsText.setText(R.string.instructions_verbal_rec);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
                 mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst15);
                 break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_16:
+                instructionsNum = 16;
                 instructionsText.setText(R.string.instructions_semanticChoice);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst16);
                 break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_17:
+                instructionsNum = 17;
                 instructionsText.setText(R.string.instructions_figureSelect2);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst17);
                 break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_18:
+                instructionsNum = 18;
                 instructionsText.setText(R.string.instructions_read_comp_test);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst18);
                 break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_19:
+                instructionsNum = 19;
                 instructionsText.setText(R.string.instructions_semantic_relatedness);
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst19);
@@ -130,7 +150,7 @@ public class InstructionsFragment extends QuestionFragment {
         Log.d(TAG, "onCreateView: Current number: " + ((MainActivity)getActivity()).getViewNumber());
 
         startAnimation(true);
-
+        logStartTime();
         return view;
     }
 
@@ -140,6 +160,7 @@ public class InstructionsFragment extends QuestionFragment {
 
     @Override
     public void moveToNextPage() {
+        logEndTimeAndData(getActivity().getApplicationContext(), "instructions_" + instructionsNum + ",null", getCorrectAnswer());
         switch (currentView) {
             case ActivitiesModel.INSTRUCTIONS_SCREEN_1:
                 ((MainActivity)getActivity()).addFragment(new VideoFragment(), "VideoFragment");
@@ -202,6 +223,6 @@ public class InstructionsFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
-        return null;
+        return "N/A";
     }
 }

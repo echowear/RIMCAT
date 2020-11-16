@@ -119,7 +119,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
                 inSelectionState = false;
                 pageCount++;
                 for (String choice : choiceList) {
-                    logEndTimeAndData(getActivity(), "semantic_choice_page" + pageCount + "," + choice, getCorrectAnswer());
+                    logEndTimeAndData(getActivity(), "semantic_choice_" + pageCount + "," + choice, getCorrectAnswer());
                 }
                 choiceList.clear();
                 if (pageCount < semanticChoices.length) {
@@ -200,7 +200,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
-        return CorrectAnswerDictionary.SEMANTIC_CHOICE_ANSWERS[pageCount];
+        return CorrectAnswerDictionary.SEMANTIC_CHOICE_ANSWERS[pageCount - 1];
     }
 
     @Override

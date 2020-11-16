@@ -35,7 +35,7 @@ import java.util.Objects;
 
 public abstract class QuestionFragment extends Fragment {
     private static final String TAG = "QuestionFragment";
-    protected static final String DATE_FORMAT_1 = "HH:mm:ss";
+    private static final String DATE_FORMAT_1 = "HH:mm:ss";
     private static final String DATE_FORMAT_2 = "HH:mm:ss,MM-dd-yyyy";
     protected static final int  RESULT_SPEECH = 140;
     public static String PATIENT_ID;
@@ -173,6 +173,15 @@ public abstract class QuestionFragment extends Fragment {
         });
     }
 
+    protected void releaseMediaPlayer() {
+        if (mediaPlayer != null) {
+            if (mediaPlayer.isPlaying() || mediaPlayer.isLooping()) {
+                mediaPlayer.stop();
+            }
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
 
     public abstract boolean loadDataModel();
 
@@ -188,10 +197,8 @@ public abstract class QuestionFragment extends Fragment {
 
     @Override
     public void onDestroy() {
-        if (mediaPlayer != null) {
-            mediaPlayer.release();
-            mediaPlayer = null;
-        }
+        Log.d(TAG, "onDestroy: called.");
+        releaseMediaPlayer();
         super.onDestroy();
     }
 }

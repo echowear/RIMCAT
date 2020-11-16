@@ -126,7 +126,7 @@ public class ComputationFragment extends QuestionFragment {
 
     private void moveToNextComputation() {
         if (!movingToNextActivity && !compEditText.getText().toString().equals("")) {
-            logEndTimeAndData(getActivity().getApplicationContext(), "computation," + compEditText.getText().toString(), getCorrectAnswer());
+            logEndTimeAndData(getActivity().getApplicationContext(), "computation_" + (currentCompNum + 1) + "," + compEditText.getText().toString(), getCorrectAnswer());
             vibrateToastAndExecuteSound(compEditText.getText().toString(), false);
             currentCompNum++;
             if (currentCompNum < COMPUTATION_LIST.length) {

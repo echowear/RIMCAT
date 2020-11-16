@@ -84,6 +84,7 @@ public class FigureStudyFragment extends QuestionFragment {
         cardView = view.findViewById(R.id.figure_main_page);
 
         startAnimation(true);
+        logStartTime();
         nextButtonReady();
         return view;
     }
@@ -122,6 +123,7 @@ public class FigureStudyFragment extends QuestionFragment {
             // Give the user 3 seconds to prepare
             figureListCounter.start();
         } else {
+            logEndTimeAndData(getActivity().getApplicationContext(), "figure_study,null", getCorrectAnswer());
             ((MainActivity)getActivity()).getFragmentData(null);
         }
     }
@@ -138,7 +140,7 @@ public class FigureStudyFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
-        return null;
+        return "N/A";
     }
 
     //TODO: Add lifecycle code here

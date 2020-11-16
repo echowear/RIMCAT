@@ -31,7 +31,6 @@ public class VerbalRecallFragment extends QuestionFragment {
     private EditText                responseText;
     private Button                  addBtn, doneRecallingBtn;
     private FloatingActionButton    audioBtn;
-    private ArrayList<String>       responses;
     private boolean                 firstFinish;
 
     @Nullable
@@ -47,7 +46,6 @@ public class VerbalRecallFragment extends QuestionFragment {
         addBtn = view.findViewById(R.id.vresponse_addBtn);
         doneRecallingBtn = view.findViewById(R.id.done_recalling_btn);
         doneRecallingBtn.setVisibility(View.VISIBLE);
-        responses = new ArrayList<String>();
 
         // Initialize text listener
         responseText.addTextChangedListener(new TextWatcher() {
@@ -94,7 +92,7 @@ public class VerbalRecallFragment extends QuestionFragment {
             public void onClick(View v) {
                 if (!responseText.getText().toString().equals("")) {
                     String submitText = responseText.getText().toString();
-                    responses.add(submitText);
+                    logResponse(submitText);
                     responseText.setText("");
                     vibrateToastAndExecuteSound(submitText, true);
                     logStartTime();
@@ -121,6 +119,22 @@ public class VerbalRecallFragment extends QuestionFragment {
         return view;
     }
 
+    private void logResponse(String response) {
+        int currentView = ((MainActivity)getActivity()).getViewNumber();
+        if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_1)
+            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_1," + response, getCorrectAnswer());
+        else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_2)
+            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_2," + response, getCorrectAnswer());
+        else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_3)
+            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_3," + response, getCorrectAnswer());
+        else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_4)
+            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_4," + response, getCorrectAnswer());
+        else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_5)
+            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_5," + response, getCorrectAnswer());
+        else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_6)
+            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_6," + response, getCorrectAnswer());
+    }
+
     public void executePostMessageSetup() {
         firstFinish = true;
     }
@@ -131,22 +145,6 @@ public class VerbalRecallFragment extends QuestionFragment {
 
     @Override
     public boolean loadDataModel() {
-        int currentView = ((MainActivity)getActivity()).getViewNumber();
-        for (int i = 0; i < responses.size(); i++) {
-            if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_1)
-                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_1," + responses.get(i), getCorrectAnswer());
-            else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_2)
-                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_2," + responses.get(i), getCorrectAnswer());
-            else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_3)
-                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_3," + responses.get(i), getCorrectAnswer());
-            else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_4)
-                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_4," + responses.get(i), getCorrectAnswer());
-            else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_5)
-                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_5," + responses.get(i), getCorrectAnswer());
-            else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_6)
-                logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_6," + responses.get(i), getCorrectAnswer());
-        }
-
         return true;
     }
 

@@ -19,6 +19,7 @@ import java.util.Date;
 public class TodayDateFragment extends QuestionFragment {
 
     private static final String TAG = "TodayDateFragment";
+    private static final String ACTIVITY_DATE_FORMAT = "MM/dd/yyyy";
     private static final int INPUT_LENGTH = 2;
     private EditText inputMonth, inputDay, inputYear;
 
@@ -94,7 +95,7 @@ public class TodayDateFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_1);
+        SimpleDateFormat dateFormat = new SimpleDateFormat(ACTIVITY_DATE_FORMAT);
         Date today = Calendar.getInstance().getTime();
         return dateFormat.format(today);
     }

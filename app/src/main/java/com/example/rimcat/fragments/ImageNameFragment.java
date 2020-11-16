@@ -100,7 +100,7 @@ public class ImageNameFragment extends QuestionFragment {
                     Button selectedButton = (Button) view;
                     // This is where the answer will be recorded
                     Log.d(TAG, "onClick: Button value: " + selectedButton.getText().toString());
-                    logEndTimeAndData(getActivity().getApplicationContext(), "image_name," + selectedButton.getText().toString(), getCorrectAnswer());
+                    logEndTimeAndData(getActivity().getApplicationContext(), "image_name_" + (imageCount + 1) + "," + selectedButton.getText().toString(), getCorrectAnswer());
 
                     imageCount++;
                     if (imageCount == IMAGE_NAMES.length) {

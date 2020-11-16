@@ -29,6 +29,7 @@ public class VideoFragment extends QuestionFragment {
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
+                logEndTimeAndData(getActivity().getApplicationContext(), "video,null", getCorrectAnswer());
                 ((MainActivity)getActivity()).getFragmentData(null);
             }
         });
@@ -53,6 +54,6 @@ public class VideoFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
-        return null;
+        return "N/A";
     }
 }

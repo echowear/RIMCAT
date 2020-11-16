@@ -144,7 +144,7 @@ public class ReactionFragment extends QuestionFragment {
         reactionEnd = calendar.getTimeInMillis();
         if (reactionStart < reactionEnd) {
             double result = (reactionEnd - reactionStart) / 1000.0;
-            logEndTimeAndData(getActivity(), "reaction_" + count + "," + df.format(result), df.format(result));
+            logEndTimeAndData(getActivity(), "reaction_" + (count + 1) + "," + df.format(result), df.format(result));
         } else {
             Log.d(TAG, "endIteration: Error calculating time. Could not log data");
         }

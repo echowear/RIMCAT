@@ -61,6 +61,7 @@ public class StoryLearningFragment extends QuestionFragment {
                     if (storyMedia != null) {
                         storyMedia.release();
                     }
+                    logEndTimeAndData(getActivity().getApplicationContext(), "story_learning,null", getCorrectAnswer());
                     ((MainActivity)getActivity()).getFragmentData(null);
                 }
             }
@@ -87,7 +88,7 @@ public class StoryLearningFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
-        return null;
+        return "N/A";
     }
 
     @Override

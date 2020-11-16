@@ -93,11 +93,13 @@ public class VerbalLearningFragment extends QuestionFragment {
 
             @Override
             public void onFinish() {
+                logEndTimeAndData(getActivity().getApplicationContext(), "verbal_learning,null", getCorrectAnswer());
                 ((MainActivity)getActivity()).getFragmentData(null);
             }
         };
 
         startAnimation(true);
+        logStartTime();
         nextButtonReady();
         return view;
     }
@@ -141,7 +143,7 @@ public class VerbalLearningFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
-        return null;
+        return "N/A";
     }
 
     @Override

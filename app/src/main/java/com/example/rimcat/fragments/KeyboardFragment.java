@@ -98,6 +98,7 @@ public class KeyboardFragment extends QuestionFragment {
             audioBtn.show();
             vibrateToastAndExecuteSound("hello", true);
         } else if (wasMicPressed) {
+            logEndTimeAndData(getActivity().getApplicationContext(), "keyboard_test,null", getCorrectAnswer());
             ((MainActivity)getActivity()).getFragmentData(null);
         } else {
             Toast t = Toast.makeText(mContext, "Try using the microphone button at least once.", Toast.LENGTH_LONG);
@@ -124,6 +125,6 @@ public class KeyboardFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
-        return null;
+        return "N/A";
     }
 }

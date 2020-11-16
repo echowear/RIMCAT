@@ -149,7 +149,7 @@ public class DigitSpanFragment extends QuestionFragment {
             public void onClick(View v) {
                 if (!movingToNextActivity) {
                     if (!dsEditText.getText().toString().equals("")) {
-                        logEndTimeAndData(getActivity().getApplicationContext(), "digit_span," + dsEditText.getText().toString(), getCorrectAnswer());
+                        logEndTimeAndData(getActivity().getApplicationContext(), "digit_span_" + (currentWord + 1) + "," + dsEditText.getText().toString(), getCorrectAnswer());
                         vibrateToastAndExecuteSound(dsEditText.getText().toString(), true);
                         ((MainActivity)getActivity()).hideSoftKeyboard();
                         moveToNextNumber();
@@ -304,6 +304,9 @@ public class DigitSpanFragment extends QuestionFragment {
         Log.d(TAG, "onStop: called");
         stopActivity();
         if (storyMedia != null) {
+            if (storyMedia.isPlaying() || storyMedia.isLooping()) {
+                storyMedia.stop();
+            }
             storyMedia.release();
             storyMedia = null;
         }
