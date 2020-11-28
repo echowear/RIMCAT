@@ -135,4 +135,6 @@ public class SemanticRelatednessFragment extends QuestionFragment {
     public String getTriedMicrophone() {
         return "N/A";
     }
+
+    //TODO: Consider adding lifecycle events here
 }

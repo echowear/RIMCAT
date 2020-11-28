@@ -228,4 +228,11 @@ public class ComputationFragment extends QuestionFragment {
         stopActivity();
         super.onStop();
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        computationText.setVisibility(View.INVISIBLE);
+        repeatBtn.setVisibility(View.VISIBLE);
+    }
 }

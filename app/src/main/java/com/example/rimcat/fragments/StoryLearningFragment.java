@@ -60,6 +60,7 @@ public class StoryLearningFragment extends QuestionFragment {
                 } else {
                     if (storyMedia != null) {
                         storyMedia.release();
+                        storyMedia = null;
                     }
                     logEndTimeAndData(getActivity().getApplicationContext(), "story_learning,null");
                     ((MainActivity)getActivity()).getFragmentData(null);
@@ -107,5 +108,21 @@ public class StoryLearningFragment extends QuestionFragment {
             storyMedia = null;
         }
         super.onDestroy();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (storyMedia != null && storyMedia.isPlaying()) {
+            storyMedia.pause();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (storyMedia != null) {
+            storyMedia.start();
+        }
     }
 }

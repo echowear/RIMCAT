@@ -64,13 +64,13 @@ public abstract class QuestionFragment extends Fragment {
             @Override
             public void onAnimationEnd(Animation animation) {
                 if (isFadeIn) {
+                    // TODO: This isn't good design. Look into this later
                     if (mediaPlayer != null) {
                         mediaPlayer.start();
                         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                             @Override
                             public void onCompletion(MediaPlayer mp) {
-                                mediaPlayer.release();
-                                mediaPlayer = null;
+                                releaseMediaPlayer();
                                 nextButtonReady();
                             }
                         });
@@ -204,5 +204,21 @@ public abstract class QuestionFragment extends Fragment {
         Log.d(TAG, "onDestroy: called.");
         releaseMediaPlayer();
         super.onDestroy();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mediaPlayer != null) {
+            mediaPlayer.start();
+        }
     }
 }

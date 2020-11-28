@@ -54,7 +54,7 @@ public class DigitSpanFragment extends QuestionFragment {
     private static final String[] COUNTDOWN_TEXT = { "Ready", "Set", "Go!" };
     private HashMap<Integer, String> numberToTextMap;
     private int[] currentNumberList;
-    private int timerIndex = 0, currentWord = 0;
+    private int timerIndex = 0, currentDigitPlace, currentNumber = 0;
     private boolean movingToNextActivity = false, inNumberRead = false, inCountdownTimer = false;
     private CountDownTimer countDownTimer, trialListCounter;
     private CardView countdownCard, numRecallCard;
@@ -88,7 +88,7 @@ public class DigitSpanFragment extends QuestionFragment {
         countdownCard = view.findViewById(R.id.countdown_card);
         dsNumText = view.findViewById(R.id.ds_number_text);
         readyBtn = view.findViewById(R.id.ds_ready_btn);
-        currentNumberList = FULL_NUMBER_LIST[currentWord];
+        currentNumberList = FULL_NUMBER_LIST[currentNumber];
 
         // Initialize number recall card views
         numRecallCard = view.findViewById(R.id.number_recall_card);
@@ -103,12 +103,7 @@ public class DigitSpanFragment extends QuestionFragment {
         readyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                readyBtn.setVisibility(View.INVISIBLE);
-                dsNumText.setText("");
-                dsNumText.setGravity(Gravity.CENTER);
-                dsNumText.setTextSize(55);
-                countDownTimer.start();
-                inCountdownTimer = true;
+                beginCountdown();
             }
         });
 
@@ -152,7 +147,7 @@ public class DigitSpanFragment extends QuestionFragment {
             public void onClick(View v) {
                 if (!movingToNextActivity) {
                     if (!dsEditText.getText().toString().equals("")) {
-                        logEndTimeAndData(getActivity().getApplicationContext(), "digit_span_" + (currentWord + 1) + "," + dsEditText.getText().toString());
+                        logEndTimeAndData(getActivity().getApplicationContext(), "digit_span_" + (currentNumber + 1) + "," + dsEditText.getText().toString());
                         vibrateToastAndExecuteSound(dsEditText.getText().toString(), true);
                         ((MainActivity)getActivity()).hideSoftKeyboard();
                         moveToNextNumber();
@@ -184,16 +179,25 @@ public class DigitSpanFragment extends QuestionFragment {
         return view;
     }
 
+    private void beginCountdown() {
+        readyBtn.setVisibility(View.INVISIBLE);
+        dsNumText.setText("");
+        dsNumText.setGravity(Gravity.CENTER);
+        dsNumText.setTextSize(55);
+        countDownTimer.start();
+        inCountdownTimer = true;
+    }
+
     private void trialListOnTick() {
-        if (timerIndex < currentNumberList.length) {
+        if (currentDigitPlace < currentNumberList.length) {
             Log.d(TAG, "onTick: Changing text --- " + currentNumberList[timerIndex]);
-            dsNumText.setText("" + currentNumberList[timerIndex]);
+            dsNumText.setText("" + currentNumberList[currentDigitPlace]);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && isTTSInitialized) {
-                textToSpeech.speak(numberToTextMap.get(currentNumberList[timerIndex]), TextToSpeech.QUEUE_FLUSH, null, null);
+                textToSpeech.speak(numberToTextMap.get(currentNumberList[currentDigitPlace]), TextToSpeech.QUEUE_FLUSH, null, null);
             } else if (isTTSInitialized) {
-                textToSpeech.speak(numberToTextMap.get(currentNumberList[timerIndex]), TextToSpeech.QUEUE_FLUSH, null);
+                textToSpeech.speak(numberToTextMap.get(currentNumberList[currentDigitPlace]), TextToSpeech.QUEUE_FLUSH, null);
             }
-            timerIndex++;
+            currentDigitPlace++;
         } else {
             trialListCounter.cancel();
             trialListOnFinish();
@@ -202,18 +206,18 @@ public class DigitSpanFragment extends QuestionFragment {
 
     private void trialListOnFinish() {
         inNumberRead = false;
-        timerIndex = 0;
+        currentDigitPlace = 0;
         countdownCard.setVisibility(View.INVISIBLE);
         numRecallCard.setVisibility(View.VISIBLE);
         logStartTime();
     }
 
     private void moveToNextNumber() {
-        currentWord++;
-        if (currentWord < FULL_NUMBER_LIST.length) {
+        currentNumber++;
+        if (currentNumber < FULL_NUMBER_LIST.length) {
             numRecallCard.setVisibility(View.INVISIBLE);
             dsEditText.setText("");
-            currentNumberList = FULL_NUMBER_LIST[currentWord];
+            currentNumberList = FULL_NUMBER_LIST[currentNumber];
             trialListCounter = new CountDownTimer(currentNumberList.length * 2000, 1999) {
                 @Override
                 public void onTick(long millisUntilFinished) {
@@ -240,7 +244,7 @@ public class DigitSpanFragment extends QuestionFragment {
         ForegroundColorSpan fcs = new ForegroundColorSpan(getResources().getColor(R.color.colorAccent));
         String recallText = "";
         int highlightTextLength = 0;
-        if (currentWord < NUMS_PER_LIST) {
+        if (currentNumber < NUMS_PER_LIST) {
             recallText = getResources().getString(R.string.ds_inorder_text);
             highlightTextLength = "same order.".length();
         } else {
@@ -253,7 +257,7 @@ public class DigitSpanFragment extends QuestionFragment {
         dsNumText.setText(getResources().getString(R.string.verbal_readyPrompt));
         dsRecallText.setText(recallTextSS);
 
-        if (currentWord == NUMS_PER_LIST) {
+        if (currentNumber == NUMS_PER_LIST) {
             String numText = getResources().getString(R.string.instructions2_digit_span);
             highlightTextLength = "backwards.".length();
             SpannableString numTextSS = new SpannableString(numText);
@@ -267,6 +271,7 @@ public class DigitSpanFragment extends QuestionFragment {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
                     readyBtn.setVisibility(View.VISIBLE);
+                    stopStoryMedia();
                 }
             });
             storyMedia.start();
@@ -285,6 +290,17 @@ public class DigitSpanFragment extends QuestionFragment {
             trialListCounter.cancel();
     }
 
+    private void stopStoryMedia() {
+        if (storyMedia != null) {
+            if (storyMedia.isPlaying() || storyMedia.isLooping()) {
+                storyMedia.stop();
+            }
+            storyMedia.reset();
+            storyMedia.release();
+            storyMedia = null;
+        }
+    }
+
     @Override
     public boolean loadDataModel() {
         return true;
@@ -297,7 +313,7 @@ public class DigitSpanFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
-        return CorrectAnswerDictionary.DIGIT_SPAN_ANSWERS.get(currentWord);
+        return CorrectAnswerDictionary.DIGIT_SPAN_ANSWERS.get(currentNumber);
     }
 
     @Override
@@ -314,11 +330,11 @@ public class DigitSpanFragment extends QuestionFragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (inNumberRead) {
-            trialListCounter.start();
+        if (inCountdownTimer || inNumberRead) {
+            beginCountdown();
         }
-        if (inCountdownTimer) {
-            countDownTimer.start();
+        if (storyMedia != null) {
+            storyMedia.start();
         }
     }
 
@@ -332,20 +348,16 @@ public class DigitSpanFragment extends QuestionFragment {
         if (inNumberRead) {
             trialListCounter.cancel();
         }
+        if (storyMedia != null && storyMedia.isPlaying()) {
+            storyMedia.pause();
+        }
     }
 
     @Override
     public void onDestroy() {
         Log.d(TAG, "onDestroy: called");
         stopActivity();
-        if (storyMedia != null) {
-            if (storyMedia.isPlaying() || storyMedia.isLooping()) {
-                storyMedia.stop();
-            }
-            storyMedia.reset();
-            storyMedia.release();
-            storyMedia = null;
-        }
+        stopStoryMedia();
         super.onDestroy();
     }
 }
