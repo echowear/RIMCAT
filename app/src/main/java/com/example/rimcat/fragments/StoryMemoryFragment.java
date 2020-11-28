@@ -88,7 +88,7 @@ public class StoryMemoryFragment extends QuestionFragment {
         View radioButton = group.findViewById(radioButtonID);
         int idx = group.indexOfChild(radioButton);
         RadioButton r = (RadioButton) group.getChildAt(idx);
-        logEndTimeAndData(getActivity().getApplicationContext(), "reading_comp_" + (questionCount + 1) + "," + r.getText().toString(), getCorrectAnswer());
+        logEndTimeAndData(getActivity().getApplicationContext(), "reading_comp_" + (questionCount + 1) + "," + r.getText().toString());
         group.clearCheck();
     }
 
@@ -128,5 +128,10 @@ public class StoryMemoryFragment extends QuestionFragment {
     @Override
     public String getCorrectAnswer() {
         return CorrectAnswerDictionary.STORY_MEMORY_ANSWERS.get(questionCount);
+    }
+
+    @Override
+    public String getTriedMicrophone() {
+        return "N/A";
     }
 }

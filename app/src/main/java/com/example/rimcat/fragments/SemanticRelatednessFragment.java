@@ -96,7 +96,7 @@ public class SemanticRelatednessFragment extends QuestionFragment {
 
     private void prepareNextGrid() {
         pageCount++;
-        logEndTimeAndData(getActivity(), "semantic_relatedness_page" + pageCount + "," + wordChoice, getCorrectAnswer());
+        logEndTimeAndData(getActivity(), "semantic_relatedness_page" + pageCount + "," + wordChoice);
         if (pageCount < semanticChoices.length) {
             changeButtonText();
             changeHeaderText();
@@ -129,5 +129,10 @@ public class SemanticRelatednessFragment extends QuestionFragment {
     @Override
     public String getCorrectAnswer() {
         return CorrectAnswerDictionary.SEMANTIC_RELATEDNESS_ANSWERS.get(pageCount - 1);
+    }
+
+    @Override
+    public String getTriedMicrophone() {
+        return "N/A";
     }
 }

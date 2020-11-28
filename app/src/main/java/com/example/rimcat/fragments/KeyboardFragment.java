@@ -29,7 +29,7 @@ public class KeyboardFragment extends QuestionFragment {
     private Button submitBtn;
     private FloatingActionButton audioBtn;
     int currentScreen = 0;
-    boolean wasMicPressed;
+    boolean wasMicPressed, micPressedLast;
 
     @Nullable
     @Override
@@ -41,6 +41,13 @@ public class KeyboardFragment extends QuestionFragment {
         audioBtn = view.findViewById(R.id.keyboard_audio_btn);
         submitBtn = view.findViewById(R.id.keyboard_addBtn);
         promptText = view.findViewById(R.id.keyboard_text);
+
+        responseText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                micPressedLast = false;
+            }
+        });
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +69,7 @@ public class KeyboardFragment extends QuestionFragment {
         audioBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                micPressedLast = true;
                 wasMicPressed = true;
                 Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US");
@@ -98,7 +106,7 @@ public class KeyboardFragment extends QuestionFragment {
             audioBtn.show();
             vibrateToastAndExecuteSound("hello", true);
         } else if (wasMicPressed) {
-            logEndTimeAndData(getActivity().getApplicationContext(), "keyboard_test,null", getCorrectAnswer());
+            logEndTimeAndData(getActivity().getApplicationContext(), "keyboard_test,null");
             ((MainActivity)getActivity()).getFragmentData(null);
         } else {
             Toast t = Toast.makeText(mContext, "Try using the microphone button at least once.", Toast.LENGTH_LONG);
@@ -126,5 +134,10 @@ public class KeyboardFragment extends QuestionFragment {
     @Override
     public String getCorrectAnswer() {
         return "N/A";
+    }
+
+    @Override
+    public String getTriedMicrophone() {
+        return "" + micPressedLast;
     }
 }

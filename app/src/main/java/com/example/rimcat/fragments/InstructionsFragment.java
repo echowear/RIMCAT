@@ -160,7 +160,7 @@ public class InstructionsFragment extends QuestionFragment {
 
     @Override
     public void moveToNextPage() {
-        logEndTimeAndData(getActivity().getApplicationContext(), "instructions_" + instructionsNum + ",null", getCorrectAnswer());
+        logEndTimeAndData(getActivity().getApplicationContext(), "instructions_" + instructionsNum + ",null");
         switch (currentView) {
             case ActivitiesModel.INSTRUCTIONS_SCREEN_1:
                 ((MainActivity)getActivity()).addFragment(new VideoFragment(), "VideoFragment");
@@ -223,6 +223,11 @@ public class InstructionsFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
+        return "N/A";
+    }
+
+    @Override
+    public String getTriedMicrophone() {
         return "N/A";
     }
 }

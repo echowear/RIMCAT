@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ public class VideoFragment extends QuestionFragment {
 
     private static final String TAG = "VideoFragment";
     private VideoView videoView;
+    int stopPosition;
 
     @Nullable
     @Override
@@ -29,8 +31,14 @@ public class VideoFragment extends QuestionFragment {
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                logEndTimeAndData(getActivity().getApplicationContext(), "video,null", getCorrectAnswer());
+                logEndTimeAndData(getActivity().getApplicationContext(), "video,null");
                 ((MainActivity)getActivity()).getFragmentData(null);
+            }
+        });
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setScreenOnWhilePlaying(true);
             }
         });
         videoView.start();
@@ -55,5 +63,25 @@ public class VideoFragment extends QuestionFragment {
     @Override
     public String getCorrectAnswer() {
         return "N/A";
+    }
+
+    @Override
+    public String getTriedMicrophone() {
+        return "N/A";
+    }
+
+    @Override
+    public void onPause() {
+        Log.d(TAG, "onPause called");
+        super.onPause();
+        stopPosition = videoView.getCurrentPosition(); //stopPosition is an int
+        videoView.pause();
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume called");
+        videoView.seekTo(stopPosition);
+        videoView.start(); //Or use resume() if it doesn't work. I'm not sure
     }
 }

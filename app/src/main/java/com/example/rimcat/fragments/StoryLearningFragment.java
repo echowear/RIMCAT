@@ -61,7 +61,7 @@ public class StoryLearningFragment extends QuestionFragment {
                     if (storyMedia != null) {
                         storyMedia.release();
                     }
-                    logEndTimeAndData(getActivity().getApplicationContext(), "story_learning,null", getCorrectAnswer());
+                    logEndTimeAndData(getActivity().getApplicationContext(), "story_learning,null");
                     ((MainActivity)getActivity()).getFragmentData(null);
                 }
             }
@@ -92,8 +92,17 @@ public class StoryLearningFragment extends QuestionFragment {
     }
 
     @Override
+    public String getTriedMicrophone() {
+        return "N/A";
+    }
+
+    @Override
     public void onDestroy() {
         if (storyMedia != null) {
+            if (storyMedia.isPlaying() || storyMedia.isLooping()) {
+                storyMedia.stop();
+            }
+            storyMedia.reset();
             storyMedia.release();
             storyMedia = null;
         }

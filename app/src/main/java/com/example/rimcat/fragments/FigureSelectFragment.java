@@ -107,7 +107,7 @@ public class FigureSelectFragment extends QuestionFragment {
             Log.d(TAG, "recordDataAndPrepareImages: Image - " + selectedImage.getTag());
             selectedImage.setBackgroundColor(getResources().getColor(R.color.white));
             String imageTag = selectedImage.getTag().toString();
-            logEndTimeAndData(getActivity().getApplicationContext(), "figure_select_" + (activityIndex + 1) + "," + imageTag.substring(imageTag.lastIndexOf("/") + 1), getCorrectAnswer());
+            logEndTimeAndData(getActivity().getApplicationContext(), "figure_select_" + (activityIndex + 1) + "," + imageTag.substring(imageTag.lastIndexOf("/") + 1));
             selectedImage = null;
             figureCount += 4;
             activityIndex++;
@@ -138,5 +138,10 @@ public class FigureSelectFragment extends QuestionFragment {
     @Override
     public String getCorrectAnswer() {
         return CorrectAnswerDictionary.FIGURE_SELECT_ANSWERS.get(activityIndex);
+    }
+
+    @Override
+    public String getTriedMicrophone() {
+        return "N/A";
     }
 }

@@ -100,7 +100,7 @@ public class ImageNameFragment extends QuestionFragment {
                     Button selectedButton = (Button) view;
                     // This is where the answer will be recorded
                     Log.d(TAG, "onClick: Button value: " + selectedButton.getText().toString());
-                    logEndTimeAndData(getActivity().getApplicationContext(), "image_name_" + (imageCount + 1) + "," + selectedButton.getText().toString(), getCorrectAnswer());
+                    logEndTimeAndData(getActivity().getApplicationContext(), "image_name_" + (imageCount + 1) + "," + selectedButton.getText().toString());
 
                     imageCount++;
                     if (imageCount == IMAGE_NAMES.length) {
@@ -143,5 +143,10 @@ public class ImageNameFragment extends QuestionFragment {
     @Override
     public String getCorrectAnswer() {
         return CorrectAnswerDictionary.IMAGE_NAME_ANSWERS.get(imageCount);
+    }
+
+    @Override
+    public String getTriedMicrophone() {
+        return "N/A";
     }
 }

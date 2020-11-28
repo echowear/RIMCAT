@@ -113,7 +113,7 @@ public class VerbalRecognitionFragment extends QuestionFragment {
     private void prepareNextGrid() {
         pageCount++;
         for (String choice : choiceList) {
-            logEndTimeAndData(getActivity().getApplicationContext(), "verbal_recognition_" + pageCount + "," + choice, getCorrectAnswer());
+            logEndTimeAndData(getActivity().getApplicationContext(), "verbal_recognition_" + pageCount + "," + choice);
         }
         if (pageCount < wordList.length) {
             choiceList.clear();
@@ -137,5 +137,10 @@ public class VerbalRecognitionFragment extends QuestionFragment {
     @Override
     public String getCorrectAnswer() {
         return TextUtils.join(" ", CorrectAnswerDictionary.TRIAL_LIST_ONE);
+    }
+
+    @Override
+    public String getTriedMicrophone() {
+        return "N/A";
     }
 }

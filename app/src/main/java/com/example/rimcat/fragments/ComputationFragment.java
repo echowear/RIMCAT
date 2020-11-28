@@ -126,7 +126,7 @@ public class ComputationFragment extends QuestionFragment {
 
     private void moveToNextComputation() {
         if (!movingToNextActivity && !compEditText.getText().toString().equals("")) {
-            logEndTimeAndData(getActivity().getApplicationContext(), "computation_" + (currentCompNum + 1) + "," + compEditText.getText().toString(), getCorrectAnswer());
+            logEndTimeAndData(getActivity().getApplicationContext(), "computation_" + (currentCompNum + 1) + "," + compEditText.getText().toString());
             vibrateToastAndExecuteSound(compEditText.getText().toString(), false);
             currentCompNum++;
             if (currentCompNum < COMPUTATION_LIST.length) {
@@ -215,6 +215,11 @@ public class ComputationFragment extends QuestionFragment {
     @Override
     public String getCorrectAnswer() {
         return CorrectAnswerDictionary.COMPUTATION_ANSWERS.get(currentCompNum);
+    }
+
+    @Override
+    public String getTriedMicrophone() {
+        return "N/A";
     }
 
     @Override

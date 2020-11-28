@@ -40,6 +40,7 @@ public class ReactionFragment extends QuestionFragment {
     private Button[] selectButtons;
     private long reactionStart, reactionEnd;
     private int count, timerIndex = 3;
+    private double result;
     boolean inIteration;
 
     @Nullable
@@ -143,8 +144,8 @@ public class ReactionFragment extends QuestionFragment {
         Calendar calendar = Calendar.getInstance();
         reactionEnd = calendar.getTimeInMillis();
         if (reactionStart < reactionEnd) {
-            double result = (reactionEnd - reactionStart) / 1000.0;
-            logEndTimeAndData(getActivity(), "reaction_" + (count + 1) + "," + df.format(result), df.format(result));
+            result = (reactionEnd - reactionStart) / 1000.0;
+            logEndTimeAndData(getActivity(), "reaction_" + (count + 1) + "," + df.format(result));
         } else {
             Log.d(TAG, "endIteration: Error calculating time. Could not log data");
         }
@@ -186,6 +187,11 @@ public class ReactionFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
+        return "" + df.format(result);
+    }
+
+    @Override
+    public String getTriedMicrophone() {
         return "N/A";
     }
 }

@@ -31,7 +31,7 @@ public class VerbalRecallFragment extends QuestionFragment {
     private EditText                responseText;
     private Button                  addBtn, doneRecallingBtn;
     private FloatingActionButton    audioBtn;
-    private boolean                 firstFinish;
+    private boolean                 firstFinish, micPressedLast;
 
     @Nullable
     @Override
@@ -63,10 +63,18 @@ public class VerbalRecallFragment extends QuestionFragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {}
         });
 
+        responseText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                micPressedLast = false;
+            }
+        });
+
         // Initialize speech to text button
         audioBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                micPressedLast = true;
                 Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US");
 
@@ -122,17 +130,17 @@ public class VerbalRecallFragment extends QuestionFragment {
     private void logResponse(String response) {
         int currentView = ((MainActivity)getActivity()).getViewNumber();
         if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_1)
-            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_1," + response, getCorrectAnswer());
+            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_1," + response);
         else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_2)
-            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_2," + response, getCorrectAnswer());
+            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_2," + response);
         else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_3)
-            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_3," + response, getCorrectAnswer());
+            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_3," + response);
         else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_4)
-            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_4," + response, getCorrectAnswer());
+            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_4," + response);
         else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_5)
-            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_5," + response, getCorrectAnswer());
+            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_5," + response);
         else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_6)
-            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_6," + response, getCorrectAnswer());
+            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_6," + response);
     }
 
     public void executePostMessageSetup() {
@@ -160,5 +168,10 @@ public class VerbalRecallFragment extends QuestionFragment {
            return TextUtils.join(" ", CorrectAnswerDictionary.TRIAL_LIST_TWO);
        else
            return TextUtils.join(" ", CorrectAnswerDictionary.TRIAL_LIST_ONE);
+    }
+
+    @Override
+    public String getTriedMicrophone() {
+        return "" + micPressedLast;
     }
 }

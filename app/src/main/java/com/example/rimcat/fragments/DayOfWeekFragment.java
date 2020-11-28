@@ -42,7 +42,7 @@ public class DayOfWeekFragment extends QuestionFragment {
     public boolean loadDataModel() {
         if (dayOfWeekSpinner.getSelectedItem().toString().equals(""))
             return false;
-        logEndTimeAndData(getActivity().getApplicationContext(), "day_of_week," + dayOfWeekSpinner.getSelectedItem().toString(), getCorrectAnswer());
+        logEndTimeAndData(getActivity().getApplicationContext(), "day_of_week," + dayOfWeekSpinner.getSelectedItem().toString());
         return true;
     }
 
@@ -56,5 +56,10 @@ public class DayOfWeekFragment extends QuestionFragment {
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE");
         Date today = Calendar.getInstance().getTime();
         return dateFormat.format(today);
+    }
+
+    @Override
+    public String getTriedMicrophone() {
+        return "N/A";
     }
 }

@@ -55,7 +55,7 @@ public class DigitSpanFragment extends QuestionFragment {
     private HashMap<Integer, String> numberToTextMap;
     private int[] currentNumberList;
     private int timerIndex = 0, currentWord = 0;
-    private boolean movingToNextActivity = false;
+    private boolean movingToNextActivity = false, inNumberRead = false, inCountdownTimer = false;
     private CountDownTimer countDownTimer, trialListCounter;
     private CardView countdownCard, numRecallCard;
     private Button readyBtn, nextBtn;
@@ -108,6 +108,7 @@ public class DigitSpanFragment extends QuestionFragment {
                 dsNumText.setGravity(Gravity.CENTER);
                 dsNumText.setTextSize(55);
                 countDownTimer.start();
+                inCountdownTimer = true;
             }
         });
 
@@ -124,6 +125,8 @@ public class DigitSpanFragment extends QuestionFragment {
             public void onFinish() {
                 timerIndex = 0;
                 trialListCounter.start();
+                inNumberRead = true;
+                inCountdownTimer = false;
             }
         };
 
@@ -149,7 +152,7 @@ public class DigitSpanFragment extends QuestionFragment {
             public void onClick(View v) {
                 if (!movingToNextActivity) {
                     if (!dsEditText.getText().toString().equals("")) {
-                        logEndTimeAndData(getActivity().getApplicationContext(), "digit_span_" + (currentWord + 1) + "," + dsEditText.getText().toString(), getCorrectAnswer());
+                        logEndTimeAndData(getActivity().getApplicationContext(), "digit_span_" + (currentWord + 1) + "," + dsEditText.getText().toString());
                         vibrateToastAndExecuteSound(dsEditText.getText().toString(), true);
                         ((MainActivity)getActivity()).hideSoftKeyboard();
                         moveToNextNumber();
@@ -191,10 +194,14 @@ public class DigitSpanFragment extends QuestionFragment {
                 textToSpeech.speak(numberToTextMap.get(currentNumberList[timerIndex]), TextToSpeech.QUEUE_FLUSH, null);
             }
             timerIndex++;
+        } else {
+            trialListCounter.cancel();
+            trialListOnFinish();
         }
     }
 
     private void trialListOnFinish() {
+        inNumberRead = false;
         timerIndex = 0;
         countdownCard.setVisibility(View.INVISIBLE);
         numRecallCard.setVisibility(View.VISIBLE);
@@ -294,22 +301,51 @@ public class DigitSpanFragment extends QuestionFragment {
     }
 
     @Override
+    public String getTriedMicrophone() {
+        return "N/A";
+    }
+
+    @Override
     public void onStart() {
         setUpTextToSpeech();
         super.onStart();
     }
 
     @Override
-    public void onStop() {
-        Log.d(TAG, "onStop: called");
+    public void onResume() {
+        super.onResume();
+        if (inNumberRead) {
+            trialListCounter.start();
+        }
+        if (inCountdownTimer) {
+            countDownTimer.start();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        timerIndex = 0;
+        if (inCountdownTimer) {
+            countDownTimer.cancel();
+        }
+        if (inNumberRead) {
+            trialListCounter.cancel();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.d(TAG, "onDestroy: called");
         stopActivity();
         if (storyMedia != null) {
             if (storyMedia.isPlaying() || storyMedia.isLooping()) {
                 storyMedia.stop();
             }
+            storyMedia.reset();
             storyMedia.release();
             storyMedia = null;
         }
-        super.onStop();
+        super.onDestroy();
     }
 }

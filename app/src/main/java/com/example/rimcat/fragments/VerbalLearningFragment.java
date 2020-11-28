@@ -31,9 +31,9 @@ public class VerbalLearningFragment extends QuestionFragment {
     private TextView verbalText;
     private Button readyBtn;
     private CountDownTimer countDownTimer, trialListCounter;
-    private int timerIndex;
+    private int timerIndex, wordIndex;
     private String[] currentWordList;
-    private boolean countdownStarted;
+    private boolean inWordList, inCountdown;
 
     @Nullable
     @Override
@@ -70,6 +70,7 @@ public class VerbalLearningFragment extends QuestionFragment {
 
             @Override
             public void onFinish() {
+                inCountdown = false;
                 timerIndex = 0;
                 trialListCounter.start();
             }
@@ -79,21 +80,25 @@ public class VerbalLearningFragment extends QuestionFragment {
         trialListCounter = new CountDownTimer(currentWordList.length * 2000, 1999) {
             @Override
             public void onTick(long millisUntilFinished) {
-                if (timerIndex < currentWordList.length) {
-                    Log.d(TAG, "onTick: Changing text --- " + currentWordList[timerIndex]);
-                    verbalText.setText(currentWordList[timerIndex]);
+                if (wordIndex < currentWordList.length) {
+                    Log.d(TAG, "onTick: Changing text --- " + currentWordList[wordIndex]);
+                    verbalText.setText(currentWordList[wordIndex]);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && isTTSInitialized) {
-                        textToSpeech.speak(currentWordList[timerIndex], TextToSpeech.QUEUE_FLUSH, null, null);
+                        textToSpeech.speak(currentWordList[wordIndex], TextToSpeech.QUEUE_FLUSH, null, null);
                     } else if (isTTSInitialized) {
-                        textToSpeech.speak(currentWordList[timerIndex], TextToSpeech.QUEUE_FLUSH, null);
+                        textToSpeech.speak(currentWordList[wordIndex], TextToSpeech.QUEUE_FLUSH, null);
                     }
-                    timerIndex++;
+                    wordIndex++;
+                } else {
+                    logEndTimeAndData(getActivity().getApplicationContext(), "verbal_learning,null");
+                    ((MainActivity)getActivity()).getFragmentData(null);
+                    trialListCounter.cancel();
                 }
             }
 
             @Override
             public void onFinish() {
-                logEndTimeAndData(getActivity().getApplicationContext(), "verbal_learning,null", getCorrectAnswer());
+                logEndTimeAndData(getActivity().getApplicationContext(), "verbal_learning,null");
                 ((MainActivity)getActivity()).getFragmentData(null);
             }
         };
@@ -106,11 +111,12 @@ public class VerbalLearningFragment extends QuestionFragment {
 
     private void beginCountdownTimer() {
         timerIndex = 3;
-        countdownStarted = true;
+        inWordList = true;
         readyBtn.setVisibility(View.INVISIBLE);
         verbalText.setText("");
         verbalText.setTextSize(55);
         countDownTimer.start();
+        inCountdown = true;
     }
 
     private void stopActivity() {
@@ -149,8 +155,8 @@ public class VerbalLearningFragment extends QuestionFragment {
     @Override
     public void onResume() {
         Log.d(TAG, "onResume: called");
-        if (countdownStarted) {
-            setUpTextToSpeech();
+        setUpTextToSpeech();
+        if (inWordList || inCountdown) {
             beginCountdownTimer();
         }
         super.onResume();
@@ -175,5 +181,10 @@ public class VerbalLearningFragment extends QuestionFragment {
         Log.d(TAG, "onDestroy: called");
         stopActivity();
         super.onDestroy();
+    }
+
+    @Override
+    public String getTriedMicrophone() {
+        return "N/A";
     }
 }

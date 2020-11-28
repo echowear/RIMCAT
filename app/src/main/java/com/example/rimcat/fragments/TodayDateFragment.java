@@ -81,7 +81,7 @@ public class TodayDateFragment extends QuestionFragment {
             todayDateResult =   Integer.parseInt(inputMonth.getText().toString()) + "/" +
                                 Integer.parseInt(inputDay.getText().toString()) + "/" +
                                 Integer.parseInt(inputYear.getText().toString());
-            logEndTimeAndData(getActivity().getApplicationContext(), "todays_date," + todayDateResult, getCorrectAnswer());
+            logEndTimeAndData(getActivity().getApplicationContext(), "todays_date," + todayDateResult);
             return true;
         }
 
@@ -98,5 +98,10 @@ public class TodayDateFragment extends QuestionFragment {
         SimpleDateFormat dateFormat = new SimpleDateFormat(ACTIVITY_DATE_FORMAT);
         Date today = Calendar.getInstance().getTime();
         return dateFormat.format(today);
+    }
+
+    @Override
+    public String getTriedMicrophone() {
+        return "N/A";
     }
 }

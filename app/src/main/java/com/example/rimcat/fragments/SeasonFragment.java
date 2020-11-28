@@ -42,7 +42,7 @@ public class SeasonFragment extends QuestionFragment {
     public boolean loadDataModel() {
         if (seasonSpinner.getSelectedItem().toString().equals(""))
             return false;
-        logEndTimeAndData(getActivity().getApplicationContext(), "season," + seasonSpinner.getSelectedItem().toString(), getCorrectAnswer());
+        logEndTimeAndData(getActivity().getApplicationContext(), "season," + seasonSpinner.getSelectedItem().toString());
         return true;
     }
 
@@ -65,5 +65,10 @@ public class SeasonFragment extends QuestionFragment {
             return "Summer";
         }
         return "Fall";
+    }
+
+    @Override
+    public String getTriedMicrophone() {
+        return "N/A";
     }
 }

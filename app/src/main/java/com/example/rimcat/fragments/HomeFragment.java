@@ -44,4 +44,9 @@ public class HomeFragment extends QuestionFragment {
     public String getCorrectAnswer() {
         return null;
     }
+
+    @Override
+    public String getTriedMicrophone() {
+        return null;
+    }
 }

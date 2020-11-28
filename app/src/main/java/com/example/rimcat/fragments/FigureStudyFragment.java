@@ -36,6 +36,7 @@ public class FigureStudyFragment extends QuestionFragment {
     private Button figureReadyBtn;
     private int countdown = 3;
     private int figCount = 0;
+    private boolean showingFigures;
 
     @Nullable
     @Override
@@ -91,11 +92,13 @@ public class FigureStudyFragment extends QuestionFragment {
 
     private void onReadyClick() {
         figureReadyBtn.setVisibility(View.INVISIBLE);
+        figureText.setVisibility(View.INVISIBLE);
 //        showFigure();
         // Push figure text down
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) figureText.getLayoutParams();
         params.topMargin = 90;
         figureText.setLayoutParams(params);
+        figureText.setVisibility(View.VISIBLE);
         countDownTimer.start();
     }
 
@@ -104,6 +107,7 @@ public class FigureStudyFragment extends QuestionFragment {
         imageCard.setVisibility(View.VISIBLE);
         figureText.setTextSize(35);
         figureListCounter.start();
+        showingFigures = true;
     }
 
     private void showPromptOrFinish() {
@@ -123,7 +127,7 @@ public class FigureStudyFragment extends QuestionFragment {
             // Give the user 3 seconds to prepare
             figureListCounter.start();
         } else {
-            logEndTimeAndData(getActivity().getApplicationContext(), "figure_study,null", getCorrectAnswer());
+            logEndTimeAndData(getActivity().getApplicationContext(), "figure_study,null");
             ((MainActivity)getActivity()).getFragmentData(null);
         }
     }
@@ -143,5 +147,26 @@ public class FigureStudyFragment extends QuestionFragment {
         return "N/A";
     }
 
-    //TODO: Add lifecycle code here
+    @Override
+    public String getTriedMicrophone() {
+        return "N/A";
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (showingFigures) {
+            figureListCounter.cancel();
+//            figCount = 0;
+//            figureImage.setImageResource(FIGURE_LIST[figCount]);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (showingFigures) {
+            figureListCounter.start();
+        }
+    }
 }

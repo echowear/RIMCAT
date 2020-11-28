@@ -102,16 +102,17 @@ public abstract class QuestionFragment extends Fragment {
         Log.d(TAG, "logStartTime: " + startTime);
     }
 
-    public void logEndTimeAndData(Context context, String data, String correctAnswer) {
+    public void logEndTimeAndData(Context context, String data) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_2);
         Date today = Calendar.getInstance().getTime();
         endMilis = today.getTime();
         endTime = dateFormat.format(today);
         String resultString;
+        //TODO: Simplify this to only have one string
         if (QuestionFragment.PATIENT_ID != null)
-            resultString = QuestionFragment.PATIENT_ID + "," + data + "," + correctAnswer + "," + calculateResponseTime() + ',' + startTime + "," + endTime;
+            resultString = QuestionFragment.PATIENT_ID + "," + data + "," + getCorrectAnswer() + "," + getTriedMicrophone() + "," + calculateResponseTime() + "," + startTime + "," + endTime;
         else
-            resultString = "null" + "," + data + "," + correctAnswer  + ","  + calculateResponseTime() + ',' + startTime + "," + endTime;
+            resultString = "null" + "," + data + "," + getCorrectAnswer()  + "," + getTriedMicrophone() + ","  + calculateResponseTime() + ',' + startTime + "," + endTime;
 
 
         Log.d(TAG, "logEndTimeAndData: Logging the following result... \n" + resultString);
@@ -178,6 +179,7 @@ public abstract class QuestionFragment extends Fragment {
             if (mediaPlayer.isPlaying() || mediaPlayer.isLooping()) {
                 mediaPlayer.stop();
             }
+            mediaPlayer.reset();
             mediaPlayer.release();
             mediaPlayer = null;
         }
@@ -188,6 +190,8 @@ public abstract class QuestionFragment extends Fragment {
     public abstract void moveToNextPage();
 
     public abstract String getCorrectAnswer();
+
+    public abstract String getTriedMicrophone();
 
     @Nullable
     @Override
