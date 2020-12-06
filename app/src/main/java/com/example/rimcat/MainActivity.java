@@ -30,6 +30,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rimcat.data_log.CorrectAnswerDictionary;
+import com.example.rimcat.data_log.GenerateDirectory;
+import com.example.rimcat.data_log.LogcatExportService;
 import com.example.rimcat.dialogs.RecallFinishDialog;
 import com.example.rimcat.dialogs.RetryDialog;
 import com.example.rimcat.fragments.ComputationFragment;
@@ -56,6 +58,7 @@ import com.example.rimcat.fragments.VerbalLearningFragment;
 import com.example.rimcat.fragments.VerbalRecognitionFragment;
 import com.example.rimcat.fragments.VideoFragment;
 
+import java.io.File;
 import java.util.ArrayList;
 
 
@@ -80,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LogcatExportService.log(this, new File(GenerateDirectory.getRootFile(this), "logcat_" + System.currentTimeMillis() + ".txt"));
         setContentView(R.layout.activity_main);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
