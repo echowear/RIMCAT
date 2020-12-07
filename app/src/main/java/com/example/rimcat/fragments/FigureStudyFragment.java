@@ -117,13 +117,13 @@ public class FigureStudyFragment extends QuestionFragment {
             // Swap image and prompt text
             figureImage.setImageResource(FIGURE_LIST[figCount]);
             // Play affirmative sound
-            try {
-                Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                Ringtone r = RingtoneManager.getRingtone(getActivity(), notification);
-                r.play();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+//            try {
+//                Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+//                Ringtone r = RingtoneManager.getRingtone(getActivity(), notification);
+//                r.play();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
             // Give the user 3 seconds to prepare
             figureListCounter.start();
         } else {

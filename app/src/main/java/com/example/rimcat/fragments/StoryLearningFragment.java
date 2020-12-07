@@ -41,11 +41,11 @@ public class StoryLearningFragment extends QuestionFragment {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 reading_comp_sec++;
-                if (storyMedia != null) {
-                    storyMedia.reset();
-                }
                 Log.d(TAG, "onCompletion: Reading comp sec " + reading_comp_sec);
                 if (reading_comp_sec < READING_COMP_SECTIONS.length) {
+                    if (storyMedia != null) {
+                        storyMedia.reset();
+                    }
                     storyText.setText(READING_COMP_SECTIONS[reading_comp_sec]);
                     AssetFileDescriptor afd = getActivity().getResources().openRawResourceFd(READING_COMP_AUDIO[reading_comp_sec]);
                     try {
@@ -59,6 +59,8 @@ public class StoryLearningFragment extends QuestionFragment {
 
                 } else {
                     if (storyMedia != null) {
+                        storyMedia.stop();
+                        storyMedia.reset();
                         storyMedia.release();
                         storyMedia = null;
                     }

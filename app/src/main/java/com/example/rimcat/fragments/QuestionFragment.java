@@ -47,8 +47,6 @@ public abstract class QuestionFragment extends Fragment {
     protected MediaPlayer mediaPlayer;
     protected Context mContext;
     protected Vibrator mVibrator;
-    protected TextToSpeech textToSpeech;
-    protected boolean isTTSInitialized;
 
     public void startAnimation(final boolean isFadeIn) {
         Animation fadeOutAnimation;
@@ -148,30 +146,15 @@ public abstract class QuestionFragment extends Fragment {
         t.show();
 
         // Execute sound
-        if (shouldExecuteSound) {
-            try {
-                Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                Ringtone r = RingtoneManager.getRingtone(mContext, notification);
-                r.play();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    protected void setUpTextToSpeech() {
-        textToSpeech = new TextToSpeech(getActivity().getApplicationContext(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if(status != TextToSpeech.ERROR) {
-                    textToSpeech.setLanguage(Locale.US);
-                    isTTSInitialized = true;
-                } else {
-                    Log.e(TAG, "TTS Initialization Failed!");
-                    isTTSInitialized = false;
-                }
-            }
-        });
+//        if (shouldExecuteSound) {
+//            try {
+//                Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+//                Ringtone r = RingtoneManager.getRingtone(mContext, notification);
+//                r.play();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 
     protected void releaseMediaPlayer() {

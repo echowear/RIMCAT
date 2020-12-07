@@ -23,7 +23,6 @@ public class KeyboardFragment extends QuestionFragment {
 
     private static final String     TAG = "RecallResponseFragment";
     private Context mContext;
-    private Vibrator mVibrator;
     private TextView promptText;
     private EditText responseText;
     private Button submitBtn;

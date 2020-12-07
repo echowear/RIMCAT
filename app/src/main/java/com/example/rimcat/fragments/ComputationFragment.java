@@ -57,8 +57,6 @@ public class ComputationFragment extends QuestionFragment {
         numberToTextMap.put("x", "Times");
         numberToTextMap.put("÷", "Divided by");
 
-        setUpTextToSpeech();
-
         compEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable s) {
@@ -132,9 +130,7 @@ public class ComputationFragment extends QuestionFragment {
             if (currentCompNum < COMPUTATION_LIST.length) {
                 hasRepeated = false;
                 showComputationTimer.cancel();
-                if (textToSpeech.isSpeaking()) {
-                    textToSpeech.stop();
-                }
+                ((MainActivity)getActivity()).pauseTextToSpeech();
                 compEditText.setText("");
                 currentCompText = COMPUTATION_LIST[currentCompNum];
                 computationText.setText(currentCompText);
@@ -150,20 +146,9 @@ public class ComputationFragment extends QuestionFragment {
     }
 
     private void readCurrentComputation() {
-        // Split the numbers into strings
-        String[] numbersToRead = currentCompText.split(" ");
-
-        // Read each part of computation
-        for (String numberOrSymbol : numbersToRead) {
-            String textSpeech = numberOrSymbol;
-            if (numberToTextMap.get(numberOrSymbol) != null)
-                textSpeech = numberToTextMap.get(numberOrSymbol);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && isTTSInitialized) {
-                textToSpeech.speak(textSpeech, TextToSpeech.QUEUE_ADD, null, null);
-            } else if (isTTSInitialized) {
-                textToSpeech.speak(textSpeech, TextToSpeech.QUEUE_ADD, null);
-            }
-        }
+        // Replace mispronounced words, then read the sentence
+        String parsedText = currentCompText.replace("-", "Minus").replace("x", "Times").replace("÷", "Divided by");
+        ((MainActivity)getActivity()).useTextToSpeech(parsedText);
 
         // Grey out or keep repeat button color
         if (hasRepeated) {
@@ -187,18 +172,12 @@ public class ComputationFragment extends QuestionFragment {
     }
 
     private void stopActivity() {
-        if(textToSpeech != null){
-            textToSpeech.stop();
-            textToSpeech.shutdown();
-            isTTSInitialized = false;
-        }
         if (showComputationTimer != null)
             showComputationTimer.cancel();
     }
 
     @Override
     public void onStart() {
-        setUpTextToSpeech();
         super.onStart();
     }
 

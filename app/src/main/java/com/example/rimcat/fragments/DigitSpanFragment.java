@@ -138,9 +138,6 @@ public class DigitSpanFragment extends QuestionFragment {
             }
         };
 
-        // Sets up text to speech to read numbers
-        setUpTextToSpeech();
-
         nextBtn.getBackground().setTint(getResources().getColor(R.color.backgroundColor));
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,13 +187,9 @@ public class DigitSpanFragment extends QuestionFragment {
 
     private void trialListOnTick() {
         if (currentDigitPlace < currentNumberList.length) {
-            Log.d(TAG, "onTick: Changing text --- " + currentNumberList[timerIndex]);
+            Log.d(TAG, "onTick: Changing text --- " + currentNumberList[currentDigitPlace]);
             dsNumText.setText("" + currentNumberList[currentDigitPlace]);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && isTTSInitialized) {
-                textToSpeech.speak(numberToTextMap.get(currentNumberList[currentDigitPlace]), TextToSpeech.QUEUE_FLUSH, null, null);
-            } else if (isTTSInitialized) {
-                textToSpeech.speak(numberToTextMap.get(currentNumberList[currentDigitPlace]), TextToSpeech.QUEUE_FLUSH, null);
-            }
+            ((MainActivity)getActivity()).useTextToSpeech(numberToTextMap.get(currentNumberList[currentDigitPlace]));
             currentDigitPlace++;
         } else {
             trialListCounter.cancel();
@@ -279,11 +272,6 @@ public class DigitSpanFragment extends QuestionFragment {
     }
 
     private void stopActivity() {
-        if(textToSpeech != null){
-            textToSpeech.stop();
-            textToSpeech.shutdown();
-            isTTSInitialized = false;
-        }
         if (countDownTimer != null)
             countDownTimer.cancel();
         if (countDownTimer != null)
@@ -323,7 +311,6 @@ public class DigitSpanFragment extends QuestionFragment {
 
     @Override
     public void onStart() {
-        setUpTextToSpeech();
         super.onStart();
     }
 

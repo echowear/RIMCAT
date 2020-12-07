@@ -27,7 +27,7 @@ public class LogcatExportService extends IntentService {
     }
 
     public static void log(Context context, File file) {
-        Log.d(TAG, "log: Here");
+        Log.d(TAG, "log: Sending intent...");
         Intent intent = new Intent(context, LogcatExportService.class);
         intent.putExtra(EXTRA_FILE_DESTINATION, file.getAbsolutePath());
         context.startService(intent);

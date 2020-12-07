@@ -83,11 +83,7 @@ public class VerbalLearningFragment extends QuestionFragment {
                 if (wordIndex < currentWordList.length) {
                     Log.d(TAG, "onTick: Changing text --- " + currentWordList[wordIndex]);
                     verbalText.setText(currentWordList[wordIndex]);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && isTTSInitialized) {
-                        textToSpeech.speak(currentWordList[wordIndex], TextToSpeech.QUEUE_FLUSH, null, null);
-                    } else if (isTTSInitialized) {
-                        textToSpeech.speak(currentWordList[wordIndex], TextToSpeech.QUEUE_FLUSH, null);
-                    }
+                    ((MainActivity)getActivity()).useTextToSpeech(currentWordList[wordIndex]);
                     wordIndex++;
                 } else {
                     logEndTimeAndData(getActivity().getApplicationContext(), "verbal_learning,null");
@@ -120,11 +116,6 @@ public class VerbalLearningFragment extends QuestionFragment {
     }
 
     private void stopActivity() {
-        if(textToSpeech != null){
-            textToSpeech.stop();
-            textToSpeech.shutdown();
-            isTTSInitialized = false;
-        }
         if (countDownTimer != null)
             countDownTimer.cancel();
         if (countDownTimer != null)
@@ -138,7 +129,6 @@ public class VerbalLearningFragment extends QuestionFragment {
 
     @Override
     public void onStart() {
-        setUpTextToSpeech();
         super.onStart();
     }
 
@@ -155,7 +145,6 @@ public class VerbalLearningFragment extends QuestionFragment {
     @Override
     public void onResume() {
         Log.d(TAG, "onResume: called");
-        setUpTextToSpeech();
         if (inWordList || inCountdown) {
             beginCountdownTimer();
         }

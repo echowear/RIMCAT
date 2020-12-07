@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.TransitionDrawable;
+import android.os.Build;
 import android.speech.RecognizerIntent;
+import android.speech.tts.TextToSpeech;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
@@ -60,6 +62,7 @@ import com.example.rimcat.fragments.VideoFragment;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity implements RetryDialog.RetryDialogListener, RecallFinishDialog.RecallFinishDialogListener {
@@ -79,23 +82,26 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     private TextView                nextText;
     private boolean                 isNextButtonReady;
     private ProgressBar             appProgress;
+    protected TextToSpeech          textToSpeech;
+    protected boolean               isTTSInitialized;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Create log file and start logging
         LogcatExportService.log(this, new File(GenerateDirectory.getRootFile(this), "logcat_" + System.currentTimeMillis() + ".txt"));
+
+        // Set up text to speech. Main screen will be set up after text to speech initialization.
+        setUpTextToSpeech();
+    }
+
+    private void setInitialHomeFragment() {
         setContentView(R.layout.activity_main);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         CorrectAnswerDictionary.loadAnswers();
         appBackground = findViewById(R.id.app_background);
-
-        // Initially change view to home fragment
-        fragmentManager = getSupportFragmentManager();
-        fragmentTag = "HomeFragment";
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.container, new HomeFragment(), "HomeFragment");
-        fragmentTransaction.commit();
 
         // Initialize views and model
         nextButton = findViewById(R.id.floatingActionButton);
@@ -104,6 +110,13 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         nextText.setTextColor(getResources().getColor(R.color.backgroundColor));
         appProgress = findViewById(R.id.app_progress);
         appProgress.setMax(NUM_SCREENS);
+
+        // Initially change view to home fragment
+        fragmentManager = getSupportFragmentManager();
+        fragmentTag = "HomeFragment";
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.container, new HomeFragment(), "HomeFragment");
+        fragmentTransaction.commit();
     }
 
     public void getFragmentData(View view) {
@@ -202,6 +215,120 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         nextButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
         nextText.setTextColor(getResources().getColor(R.color.colorAccent));
         isNextButtonReady = true;
+    }
+
+    public void showRetryDialog() {
+        RetryDialog dialog = new RetryDialog();
+        dialog.show(getSupportFragmentManager(), "RetryDialog");
+    }
+
+    public void showRecallFinishDialog() {
+        RecallFinishDialog dialog = new RecallFinishDialog();
+        dialog.show(getSupportFragmentManager(), "RecallFinishDialog");
+    }
+
+    public void hideSoftKeyboard() {
+        InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (this.getCurrentFocus() != null && inputManager != null) {
+            inputManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
+            inputManager.hideSoftInputFromInputMethod(this.getCurrentFocus().getWindowToken(), 0);
+        }
+    }
+
+    private void setUpTextToSpeech() {
+        textToSpeech = new TextToSpeech(this.getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    textToSpeech.setLanguage(Locale.US);
+                    textToSpeech.setSpeechRate(0.7f);
+                    isTTSInitialized = true;
+                    setInitialHomeFragment();
+                } else {
+                    Log.e(TAG, "TTS Initialization Failed!");
+                    isTTSInitialized = false;
+                }
+            }
+        });
+    }
+
+    public void useTextToSpeech(String text) {
+        Log.d(TAG, "useTextToSpeech: " + text);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && isTTSInitialized) {
+            textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+        } else if (isTTSInitialized) {
+            textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+        }
+    }
+
+    public void pauseTextToSpeech() {
+        if (textToSpeech.isSpeaking()) {
+            textToSpeech.stop();
+        }
+    }
+
+    @Override
+    public void onRetryDialogPositiveClick(DialogFragment dialog) {
+        VerbalRecallFragment fragment = (VerbalRecallFragment) fragmentManager.findFragmentByTag(fragmentTag);
+        fragment.executePostMessageSetup();
+    }
+
+    @Override
+    public void onFinishDialogPositiveClick(DialogFragment dialog) {
+        getFragmentData(null);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        ArrayList<String> speechText = null;
+
+        if (resultCode == RESULT_OK && data != null) {
+            speechText = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+        }
+        if (speechText != null) {
+            switch (viewNumber) {
+                case ActivitiesModel.VERBAL_RECALL_SCREEN_1:
+                case ActivitiesModel.VERBAL_RECALL_SCREEN_2:
+                case ActivitiesModel.VERBAL_RECALL_SCREEN_3:
+                case ActivitiesModel.VERBAL_RECALL_SCREEN_4:
+                case ActivitiesModel.VERBAL_RECALL_SCREEN_5:
+                case ActivitiesModel.VERBAL_RECALL_SCREEN_6:
+                    VerbalRecallFragment verbalRecallFragment = (VerbalRecallFragment) fragmentManager.findFragmentByTag(fragmentTag);
+                    verbalRecallFragment.setResponseTextToSpeechText(speechText.get(0));
+                    break;
+                case ActivitiesModel.KEYBOARD_SCREEN:
+                    KeyboardFragment keyboardFragment = (KeyboardFragment) fragmentManager.findFragmentByTag(fragmentTag);
+                    keyboardFragment.setResponseTextToSpeechText(speechText.get(0));
+                    break;
+            }
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions, int[] grantResults) {
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            getFragmentData(null);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.overflow_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        debugScreenSelect(item.getItemId());
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Do nothing
     }
 
     private void debugScreenSelect(int itemID) {
@@ -459,90 +586,13 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         fragmentTransaction.commit();
     }
 
-    public void showRetryDialog() {
-        RetryDialog dialog = new RetryDialog();
-        dialog.show(getSupportFragmentManager(), "RetryDialog");
-    }
-
-    public void showRecallFinishDialog() {
-        RecallFinishDialog dialog = new RecallFinishDialog();
-        dialog.show(getSupportFragmentManager(), "RecallFinishDialog");
-    }
-
-    public void hideSoftKeyboard() {
-        InputMethodManager inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (this.getCurrentFocus() != null && inputManager != null) {
-            inputManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
-            inputManager.hideSoftInputFromInputMethod(this.getCurrentFocus().getWindowToken(), 0);
+    @Override
+    protected void onDestroy() {
+        if(textToSpeech != null){
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+            isTTSInitialized = false;
         }
-    }
-
-    @Override
-    public void onRetryDialogPositiveClick(DialogFragment dialog) {
-        VerbalRecallFragment fragment = (VerbalRecallFragment) fragmentManager.findFragmentByTag(fragmentTag);
-        fragment.executePostMessageSetup();
-    }
-
-    @Override
-    public void onFinishDialogPositiveClick(DialogFragment dialog) {
-        getFragmentData(null);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        ArrayList<String> speechText = null;
-
-        if (resultCode == RESULT_OK && data != null) {
-            speechText = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-        }
-        if (speechText != null) {
-            switch (viewNumber) {
-                case ActivitiesModel.VERBAL_RECALL_SCREEN_1:
-                case ActivitiesModel.VERBAL_RECALL_SCREEN_2:
-                case ActivitiesModel.VERBAL_RECALL_SCREEN_3:
-                case ActivitiesModel.VERBAL_RECALL_SCREEN_4:
-                case ActivitiesModel.VERBAL_RECALL_SCREEN_5:
-                case ActivitiesModel.VERBAL_RECALL_SCREEN_6:
-                    VerbalRecallFragment verbalRecallFragment = (VerbalRecallFragment) fragmentManager.findFragmentByTag(fragmentTag);
-                    verbalRecallFragment.setResponseTextToSpeechText(speechText.get(0));
-                    break;
-                case ActivitiesModel.KEYBOARD_SCREEN:
-                    KeyboardFragment keyboardFragment = (KeyboardFragment) fragmentManager.findFragmentByTag(fragmentTag);
-                    keyboardFragment.setResponseTextToSpeechText(speechText.get(0));
-                    break;
-//                case DataLogModel.COMPUTATION_SCREEN:
-//                    ComputationFragment computationFragment = (ComputationFragment) fragmentManager.findFragmentByTag(fragmentTag);
-//                    computationFragment.setResponseTextToSpeechText(speechText.get(0));
-//                    break;
-            }
-
-        }
-    }
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String[] permissions, int[] grantResults) {
-        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-            getFragmentData(null);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.overflow_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        debugScreenSelect(item.getItemId());
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onBackPressed() {
-        // Do nothing
+        super.onDestroy();
     }
 }
