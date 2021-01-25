@@ -25,7 +25,7 @@ public class StoryMemoryFragment extends QuestionFragment {
      * 2 = Fill in the Blank
      */
     private static final int[] QUESTION_TYPE = new int[] {
-            1, 0, 0, 1, 0, 1, 1, 1, 1
+            1, 0, 1, 0, 1, 0, 1, 1, 1, 1
     };
     private CardView card2;
     private RadioGroup twoQuestionGrp, fourQuestionGrp;

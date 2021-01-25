@@ -118,12 +118,13 @@ public class CorrectAnswerDictionary {
     private static void loadStoryMemoryQuestions() {
         STORY_MEMORY_ANSWERS.put(0, "Monday morning");
         STORY_MEMORY_ANSWERS.put(1, "No");
-        STORY_MEMORY_ANSWERS.put(2, "No");
-        STORY_MEMORY_ANSWERS.put(3, "Sarah");
-        STORY_MEMORY_ANSWERS.put(4, "Yes");
-        STORY_MEMORY_ANSWERS.put(5, "She was distracted");
-        STORY_MEMORY_ANSWERS.put(6, "Eggs");
-        STORY_MEMORY_ANSWERS.put(7, "8");
-        STORY_MEMORY_ANSWERS.put(8, "Blueberries");
+        STORY_MEMORY_ANSWERS.put(2, "Sarah");
+        STORY_MEMORY_ANSWERS.put(3, "Yes");
+        STORY_MEMORY_ANSWERS.put(4, "At lunch time");
+        STORY_MEMORY_ANSWERS.put(5, "No");
+        STORY_MEMORY_ANSWERS.put(6, "She was distracted");
+        STORY_MEMORY_ANSWERS.put(7, "Eggs");
+        STORY_MEMORY_ANSWERS.put(8, "8");
+        STORY_MEMORY_ANSWERS.put(9, "Blueberries");
     }
 }

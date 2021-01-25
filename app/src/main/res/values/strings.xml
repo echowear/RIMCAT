@@ -245,36 +245,42 @@
     <string-array name="reading_comp_questions">
         <item><b>The story begins on:</b></item>
         <item><b>Is the story is about a woman who meets a friend for lunch?</b></item>
-        <item><b>Is the story is about a woman who ran over her groceries?</b></item>
         <item><b>The main character’s name was:</b></item>
-        <item><b>Did the woman run into her friend in the grocery aisle?</b></item>
-        <item><b>The woman’s bag was not secure because:</b></item>
+        <item><b>Did the woman run into her friend in the parking lot?</b></item>
+        <item><b>When did the main character go to the store?</b></item>
+        <item><b>Is the story is about a woman who ran over her groceries?</b></item>
+        <item><b>The woman\'s bag was not secure because:</b></item>
         <item><b>What was broken?</b></item>
         <item><b>How many eggs were broken?</b></item>
-        <item><b>The woman saw what fruit on the floor mat:</b></item>
+        <item><b>What fruit did the woman see on the floor mat?</b></item>
     </string-array>
     <string name="reading_yes">Yes</string>
     <string name="reading_no">No</string>
     <string-array name="reading_comp_answers">
         <item>Monday morning</item>
         <item>Wednesday afternoon</item>
-        <item>Thursday at dawn</item>
-        <item>Tuesday at lunch break</item>
+        <item>Thursday evening</item>
+        <item>Tuesday at lunch</item>
 
         <item>Maria</item>
         <item>Cara</item>
         <item>Mariah</item>
         <item>Sarah</item>
 
-        <item>Her trunk was left unlocked</item>
-        <item>The grocery handle had broken</item>
-        <item>She was distracted</item>
-        <item>She is not very bright</item>
+        <item>First thing in the morning</item>
+        <item>After work</item>
+        <item>At lunch time</item>
+        <item>During a coffee break</item>
 
-        <item>The car breaks</item>
+        <item>Her trunk was left unlocked</item>
+        <item>She was distracted</item>
+        <item>The bag was ripped</item>
+        <item>The bag was overfilled</item>
+
         <item>Eggs</item>
+        <item>The car</item>
         <item>A finger nail</item>
-        <item>The woman’s spirits</item>
+        <item>A jar of pickles</item>
 
         <item>2</item>
         <item>6</item>
