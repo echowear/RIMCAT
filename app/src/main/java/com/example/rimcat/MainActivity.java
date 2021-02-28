@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Build;
+import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.support.constraint.ConstraintLayout;
@@ -239,12 +240,21 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         textToSpeech = new TextToSpeech(this.getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
-                if(status != TextToSpeech.ERROR) {
+                if(status == TextToSpeech.SUCCESS) {
                     textToSpeech.setLanguage(Locale.US);
                     textToSpeech.setSpeechRate(0.7f);
                     isTTSInitialized = true;
+                    // wait a little for the initialization to complete
+                    Handler h = new Handler();
+                    h.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // run your code here
+                            useTextToSpeech("Ready");
+                        }
+                    }, 400);
                     setInitialHomeFragment();
-                } else {
+                } else if (status == TextToSpeech.ERROR) {
                     Log.e(TAG, "TTS Initialization Failed!");
                     isTTSInitialized = false;
                 }
@@ -310,6 +320,11 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String[] permissions, int[] grantResults) {
+        // Start logging data to log file now that permission has been granted
+        if (requestCode == MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE)
+            LogcatExportService.log(this, new File(GenerateDirectory.getRootFile(this), "logcat_" + System.currentTimeMillis() + ".txt"));
+
+        // Calls getFragmentData again to attempt to move to the next page if all required permissions are granted
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
             getFragmentData(null);
     }
