@@ -55,7 +55,7 @@ public class DigitSpanFragment extends QuestionFragment {
     private HashMap<Integer, String> numberToTextMap;
     private int[] currentNumberList;
     private int timerIndex = 0, currentDigitPlace, currentNumber = 0;
-    private boolean movingToNextActivity = false, inNumberRead = false, inCountdownTimer = false;
+    private boolean movingToNextActivity = false, inNumberRead = false, inCountdownTimer = false, firstNumInSetAnsweredWrong = false;
     private CountDownTimer countDownTimer, trialListCounter;
     private CardView countdownCard, numRecallCard;
     private Button readyBtn, nextBtn;
@@ -147,7 +147,13 @@ public class DigitSpanFragment extends QuestionFragment {
                         logEndTimeAndData(getActivity().getApplicationContext(), "digit_span_" + (currentNumber + 1) + "," + dsEditText.getText().toString());
                         vibrateToastAndExecuteSound(dsEditText.getText().toString(), true);
                         ((MainActivity)getActivity()).hideSoftKeyboard();
-                        moveToNextNumber();
+
+                        if (getCorrectAnswer().equals(dsEditText.getText().toString())) {
+                            firstNumInSetAnsweredWrong = false;
+                            moveToNextNumber();
+                        }
+                        else
+                            checkIfBothDigitsFailed();
                     }
                 }
             }
@@ -205,6 +211,20 @@ public class DigitSpanFragment extends QuestionFragment {
         logStartTime();
     }
 
+    private void checkIfBothDigitsFailed() {
+        if (currentNumber == 0 || currentNumber % 2 == 0) {
+            Log.d(TAG, "User failed to recall the first number of a sequence.");
+            firstNumInSetAnsweredWrong = true;
+        } else if (firstNumInSetAnsweredWrong) {
+            Log.d(TAG, "User failed to recall two numbers with the same amount of digits. Moving to next part of activity.");
+            if (currentNumber < NUMS_PER_LIST)
+                currentNumber = NUMS_PER_LIST - 1;
+            else
+                currentNumber = FULL_NUMBER_LIST.length - 1;
+        }
+        moveToNextNumber();
+    }
+
     private void moveToNextNumber() {
         currentNumber++;
         if (currentNumber < FULL_NUMBER_LIST.length) {
@@ -229,7 +249,7 @@ public class DigitSpanFragment extends QuestionFragment {
 
         } else {
             movingToNextActivity = true;
-            ((MainActivity)getActivity()).getFragmentData(null);
+            ((MainActivity) getActivity()).getFragmentData(null);
         }
     }
 
