@@ -66,21 +66,21 @@
     <item
         android:id="@+id/screen_recall_3_om"
         android:title="@string/screen_recall_3"/>
-    <item
-        android:id="@+id/screen_inst_8_om"
-        android:title="@string/screen_inst_8"/>
-    <item
-        android:id="@+id/screen_verbal_4_om"
-        android:title="@string/screen_verbal_4"/>
-    <item
-        android:id="@+id/screen_recall_4_om"
-        android:title="@string/screen_recall_4"/>
-    <item
-        android:id="@+id/screen_inst_9_om"
-        android:title="@string/screen_inst_9"/>
-    <item
-        android:id="@+id/screen_recall_5_om"
-        android:title="@string/screen_recall_5"/>
+<!--    <item-->
+<!--        android:id="@+id/screen_inst_8_om"-->
+<!--        android:title="@string/screen_inst_8"/>-->
+<!--    <item-->
+<!--        android:id="@+id/screen_verbal_4_om"-->
+<!--        android:title="@string/screen_verbal_4"/>-->
+<!--    <item-->
+<!--        android:id="@+id/screen_recall_4_om"-->
+<!--        android:title="@string/screen_recall_4"/>-->
+<!--    <item-->
+<!--        android:id="@+id/screen_inst_9_om"-->
+<!--        android:title="@string/screen_inst_9"/>-->
+<!--    <item-->
+<!--        android:id="@+id/screen_recall_5_om"-->
+<!--        android:title="@string/screen_recall_5"/>-->
     <item
         android:id="@+id/screen_inst_10_om"
         android:title="@string/screen_inst_10"/>

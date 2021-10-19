@@ -184,8 +184,8 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_5 ||
                 viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_6 ||
                 viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_7 ||
-                viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_8 ||
-                viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_9 ||
+//                viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_8 ||
+//                viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_9 ||
                 viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_10 ||
                 viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_11 ||
                 viewNumber == ActivitiesModel.INSTRUCTIONS_SCREEN_12 ||
@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 viewNumber == ActivitiesModel.VERBAL_LEARNING_SCREEN_1 ||
                 viewNumber == ActivitiesModel.VERBAL_LEARNING_SCREEN_2 ||
                 viewNumber == ActivitiesModel.VERBAL_LEARNING_SCREEN_3 ||
-                viewNumber == ActivitiesModel.VERBAL_LEARNING_SCREEN_4 ||
+//                viewNumber == ActivitiesModel.VERBAL_LEARNING_SCREEN_4 ||
                 viewNumber == ActivitiesModel.VIDEO_SCREEN ||
                 viewNumber == ActivitiesModel.FIGURE_STUDY_SCREEN ||
                 viewNumber == ActivitiesModel.SEMANTIC_RELATEDNESS_SCREEN) {
@@ -302,8 +302,8 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 case ActivitiesModel.VERBAL_RECALL_SCREEN_1:
                 case ActivitiesModel.VERBAL_RECALL_SCREEN_2:
                 case ActivitiesModel.VERBAL_RECALL_SCREEN_3:
-                case ActivitiesModel.VERBAL_RECALL_SCREEN_4:
-                case ActivitiesModel.VERBAL_RECALL_SCREEN_5:
+//                case ActivitiesModel.VERBAL_RECALL_SCREEN_4:
+//                case ActivitiesModel.VERBAL_RECALL_SCREEN_5:
                 case ActivitiesModel.VERBAL_RECALL_SCREEN_6:
                     VerbalRecallFragment verbalRecallFragment = (VerbalRecallFragment) fragmentManager.findFragmentByTag(fragmentTag);
                     verbalRecallFragment.setResponseTextToSpeechText(speechText.get(0));
@@ -460,31 +460,31 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 fragmentTag = "RecallResponseFragment";
                 fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "RecallResponseFragment");
                 break;
-            case R.id.screen_inst_8_om:
-                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_8;
-                fragmentTag = "InstructionsFragment";
-                fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
-                break;
-            case R.id.screen_verbal_4_om:
-                this.viewNumber = ActivitiesModel.VERBAL_LEARNING_SCREEN_4;
-                fragmentTag = "VerbalRecallFragment";
-                fragmentTransaction.replace(R.id.container, new VerbalLearningFragment(), "VerbalRecallFragment");
-                break;
-            case R.id.screen_recall_4_om:
-                this.viewNumber = ActivitiesModel.VERBAL_RECALL_SCREEN_4;
-                fragmentTag = "RecallResponseFragment";
-                fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "RecallResponseFragment");
-                break;
-            case R.id.screen_inst_9_om:
-                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_9;
-                fragmentTag = "InstructionsFragment";
-                fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
-                break;
-            case R.id.screen_recall_5_om:
-                this.viewNumber = ActivitiesModel.VERBAL_RECALL_SCREEN_5;
-                fragmentTag = "RecallResponseFragment";
-                fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "RecallResponseFragment");
-                break;
+//            case R.id.screen_inst_8_om:
+//                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_8;
+//                fragmentTag = "InstructionsFragment";
+//                fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
+//                break;
+//            case R.id.screen_verbal_4_om:
+//                this.viewNumber = ActivitiesModel.VERBAL_LEARNING_SCREEN_4;
+//                fragmentTag = "VerbalRecallFragment";
+//                fragmentTransaction.replace(R.id.container, new VerbalLearningFragment(), "VerbalRecallFragment");
+//                break;
+//            case R.id.screen_recall_4_om:
+//                this.viewNumber = ActivitiesModel.VERBAL_RECALL_SCREEN_4;
+//                fragmentTag = "RecallResponseFragment";
+//                fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "RecallResponseFragment");
+//                break;
+//            case R.id.screen_inst_9_om:
+//                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_9;
+//                fragmentTag = "InstructionsFragment";
+//                fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
+//                break;
+//            case R.id.screen_recall_5_om:
+//                this.viewNumber = ActivitiesModel.VERBAL_RECALL_SCREEN_5;
+//                fragmentTag = "RecallResponseFragment";
+//                fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "RecallResponseFragment");
+//                break;
             case R.id.screen_inst_10_om:
                 this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_10;
                 fragmentTag = "InstructionsFragment";

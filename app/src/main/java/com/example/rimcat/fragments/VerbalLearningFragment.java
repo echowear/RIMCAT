@@ -42,10 +42,11 @@ public class VerbalLearningFragment extends QuestionFragment {
 
         // Set the current word list to the correct trial list words
         int currentView = ((MainActivity)getActivity()).getViewNumber();
-        if (currentView == ActivitiesModel.VERBAL_LEARNING_SCREEN_4)
-            currentWordList = TRIAL_LIST_TWO;
-        else
-            currentWordList = TRIAL_LIST_ONE;
+//        if (currentView == ActivitiesModel.VERBAL_LEARNING_SCREEN_4)
+//            currentWordList = TRIAL_LIST_TWO;
+//        else
+//            currentWordList = TRIAL_LIST_ONE;
+        currentWordList = TRIAL_LIST_ONE;
 
         // Initialize and prepare views
         cardView = view.findViewById(R.id.card);
