@@ -73,7 +73,7 @@ public class FigureSelectFragment extends QuestionFragment {
                 selectedImage =  (ImageView) v;
                 for (ImageView image : images)
                     image.setBackgroundColor(getResources().getColor(R.color.white));
-                selectedImage.setBackgroundColor(getResources().getColor(R.color.colorConfirm));
+                selectedImage.setBackgroundColor(getResources().getColor(R.color.colorAccent));
             }
         };
 

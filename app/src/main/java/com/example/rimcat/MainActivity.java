@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     private String                  fragmentTag;
     private int                     viewNumber = 0;
     private ConstraintLayout        appBackground;
-    private FloatingActionButton    nextButton;
+    private Button                  nextButton;
     private TextView                nextText;
     private boolean                 isNextButtonReady;
     private ProgressBar             appProgress;
@@ -105,10 +106,10 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         appBackground = findViewById(R.id.app_background);
 
         // Initialize views and model
-        nextButton = findViewById(R.id.floatingActionButton);
+        nextButton = findViewById(R.id.next_button);
         nextButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.backgroundColor)));
-        nextText = findViewById(R.id.nextText);
-        nextText.setTextColor(getResources().getColor(R.color.backgroundColor));
+//        nextText = findViewById(R.id.nextText);
+//        nextText.setTextColor(getResources().getColor(R.color.backgroundColor));
         appProgress = findViewById(R.id.app_progress);
         appProgress.setMax(NUM_SCREENS);
 
@@ -120,6 +121,10 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         fragmentTransaction.commit();
     }
 
+    /** nextButton onClick function
+     *
+     * @param view
+     */
     public void getFragmentData(View view) {
         if (isNextButtonReady) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -133,8 +138,8 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 if (fragment.loadDataModel()) {
                     isNextButtonReady = false;
                     nextButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.backgroundColor)));
-                    nextText.setTextColor(getResources().getColor(R.color.backgroundColor));
-                    changeBackground();
+//                    nextText.setTextColor(getResources().getColor(R.color.backgroundColor));
+//                    changeBackground();
                     fragment.startAnimation(false);
                     // Checks to hide or show the Next button
                     viewButtonVisibility();
@@ -203,18 +208,18 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 viewNumber == ActivitiesModel.VIDEO_SCREEN ||
                 viewNumber == ActivitiesModel.FIGURE_STUDY_SCREEN ||
                 viewNumber == ActivitiesModel.SEMANTIC_RELATEDNESS_SCREEN) {
-            nextText.setVisibility(View.INVISIBLE);
-            nextButton.hide();
+//            nextText.setVisibility(View.INVISIBLE);
+            nextButton.setVisibility(View.INVISIBLE);
         }
-        else if (nextText.getVisibility() == View.INVISIBLE) {
-            nextText.setVisibility(View.VISIBLE);
-            nextButton.show();
+        else if (nextButton.getVisibility() == View.INVISIBLE) {
+//            nextText.setVisibility(View.VISIBLE);
+            nextButton.setVisibility(View.VISIBLE);
         }
     }
 
     public void nextButtonReady() {
         nextButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
-        nextText.setTextColor(getResources().getColor(R.color.colorAccent));
+//        nextText.setTextColor(getResources().getColor(R.color.colorAccent));
         isNextButtonReady = true;
     }
 
