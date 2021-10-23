@@ -35,21 +35,30 @@
 
     </FrameLayout>
 
-    <Button
+    <android.support.v7.widget.AppCompatButton
         android:id="@+id/next_button"
-        android:layout_width="142dp"
-        android:layout_height="55dp"
+        android:layout_width="150dp"
+        android:layout_height="65dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@color/colorAccent"
+        android:background="@drawable/roundbutton"
+        android:text="@string/next_text"
+        android:textAllCaps="false"
         android:textColor="@color/white"
-        android:clickable="true"
-        android:focusable="true"
+        android:textSize="35sp"
         android:onClick="getFragmentData"
-        android:text="Next"
-        android:textSize="25sp"
-        android:toDegrees="360"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/blinkingArrow"
+        android:layout_width="110dp"
+        android:layout_height="115dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/next_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/arrow_color"
+        tools:visibility="visible" />
 
 </android.support.constraint.ConstraintLayout>

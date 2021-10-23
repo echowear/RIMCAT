@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -75,13 +76,18 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     private static final int        RESULT_SPEECH = 65676;
     private static final int        BACKGROUND_TRANSITION_TIME = 2000;
     private static final int        NUM_SCREENS = 48;
+    private static final int        BLINKING_START_SECS = 5;
     private FragmentManager         fragmentManager;
     private FragmentTransaction     fragmentTransaction;
     private String                  fragmentTag;
     private int                     viewNumber = 0;
     private ConstraintLayout        appBackground;
     private Button                  nextButton;
-    private TextView                nextText;
+    private ImageView               blinkingArrow;
+    private int                     currentArrowDrawable;
+    private long                    startTime;
+    private Handler                 timerHandler;
+    private Runnable                timerRunnable;
     private boolean                 isNextButtonReady;
     private ProgressBar             appProgress;
     protected TextToSpeech          textToSpeech;
@@ -108,10 +114,21 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         // Initialize views and model
         nextButton = findViewById(R.id.next_button);
         nextButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.backgroundColor)));
-//        nextText = findViewById(R.id.nextText);
-//        nextText.setTextColor(getResources().getColor(R.color.backgroundColor));
         appProgress = findViewById(R.id.app_progress);
         appProgress.setMax(NUM_SCREENS);
+
+        // Initialize blinking arrow logic
+        blinkingArrow = findViewById(R.id.blinkingArrow);
+        blinkingArrow.setVisibility(View.INVISIBLE);
+        blinkingArrow.setImageResource(R.drawable.arrow_color);
+        currentArrowDrawable = R.drawable.arrow_color;
+        timerHandler = new Handler();
+        timerRunnable = new Runnable() {
+            @Override
+            public void run() {
+                timerRunnableOnTick();
+            }
+        };
 
         // Initially change view to home fragment
         fragmentManager = getSupportFragmentManager();
@@ -136,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
             } else {
                 QuestionFragment fragment = (QuestionFragment) fragmentManager.findFragmentByTag(fragmentTag);
                 if (fragment.loadDataModel()) {
+                    stopBlinkingArrows();
                     isNextButtonReady = false;
                     nextButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.backgroundColor)));
 //                    nextText.setTextColor(getResources().getColor(R.color.backgroundColor));
@@ -208,12 +226,37 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 viewNumber == ActivitiesModel.VIDEO_SCREEN ||
                 viewNumber == ActivitiesModel.FIGURE_STUDY_SCREEN ||
                 viewNumber == ActivitiesModel.SEMANTIC_RELATEDNESS_SCREEN) {
-//            nextText.setVisibility(View.INVISIBLE);
             nextButton.setVisibility(View.INVISIBLE);
         }
         else if (nextButton.getVisibility() == View.INVISIBLE) {
-//            nextText.setVisibility(View.VISIBLE);
             nextButton.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void startBlinkingArrows() {
+        Log.d(TAG, "startBlinkingArrows: Here");
+        startTime = System.currentTimeMillis();
+        timerHandler.postDelayed(timerRunnable, 1000);
+    }
+
+    private void stopBlinkingArrows() {
+        Log.d(TAG, "stopBlinkingArrows: Here");
+        timerHandler.removeCallbacks(timerRunnable);
+        blinkingArrow.setVisibility(View.INVISIBLE);
+        blinkingArrow.setImageResource(R.drawable.arrow_color);
+    }
+
+    private void timerRunnableOnTick() {
+        Log.d(TAG, "run: Here");
+        long millis = System.currentTimeMillis() - startTime;
+        int seconds = (int) (millis / 1000);
+        if (nextButton.getVisibility() == View.VISIBLE) {
+            if (seconds > BLINKING_START_SECS) {
+                currentArrowDrawable = currentArrowDrawable == R.drawable.arrow_color ? R.drawable.arrow_blank : R.drawable.arrow_color;
+                blinkingArrow.setImageResource(currentArrowDrawable);
+                blinkingArrow.setVisibility(View.VISIBLE);
+            }
+            timerHandler.postDelayed(timerRunnable, 1000);
         }
     }
 
@@ -221,6 +264,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         nextButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
 //        nextText.setTextColor(getResources().getColor(R.color.colorAccent));
         isNextButtonReady = true;
+        startBlinkingArrows();
     }
 
     public void showRetryDialog() {
