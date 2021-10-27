@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     private static final int        MY_PERMISSIONS_REQUEST_RECORD_AUDIO = 1402;
     private static final int        RESULT_SPEECH = 65676;
     private static final int        BACKGROUND_TRANSITION_TIME = 2000;
-    private static final int        NUM_SCREENS = 48;
+    private static final int        NUM_SCREENS = 43;
     private static final int        BLINKING_START_SECS = 5;
     private FrameLayout             container;
     private FragmentManager         fragmentManager;
@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
 
     /** nextButton onClick function
      *
-     * @param view
+     * @param activity
      */
     public void hideSoftKeyboard(Activity activity) {
         InputMethodManager inputMethodManager =
@@ -260,20 +260,17 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     }
 
     private void startBlinkingArrows() {
-        Log.d(TAG, "startBlinkingArrows: Here");
         startTime = System.currentTimeMillis();
         timerHandler.postDelayed(timerRunnable, 1000);
     }
 
     private void stopBlinkingArrows() {
-        Log.d(TAG, "stopBlinkingArrows: Here");
         timerHandler.removeCallbacks(timerRunnable);
         blinkingArrow.setVisibility(View.INVISIBLE);
         blinkingArrow.setImageResource(R.drawable.arrow_color);
     }
 
     private void timerRunnableOnTick() {
-        Log.d(TAG, "run: Here");
         long millis = System.currentTimeMillis() - startTime;
         int seconds = (int) (millis / 1000);
         if (nextButton.getVisibility() == View.VISIBLE) {
