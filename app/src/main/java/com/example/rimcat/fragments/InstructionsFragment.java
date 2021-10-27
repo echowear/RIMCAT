@@ -71,18 +71,18 @@ public class InstructionsFragment extends QuestionFragment {
                 instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst6_7);
                 break;
-            case ActivitiesModel.INSTRUCTIONS_SCREEN_8:
-                instructionsNum = 8;
-                instructionsText.setText(R.string.instructions_verbalInst3);
-                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
-                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst8);
-                break;
-            case ActivitiesModel.INSTRUCTIONS_SCREEN_9:
-                instructionsNum = 9;
-                instructionsText.setText(R.string.instructions_verbalInst4);
-                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
-                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst9);
-                break;
+//            case ActivitiesModel.INSTRUCTIONS_SCREEN_8:
+//                instructionsNum = 8;
+//                instructionsText.setText(R.string.instructions_verbalInst3);
+//                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
+//                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst8);
+//                break;
+//            case ActivitiesModel.INSTRUCTIONS_SCREEN_9:
+//                instructionsNum = 9;
+//                instructionsText.setText(R.string.instructions_verbalInst4);
+//                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
+//                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst9);
+//                break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_10:
                 instructionsNum = 10;
                 instructionsText.setText(R.string.instructions_figure_study);
@@ -177,10 +177,10 @@ public class InstructionsFragment extends QuestionFragment {
             case ActivitiesModel.INSTRUCTIONS_SCREEN_5:
             case ActivitiesModel.INSTRUCTIONS_SCREEN_6:
             case ActivitiesModel.INSTRUCTIONS_SCREEN_7:
-            case ActivitiesModel.INSTRUCTIONS_SCREEN_8:
-                ((MainActivity)getActivity()).addFragment(new VerbalLearningFragment(), "VerbalLearningFragment");
-                break;
-            case ActivitiesModel.INSTRUCTIONS_SCREEN_9:
+//            case ActivitiesModel.INSTRUCTIONS_SCREEN_8:
+//                ((MainActivity)getActivity()).addFragment(new VerbalLearningFragment(), "VerbalLearningFragment");
+//                break;
+//            case ActivitiesModel.INSTRUCTIONS_SCREEN_9:
             case ActivitiesModel.INSTRUCTIONS_SCREEN_14:
                 ((MainActivity)getActivity()).addFragment(new VerbalRecallFragment(), "VerbalRecallFragment");
                 break;

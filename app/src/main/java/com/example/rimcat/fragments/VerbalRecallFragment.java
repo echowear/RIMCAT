@@ -135,10 +135,10 @@ public class VerbalRecallFragment extends QuestionFragment {
             logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_2," + response);
         else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_3)
             logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_3," + response);
-        else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_4)
-            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_4," + response);
-        else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_5)
-            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_5," + response);
+//        else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_4)
+//            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_4," + response);
+//        else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_5)
+//            logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_5," + response);
         else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_6)
             logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_6," + response);
     }
@@ -163,11 +163,12 @@ public class VerbalRecallFragment extends QuestionFragment {
 
     @Override
     public String getCorrectAnswer() {
-       int currentView = ((MainActivity)getActivity()).getViewNumber();
-       if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_4)
-           return TextUtils.join(" ", CorrectAnswerDictionary.TRIAL_LIST_TWO);
-       else
-           return TextUtils.join(" ", CorrectAnswerDictionary.TRIAL_LIST_ONE);
+//       int currentView = ((MainActivity)getActivity()).getViewNumber();
+//       if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_4)
+//           return TextUtils.join(" ", CorrectAnswerDictionary.TRIAL_LIST_TWO);
+//       else
+//           return TextUtils.join(" ", CorrectAnswerDictionary.TRIAL_LIST_ONE);
+        return TextUtils.join(" ", CorrectAnswerDictionary.TRIAL_LIST_ONE);
     }
 
     @Override
