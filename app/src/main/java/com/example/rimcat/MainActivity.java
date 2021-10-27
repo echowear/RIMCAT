@@ -2,6 +2,8 @@ package com.example.rimcat;
 
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -24,12 +26,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -77,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     private static final int        BACKGROUND_TRANSITION_TIME = 2000;
     private static final int        NUM_SCREENS = 48;
     private static final int        BLINKING_START_SECS = 5;
+    private FrameLayout             container;
     private FragmentManager         fragmentManager;
     private FragmentTransaction     fragmentTransaction;
     private String                  fragmentTag;
@@ -104,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         setUpTextToSpeech();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void setInitialHomeFragment() {
         setContentView(R.layout.activity_main);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
@@ -116,6 +122,14 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         nextButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.backgroundColor)));
         appProgress = findViewById(R.id.app_progress);
         appProgress.setMax(NUM_SCREENS);
+        container = findViewById(R.id.container);
+        container.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                hideSoftKeyboard(MainActivity.this);
+                return false;
+            }
+        });
 
         // Initialize blinking arrow logic
         blinkingArrow = findViewById(R.id.blinkingArrow);
@@ -142,6 +156,18 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
      *
      * @param view
      */
+    public void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) activity.getSystemService(
+                        Activity.INPUT_METHOD_SERVICE);
+        if(inputMethodManager.isAcceptingText()){
+            inputMethodManager.hideSoftInputFromWindow(
+                    activity.getCurrentFocus().getWindowToken(),
+                    0
+            );
+        }
+    }
+
     public void getFragmentData(View view) {
         if (isNextButtonReady) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
