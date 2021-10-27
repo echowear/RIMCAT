@@ -2,6 +2,8 @@ package com.example.rimcat;
 
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -24,10 +26,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -74,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     private static final int        RESULT_SPEECH = 65676;
     private static final int        BACKGROUND_TRANSITION_TIME = 2000;
     private static final int        NUM_SCREENS = 48;
+    private FrameLayout             container;
     private FragmentManager         fragmentManager;
     private FragmentTransaction     fragmentTransaction;
     private String                  fragmentTag;
@@ -97,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         setUpTextToSpeech();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void setInitialHomeFragment() {
         setContentView(R.layout.activity_main);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
@@ -111,6 +117,14 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         nextText.setTextColor(getResources().getColor(R.color.backgroundColor));
         appProgress = findViewById(R.id.app_progress);
         appProgress.setMax(NUM_SCREENS);
+        container = findViewById(R.id.container);
+        container.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                hideSoftKeyboard(MainActivity.this);
+                return false;
+            }
+        });
 
         // Initially change view to home fragment
         fragmentManager = getSupportFragmentManager();
@@ -118,6 +132,18 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.container, new HomeFragment(), "HomeFragment");
         fragmentTransaction.commit();
+    }
+
+    public void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) activity.getSystemService(
+                        Activity.INPUT_METHOD_SERVICE);
+        if(inputMethodManager.isAcceptingText()){
+            inputMethodManager.hideSoftInputFromWindow(
+                    activity.getCurrentFocus().getWindowToken(),
+                    0
+            );
+        }
     }
 
     public void getFragmentData(View view) {
@@ -329,17 +355,17 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
             getFragmentData(null);
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.overflow_menu, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        debugScreenSelect(item.getItemId());
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.overflow_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        debugScreenSelect(item.getItemId());
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onBackPressed() {
