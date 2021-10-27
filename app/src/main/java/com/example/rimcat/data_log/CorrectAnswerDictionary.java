@@ -76,14 +76,14 @@ public class CorrectAnswerDictionary {
         DIGIT_SPAN_ANSWERS.put(5, "481392");
         DIGIT_SPAN_ANSWERS.put(6, "8431792");
         DIGIT_SPAN_ANSWERS.put(7, "2851064");
-        DIGIT_SPAN_ANSWERS.put(8, "95");
-        DIGIT_SPAN_ANSWERS.put(9, "53");
-        DIGIT_SPAN_ANSWERS.put(10, "971");
-        DIGIT_SPAN_ANSWERS.put(11, "524");
-        DIGIT_SPAN_ANSWERS.put(12, "8192");
-        DIGIT_SPAN_ANSWERS.put(13, "2806");
-        DIGIT_SPAN_ANSWERS.put(14, "63419");
-        DIGIT_SPAN_ANSWERS.put(15, "26851");
+        DIGIT_SPAN_ANSWERS.put(8, "59");
+        DIGIT_SPAN_ANSWERS.put(9, "35");
+        DIGIT_SPAN_ANSWERS.put(10, "179");
+        DIGIT_SPAN_ANSWERS.put(11, "425");
+        DIGIT_SPAN_ANSWERS.put(12, "2918");
+        DIGIT_SPAN_ANSWERS.put(13, "6082");
+        DIGIT_SPAN_ANSWERS.put(14, "91436");
+        DIGIT_SPAN_ANSWERS.put(15, "15862");
     }
 
     private static void loadComputationAnswers() {
