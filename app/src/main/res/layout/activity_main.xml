@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_transition"
-    tools:context=".MainActivity">
+    tools:context="org.echowear.rimcat.MainActivity">
 
     <ProgressBar
         android:id="@+id/app_progress"
@@ -35,7 +35,7 @@
 
     </FrameLayout>
 
-    <android.support.v7.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/next_button"
         android:layout_width="150dp"
         android:layout_height="65dp"
@@ -61,4 +61,4 @@
         app:srcCompat="@drawable/arrow_color"
         tools:visibility="visible" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

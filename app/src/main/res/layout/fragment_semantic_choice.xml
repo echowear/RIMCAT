@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/semantic_choice_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/card"
         android:layout_width="1089dp"
         android:layout_height="498dp"
@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/semantic_layout1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -59,9 +59,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/semantic_ready_text" />
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/semantic_layout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -110,7 +110,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1">
 
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/scb1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -121,7 +121,7 @@
                         android:textSize="25sp"
                         app:backgroundTint="@color/backgroundColor" />
 
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/scb2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -132,7 +132,7 @@
                         android:textSize="25sp"
                         app:backgroundTint="@color/backgroundColor" />
 
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/scb3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -142,7 +142,7 @@
                         android:textSize="25sp"
                         app:backgroundTint="@color/backgroundColor" />
 
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/scb4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -158,7 +158,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1">
 
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/scb5"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -168,7 +168,7 @@
                         android:textSize="25sp"
                         app:backgroundTint="@color/backgroundColor" />
 
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/scb6"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -178,7 +178,7 @@
                         android:textSize="25sp"
                         app:backgroundTint="@color/backgroundColor" />
 
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/scb7"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -188,7 +188,7 @@
                         android:textSize="25sp"
                         app:backgroundTint="@color/backgroundColor" />
 
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/scb8"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -204,7 +204,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1">
 
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/scb9"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -214,7 +214,7 @@
                         android:textSize="25sp"
                         app:backgroundTint="@color/backgroundColor" />
 
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/scb10"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -224,7 +224,7 @@
                         android:textSize="25sp"
                         app:backgroundTint="@color/backgroundColor" />
 
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/scb11"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -234,7 +234,7 @@
                         android:textSize="25sp"
                         app:backgroundTint="@color/backgroundColor" />
 
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/scb12"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -246,8 +246,8 @@
                 </TableRow>
 
             </TableLayout>
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
