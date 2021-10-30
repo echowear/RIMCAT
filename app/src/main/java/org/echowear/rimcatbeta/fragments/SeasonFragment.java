@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -15,7 +16,7 @@ import org.echowear.rimcatbeta.R;
 import java.util.Calendar;
 import java.util.Date;
 
-public class SeasonFragment extends QuestionFragment {
+public class SeasonFragment extends BasicQuestionFragment {
 
     private static final String TAG = "TodayDateFragment";
     private Spinner seasonSpinner;
@@ -31,6 +32,18 @@ public class SeasonFragment extends QuestionFragment {
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         seasonSpinner.setAdapter(adapter);
 
+        seasonSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                ((MainActivity)getActivity()).viewOnTouch();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                ((MainActivity)getActivity()).viewOnTouch();
+            }
+        });
+
         cardView = view.findViewById(R.id.card);
         startAnimation(true);
         logStartTime();
@@ -40,7 +53,7 @@ public class SeasonFragment extends QuestionFragment {
 
     @Override
     public boolean loadDataModel() {
-        if (seasonSpinner.getSelectedItem().toString().equals(""))
+        if (!isQuestionAnswered())
             return false;
         logEndTimeAndData(getActivity().getApplicationContext(), "season," + seasonSpinner.getSelectedItem().toString());
         return true;
@@ -70,5 +83,10 @@ public class SeasonFragment extends QuestionFragment {
     @Override
     public String getTriedMicrophone() {
         return "N/A";
+    }
+
+    @Override
+    public boolean isQuestionAnswered() {
+        return !seasonSpinner.getSelectedItem().toString().equals("");
     }
 }

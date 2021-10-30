@@ -178,8 +178,8 @@ public class InstructionsFragment extends QuestionFragment {
             case ActivitiesModel.INSTRUCTIONS_SCREEN_6:
             case ActivitiesModel.INSTRUCTIONS_SCREEN_7:
 //            case ActivitiesModel.INSTRUCTIONS_SCREEN_8:
-//                ((MainActivity)getActivity()).addFragment(new VerbalLearningFragment(), "VerbalLearningFragment");
-//                break;
+                ((MainActivity)getActivity()).addFragment(new VerbalLearningFragment(), "VerbalLearningFragment");
+                break;
 //            case ActivitiesModel.INSTRUCTIONS_SCREEN_9:
             case ActivitiesModel.INSTRUCTIONS_SCREEN_14:
                 ((MainActivity)getActivity()).addFragment(new VerbalRecallFragment(), "VerbalRecallFragment");

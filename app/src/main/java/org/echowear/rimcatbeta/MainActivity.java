@@ -44,6 +44,7 @@ import org.echowear.rimcatbeta.data_log.GenerateDirectory;
 import org.echowear.rimcatbeta.data_log.LogcatExportService;
 import org.echowear.rimcatbeta.dialogs.RecallFinishDialog;
 import org.echowear.rimcatbeta.dialogs.RetryDialog;
+import org.echowear.rimcatbeta.fragments.BasicQuestionFragment;
 import org.echowear.rimcatbeta.fragments.ComputationFragment;
 import org.echowear.rimcatbeta.fragments.DayOfWeekFragment;
 import org.echowear.rimcatbeta.fragments.DigitSpanFragment;
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     private ImageView               blinkingArrow;
     private int                     currentArrowDrawable;
     private long                    startTime;
+    private boolean                 isArrowBlinking;
     private Handler                 timerHandler;
     private Runnable                timerRunnable;
     private boolean                 isNextButtonReady;
@@ -128,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 hideSoftKeyboard(MainActivity.this);
+                viewOnTouch();
                 return false;
             }
         });
@@ -151,6 +154,11 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.container, new HomeFragment(), "HomeFragment");
         fragmentTransaction.commit();
+    }
+
+    public void viewOnTouch() {
+        Log.d(TAG, "viewOnTouch: Called");
+        startTime = System.currentTimeMillis();
     }
 
     /** nextButton onClick function
@@ -268,6 +276,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
 
     private void stopBlinkingArrows() {
         Log.d(TAG, "stopBlinkingArrows: Stopping arrow blinking");
+        isArrowBlinking = false;
         timerHandler.removeCallbacks(timerRunnable);
         blinkingArrow.setVisibility(View.INVISIBLE);
         blinkingArrow.setImageResource(R.drawable.arrow_color);
@@ -276,14 +285,27 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     private void timerRunnableOnTick() {
         long millis = System.currentTimeMillis() - startTime;
         int seconds = (int) (millis / 1000);
-        if (nextButton.getVisibility() == View.VISIBLE && viewNumber != ActivitiesModel.HOME_SCREEN) {
-            if (seconds > BLINKING_START_SECS) {
-                currentArrowDrawable = currentArrowDrawable == R.drawable.arrow_color ? R.drawable.arrow_blank : R.drawable.arrow_color;
-                blinkingArrow.setImageResource(currentArrowDrawable);
-                blinkingArrow.setVisibility(View.VISIBLE);
-            }
-            timerHandler.postDelayed(timerRunnable, 1000);
+        if ((seconds > BLINKING_START_SECS || isArrowBlinking) && isArrowEligibleToBlink()) {
+            isArrowBlinking = true;
+            currentArrowDrawable = currentArrowDrawable == R.drawable.arrow_color ? R.drawable.arrow_blank : R.drawable.arrow_color;
+            blinkingArrow.setImageResource(currentArrowDrawable);
+            blinkingArrow.setVisibility(View.VISIBLE);
+        } else if (isArrowBlinking && !isArrowEligibleToBlink()) {
+            isArrowBlinking = false;
+            blinkingArrow.setVisibility(View.INVISIBLE);
         }
+        timerHandler.postDelayed(timerRunnable, 1000);
+
+    }
+
+    private boolean isArrowEligibleToBlink() {
+        if (viewNumber == ActivitiesModel.HOME_SCREEN ||
+                (viewNumber >= ActivitiesModel.EDUCATION_SCREEN && viewNumber <= ActivitiesModel.SEASON_SCREEN)) {
+            BasicQuestionFragment fragment = (BasicQuestionFragment) fragmentManager.findFragmentByTag(fragmentTag);
+            if (!fragment.isQuestionAnswered())
+                return false;
+        }
+        return  nextButton.getVisibility() == View.VISIBLE;
     }
 
     public void nextButtonReady() {

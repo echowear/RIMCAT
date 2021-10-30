@@ -3,16 +3,20 @@ package org.echowear.rimcatbeta.fragments;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import org.echowear.rimcatbeta.MainActivity;
 import org.echowear.rimcatbeta.R;
 
-public class EducationFragment extends QuestionFragment {
+public class EducationFragment extends BasicQuestionFragment {
 
     private static final String TAG = "EducationFragment";
     private Spinner educationSpinner;
@@ -28,6 +32,18 @@ public class EducationFragment extends QuestionFragment {
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         educationSpinner.setAdapter(adapter);
 
+        educationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                ((MainActivity)getActivity()).viewOnTouch();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                ((MainActivity)getActivity()).viewOnTouch();
+            }
+        });
+
         cardView = view.findViewById(R.id.card);
         startAnimation(true);
         logStartTime();
@@ -37,7 +53,7 @@ public class EducationFragment extends QuestionFragment {
 
     @Override
     public boolean loadDataModel() {
-        if (educationSpinner.getSelectedItem().toString().equals(""))
+        if (!isQuestionAnswered())
             return false;
         logEndTimeAndData(getActivity().getApplicationContext(), "education_level," + educationSpinner.getSelectedItem().toString());
         return true;
@@ -56,5 +72,10 @@ public class EducationFragment extends QuestionFragment {
     @Override
     public String getTriedMicrophone() {
         return "N/A";
+    }
+
+    @Override
+    public boolean isQuestionAnswered() {
+        return !educationSpinner.getSelectedItem().toString().equals("");
     }
 }
