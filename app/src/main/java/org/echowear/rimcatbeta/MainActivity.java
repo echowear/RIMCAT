@@ -418,6 +418,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     public void onRequestPermissionsResult(int requestCode,
                                            String[] permissions, int[] grantResults) {
         // Start logging data to log file now that permission has been granted
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE)
             LogcatExportService.log(this, new File(GenerateDirectory.getRootFile(this), "logcat_" + System.currentTimeMillis() + ".txt"));
 
