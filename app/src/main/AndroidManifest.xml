@@ -10,6 +10,7 @@
 
     <application
         android:allowBackup="true"
+        android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -26,7 +27,7 @@
             </intent-filter>
         </activity>
         <service android:name="org.echowear.rimcatbeta.data_log.DataLogService"/>
-        <service android:name="org.echowear.rimcatbeta.data_log.DataLogService"/>
+        <service android:name="org.echowear.rimcatbeta.data_log.LogcatExportService"/>
     </application>
 
 </manifest>
