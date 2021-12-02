@@ -110,11 +110,12 @@ public class VerbalRecallFragment extends QuestionFragment {
         doneRecallingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!firstFinish) {
-                    ((MainActivity)getActivity()).showRetryDialog();
-                } else {
-                    ((MainActivity)getActivity()).showRecallFinishDialog();
-                }
+//                if (!firstFinish) {
+//                    ((MainActivity)getActivity()).showRetryDialog();
+//                } else {
+//                    ((MainActivity)getActivity()).showRecallFinishDialog();
+//                }
+                ((MainActivity)getActivity()).showRecallFinishDialog();
             }
         });
 

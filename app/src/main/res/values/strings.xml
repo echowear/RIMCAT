@@ -192,8 +192,8 @@
         <item>Starfruit</item>
 
         <item>Harmonica</item>
-        <item>Accordion</item>
         <item>Saxophone</item>
+        <item>Accordion</item>
     </string-array>
     <string name="instructions_figure_study">
         \u2022 \t You will now be shown a series of figures, then you will have to select each figure that you saw.\n\n
