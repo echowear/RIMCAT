@@ -73,7 +73,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
 
-//just a comment
 public class MainActivity extends AppCompatActivity implements RetryDialog.RetryDialogListener, RecallFinishDialog.RecallFinishDialogListener {
     private static final String     TAG = "MainActivity";
     private static final int        MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1400;

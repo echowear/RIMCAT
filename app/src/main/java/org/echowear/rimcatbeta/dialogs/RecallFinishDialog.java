@@ -42,7 +42,7 @@ public class RecallFinishDialog extends DialogFragment {
         myMsg.setPadding(PADDING,PADDING,PADDING,PADDING);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCustomTitle(myMsg)
-                .setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Log.d(TAG, "onClick: Positive button clicked");

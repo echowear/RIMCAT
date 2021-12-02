@@ -40,10 +40,9 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vresponse_addBtn"
-                android:layout_width="248dp"
+                android:layout_width="285dp"
                 android:layout_height="67dp"
                 android:layout_marginEnd="100dp"
-                android:layout_marginRight="100dp"
                 android:background="@drawable/roundbutton"
                 android:text="@string/vresponse_addBtn"
                 android:textAllCaps="false"

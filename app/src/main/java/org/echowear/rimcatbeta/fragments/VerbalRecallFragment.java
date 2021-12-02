@@ -80,13 +80,7 @@ public class VerbalRecallFragment extends QuestionFragment {
                     startActivityForResult(intent, RESULT_SPEECH);
                     responseText.setText("");
                 } catch (ActivityNotFoundException a) {
-                    Toast t = Toast.makeText(view.getContext(),
-                            "Oops! Your device doesn't support Speech to Text",
-                            Toast.LENGTH_SHORT);
-                    ViewGroup group = (ViewGroup) t.getView();
-                    TextView toastTV = (TextView) group.getChildAt(0);
-                    toastTV.setTextSize(20);
-                    t.show();
+                    toastAtTopOfScreen("Oops! Your device doesn't support Speech to Text", Toast.LENGTH_LONG);
                 }
             }
         });
@@ -110,12 +104,11 @@ public class VerbalRecallFragment extends QuestionFragment {
         doneRecallingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (!firstFinish) {
-//                    ((MainActivity)getActivity()).showRetryDialog();
-//                } else {
-//                    ((MainActivity)getActivity()).showRecallFinishDialog();
-//                }
-                ((MainActivity)getActivity()).showRecallFinishDialog();
+                if (!responseText.getText().toString().equals("")) {
+                    toastAtTopOfScreen("Please submit the word you entered before finishing.", Toast.LENGTH_SHORT);
+                } else {
+                    ((MainActivity)getActivity()).showRecallFinishDialog();
+                }
             }
         });
 

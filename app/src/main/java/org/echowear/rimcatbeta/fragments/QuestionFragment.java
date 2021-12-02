@@ -123,6 +123,15 @@ public abstract class QuestionFragment extends Fragment {
         ((MainActivity) Objects.requireNonNull(getActivity())).nextButtonReady();
     }
 
+    protected void toastAtTopOfScreen(String message, int duration) {
+        Toast t = Toast.makeText(getActivity(), message, duration);
+        ViewGroup group = (ViewGroup) t.getView();
+        TextView toastTV = (TextView) group.getChildAt(0);
+        toastTV.setTextSize(20);
+        t.setGravity(Gravity.TOP, 0, 5);
+        t.show();
+    }
+
     protected void vibrateToastAndExecuteSound(String submitText, boolean shouldExecuteSound) {
         // Vibrate the device
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && mVibrator != null) {
@@ -133,12 +142,7 @@ public abstract class QuestionFragment extends Fragment {
         }
 
         // Toast affirmative message
-        Toast t = Toast.makeText(getActivity(), "'" + submitText + "' submitted! Keep going!", Toast.LENGTH_LONG);
-        ViewGroup group = (ViewGroup) t.getView();
-        TextView toastTV = (TextView) group.getChildAt(0);
-        toastTV.setTextSize(20);
-        t.setGravity(Gravity.TOP, 0, 5);
-        t.show();
+        toastAtTopOfScreen("'" + submitText + "' submitted! Keep going!", Toast.LENGTH_LONG);
 
         // Execute sound
 //        if (shouldExecuteSound) {
