@@ -36,7 +36,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/keyboard_addBtn"
                 android:layout_width="248dp"
-                android:layout_height="67dp"
+                android:layout_height="85dp"
                 android:layout_marginEnd="100dp"
                 android:layout_marginBottom="64dp"
                 android:background="@drawable/roundbutton"
