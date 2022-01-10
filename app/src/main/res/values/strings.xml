@@ -103,22 +103,16 @@
         <item>Fall</item>
     </string-array>
     <string name="instructions_verbalInst">
-        \u2022 \t You will be presented with a list of words one at a
-        \t time. Read and listen to each word carefully to
-        \n \t remember it.
+        \u2022 Next, you will be presented with a list of words one at a time.
         \n \n
-        \u2022\u0020\u0020Once the list is complete, you will be asked to
-        \n \t recall as many words as you can remember.
-        \n \n
-        \u2022\u0020\u0020It does not matter in what order you recall them.
-        \n \t Just try to remember as many as you can.
+        \u2022 Later you will be asked to recall the words in any order, so listen carefully.
     </string>
     <string name="instructions_verbalInst2">
-        \u2022\tNow you will see the same list
-        \n\tagain. \n \n
-        \u2022\u0020Please remember as many words
-        \n\t as you can, in any order, whether
-        \n\t or not you said them before.
+        \u2022 Now you will see the same list
+        \n again. \n \n
+        \u2022 Please remember as many words
+        \n as you can, in any order, whether
+        \n or not you recalled them before.
     </string>
     <string name="instructions_verbalInst3">
         \u2022\tNow you will be presented with a new list of words. Read and listen to each word carefully and try to remember it. \n\n
@@ -130,13 +124,15 @@
         \u2022\tAgain, the order in which you recall the words does not matter. Just try to remember as many as you can.
     </string>
     <string name="instructions_verbalInst5">
-        \u2022\tDo you remember the lists of words that you saw a while ago? Please recall as many words from the first list as you can, the one you saw several times.\n\n
-        \u2022\tThe order in which you recall the words does not matter. Just try to remember as many as you can.
+        \u2022 Do you remember the list of words that you saw a while ago? On the next page you will be asked to enter as many words as you can.
+        \n\n
+        \u2022 The order in which you enter the words does not matter. Try to recall as many as you can.
     </string>
-    <string name="verbal_readyBtn">Ready</string>
-    <string name="verbal_readyPrompt">Press the button below when you are ready to start.</string>
+    <string name="verbal_readyBtn">Next</string>
+    <string name="verbal_readyPrompt">Press the Next button when you are ready to start.</string>
     <string name="vresponse_prompt">
-        Now type in all the words you can remember or press the microphone button to record them. Just try your best to recall as many as you can.
+        Now type in each word you can remember or press the microphone button to say it.
+        \n Try your best to recall as many as you can.
     </string>
     <string name="keyboard_addBtn">Submit Word</string>
     <string name="vresponse_addBtn">Enter Next Word</string>
@@ -197,8 +193,8 @@
         <item>Accordion</item>
     </string-array>
     <string name="instructions_figure_study">
-        \u2022 \t You will now be shown a series of figures, then you will have to select each figure that you saw.\n\n
-        \u2022 \t You will have 6 seconds to study each figure, and you\'ll have to remember them later.
+        \u2022 You will now be shown a series of figures for 6 seconds each.\n\n
+        \u2022 Pay attention to the details because you will have to select each figure that you saw later.
     </string>
 <!--    <string-array name="figure_prompt_array">-->
 <!--        <item>Here is the 1st figure.</item>-->
@@ -218,7 +214,7 @@
 <!--    </string-array>-->
     <string name="figure_select_prompt">Select the correct figure that you have seen before.</string>
     <string name="instructions_read_comp_story">
-        Next, you will hear a short story. You will be asked questions about this story later.
+        Next, you will be presented with a short story. You will be asked questions about this story later.
     </string>
     <string name="instructions_read_comp_test">
         Please answer the following questions about the story you heard earlier.
@@ -300,7 +296,9 @@
         any words that belong in that
         category as quickly as you can.
     </string>
-    <string name="semantic_choice_ready">You\'ll have 5 seconds to select as many correct words as you can.</string>
+    <string name="semantic_choice_ready">
+        You will have 5 seconds in every to select as many words from the category as you can.
+    </string>
     <string-array name="semantic_choice_prompts">
         <item>Animals</item>
         <item>Animals</item>
@@ -439,7 +437,9 @@
         <item>Mineral</item>
         <item>Rocket</item>
     </string-array>
-    <string name="instructions_figureSelect2">You will now be shown four figures on the screen at once. Select the correct figure that you have seen before.</string>
+    <string name="instructions_figureSelect2">
+        You will now be shown six figures on the screen at once. Select the figure that you saw before.
+    </string>
     <string name="instructions_semantic_relatedness">
         \u2022 \tFor this task, a word will appear at the top of the screen, and answer choices will appear below.
         \n\n \u2022 \tPlease choose the word that is most similar to the word at the top.</string>
@@ -553,10 +553,11 @@
 
     <string name="semantic_relatedness_prompt">Choose the word that is most similar to the word that you\'ll see at the top of the screen.</string>
     <string name="instructions_verbal_rec">
-        Now you will see three screens that contain a grid of words, some of which you\'ve seen before. Please select as many words as you can remember from the first list, the one you saw several times.
-        \n\nYou will have no time limit for this exercise.
+        On the next 3 screens you will see a panel of words.
+        \n\n
+        Please select as many words as you can remember from the list you saw earlier.
     </string>
-    <string name="verbal_rec_reminder"> Please select as many words as you can remember from the first list.</string>
+    <string name="verbal_rec_reminder"> Please select as many words as you can remember.</string>
     <string-array name="verbal_recognition_words_1">
         <item>Bell</item>
         <item>Window</item>
@@ -600,16 +601,23 @@
         <item>Sun</item>
     </string-array>
 
-    <string name="instructions_digit_span">You will hear a series of numbers. You will be asked to repeat them in the same order.</string>
+    <string name="instructions_digit_span">
+        \u2022 You will see and hear a series of numbers.
+        \n
+        \u2022 Then you will be asked to enter them in the same order, using the keypad.
+    </string>
     <string name="instructions2_digit_span">
-        Now, you will hear some more numbers, and you will be asked to repeat them in reverse order or backwards.
-        \n\nFor example, if you hear the numbers 9-4-1, you would type 1-4-9 to repeat them backwards.
+        \u2022 You will see and hear a series of numbers.
+        \n
+        \u2022 Then you will be asked to enter them in the reverse order or backwards, using the keypad.
+        \n
+        \u2022 For example. If you hear the numbers 9-4-1, you would type 1-4-9 to repeat them backwards.
     </string>
     <string name="ds_edit_hint">Type Number</string>
     <string name="ds_submit_text">Submit Number</string>
-    <string name="ds_inorder_text">Repeat the full number back in the same order.</string>
+    <string name="ds_inorder_text">Enter the numbers you just saw.</string>
     <string name="ds_reverse_text">Repeat the full number back in reverse order.</string>
-    <string name="instructions_computation">Please do the following calculations in you head, then write the answer in the given space.</string>
+    <string name="instructions_computation">Please do the following calculations in your head, then enter the answer using the keypad.</string>
     <string name="computation_repeat">Repeat</string>
     <string name="computation_edit_hint">Answer</string>
     <string name="finish_line1">Thank you for your time!</string>
