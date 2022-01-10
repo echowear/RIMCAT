@@ -252,7 +252,7 @@ public class DigitSpanFragment extends QuestionFragment {
     }
 
     private void changeCardText() {
-        ForegroundColorSpan fcs = new ForegroundColorSpan(getResources().getColor(R.color.colorAccent));
+        ForegroundColorSpan fcs = new ForegroundColorSpan(getResources().getColor(R.color.red));
         String recallText = "";
         int highlightTextLength = 0;
         if (currentNumber < NUMS_PER_LIST) {

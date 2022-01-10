@@ -49,7 +49,7 @@ public class CorrectAnswerDictionary {
         IMAGE_NAME_ANSWERS.put(2, "House");
         IMAGE_NAME_ANSWERS.put(3, "Butterfly");
         IMAGE_NAME_ANSWERS.put(4, "Giraffe");
-        IMAGE_NAME_ANSWERS.put(5, "Kayak");
+        IMAGE_NAME_ANSWERS.put(5, "Ship");
         IMAGE_NAME_ANSWERS.put(6, "Pear");
         IMAGE_NAME_ANSWERS.put(7, "Hippopotamus");
         IMAGE_NAME_ANSWERS.put(8, "Watermelon");

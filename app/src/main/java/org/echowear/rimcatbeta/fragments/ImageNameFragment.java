@@ -27,7 +27,7 @@ public class ImageNameFragment extends QuestionFragment {
             R.drawable.house,
             R.drawable.butterfly,
             R.drawable.giraffe,
-            R.drawable.kayak,
+            R.drawable.ship,
             R.drawable.pear,
             R.drawable.hippo,
             R.drawable.watermelon,

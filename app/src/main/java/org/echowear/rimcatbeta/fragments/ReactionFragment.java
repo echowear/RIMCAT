@@ -74,7 +74,7 @@ public class ReactionFragment extends QuestionFragment {
         reactionPrompt = view.findViewById(R.id.reaction_prompt);
         String promptString = getResources().getString(R.string.reaction_prompt);
         int boldLength = "as quickly as you can.".length();
-        ForegroundColorSpan fcs = new ForegroundColorSpan(getResources().getColor(R.color.colorAccent));
+        ForegroundColorSpan fcs = new ForegroundColorSpan(getResources().getColor(R.color.red));
         SpannableString promptSS = new SpannableString(promptString);
         promptSS.setSpan(fcs, promptString.length() - boldLength, promptString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         reactionPrompt.setText(promptSS);
