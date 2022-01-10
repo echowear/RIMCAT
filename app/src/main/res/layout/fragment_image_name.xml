@@ -8,18 +8,16 @@
 
     <ImageView
         android:id="@+id/image_name_image"
-        android:layout_width="500dp"
-        android:layout_height="331dp"
+        android:layout_width="650dp"
+        android:layout_height="481dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:contentDescription="@string/Null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/tree"
-        android:contentDescription="@string/Null"/>
+        app:srcCompat="@drawable/tree" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
