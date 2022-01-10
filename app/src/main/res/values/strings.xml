@@ -57,8 +57,8 @@
     <string name="next_text">Next</string>
     <string name="home_patientID">Patient ID</string>
     <string name="instructions_appInst">
-        First, I am going to ask you to verify some information for me and answer some questions.
-        \n\nRemember to press the \"Next\" button at the bottom right of the screen to continue.
+        &#8226; First, I am going to ask you to answer some questions.
+        \n\n&#8226; Remember to press the \"Next\" button at the bottom right of the screen to continue.
     </string>
     <string name="instructions_buttonInst">After you\'re finished, press this button to move on.</string>
     <string name="name_prompt">What is your full name?</string>
@@ -138,6 +138,7 @@
     <string name="vresponse_prompt">
         Now type in all the words you can remember or press the microphone button to record them. Just try your best to recall as many as you can.
     </string>
+    <string name="keyboard_addBtn">Submit Word</string>
     <string name="vresponse_addBtn">Enter Next Word</string>
     <string name="vresponse_doneRecalling">Done Recalling</string>
     <string name="vresponse_recallHint">Type Word</string>
@@ -615,10 +616,14 @@
     <string name="finish_line2">You may now quit the application.</string>
     <string name="finish_quit">Quit</string>
     <string name="finish_feedback_prompt">Did you experience any technical difficulties when taking this test?</string>
-    <string name="instructions_next">To move on to the next screen, press the \"Next\" button on the bottom right of the screen after the activity has been finished or the instructions have been read.</string>
+    <string name="instructions_next">
+        &#8226; You will be asked to complete a number of questions. Some tasks might seem easy whereas others you might find challenging.
+<!--        \n\n&#8226; Please give your best effort. &#128077;-->
+        \n\n&#8226; Throughout the test you can move to the next screen by clicking on the \"Next\" button at the bottom right.
+    </string>
     <string name="video_prompt">Please watch the video below, then complete the next activity.</string>
     <string name="keyboard_prompt1">Please type the word \"hello\", then press the button labeled \"Submit Word\".</string>
     <string name="keyboard_prompt2">Use the audio button to record the word \"hello\", then press the button labeled \"Submit Word\".</string>
-    <string name="instructions_reaction">A series of gray rectangles will appear in a random location on the screen, one at a time. Press the rectangles as fast as you can.</string>
+    <string name="instructions_reaction">A series of gray rectangles will appear in a random location on the screen, one at a time. Press the rectangles as fast as you can using one finger.</string>
     <string name="reaction_prompt">Press the rectangle on the screen as quickly as you can.</string>
 </resources>

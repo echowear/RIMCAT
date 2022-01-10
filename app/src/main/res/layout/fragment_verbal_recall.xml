@@ -40,9 +40,9 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/vresponse_addBtn"
-                android:layout_width="285dp"
+                android:layout_width="280dp"
                 android:layout_height="67dp"
-                android:layout_marginEnd="100dp"
+                android:layout_marginEnd="312dp"
                 android:background="@drawable/roundbutton"
                 android:text="@string/vresponse_addBtn"
                 android:textAllCaps="false"
@@ -50,14 +50,14 @@
                 android:textSize="35sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.467" />
 
             <EditText
                 android:id="@+id/vresponse_recall_word"
                 android:layout_width="239dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginLeft="100dp"
+                android:layout_marginStart="28dp"
                 android:ems="10"
                 android:hint="@string/vresponse_recallHint"
                 android:inputType="textPersonName"
@@ -65,27 +65,25 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.498"
-                android:autofillHints="" />
+                app:layout_constraintVertical_bias="0.474" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/recall_audio_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
                 android:src="@android:drawable/ic_btn_speak_now"
                 android:tint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/vresponse_recall_word"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.498" />
+                app:layout_constraintVertical_bias="0.472" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/done_recalling_btn"
-                android:layout_width="307dp"
+                android:layout_width="280dp"
                 android:layout_height="67dp"
-                android:layout_marginBottom="38dp"
+                android:layout_marginBottom="216dp"
                 android:background="@drawable/roundbutton"
                 android:padding="10dp"
                 android:text="@string/vresponse_doneRecalling"
@@ -94,6 +92,7 @@
                 android:textSize="35sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.975"
                 app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
