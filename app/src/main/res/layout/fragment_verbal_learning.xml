@@ -9,13 +9,14 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
-        android:layout_width="677dp"
-        android:layout_height="348dp"
+        android:layout_width="1350dp"
+        android:layout_height="1000dp"
         android:layout_gravity="center"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        app:cardBackgroundColor="#00FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,38 +32,39 @@
                 android:layout_height="65dp"
                 android:layout_marginStart="213dp"
                 android:layout_marginTop="113dp"
-                android:layout_marginEnd="213dp"
+                android:layout_marginEnd="1dp"
                 android:layout_marginBottom="32dp"
                 android:background="@drawable/roundbutton"
-                android:text="@string/verbal_readyBtn"
+                android:text="@string/next_text"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="35sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.494"
+                app:layout_constraintHorizontal_bias="0.926"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="0.82" />
 
             <TextView
                 android:id="@+id/verbalText"
-                android:layout_width="500dp"
-                android:layout_height="115dp"
+                android:layout_width="593dp"
+                android:layout_height="296dp"
                 android:layout_marginStart="228dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="227dp"
                 android:layout_marginBottom="8dp"
+                android:background="@color/white"
                 android:gravity="center"
                 android:text="@string/verbal_readyPrompt"
                 android:textAlignment="center"
                 android:textSize="35sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintHorizontal_bias="0.566"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.222" />
+                app:layout_constraintVertical_bias="0.482" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

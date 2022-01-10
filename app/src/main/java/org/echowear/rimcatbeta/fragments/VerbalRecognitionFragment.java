@@ -10,6 +10,7 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,12 +87,19 @@ public class VerbalRecognitionFragment extends QuestionFragment {
             @Override
             public void onClick(View v) {
                 AppCompatButton b = (AppCompatButton) v;
-                    if (choiceList.contains(b.getText().toString())) {
-                        choiceList.remove(b.getText().toString());
+                String currentText = (String) b.getText();
+                    if (currentText.contains("\u2611")) {
+                        choiceList.remove(currentText.replace("   \u2611",""));
+                        Log.d(TAG, "onClick: Removed a box");
                         b.getBackground().setTint(getResources().getColor(R.color.backgroundColor));
+                        b.setText(currentText.replace("\u2611", "\u2610"));
+                        Log.d(TAG, String.valueOf(choiceList));
                     } else {
-                        choiceList.add(b.getText().toString());
+                        choiceList.add(currentText.replace("   \u2610", ""));
+                        Log.d(TAG, "onClick: Selected a box");
                         b.getBackground().setTint(getResources().getColor(R.color.colorAccent));
+                        b.setText(currentText.replace("\u2610","\u2611"));
+                        Log.d(TAG, String.valueOf(choiceList));
                     }
             }
         };
@@ -101,7 +109,7 @@ public class VerbalRecognitionFragment extends QuestionFragment {
     private void changeButtonText() {
         String[] currentChoices = wordList[pageCount];
         for (int i = 0; i < choiceButtons.length; i++) {
-            choiceButtons[i].setText(currentChoices[i]);
+            choiceButtons[i].setText(currentChoices[i] + "   \u2610");
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 choiceButtons[i].getBackground().setTint(getResources().getColor(R.color.backgroundColor));
             }
@@ -123,6 +131,7 @@ public class VerbalRecognitionFragment extends QuestionFragment {
             ((MainActivity)getActivity()).getFragmentData(null);
         }
     }
+    
 
     @Override
     public boolean loadDataModel() {

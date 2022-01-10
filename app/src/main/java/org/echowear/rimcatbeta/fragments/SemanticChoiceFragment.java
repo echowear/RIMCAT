@@ -142,13 +142,18 @@ public class SemanticChoiceFragment extends QuestionFragment {
             @Override
             public void onClick(View v) {
                 AppCompatButton b = (AppCompatButton) v;
+                String currentText = (String) b.getText();
                 if (inSelectionState) {
-                    if (choiceList.contains(b.getText().toString())) {
-                        choiceList.remove(b.getText().toString());
+                    if (currentText.contains("\u2611")) {
+                        choiceList.remove(currentText.replace("   \u2611",""));
                         b.getBackground().setTint(getResources().getColor(R.color.backgroundColor));
+                        b.setText(currentText.replace("\u2611", "\u2610"));
+                        Log.d(TAG, String.valueOf(choiceList));
                     } else {
-                        choiceList.add(b.getText().toString());
+                        choiceList.add(currentText.replace("   \u2610", ""));
                         b.getBackground().setTint(getResources().getColor(R.color.colorAccent));
+                        b.setText(currentText.replace("\u2610","\u2611"));
+                        Log.d(TAG, String.valueOf(choiceList));
                     }
                 }
             }
@@ -159,7 +164,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
     private void changeButtonText() {
         String[] currentChoices = semanticChoices[pageCount];
         for (int i = 0; i < choiceButtons.length; i++) {
-            choiceButtons[i].setText(currentChoices[i]);
+            choiceButtons[i].setText(currentChoices[i] + "   \u2610");
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 choiceButtons[i].getBackground().setTint(getResources().getColor(R.color.backgroundColor));
             }
