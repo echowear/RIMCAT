@@ -257,7 +257,7 @@ public class DigitSpanFragment extends QuestionFragment {
         int highlightTextLength = 0;
         if (currentNumber < NUMS_PER_LIST) {
             recallText = getResources().getString(R.string.ds_inorder_text);
-            highlightTextLength = "same order.".length();
+            highlightTextLength = "".length();
         } else {
             recallText = getResources().getString(R.string.ds_reverse_text);
             highlightTextLength = "reverse order.".length();

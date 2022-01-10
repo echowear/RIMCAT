@@ -44,7 +44,7 @@ public class VerbalRecognitionFragment extends QuestionFragment {
         verbalRecReminder = view.findViewById(R.id.verbal_rec_reminder);
         ForegroundColorSpan fcs = new ForegroundColorSpan(getResources().getColor(R.color.colorAccent));
         String reminderText = getResources().getString(R.string.verbal_rec_reminder);
-        int highlightTextLength = "first list.".length();
+        int highlightTextLength = "remember.".length();
         SpannableString reminderTextSS = new SpannableString(reminderText);
         reminderTextSS.setSpan(fcs, reminderText.length() - highlightTextLength, reminderText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         verbalRecReminder.setText(reminderTextSS);
