@@ -57,8 +57,8 @@
     <string name="next_text">Next</string>
     <string name="home_patientID">Patient ID</string>
     <string name="instructions_appInst">
-        &#8226; First, I am going to ask you to answer some questions.
-        \n\n&#8226; Remember to press the \"Next\" button at the bottom right of the screen to continue.
+         First, I am going to ask you to answer some questions.
+        \n\n Remember to press the \"Next\" button at the bottom right of the screen to continue.
     </string>
     <string name="instructions_buttonInst">After you\'re finished, press this button to move on.</string>
     <string name="name_prompt">What is your full name?</string>
@@ -129,7 +129,7 @@
     <string name="verbal_readyPrompt">Press the Next button when you are ready to start.</string>
     <string name="vresponse_prompt">
         Now type in each word you can remember or press the microphone button to say it.
-        \n\n
+        \n
         Try your best to recall as many as you can.
     </string>
     <string name="keyboard_addBtn">Submit Word</string>
@@ -625,9 +625,9 @@
     <string name="finish_quit">Quit</string>
     <string name="finish_feedback_prompt">Did you experience any technical difficulties when taking this test?</string>
     <string name="instructions_next">
-        &#8226; You will be asked to complete a number of questions. Some tasks might seem easy whereas others you might find challenging.
+         You will be asked to complete a number of questions. Some tasks might seem easy whereas others you might find challenging.
 <!--        \n\n&#8226; Please give your best effort. &#128077;-->
-        \n\n&#8226; Throughout the test you can move to the next screen by clicking on the \"Next\" button at the bottom right.
+        \n\n Throughout the test you can move to the next screen by clicking on the \"Next\" button at the bottom right.
     </string>
     <string name="video_prompt">Please watch the video below, then complete the next activity.</string>
     <string name="keyboard_prompt1">Please type the word \"hello\", then press the button labeled \"Submit Word\".</string>

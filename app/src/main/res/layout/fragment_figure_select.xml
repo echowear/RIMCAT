@@ -55,8 +55,8 @@
 
                     <ImageView
                         android:id="@+id/figure_choice1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
                         android:contentDescription="@string/Null"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
@@ -64,8 +64,8 @@
 
                     <ImageView
                         android:id="@+id/figure_choice2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
                         android:contentDescription="@string/Null"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
@@ -80,8 +80,8 @@
 
                     <ImageView
                         android:id="@+id/figure_choice3"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
                         android:contentDescription="@string/Null"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
@@ -89,8 +89,8 @@
 
                     <ImageView
                         android:id="@+id/figure_choice4"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
                         android:contentDescription="@string/Null"
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
