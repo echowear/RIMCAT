@@ -128,7 +128,12 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         container.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                hideSoftKeyboard(MainActivity.this);
+               try {
+                   hideSoftKeyboard(MainActivity.this);
+               }
+               catch (Exception NullPointerException) {
+                   Log.d(TAG, "onTouch: Cant Close Keyboard");
+               }
                 viewOnTouch();
                 return false;
             }
@@ -299,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
 
     private boolean isArrowEligibleToBlink() {
         if (viewNumber == ActivitiesModel.HOME_SCREEN ||
-                (viewNumber >= ActivitiesModel.EDUCATION_SCREEN && viewNumber <= ActivitiesModel.SEASON_SCREEN)) {
+                (viewNumber >= ActivitiesModel.TODAYS_DATE_SCREEN && viewNumber <= ActivitiesModel.SEASON_SCREEN)) {
             BasicQuestionFragment fragment = (BasicQuestionFragment) fragmentManager.findFragmentByTag(fragmentTag);
             if (!fragment.isQuestionAnswered())
                 return false;
@@ -472,11 +477,11 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
-            case R.id.screen_education_om:
-                this.viewNumber = ActivitiesModel.EDUCATION_SCREEN;
-                fragmentTag = "EducationFragment";
-                fragmentTransaction.replace(R.id.container, new EducationFragment(), "EducationFragment");
-                break;
+//            case R.id.screen_education_om:
+//                this.viewNumber = ActivitiesModel.TODAYS_DATE_SCREEN;
+//                fragmentTag = "EducationFragment";
+//                fragmentTransaction.replace(R.id.container, new TodayDateFragment(), "EducationFragment");
+//                break;
             case R.id.screen_date_om:
                 this.viewNumber = ActivitiesModel.TODAYS_DATE_SCREEN;
                 fragmentTag = "TodayDateFragment";

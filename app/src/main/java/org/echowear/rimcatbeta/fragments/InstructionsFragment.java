@@ -166,7 +166,7 @@ public class InstructionsFragment extends QuestionFragment {
                 ((MainActivity)getActivity()).addFragment(new VideoFragment(), "VideoFragment");
                 break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_2:
-                ((MainActivity)getActivity()).addFragment(new EducationFragment(), "EducationFragment");
+                ((MainActivity)getActivity()).addFragment(new TodayDateFragment(), "TodayDateFragment");
                 break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_3:
                 ((MainActivity)getActivity()).addFragment(new ReactionFragment(), "ReactionFragment");
