@@ -10,6 +10,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,9 +77,15 @@ public class SemanticRelatednessFragment extends QuestionFragment {
             @Override
             public void onClick(View v) {
                 AppCompatButton b = (AppCompatButton) v;
+                String currentText = (String) b.getText();
                 if (!b.getText().toString().equals(wordChoice)) {
-                    wordChoice = b.getText().toString();
+                    wordChoice = (currentText.replace("\u2610   ", ""));
+                    wordChoice = wordChoice.toString();
+                    b.getBackground().setTint(getResources().getColor(R.color.colorAccent));
+                    b.setText(currentText.replace("\u2610","\u2611"));
+                    Log.d(TAG, wordChoice);
                     prepareNextGrid();
+                    b.getBackground().setTint(getResources().getColor(R.color.backgroundColor));
                 }
             }
         };
@@ -88,7 +95,7 @@ public class SemanticRelatednessFragment extends QuestionFragment {
     private void changeButtonText() {
         String[] currentChoices = semanticChoices[pageCount];
         for (int i = 0; i < choiceButtons.length; i++) {
-            choiceButtons[i].setText(currentChoices[i]);
+            choiceButtons[i].setText("\u2610   "+ currentChoices[i]);
             if (choiceListener != null)
                 choiceButtons[i].setOnClickListener(choiceListener);
         }
@@ -110,7 +117,7 @@ public class SemanticRelatednessFragment extends QuestionFragment {
         String headerText = "Word: " + semanticPrompts[pageCount];
         SpannableString ss = new SpannableString(headerText);
 
-        ForegroundColorSpan fcs = new ForegroundColorSpan(getResources().getColor(R.color.colorAccent));
+        ForegroundColorSpan fcs = new ForegroundColorSpan(getResources().getColor(R.color.red));
         ss.setSpan(fcs, 5, headerText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         semanticChoicePrompt.setText(ss);

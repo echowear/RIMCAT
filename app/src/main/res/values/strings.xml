@@ -296,7 +296,7 @@
         category as quickly as you can.
     </string>
     <string name="semantic_choice_ready">
-        You will have 5 seconds in every to select as many words from the category as you can.
+        You will have 5 seconds to select as many words from the category as you can.
     </string>
     <string-array name="semantic_choice_prompts">
         <item>Animals</item>
@@ -620,7 +620,7 @@
     <string name="instructions_computation">Please do the following calculations in your head, then enter the answer using the keypad.</string>
     <string name="computation_repeat">Repeat</string>
     <string name="computation_edit_hint">Answer</string>
-    <string name="finish_line1">Thank you for your time!</string>
+    <string name="finish_line1">Thank you!</string>
     <string name="finish_line2">You may now quit the application.</string>
     <string name="finish_quit">Quit</string>
     <string name="finish_feedback_prompt">Did you experience any technical difficulties when taking this test?</string>
@@ -630,8 +630,8 @@
         \n\n Throughout the test you can move to the next screen by clicking on the \"Next\" button at the bottom right.
     </string>
     <string name="video_prompt">Please watch the video below, then complete the next activity.</string>
-    <string name="keyboard_prompt1">Please type the word \"hello\", then press the button labeled \"Submit Word\".</string>
-    <string name="keyboard_prompt2">Use the audio button to record the word \"hello\", then press the button labeled \"Submit Word\".</string>
-    <string name="instructions_reaction">A series of gray rectangles will appear in a random location on the screen, one at a time. Press the rectangles as fast as you can using one finger.</string>
+    <string name="keyboard_prompt1">Please type the word \"hello\", then press the button labeled \"Enter Next Word\".</string>
+    <string name="keyboard_prompt2">Use the audio button to record the word \"hello\", then press the button labeled \"Enter Next Word\".</string>
+    <string name="instructions_reaction">A series of gray rectangles will appear in a random location on the screen, one at a time. \n Press the rectangles as fast as you can using one finger.</string>
     <string name="reaction_prompt">Press the rectangle on the screen as quickly as you can.</string>
 </resources>

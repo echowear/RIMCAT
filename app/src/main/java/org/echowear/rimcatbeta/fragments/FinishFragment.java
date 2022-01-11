@@ -31,49 +31,12 @@ public class FinishFragment extends QuestionFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_finish, container, false);
 
-        feedbackCard = view.findViewById(R.id.feedback_card);
         endCard = view.findViewById(R.id.end_card);
-        feedbackText = view.findViewById(R.id.finish_feedback_edit_text);
-        nextBtn = view.findViewById(R.id.finish_next_btn);
+        cardView = view.findViewById(R.id.finish_page);
         quitBtn = view.findViewById(R.id.quit_btn);
+        endCard.setVisibility(View.VISIBLE);
+        cardView.setVisibility(View.VISIBLE);
 
-        feedbackCard.setVisibility(View.VISIBLE);
-        endCard.setVisibility(View.INVISIBLE);
-
-        animationListener = new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) { }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                if (isFadingOut) {
-                    feedbackCard.setVisibility(View.INVISIBLE);
-                    Animation fadeInAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in);
-                    fadeInAnimation.setAnimationListener(animationListener);
-                    endCard.startAnimation(fadeInAnimation);
-                }
-                else {
-                    endCard.setVisibility(View.VISIBLE);
-                    isAnimationActive = false;
-                }
-                isFadingOut = !isFadingOut;
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) { }
-        };
-
-        nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!feedbackText.getText().toString().equals(""))
-                    logEndTimeAndData(getActivity().getApplicationContext(), "finish_feedback," + feedbackText.getText().toString());
-                isAnimationActive = true;
-                Animation fadeOutAnimation =  AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out);
-                fadeOutAnimation.setAnimationListener(animationListener);
-                feedbackCard.startAnimation(fadeOutAnimation);
-            }
-        });
         quitBtn.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override

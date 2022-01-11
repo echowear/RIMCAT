@@ -6,6 +6,10 @@
         <entry key="app/src/main/res/layout/fragment_figure_select.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_figure_study.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_finish.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_instructions.xml" value="0.1188423645320197" />
+        <entry key="app/src/main/res/layout/fragment_instructions1.xml" value="0.1188423645320197" />
+        <entry key="app/src/main/res/layout/fragment_semantic_relatedness.xml" value="0.1188423645320197" />
+        <entry key="app/src/main/res/layout/fragment_story_memory.xml" value="0.1" />
       </map>
     </option>
   </component>

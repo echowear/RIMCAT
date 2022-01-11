@@ -6,66 +6,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/feedback_card"
-        android:layout_width="1114dp"
-        android:layout_height="449dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/feedback_card"-->
+<!--        android:layout_width="1114dp"-->
+<!--        android:layout_height="449dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:layout_marginBottom="8dp"-->
+<!--        android:visibility="visible"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
 
-            <Button
-                android:id="@+id/finish_next_btn"
-                android:layout_width="150dp"
-                android:layout_height="67dp"
-                android:layout_marginBottom="32dp"
-                android:background="@drawable/roundbutton"
-                android:padding="10dp"
-                android:text="@string/next_text"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="35sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+<!--            <Button-->
+<!--                android:id="@+id/finish_next_btn"-->
+<!--                android:layout_width="150dp"-->
+<!--                android:layout_height="67dp"-->
+<!--                android:layout_marginBottom="32dp"-->
+<!--                android:background="@drawable/roundbutton"-->
+<!--                android:padding="10dp"-->
+<!--                android:text="@string/next_text"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="35sp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent" />-->
 
-            <TextView
-                android:id="@+id/finish_feedback_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="@string/finish_feedback_prompt"
-                android:textSize="30sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+<!--            <TextView-->
+<!--                android:id="@+id/finish_feedback_text"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="32dp"-->
+<!--                android:text="@string/finish_feedback_prompt"-->
+<!--                android:textSize="30sp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
-            <EditText
-                android:id="@+id/finish_feedback_edit_text"
-                android:layout_width="950dp"
-                android:layout_height="96dp"
-                android:ems="10"
-                android:textAlignment="center"
-                android:inputType="textCapSentences"
-                android:text=""
-                android:textSize="25sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+<!--            <EditText-->
+<!--                android:id="@+id/finish_feedback_edit_text"-->
+<!--                android:layout_width="950dp"-->
+<!--                android:layout_height="96dp"-->
+<!--                android:ems="10"-->
+<!--                android:textAlignment="center"-->
+<!--                android:inputType="textCapSentences"-->
+<!--                android:text=""-->
+<!--                android:textSize="25sp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--    </androidx.cardview.widget.CardView>-->
 
     <androidx.cardview.widget.CardView
         android:id="@+id/end_card"

@@ -89,12 +89,12 @@ public class VerbalRecognitionFragment extends QuestionFragment {
                 AppCompatButton b = (AppCompatButton) v;
                 String currentText = (String) b.getText();
                     if (currentText.contains("\u2611")) {
-                        choiceList.remove(currentText.replace("   \u2611",""));
+                        choiceList.remove(currentText.replace("\u2611   ",""));
                         b.getBackground().setTint(getResources().getColor(R.color.backgroundColor));
                         b.setText(currentText.replace("\u2611", "\u2610"));
                         Log.d(TAG, String.valueOf(choiceList));
                     } else {
-                        choiceList.add(currentText.replace("   \u2610", ""));
+                        choiceList.add(currentText.replace("\u2610   ", ""));
                         b.getBackground().setTint(getResources().getColor(R.color.colorAccent));
                         b.setText(currentText.replace("\u2610","\u2611"));
                         Log.d(TAG, String.valueOf(choiceList));
@@ -108,7 +108,7 @@ public class VerbalRecognitionFragment extends QuestionFragment {
         String[] currentChoices = wordList[pageCount];
         String spaces = "    ";
         for (int i = 0; i < choiceButtons.length; i++) {
-            choiceButtons[i].setText(currentChoices[i] + spaces + "\u2610" );
+            choiceButtons[i].setText("\u2610   " + currentChoices[i]);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 choiceButtons[i].getBackground().setTint(getResources().getColor(R.color.backgroundColor));
             }
