@@ -1,20 +1,6 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        debug {
-            storeFile file('/Users/raph/Desktop/rimcat_app')
-            storePassword '123456'
-            keyPassword '123456'
-            keyAlias 'key0'
-        }
-        release {
-            storeFile file('/Users/raph/Desktop/rimcat_app')
-            storePassword '123456'
-            keyAlias 'key0'
-            keyPassword '123456'
-        }
-    }
     compileSdkVersion 30
     defaultConfig {
         applicationId "org.echowear.rimcatbeta"
