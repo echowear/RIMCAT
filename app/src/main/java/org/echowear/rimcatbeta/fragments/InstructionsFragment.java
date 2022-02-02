@@ -60,7 +60,7 @@ public class InstructionsFragment extends QuestionFragment {
             case ActivitiesModel.INSTRUCTIONS_SCREEN_5:
                 instructionsNum = 5;
                 instructionsText.setText(R.string.instructions_verbalInst);
-                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
+                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst5);
                 break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_6:
@@ -110,13 +110,13 @@ public class InstructionsFragment extends QuestionFragment {
             case ActivitiesModel.INSTRUCTIONS_SCREEN_14:
                 instructionsNum = 14;
                 instructionsText.setText(R.string.instructions_verbalInst5);
-                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
+                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst14);
                 break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_15:
                 instructionsNum = 15;
                 instructionsText.setText(R.string.instructions_verbal_rec);
-                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+                instructionsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
                 mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst15);
                 break;
             case ActivitiesModel.INSTRUCTIONS_SCREEN_16:

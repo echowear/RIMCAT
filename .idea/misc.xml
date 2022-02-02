@@ -13,7 +13,10 @@
         <entry key="app/src/main/res/layout/fragment_instructions1.xml" value="0.1188423645320197" />
         <entry key="app/src/main/res/layout/fragment_semantic_relatedness.xml" value="0.1188423645320197" />
         <entry key="app/src/main/res/layout/fragment_story_memory.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_verbal_recall.xml" value="0.19140625" />
         <entry key="app/src/main/res/layout/fragment_video.xml" value="0.11545566502463055" />
+        <entry key="app/src/main/res/layout/spinner_dropdown_item.xml" value="0.19140625" />
+        <entry key="app/src/main/res/layout/spinner_item.xml" value="0.19140625" />
         <entry key="app/src/main/res/menu/overflow_menu.xml" value="0.10375" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.15390625" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.15390625" />

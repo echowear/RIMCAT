@@ -1,13 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+
     compileSdkVersion 30
     defaultConfig {
         applicationId "org.echowear.rimcatbeta"
         minSdkVersion 28
         targetSdkVersion 30
-        versionCode 5
-        versionName "1.0"
+        versionCode 8
+        versionName "4.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     buildTypes {
