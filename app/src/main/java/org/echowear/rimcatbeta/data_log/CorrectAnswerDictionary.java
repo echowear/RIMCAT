@@ -68,32 +68,32 @@ public class CorrectAnswerDictionary {
     }
 
     private static void loadDigitSpanAnswers() {
-        DIGIT_SPAN_ANSWERS.put(0, "5238");
-        DIGIT_SPAN_ANSWERS.put(1, "9713");
-        DIGIT_SPAN_ANSWERS.put(2, "15739");
-        DIGIT_SPAN_ANSWERS.put(3, "62847");
+        DIGIT_SPAN_ANSWERS.put(0, "3982");
+        DIGIT_SPAN_ANSWERS.put(1, "2753");
+        DIGIT_SPAN_ANSWERS.put(2, "95820");
+        DIGIT_SPAN_ANSWERS.put(3, "14986");
         DIGIT_SPAN_ANSWERS.put(4, "371205");
-        DIGIT_SPAN_ANSWERS.put(5, "481392");
-        DIGIT_SPAN_ANSWERS.put(6, "8431792");
-        DIGIT_SPAN_ANSWERS.put(7, "2851064");
-        DIGIT_SPAN_ANSWERS.put(8, "59");
-        DIGIT_SPAN_ANSWERS.put(9, "35");
-        DIGIT_SPAN_ANSWERS.put(10, "179");
-        DIGIT_SPAN_ANSWERS.put(11, "425");
-        DIGIT_SPAN_ANSWERS.put(12, "2918");
+        DIGIT_SPAN_ANSWERS.put(5, "845219");
+        DIGIT_SPAN_ANSWERS.put(6, "1386974");
+        DIGIT_SPAN_ANSWERS.put(7, "9513064");
+        DIGIT_SPAN_ANSWERS.put(8, "95");
+        DIGIT_SPAN_ANSWERS.put(9, "53");
+        DIGIT_SPAN_ANSWERS.put(10, "941");
+        DIGIT_SPAN_ANSWERS.put(11, "572");
+        DIGIT_SPAN_ANSWERS.put(12, "8257");
         DIGIT_SPAN_ANSWERS.put(13, "6082");
         DIGIT_SPAN_ANSWERS.put(14, "91436");
-        DIGIT_SPAN_ANSWERS.put(15, "15862");
+        DIGIT_SPAN_ANSWERS.put(15, "94102");
     }
 
     private static void loadComputationAnswers() {
-        COMPUTATION_ANSWERS.put(0, "17");
-        COMPUTATION_ANSWERS.put(1, "43");
-        COMPUTATION_ANSWERS.put(2, "36");
+        COMPUTATION_ANSWERS.put(0, "19");
+        COMPUTATION_ANSWERS.put(1, "31");
+        COMPUTATION_ANSWERS.put(2, "34");
         COMPUTATION_ANSWERS.put(3, "26");
-        COMPUTATION_ANSWERS.put(4, "36");
-        COMPUTATION_ANSWERS.put(5, "48");
-        COMPUTATION_ANSWERS.put(6, "4");
+        COMPUTATION_ANSWERS.put(4, "32");
+        COMPUTATION_ANSWERS.put(5, "54");
+        COMPUTATION_ANSWERS.put(6, "9");
         COMPUTATION_ANSWERS.put(7, "34");
     }
 
