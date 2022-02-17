@@ -106,7 +106,6 @@ public class VerbalRecognitionFragment extends QuestionFragment {
 
     private void changeButtonText() {
         String[] currentChoices = wordList[pageCount];
-        String spaces = "    ";
         for (int i = 0; i < choiceButtons.length; i++) {
             choiceButtons[i].setText("\u2610   " + currentChoices[i]);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

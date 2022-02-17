@@ -13,6 +13,7 @@ import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -107,6 +108,10 @@ public class ReactionFragment extends QuestionFragment {
         logStartTime();
         nextButtonReady();
         return view;
+    }
+
+    private void addTouchListener() {
+
     }
 
     private void initializeGrid() {

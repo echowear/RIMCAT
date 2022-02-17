@@ -59,6 +59,7 @@
                 android:ems="10"
                 android:hint="@string/vresponse_recallHint"
                 android:inputType="textPersonName"
+                android:imeOptions="actionDone"
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -84,6 +85,7 @@
                 android:layout_marginBottom="216dp"
                 android:background="@drawable/roundbutton"
                 android:padding="10dp"
+
                 android:text="@string/vresponse_doneRecalling"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
