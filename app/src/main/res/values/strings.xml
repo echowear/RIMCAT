@@ -194,7 +194,7 @@
     <string name="instructions_figure_study">
         You will now be shown a series of figures for 6 seconds each.
         \n\n
-        Pay attention to the details because you will have to select each figure that you saw later.
+        Pay attention to the details because you will be asked to recall each figure from a list of figures later on.
     </string>
 <!--    <string-array name="figure_prompt_array">-->
 <!--        <item>Here is the 1st figure.</item>-->
@@ -214,7 +214,7 @@
 <!--    </string-array>-->
     <string name="figure_select_prompt">Select the correct figure that you have seen before.</string>
     <string name="instructions_read_comp_story">
-        Next, you will be presented with a short story. You will be asked questions about this story later.
+        Next, you will be presented with a short story to remember.
     </string>
     <string name="instructions_read_comp_test">
         Please answer the following questions about the story you heard earlier.
@@ -435,12 +435,12 @@
         <item>Rocket</item>
     </string-array>
     <string name="instructions_figureSelect2">
-        You will now be shown six figures on the screen at once. Select the figure that you saw before.
+        You will now be shown four figures on the screen at once. Select the figure that you saw before.
     </string>
     <string name="instructions_semantic_relatedness">
         For this task, a word will appear at the top of the screen, and answer choices will appear below.
         \n\n
-        Please choose the word that is most similar to the word at the top.</string>
+        Please choose the word that is most similar to the word at the top as quickly as you can.</string>
     <string-array name="semantic_relatedness_headers">
         <item>Flower</item>
         <item>Cactus</item>
@@ -549,13 +549,13 @@
         <item>Liquid</item>
     </string-array>
 
-    <string name="semantic_relatedness_prompt">Choose the word that is most similar to the word that you will see at the top of the screen.</string>
+    <string name="semantic_relatedness_prompt">Choose the word that is most similar to the word that you will see at the top of the screen as quickly as you can.</string>
     <string name="instructions_verbal_rec">
         On the next 3 screens you will see a panel of words.
         \n\n
         Please select as many words as you can remember from the list you saw earlier.
     </string>
-    <string name="verbal_rec_reminder"> Please select as many words as you can remember.</string>
+    <string name="verbal_rec_reminder"> Please select all the words that you remember.</string>
     <string-array name="verbal_recognition_words_1">
         <item>Bell</item>
         <item>Window</item>
@@ -609,12 +609,12 @@
         \n\n
         Then you will be asked to enter them in the reverse order or backwards, using the keypad.
         \n\n
-        For example. If you hear the numbers 9-4-1, you would type 1-4-9 to repeat them backwards.
+        For example, if you hear the numbers 9-4-1, you would type 1-4-9 to repeat them backwards.
     </string>
     <string name="ds_edit_hint">Type Number</string>
     <string name="ds_submit_text">Submit Number</string>
     <string name="ds_inorder_text">Enter the numbers you just saw.</string>
-    <string name="ds_reverse_text">Repeat the full number back in reverse order.</string>
+    <string name="ds_reverse_text">Enter response.</string>
     <string name="instructions_computation">Please do the following calculations in your head, then enter the answer using the keypad.</string>
     <string name="computation_repeat">Repeat</string>
     <string name="computation_edit_hint">Answer</string>

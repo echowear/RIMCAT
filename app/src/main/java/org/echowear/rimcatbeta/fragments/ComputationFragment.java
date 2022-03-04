@@ -93,7 +93,7 @@ public class ComputationFragment extends QuestionFragment {
             }
         };
 
-        CountDownTimer waitToReadFirstCompTimer = new CountDownTimer(1000, 1000) {
+        CountDownTimer waitToReadFirstCompTimer = new CountDownTimer(3000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
 
