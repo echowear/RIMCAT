@@ -58,7 +58,8 @@
     <string name="home_patientID">Patient ID</string>
     <string name="instructions_appInst">
         First, I am going to ask you to answer some questions.
-        \n\nRemember to select the \"Next\" button on the bottom right of the screen to continue.
+        \n\n
+        Remember to press the \"Next\" button at the bottom right of the screen to continue.
     </string>
     <string name="instructions_buttonInst">After you\'re finished, press this button to move on.</string>
     <string name="name_prompt">What is your full name?</string>
@@ -104,10 +105,12 @@
     </string-array>
     <string name="instructions_verbalInst">
         Next, you will be presented with a list of words one at a time.
-        \n\nLater, you will be asked to recall the words in any order, so listen carefully.
+        \n \n
+        Later you will be asked to recall the words in any order, so listen carefully.
     </string>
     <string name="instructions_verbalInst2">
-        Now, you will see the same list again. \n\nPlease remember as many words as you can, in any order, whether or not you recalled them before.
+        Now you will see the same list again. \n \n
+        Please remember as many words as you can, in any order, whether or not you recalled them before.
     </string>
     <string name="instructions_verbalInst3">
         Now you will be presented with a new list of words. Read and listen to each word carefully and try to remember it. \n\n
@@ -120,12 +123,14 @@
     </string>
     <string name="instructions_verbalInst5">
         Do you remember the list of words that you saw a while ago? On the next page you will be asked to enter as many words as you can.
-        \n\nThe order in which you enter the words does not matter. Try to recall as many as you can.
+        \n\n
+        The order in which you enter the words does not matter. Try to recall as many as you can.
     </string>
     <string name="verbal_readyBtn">Next</string>
-    <string name="verbal_readyPrompt">Select the \"Next\" button when you are ready to start.</string>
+    <string name="verbal_readyPrompt">Press the \"Next\" button when you are ready to start.</string>
     <string name="vresponse_prompt">
-        Now, type in each word you can remember or select the microphone button to say it.
+        Now type in each word you can remember or press the microphone button to say it.
+        \n
         Try your best to recall as many as you can.
     </string>
     <string name="keyboard_addBtn">Submit Word</string>
@@ -187,8 +192,9 @@
         <item>Accordion</item>
     </string-array>
     <string name="instructions_figure_study">
-        You will now see a series of figures for six seconds each.
-        \n\nPay attention to the details because you will have to select each figure that you saw later.
+        You will now be shown a series of figures for 6 seconds each.
+        \n\n
+        Pay attention to the details because you will be asked to recall each figure from a list of figures later on.
     </string>
 <!--    <string-array name="figure_prompt_array">-->
 <!--        <item>Here is the 1st figure.</item>-->
@@ -206,9 +212,9 @@
 <!--        <item>House</item>-->
 <!--        <item>Shed</item>-->
 <!--    </string-array>-->
-    <string name="figure_select_prompt">Select the correct figure that you saw before.</string>
+    <string name="figure_select_prompt">Select the correct figure that you have seen before.</string>
     <string name="instructions_read_comp_story">
-        Next, you will be presented with a short story to remember. You will be asked questions about this story later.
+        Next, you will be presented with a short story to remember.
     </string>
     <string name="instructions_read_comp_test">
         Please answer the following questions about the story you heard earlier.
@@ -224,14 +230,14 @@
     </string>
     <string name="reading_comp_prompt_3">
         Driving back, she halted to a stop and the
-        groceries went flying. The brand new floor mats were covered with eight broken
+        groceries went flying. The brand new floor mats were covered with 8 broken
         eggs and half of a carton of blueberries.
     </string>
     <string name="reading_comp_prompt_4">
         Remember, you will be asked to recall details from this story later, so try to remember it as best as you can!
     </string>
     <string name="reading_comp_instr">
-        Select the correct response to the question about the story.
+        Press the correct response to the question about the story.
     </string>
     <string-array name="reading_comp_questions">
         <item><b>The story begins on:</b></item>
@@ -285,10 +291,10 @@
     </string-array>
 
     <string name="instructions_semanticChoice">
-        You will see a category at the top of the page and words below. Please select any words that belong in that category as quickly as you can.
+        You will see a category at the top of the page and words below. Please tap any words that belong in that category as quickly as you can.
     </string>
     <string name="semantic_choice_ready">
-        You will have five seconds to select as many words from the category as you can.
+        You will have 5 seconds to select as many words from the category as you can.
     </string>
     <string-array name="semantic_choice_prompts">
         <item>Animals</item>
@@ -433,8 +439,8 @@
     </string>
     <string name="instructions_semantic_relatedness">
         For this task, a word will appear at the top of the screen, and answer choices will appear below.
-        \n\nPlease choose the word that is most similar to the word at the top
-        \nas quickly as you can.</string>
+        \n\n
+        Please choose the word that is most similar to the word at the top as quickly as you can.</string>
     <string-array name="semantic_relatedness_headers">
         <item>Flower</item>
         <item>Cactus</item>
@@ -543,12 +549,13 @@
         <item>Liquid</item>
     </string-array>
 
-    <string name="semantic_relatedness_prompt">Choose the word that is most similar to the word that you will see at the top of the screen.</string>
+    <string name="semantic_relatedness_prompt">Choose the word that is most similar to the word that you will see at the top of the screen as quickly as you can.</string>
     <string name="instructions_verbal_rec">
         On the next 3 screens you will see a panel of words.
-        \n\nPlease select all the words on each panel that you can remember from the list that you saw earlier.
+        \n\n
+        Please select as many words as you can remember from the list you saw earlier.
     </string>
-    <string name="verbal_rec_reminder"> Please select as many words as you can remember.</string>
+    <string name="verbal_rec_reminder"> Please select all the words that you remember.</string>
     <string-array name="verbal_recognition_words_1">
         <item>Bell</item>
         <item>Window</item>
@@ -594,17 +601,20 @@
 
     <string name="instructions_digit_span">
         You will see and hear a series of numbers.
-        \n\nThen you will be asked to enter them in the same order, using the keypad.
+        \n\n
+        Then you will be asked to enter them in the same order, using the keypad.
     </string>
     <string name="instructions2_digit_span">
         You will see and hear a series of numbers.
-        \n\nThen you will be asked to enter them in the reverse order or backward using the keypad.
-        \n\nFor example, If you hear the numbers 9-4-1, you would type 1-4-9 to repeat them backward.
+        \n\n
+        Then you will be asked to enter them in the reverse order or backwards, using the keypad.
+        \n\n
+        For example, if you hear the numbers 9-4-1, you would type 1-4-9 to repeat them backwards.
     </string>
     <string name="ds_edit_hint">Type Number</string>
     <string name="ds_submit_text">Submit Number</string>
     <string name="ds_inorder_text">Enter the numbers you just saw.</string>
-    <string name="ds_reverse_text">Repeat the full number back in reverse order.</string>
+    <string name="ds_reverse_text">Enter response.</string>
     <string name="instructions_computation">Please do the following calculations in your head, then enter the answer using the keypad.</string>
     <string name="computation_repeat">Repeat</string>
     <string name="computation_edit_hint">Answer</string>
@@ -614,11 +624,12 @@
     <string name="finish_feedback_prompt">Did you experience any technical difficulties when taking this test?</string>
     <string name="instructions_next">
         You will be asked to complete a number of questions. Some tasks might seem easy whereas others you might find challenging.
-        \n\nThroughout the test you can move to the next screen by selecting the \"Next\" button on the bottom right.
+        \n\n
+        Throughout the test you can move to the next screen by clicking on the \"Next\" button at the bottom right.
     </string>
     <string name="video_prompt">Please watch the video below, then complete the next activity.</string>
-    <string name="keyboard_prompt1">Please type the word \"Hello\", then select the button labeled \"Enter Next Word\".</string>
-    <string name="keyboard_prompt2">Use the audio button to record the word \"Hello\", then select the button labeled \"Enter Next Word\".</string>
-    <string name="instructions_reaction">A series of gray rectangles will appear in a random location on the screen, one at a time. \n\nSelect the rectangles as fast as you can using one finger.</string>
+    <string name="keyboard_prompt1">Please type the word \"hello\", then press the button labeled \"Enter Next Word\".</string>
+    <string name="keyboard_prompt2">Use the audio button to record the word \"hello\", then press the button labeled \"Enter   Word\".</string>
+    <string name="instructions_reaction">A series of gray rectangles will appear in a random location on the screen, one at a time. \nPress the rectangles as fast as you can using one finger.</string>
     <string name="reaction_prompt">Press the rectangle on the screen as quickly as you can.</string>
 </resources>

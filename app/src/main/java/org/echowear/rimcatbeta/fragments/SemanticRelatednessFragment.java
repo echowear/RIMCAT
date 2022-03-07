@@ -117,7 +117,7 @@ public class SemanticRelatednessFragment extends QuestionFragment {
         String headerText = "Word: " + semanticPrompts[pageCount];
         SpannableString ss = new SpannableString(headerText);
 
-        ForegroundColorSpan fcs = new ForegroundColorSpan(getResources().getColor(R.color.red));
+        ForegroundColorSpan fcs = new ForegroundColorSpan(getResources().getColor(R.color.colorAccent));
         ss.setSpan(fcs, 5, headerText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         semanticChoicePrompt.setText(ss);
