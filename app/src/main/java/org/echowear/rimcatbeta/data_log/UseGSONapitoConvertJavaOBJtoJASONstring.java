@@ -1,14 +1,10 @@
 package org.echowear.rimcatbeta.data_log;
-import android.content.Context;
 
 import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
-import org.echowear.rimcatbeta.MainActivity;
-import org.echowear.rimcatbeta.data_log.GenerateDirectory;
 
 public class UseGSONapitoConvertJavaOBJtoJASONstring {
     public  static void main(String ID, String[][][] xyTimes, String rootDir) throws IOException {
