@@ -15,9 +15,14 @@
         <entry key="app/src/main/res/layout/fragment_reaction.xml" value="0.15147783251231528" />
         <entry key="app/src/main/res/layout/fragment_semantic_relatedness.xml" value="0.1188423645320197" />
         <entry key="app/src/main/res/layout/fragment_story_memory.xml" value="0.1" />
+<<<<<<< Updated upstream
         <entry key="app/src/main/res/layout/fragment_verbal_learning.xml" value="0.15147783251231528" />
         <entry key="app/src/main/res/layout/fragment_verbal_rec.xml" value="0.15147783251231528" />
         <entry key="app/src/main/res/layout/fragment_verbal_recall.xml" value="0.19140625" />
+=======
+        <entry key="app/src/main/res/layout/fragment_verbal_rec.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_verbal_recall.xml" value="0.1" />
+>>>>>>> Stashed changes
         <entry key="app/src/main/res/layout/fragment_video.xml" value="0.11545566502463055" />
         <entry key="app/src/main/res/layout/spinner_dropdown_item.xml" value="0.19140625" />
         <entry key="app/src/main/res/layout/spinner_item.xml" value="0.19140625" />

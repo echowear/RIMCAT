@@ -188,7 +188,7 @@
     </string-array>
     <string name="instructions_figure_study">
         You will now see a series of figures for six seconds each.
-        \n\nPay attention to the details because you will be asked to recall each figure from a list of figures later on.
+        \n\nPay attention to the details because you will have to select each figure that you saw later.
     </string>
 <!--    <string-array name="figure_prompt_array">-->
 <!--        <item>Here is the 1st figure.</item>-->
