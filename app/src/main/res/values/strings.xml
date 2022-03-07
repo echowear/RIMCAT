@@ -629,7 +629,7 @@
     </string>
     <string name="video_prompt">Please watch the video below, then complete the next activity.</string>
     <string name="keyboard_prompt1">Please type the word \"hello\", then press the button labeled \"Enter Next Word\".</string>
-    <string name="keyboard_prompt2">Use the audio button to record the word \"hello\", then press the button labeled \"Enter Word\".</string>
+    <string name="keyboard_prompt2">Use the audio button to record the word \"hello\", then press the button labeled \"Enter Next Word\".</string>
     <string name="instructions_reaction">A series of gray rectangles will appear in a random location on the screen, one at a time. \nPress the rectangles as fast as you can using one finger.</string>
     <string name="reaction_prompt">Press the rectangle on the screen as quickly as you can.</string>
 </resources>
