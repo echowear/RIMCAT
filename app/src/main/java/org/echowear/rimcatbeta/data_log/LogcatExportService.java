@@ -39,6 +39,7 @@ public class LogcatExportService extends IntentService {
         }
 
         File logFile = new File(intent.getStringExtra(EXTRA_FILE_DESTINATION));
+        Log.d(TAG, "onHandleIntent: " + logFile);
         if (!logFile.exists()) {
             logFile.getParentFile().mkdirs();
             try {

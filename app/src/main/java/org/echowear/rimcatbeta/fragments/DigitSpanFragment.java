@@ -28,25 +28,26 @@ import org.echowear.rimcatbeta.data_log.CorrectAnswerDictionary;
 import java.util.HashMap;
 
 public class DigitSpanFragment extends QuestionFragment {
+    // [3, 9, 8, 2, 7, 5, 7, 5, 5, 9, 5, 8, 2, 0, 1, 4, 9, 8, 4, 5, 8, 1, 9, 9, 9, 5, 1, 0, 1, 6, 8, 7, 8, 3, 9, 0, 2, 3, 1, 3, 8, 6, 9, 3, 5, 9, 0, 2, 3, 5]
 
     private static final String TAG = "DigitSpanFragment";
     private static final int[][] FULL_NUMBER_LIST = {
-            { 5, 2, 3, 8 },
-            { 9, 7, 1, 3 },
-            { 1, 5, 7, 3, 9 },
-            { 6, 2, 8, 4, 7 },
+            { 3, 9, 8, 2 },
+            { 2, 7, 5, 3},
+            { 9, 5, 8, 2, 0 },
+            { 1, 4, 9, 8, 6 },
             { 3, 7, 1, 2, 0, 5 },
-            { 4, 8, 1, 3, 9, 2 },
-            { 8, 4, 3, 1, 7, 9, 2 },
-            { 2, 8, 5, 1, 0, 6, 4 },
-            { 9, 5 },
-            { 5, 3 },
-            { 9, 7, 1 },
-            { 5, 2, 4 },
-            { 8, 1, 9, 2 },
+            { 8, 4, 5, 2, 1, 9 },
+            { 1, 3, 8, 6, 9, 7, 4 },
+            { 9, 5, 1, 3, 0, 6, 4 },
+            { 5, 9 },
+            { 3, 5 },
+            { 1, 4, 9 },
+            { 2, 7, 5 },
+            { 7, 5, 2, 8 },
             { 2, 8, 0, 6 },
             { 6, 3, 4, 1, 9 },
-            { 2, 6, 8, 5, 1 }
+            { 2, 0, 1, 4, 9 }
     };
     private static final int NUMS_PER_LIST = 8;
     private static final String[] COUNTDOWN_TEXT = { "Ready", "Set", "Go!" };
@@ -147,11 +148,14 @@ public class DigitSpanFragment extends QuestionFragment {
                         ((MainActivity)getActivity()).hideSoftKeyboard();
 
                         if (getCorrectAnswer().equals(dsEditText.getText().toString())) {
+                            Log.d(TAG, "DigitSpanCorreect: " + getCorrectAnswer() + "..." + dsEditText.getText().toString());
                             firstNumInSetAnsweredWrong = false;
                             moveToNextNumber();
                         }
                         else
-                            checkIfBothDigitsFailed();
+                            Log.d(TAG, "DigitSpanCorreect: " + getCorrectAnswer() + "..." + dsEditText.getText().toString());
+
+                        checkIfBothDigitsFailed();
                     }
                 }
             }
@@ -211,7 +215,7 @@ public class DigitSpanFragment extends QuestionFragment {
 
     private void checkIfBothDigitsFailed() {
         if (currentNumber == 0 || currentNumber % 2 == 0) {
-            Log.d(TAG, "User failed to recall the first number of a sequence.");
+            Log.d(TAG, "User failed to recall the first number of a sequence.  " + currentNumber);
             firstNumInSetAnsweredWrong = true;
         } else if (firstNumInSetAnsweredWrong) {
             Log.d(TAG, "User failed to recall two numbers with the same amount of digits. Moving to next part of activity.");

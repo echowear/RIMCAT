@@ -12,6 +12,7 @@ import android.widget.Spinner;
 
 import org.echowear.rimcatbeta.MainActivity;
 import org.echowear.rimcatbeta.R;
+import org.echowear.rimcatbeta.data_log.UseGSONapitoConvertJavaOBJtoJASONstring;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -70,6 +71,7 @@ public class DayOfWeekFragment extends BasicQuestionFragment {
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE");
         Date today = Calendar.getInstance().getTime();
         return dateFormat.format(today);
+//        UseGSONapitoConvertJavaOBJtoJASONstring.main();
     }
 
     @Override

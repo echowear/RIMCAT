@@ -1,5 +1,6 @@
 package org.echowear.rimcatbeta.fragments;
 
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -30,6 +31,7 @@ public class FinishFragment extends QuestionFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_finish, container, false);
+        mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.instfinish);
 
         endCard = view.findViewById(R.id.end_card);
         cardView = view.findViewById(R.id.finish_page);

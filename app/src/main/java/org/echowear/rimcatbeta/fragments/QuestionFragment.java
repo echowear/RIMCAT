@@ -22,10 +22,14 @@ import org.echowear.rimcatbeta.data_log.DataLogService;
 import org.echowear.rimcatbeta.data_log.GenerateDirectory;
 import org.echowear.rimcatbeta.MainActivity;
 import org.echowear.rimcatbeta.R;
+import org.echowear.rimcatbeta.data_log.UseGSONapitoConvertJavaOBJtoJASONstring;
+
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public abstract class QuestionFragment extends Fragment {
@@ -142,7 +146,7 @@ public abstract class QuestionFragment extends Fragment {
         }
 
         // Toast affirmative message
-        toastAtTopOfScreen("'" + submitText + "' submitted! Keep going!", Toast.LENGTH_LONG);
+        toastAtTopOfScreen("'" + submitText + "' submitted! Keep going!", Toast.LENGTH_SHORT);
 
         // Execute sound
 //        if (shouldExecuteSound) {
@@ -183,7 +187,17 @@ public abstract class QuestionFragment extends Fragment {
 
     @Override
     public void onDestroy() {
+        String times = ((MainActivity)getActivity()).timesJson();
+        String[][][] xyTimes = ((MainActivity)getActivity()).coordsJson();
+        File rootDir = ((MainActivity)getActivity()).savedState();
+        String rootDirString = rootDir.toString();
         Log.d(TAG, "onDestroy: called.");
+        // This is where the json gets sent
+        try {
+            UseGSONapitoConvertJavaOBJtoJASONstring.main(PATIENT_ID, xyTimes, rootDirString);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         releaseMediaPlayer();
         super.onDestroy();
     }

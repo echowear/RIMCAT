@@ -25,7 +25,7 @@ public class ComputationFragment extends QuestionFragment {
     private static final String TAG = "ComputationFragment";
     private static final int MILLIS_TO_SHOW_COMPUTATION = 3000;
     private static final String[] COMPUTATION_LIST = {
-            "6 + 11", "37 + 6", "41 - 5", "34 - 8", "9 x 4", "8 x 6", "32 ÷ 8", "68 ÷ 2"
+            "7 + 12", "25 + 6", "41 - 7", "34 - 8", "8 x 4", "9 x 6", "36 ÷ 4", "68 ÷ 2"
     };
     private HashMap<String, String> numberToTextMap;
     private CountDownTimer showComputationTimer;

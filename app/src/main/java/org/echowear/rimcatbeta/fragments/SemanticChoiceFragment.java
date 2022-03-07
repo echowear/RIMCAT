@@ -32,12 +32,13 @@ public class SemanticChoiceFragment extends QuestionFragment {
     private TextView            semanticChoicePrompt, semanticCountdownText;
     private ArrayList<String>   choiceList;
     private Button              readyButton;
+    private static final String[] COUNTDOWN_TEXT = { "Ready", "Set", "Go!" };
     private Button[]            choiceButtons;
     private View.OnClickListener choiceListener;
     private CountDownTimer      readyCountdown, selectionCountdown;
     private String[][]          semanticChoices;
     private String[]            semanticPrompts;
-    private int                 pageCount, timerIndex = 3;
+    private int                 pageCount, timerIndex = 0;
     private boolean             inSelectionState = false;
 
     @Nullable
@@ -85,7 +86,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
             public void onClick(View v) {
                 layout1.setVisibility(View.INVISIBLE);
                 layout2.setVisibility(View.VISIBLE);
-                timerIndex = 3;
+                timerIndex = 0;
                 readyCountdown.start();
             }
         });
@@ -94,9 +95,16 @@ public class SemanticChoiceFragment extends QuestionFragment {
             @Override
             public void onTick(long millisUntilFinished) {
                 Log.d(TAG, "onTick: Tick: " + timerIndex);
-                if (timerIndex > 0)
-                    semanticCountdownText.setText("" + timerIndex);
-                timerIndex--;
+//                if (timerIndex > 0)
+//                    semanticCountdownText.setText("" + timerIndex);
+                if (timerIndex < 3) {
+//                    reactionCountdownText.setText("" + timerIndex);
+                    semanticCountdownText.setText(COUNTDOWN_TEXT[timerIndex]);
+                    timerIndex++;
+                } else {
+                    Log.d(TAG, "onTick: ready-set-go went out of range");
+                }
+//                timerIndex--;
             }
 
             @Override

@@ -13,6 +13,7 @@ import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -36,10 +37,11 @@ public class ReactionFragment extends QuestionFragment {
     private View.OnClickListener reactionListener;
     private CountDownTimer readyCountdown;
     private TextView reactionCountdownText, reactionPrompt;
+    private static final String[] COUNTDOWN_TEXT = { "Ready", "Set", "Go!" };
     private Button readyBtn;
     private Button[] selectButtons;
     private long reactionStart, reactionEnd;
-    private int count, timerIndex = 3;
+    private int count, timerIndex = 0;
     private double result;
     boolean inIteration;
 
@@ -84,14 +86,19 @@ public class ReactionFragment extends QuestionFragment {
             @Override
             public void onTick(long millisUntilFinished) {
                 Log.d(TAG, "onTick: Tick: " + timerIndex);
-                if (timerIndex > 0)
-                    reactionCountdownText.setText("" + timerIndex);
-                timerIndex--;
+//                if (timerIndex > 0)
+                if (timerIndex < 3) {
+//                    reactionCountdownText.setText("" + timerIndex);
+                    reactionCountdownText.setText(COUNTDOWN_TEXT[timerIndex]);
+                    timerIndex++;
+                } else {
+                    Log.d(TAG, "onTick: ready-set-go went out of range");
+                }
             }
 
             @Override
             public void onFinish() {
-                timerIndex = 3;
+                timerIndex = 0;
                 reactionCountdownText.setVisibility(View.INVISIBLE);
                 reactionGrid.setVisibility(View.VISIBLE);
                 startNewIteration();
@@ -109,7 +116,12 @@ public class ReactionFragment extends QuestionFragment {
         return view;
     }
 
+    private void addTouchListener() {
+
+    }
+
     private void initializeGrid() {
+        timerIndex = 0;
         reactionListener = new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
@@ -130,6 +142,7 @@ public class ReactionFragment extends QuestionFragment {
     }
 
     private void startNewIteration() {
+        timerIndex = 0;
         inIteration = true;
         Random random = new Random();
         int buttonToPressIndex = random.nextInt(selectButtons.length);

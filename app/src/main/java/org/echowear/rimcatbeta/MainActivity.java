@@ -37,8 +37,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.echowear.rimcatbeta.R;
-
 import org.echowear.rimcatbeta.data_log.CorrectAnswerDictionary;
 import org.echowear.rimcatbeta.data_log.GenerateDirectory;
 import org.echowear.rimcatbeta.data_log.LogcatExportService;
@@ -48,7 +46,6 @@ import org.echowear.rimcatbeta.fragments.BasicQuestionFragment;
 import org.echowear.rimcatbeta.fragments.ComputationFragment;
 import org.echowear.rimcatbeta.fragments.DayOfWeekFragment;
 import org.echowear.rimcatbeta.fragments.DigitSpanFragment;
-import org.echowear.rimcatbeta.fragments.EducationFragment;
 import org.echowear.rimcatbeta.fragments.FigureSelectFragment;
 import org.echowear.rimcatbeta.fragments.FigureStudyFragment;
 import org.echowear.rimcatbeta.fragments.FinishFragment;
@@ -70,18 +67,28 @@ import org.echowear.rimcatbeta.fragments.VerbalRecognitionFragment;
 import org.echowear.rimcatbeta.fragments.VideoFragment;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+
 
 public class MainActivity extends AppCompatActivity implements RetryDialog.RetryDialogListener, RecallFinishDialog.RecallFinishDialogListener {
     private static final String     TAG = "MainActivity";
     private static final int        MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1400;
     private static final int        MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1401;
     private static final int        MY_PERMISSIONS_REQUEST_RECORD_AUDIO = 1402;
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss:SSS");
     private static final int        RESULT_SPEECH = 65676;
     private static final int        BACKGROUND_TRANSITION_TIME = 2000;
     private static final int        NUM_SCREENS = 43;
     private static final int        BLINKING_START_SECS = 5;
+    public String                  coordinatesX;
+    public String                  coordinatesY;
+    public String                  coordinatesT;
+    public String                  dateTimes;
     private FrameLayout             container;
     private FragmentManager         fragmentManager;
     private FragmentTransaction     fragmentTransaction;
@@ -99,6 +106,10 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     private ProgressBar             appProgress;
     protected TextToSpeech          textToSpeech;
     protected boolean               isTTSInitialized;
+    private int viewHold;
+    private File savedState;
+    String[][][] data = new String[43][3][1];
+    private int pointCounter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,9 +118,18 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         // Create log file and start logging
         LogcatExportService.log(this, new File(GenerateDirectory.getRootFile(this), "logcat_" + System.currentTimeMillis() + ".txt"));
 
+        savedState = GenerateDirectory.getRootFile(this);
+        Log.d(TAG, "savedState: " + savedState);
+
         // Set up text to speech. Main screen will be set up after text to speech initialization.
         setUpTextToSpeech();
     }
+
+    public File savedState() {
+        Log.d(TAG, "savedState: " + savedState);
+        return savedState;
+    }
+
 
     @SuppressLint("ClickableViewAccessibility")
     private void setInitialHomeFragment() {
@@ -163,7 +183,54 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     public void viewOnTouch() {
         Log.d(TAG, "viewOnTouch: Called");
         startTime = System.currentTimeMillis();
+
+
+
     }
+// This is the function to call coordinates when a person touches the screen
+    // NOTE: Still need xMax and yMax for the respective device
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        // Return x and y cooralted to position pressed
+        int x = (int)event.getX();
+        int y = (int)event.getY();
+        // current time down to the milliseconds
+        Date today = Calendar.getInstance().getTime();
+        // this is checking if we have changed screens or not
+        if (viewHold != viewNumber) {
+            // if we have, we want to past the string we made into our list, at the appropraite spot
+            if (viewNumber != 0) {
+                coordinatesX += ")";
+                coordinatesY += ")";
+                coordinatesT += ")";
+                data[viewNumber - 1][0][0] = coordinatesX;
+                data[viewNumber - 1][1][0] = coordinatesY;
+                data[viewNumber - 1][2][0] = coordinatesT;
+            }
+            coordinatesX = "(" + x + ",";
+            coordinatesY = "(" + y + ",";
+            coordinatesT = "(" + dateFormat.format(today) + ",";
+// if on the same screen we append to our current list 
+        } else {
+            Log.d(TAG, "onTouchEvent: "+  viewHold + " __ " + viewNumber);
+            coordinatesX += x + ",";
+            coordinatesY += y + ",";
+            coordinatesT += dateFormat.format(today) + ",";
+        }
+
+        viewHold = viewNumber;
+        return false;
+    }
+
+    public String[][][] coordsJson() {
+        return data;
+    }
+    public String timesJson() {
+        return dateTimes;
+    }
+
 
     /** nextButton onClick function
      *
@@ -431,17 +498,17 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
             getFragmentData(null);
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.overflow_menu, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        debugScreenSelect(item.getItemId());
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.overflow_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        debugScreenSelect(item.getItemId());
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onBackPressed() {

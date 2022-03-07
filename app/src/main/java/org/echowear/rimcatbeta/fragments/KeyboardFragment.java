@@ -3,12 +3,15 @@ package org.echowear.rimcatbeta.fragments;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.speech.RecognizerIntent;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,8 +31,8 @@ public class KeyboardFragment extends QuestionFragment {
     private Button submitBtn;
     private FloatingActionButton audioBtn;
     int currentScreen = 0;
+    int counter = 0;
     boolean wasMicPressed, micPressedLast;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,6 +44,8 @@ public class KeyboardFragment extends QuestionFragment {
         submitBtn = view.findViewById(R.id.keyboard_addBtn);
         promptText = view.findViewById(R.id.keyboard_text);
 
+        mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst30);
+
         responseText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,9 +56,9 @@ public class KeyboardFragment extends QuestionFragment {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (responseText.getText().toString() != null && responseText.getText().toString().toLowerCase().equals("hello"))
-                    moveToNextTask();
-                else {
+                if (responseText.getText().toString() != null && responseText.getText().toString().toLowerCase().equals("hello")) {
+                        moveToNextTask();
+                } else {
                     Toast t = Toast.makeText(mContext, "Make sure that the text box has the word 'hello' in it.", Toast.LENGTH_LONG);
                     ViewGroup group = (ViewGroup) t.getView();
                     TextView toastTV = (TextView) group.getChildAt(0);
@@ -99,10 +104,27 @@ public class KeyboardFragment extends QuestionFragment {
     private void moveToNextTask() {
         if (currentScreen == 0) {
             currentScreen++;
+            Log.d(TAG, "moveToNextTask: " + counter);
             promptText.setText(R.string.keyboard_prompt2);
             ((MainActivity)getActivity()).hideSoftKeyboard();
             responseText.setText("");
             audioBtn.show();
+            try {
+                if (mediaPlayer.isPlaying()) {
+                    mediaPlayer.stop();
+                }
+            } catch (Exception NullPointerException) {
+                Log.d(TAG, "moveToNextTask: audio finished ~ null exeption ");
+            }
+            if (counter == 0) {
+                mediaPlayer = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.inst31);
+                Log.d(TAG, "moveToNextTask: MEDIAPLAYER ?? ");
+                mediaPlayer.start();
+                mediaPlayer = null;
+                counter++;
+            } else {
+                mediaPlayer = null;
+            }
             vibrateToastAndExecuteSound("hello", true);
         } else if (wasMicPressed) {
             logEndTimeAndData(getActivity().getApplicationContext(), "keyboard_test,null");

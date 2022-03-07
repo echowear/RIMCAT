@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +31,8 @@ public class FigureStudyFragment extends QuestionFragment {
     private TextView figureText;
     private View promptCard, imageCard;
     private Button figureReadyBtn;
-    private int countdown = 3;
+    private int countdown = 0;
+    private static final String[] COUNTDOWN_TEXT = { "Ready", "Set", "Go!" };
     private int figCount = 0;
     private boolean showingFigures;
 
@@ -59,9 +62,17 @@ public class FigureStudyFragment extends QuestionFragment {
         countDownTimer = new CountDownTimer(3000, 990) {
             @Override
             public void onTick(long millisUntilFinished) {
-                if (countdown > 0)
-                    figureText.setText("" + countdown);
-                countdown--;
+//                if (countdown > 0)
+//                    figureText.setText("" + countdown);
+                if (countdown < 3) {
+//                    reactionCountdownText.setText("" + timerIndex);
+                    figureText.setText(COUNTDOWN_TEXT[countdown]);
+                    countdown++;
+                } else {
+                    Log.d(TAG, "onTick: ready-set-go went out of range");
+                }
+
+//                countdown++;
             }
 
             @Override
@@ -74,7 +85,9 @@ public class FigureStudyFragment extends QuestionFragment {
             public void onTick(long millisUntilFinished) { }
 
             @Override
-            public void onFinish() { showPromptOrFinish(); }
+            public void onFinish() {
+                countdown = 0;
+                showPromptOrFinish(); }
         };
 
         cardView = view.findViewById(R.id.figure_main_page);

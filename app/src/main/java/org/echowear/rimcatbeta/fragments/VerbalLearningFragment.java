@@ -27,9 +27,10 @@ public class VerbalLearningFragment extends QuestionFragment {
     };
 
     private TextView verbalText;
+    private static final String[] COUNTDOWN_TEXT = { "Ready", "Set", "Go!" };
     private Button readyBtn;
     private CountDownTimer countDownTimer, trialListCounter;
-    private int timerIndex, wordIndex;
+    private int timerIndex = 0, wordIndex;
     private String[] currentWordList;
     private boolean inWordList, inCountdown;
 
@@ -62,14 +63,14 @@ public class VerbalLearningFragment extends QuestionFragment {
             @Override
             public void onTick(long millisUntilFinished) {
                 Log.d(TAG, "onTick: Tick: " + timerIndex);
-                if (timerIndex > 0)
-                    verbalText.setText("" + timerIndex);
-                timerIndex--;
+//                if (timerIndex > 0)
+//                    verbalText.setText("" + timerIndex);
+                verbalText.setText(COUNTDOWN_TEXT[timerIndex]);
+                timerIndex++;
             }
 
             @Override
             public void onFinish() {
-                inCountdown = false;
                 timerIndex = 0;
                 trialListCounter.start();
             }
@@ -105,8 +106,6 @@ public class VerbalLearningFragment extends QuestionFragment {
     }
 
     private void beginCountdownTimer() {
-        timerIndex = 3;
-        inWordList = true;
         readyBtn.setVisibility(View.INVISIBLE);
         verbalText.setText("");
         verbalText.setTextSize(55);
@@ -152,6 +151,7 @@ public class VerbalLearningFragment extends QuestionFragment {
 
     @Override
     public void onPause() {
+        timerIndex = 0;
         Log.d(TAG, "onPause: called.");
         stopActivity();
         super.onPause();
