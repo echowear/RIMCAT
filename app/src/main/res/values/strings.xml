@@ -129,9 +129,9 @@
     <string name="verbal_readyBtn">Next</string>
     <string name="verbal_readyPrompt">Press the \"Next\" button when you are ready to start.</string>
     <string name="vresponse_prompt">
-        Now type in each word you can remember or press the microphone button to say it.
+        Type each word you can remember or press the microphone button to say it.
         \n
-        Try your best to recall as many as you can.
+        Try your best. Start now!
     </string>
     <string name="keyboard_addBtn">Submit Word</string>
     <string name="vresponse_addBtn">Enter Next Word</string>
@@ -192,26 +192,10 @@
         <item>Accordion</item>
     </string-array>
     <string name="instructions_figure_study">
-        You will now be shown a series of figures for 6 seconds each.
+        You will now see a series of figures for 6 seconds each.
         \n\n
         Pay attention to the details because you will be asked to recall each figure from a list of figures later on.
     </string>
-<!--    <string-array name="figure_prompt_array">-->
-<!--        <item>Here is the 1st figure.</item>-->
-<!--        <item>Here is the 2nd figure.</item>-->
-<!--        <item>Here is the 3rd figure.</item>-->
-<!--        <item>Here is the 4th figure.</item>-->
-<!--        <item>Here is the 5th figure.</item>-->
-<!--        <item>Here is the 6th figure.</item>-->
-<!--        <item>-->
-<!--            You will now be shown four figures on the screen at once. Select the-->
-<!--            correct figure that you have seen before.-->
-<!--        </item>-->
-
-<!--        <item>Hut</item>-->
-<!--        <item>House</item>-->
-<!--        <item>Shed</item>-->
-<!--    </string-array>-->
     <string name="figure_select_prompt">Select the correct figure that you have seen before.</string>
     <string name="instructions_read_comp_story">
         Next, you will be presented with a short story to remember.

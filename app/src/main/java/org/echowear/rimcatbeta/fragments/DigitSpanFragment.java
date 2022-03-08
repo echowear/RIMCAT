@@ -248,7 +248,6 @@ public class DigitSpanFragment extends QuestionFragment {
             readyBtn.setVisibility(View.VISIBLE);
             changeCardText();
             countdownCard.setVisibility(View.VISIBLE);
-
         } else {
             movingToNextActivity = true;
             ((MainActivity) getActivity()).getFragmentData(null);
@@ -256,27 +255,20 @@ public class DigitSpanFragment extends QuestionFragment {
     }
 
     private void changeCardText() {
-        ForegroundColorSpan fcs = new ForegroundColorSpan(getResources().getColor(R.color.red));
         String recallText = "";
-        int highlightTextLength = 0;
         if (currentNumber < NUMS_PER_LIST) {
             recallText = getResources().getString(R.string.ds_inorder_text);
-            highlightTextLength = "".length();
         } else {
             recallText = getResources().getString(R.string.ds_reverse_text);
-            highlightTextLength = "reverse order.".length();
         }
         SpannableString recallTextSS = new SpannableString(recallText);
-        recallTextSS.setSpan(fcs, recallText.length() - highlightTextLength, recallText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         dsNumText.setText(getResources().getString(R.string.verbal_readyPrompt));
         dsRecallText.setText(recallTextSS);
 
         if (currentNumber == NUMS_PER_LIST) {
             String numText = getResources().getString(R.string.instructions2_digit_span);
-            highlightTextLength = "backwards.".length();
             SpannableString numTextSS = new SpannableString(numText);
-            numTextSS.setSpan(fcs, numText.length() - highlightTextLength, numText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             dsNumText.setText(numTextSS);
             dsNumText.setGravity(Gravity.LEFT);
 

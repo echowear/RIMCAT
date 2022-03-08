@@ -19,7 +19,8 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name="org.echowear.rimcatbeta.MainActivity"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
