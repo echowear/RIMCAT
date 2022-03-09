@@ -6,16 +6,19 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
-
 import org.echowear.rimcatbeta.MainActivity;
 import org.echowear.rimcatbeta.R;
 import org.echowear.rimcatbeta.data_log.CorrectAnswerDictionary;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class ImageNameFragment extends QuestionFragment {
 
@@ -97,6 +100,7 @@ public class ImageNameFragment extends QuestionFragment {
             public void onClick(View view) {
                 if (!isAnimationActive) {
                     isAnimationActive = true;
+//
                     Button selectedButton = (Button) view;
                     // This is where the answer will be recorded
                     Log.d(TAG, "onClick: Button value: " + selectedButton.getText().toString());
@@ -112,6 +116,7 @@ public class ImageNameFragment extends QuestionFragment {
                         imageNamePage.startAnimation(fadeOutAnimation);
                     }
                 }
+
             }
         };
 
@@ -149,4 +154,6 @@ public class ImageNameFragment extends QuestionFragment {
     public String getTriedMicrophone() {
         return "N/A";
     }
+
+
 }

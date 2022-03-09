@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     @Override
     public boolean onTouchEvent(MotionEvent event)
     {
-        // Return x and y cooralted to position pressed
+        // Return x and y correlated to position pressed
         int x = (int)event.getX();
         int y = (int)event.getY();
         // current time down to the milliseconds
@@ -221,7 +221,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         }
 
         viewHold = viewNumber;
-        return false;
+        return super.onTouchEvent(event);
     }
 
     public String[][][] coordsJson() {

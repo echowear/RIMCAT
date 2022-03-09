@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -113,7 +114,6 @@ public abstract class QuestionFragment extends Fragment {
 
 
         Log.d(TAG, "logEndTimeAndData: Logging the following result... \n" + resultString);
-
         String dateOfSurvey = endTime.substring(endTime.lastIndexOf(',') + 1);
         DataLogService.log(context, new File(GenerateDirectory.getRootFile(context), QuestionFragment.PATIENT_ID + '_' + dateOfSurvey + ".csv"), resultString);
     }
@@ -217,4 +217,5 @@ public abstract class QuestionFragment extends Fragment {
             mediaPlayer.start();
         }
     }
+
 }
