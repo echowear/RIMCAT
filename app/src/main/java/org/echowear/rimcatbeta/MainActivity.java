@@ -418,7 +418,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                         @Override
                         public void run() {
                             // run your code here
-//                            useTextToSpeech("Ready");
+                            useTextToSpeech(" ");
                         }
                     }, 400);
                     setInitialHomeFragment();
