@@ -32,6 +32,7 @@ public class VerbalRecognitionFragment extends QuestionFragment {
     private View.OnClickListener choiceListener;
     private String[][]            wordList;
     private int                 pageCount;
+    private View.OnTouchListener touchListener;
 
     @Nullable
     @Override
@@ -101,6 +102,15 @@ public class VerbalRecognitionFragment extends QuestionFragment {
                     }
             }
         };
+        final MainActivity mainActivity = new MainActivity();
+        touchListener = new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, android.view.MotionEvent event) {
+                mainActivity.callTouchEventInButton(event.getRawX(), event.getRawY(), 33);
+                return false;
+            }
+            };
+
         changeButtonText();
     }
 
@@ -113,6 +123,7 @@ public class VerbalRecognitionFragment extends QuestionFragment {
             }
             if (choiceListener != null)
                 choiceButtons[i].setOnClickListener(choiceListener);
+                choiceButtons[i].setOnTouchListener(touchListener);
         }
     }
 

@@ -40,6 +40,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
     private String[]            semanticPrompts;
     private int                 pageCount, timerIndex = 0;
     private boolean             inSelectionState = false;
+    private View.OnTouchListener touchListener;
 
     @Nullable
     @Override
@@ -166,6 +167,14 @@ public class SemanticChoiceFragment extends QuestionFragment {
                 }
             }
         };
+        final MainActivity mainActivity = new MainActivity();
+        touchListener = new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, android.view.MotionEvent event) {
+                mainActivity.callTouchEventInButton(event.getRawX(), event.getRawY(), 35);
+                return false;
+            }
+        };
         changeButtonText();
     }
 
@@ -178,6 +187,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
             }
             if (choiceListener != null)
                 choiceButtons[i].setOnClickListener(choiceListener);
+                choiceButtons[i].setOnTouchListener(touchListener);
         }
     }
 

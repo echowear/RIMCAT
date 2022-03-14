@@ -29,6 +29,7 @@ public class SemanticRelatednessFragment extends QuestionFragment {
     private String[][]          semanticChoices;
     private String[]            semanticPrompts;
     private int                 pageCount;
+    private View.OnTouchListener touchListener;
 
     @Nullable
     @Override
@@ -88,6 +89,15 @@ public class SemanticRelatednessFragment extends QuestionFragment {
                     b.getBackground().setTint(getResources().getColor(R.color.backgroundColor));
                 }
             }
+
+        };
+        final MainActivity mainActivity = new MainActivity();
+        touchListener = new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, android.view.MotionEvent event) {
+                mainActivity.callTouchEventInButton(event.getRawX(), event.getRawY(), 33);
+                return false;
+            }
         };
         changeButtonText();
     }
@@ -98,6 +108,7 @@ public class SemanticRelatednessFragment extends QuestionFragment {
             choiceButtons[i].setText("\u2610   "+ currentChoices[i]);
             if (choiceListener != null)
                 choiceButtons[i].setOnClickListener(choiceListener);
+                choiceButtons[i].setOnTouchListener(touchListener);
         }
     }
 

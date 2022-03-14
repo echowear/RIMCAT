@@ -35,6 +35,7 @@ public class ReactionFragment extends QuestionFragment {
     private ConstraintLayout layout1, layout2;
     private TableLayout reactionGrid;
     private View.OnClickListener reactionListener;
+    private View.OnTouchListener touchListener;
     private CountDownTimer readyCountdown;
     private TextView reactionCountdownText, reactionPrompt;
     private static final String[] COUNTDOWN_TEXT = { "Ready", "Set", "Go!" };
@@ -44,6 +45,7 @@ public class ReactionFragment extends QuestionFragment {
     private int count, timerIndex = 0;
     private double result;
     boolean inIteration;
+    private Object MotionEvent;
 
     @Nullable
     @Override
@@ -54,6 +56,7 @@ public class ReactionFragment extends QuestionFragment {
         layout2 = view.findViewById(R.id.reaction_layout2);
         layout1.setVisibility(View.VISIBLE);
         layout2.setVisibility(View.INVISIBLE);
+        MainActivity mainActivity = new MainActivity();
 
         readyBtn = view.findViewById(R.id.reaction_ready_btn);
         readyBtn.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +111,6 @@ public class ReactionFragment extends QuestionFragment {
         reactionGrid = view.findViewById(R.id.reaction_grid);
         reactionGrid.setVisibility(View.INVISIBLE);
         initializeGrid();
-
         cardView = view.findViewById(R.id.card);
         startAnimation(true);
         logStartTime();
@@ -116,12 +118,10 @@ public class ReactionFragment extends QuestionFragment {
         return view;
     }
 
-    private void addTouchListener() {
-
-    }
 
     private void initializeGrid() {
         timerIndex = 0;
+        final MainActivity mainActivity = new MainActivity();
         reactionListener = new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
@@ -134,9 +134,19 @@ public class ReactionFragment extends QuestionFragment {
                     }
                 }
             }
+
+
+        };
+        touchListener = new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, android.view.MotionEvent event) {
+                mainActivity.callTouchEventInButton(event.getRawX(),event.getRawY(),9);
+                return false;
+            }
         };
         for (Button btn : selectButtons) {
             btn.setOnClickListener(reactionListener);
+            btn.setOnTouchListener(touchListener);
             btn.setVisibility(View.INVISIBLE);
         }
     }

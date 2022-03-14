@@ -29,6 +29,7 @@
         </activity>
         <service android:name="org.echowear.rimcatbeta.data_log.DataLogService"/>
         <service android:name="org.echowear.rimcatbeta.data_log.LogcatExportService"/>
+        <service android:name="org.echowear.rimcatbeta.data_log.JSONLogcatExportService"/>
     </application>
 
 </manifest>

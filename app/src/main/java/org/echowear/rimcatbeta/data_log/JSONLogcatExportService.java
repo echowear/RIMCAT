@@ -3,33 +3,38 @@ package org.echowear.rimcatbeta.data_log;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
-import androidx.annotation.Nullable;
 import android.util.Log;
+
+import androidx.annotation.Nullable;
+
+import org.echowear.rimcatbeta.MainActivity;
 
 import java.io.File;
 import java.io.IOException;
 
-public class LogcatExportService extends IntentService {
+public class JSONLogcatExportService extends IntentService {
+    MainActivity mainActivity = new MainActivity();
     private static final String TAG = "LogcatExportService";
     private static final String EXTRA_FILE_DESTINATION = "rimcat.file_destination";
+    private static final String EXTRA_DATA = "rimcat.data";
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      *
      * @param name Used to name the worker thread, important only for debugging.
      */
-    public LogcatExportService(String name) {
+    public JSONLogcatExportService(String name) {
         super(name);
     }
 
-    public LogcatExportService() {
+    public JSONLogcatExportService() {
         super("LogcatExportService");
     }
 
-    public static void log(Context context, File file) {
+    public static void log(Context context, File file, String[][][] data) {
         Log.d(TAG, "log: Sending intent...");
-        Intent intent = new Intent(context, LogcatExportService.class);
-        Log.d(TAG, "log: FIND WhAT CLASS MEASN " + context);
+        Intent intent = new Intent(context, JSONLogcatExportService.class);
         intent.putExtra(EXTRA_FILE_DESTINATION, file.getAbsolutePath());
+        intent.putExtra(EXTRA_DATA, data);
         context.startService(intent);
     }
 
@@ -55,6 +60,7 @@ public class LogcatExportService extends IntentService {
         try {
             // clear the previous logcat and then write the new one to the file
             Process process = Runtime.getRuntime().exec("logcat -c");
+            Log.d(TAG, "DATA: " + mainActivity.coordsJson());
             process = Runtime.getRuntime().exec("logcat -f " + logFile);
             Log.i(TAG, "onHandleIntent: Logcat file successfully created.");
         } catch ( IOException e ) {

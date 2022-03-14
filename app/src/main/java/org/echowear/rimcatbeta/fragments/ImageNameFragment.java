@@ -46,6 +46,7 @@ public class ImageNameFragment extends QuestionFragment {
     private Button btn1, btn2, btn3;
     private View.OnClickListener recordImageChoice;
     private Animation.AnimationListener animationListener;
+    private View.OnTouchListener touchListener;
     private boolean isAnimationActive;
 
     @Nullable
@@ -119,10 +120,21 @@ public class ImageNameFragment extends QuestionFragment {
 
             }
         };
+        touchListener = new View.OnTouchListener() {
+            MainActivity mainActivity = new MainActivity();
+            @Override
+            public boolean onTouch(View v, android.view.MotionEvent event) {
+                mainActivity.callTouchEventInButton(event.getRawX(),event.getRawY(),11);
+                return false;
+            }
+        };
 
         btn1.setOnClickListener(recordImageChoice);
         btn2.setOnClickListener(recordImageChoice);
         btn3.setOnClickListener(recordImageChoice);
+        btn1.setOnTouchListener(touchListener);
+        btn2.setOnTouchListener(touchListener);
+        btn3.setOnTouchListener(touchListener);
 
         btn1.setText(buttonOptions[0]);
         btn2.setText(buttonOptions[1]);

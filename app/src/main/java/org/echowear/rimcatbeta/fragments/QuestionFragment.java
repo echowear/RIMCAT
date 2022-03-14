@@ -23,6 +23,8 @@ import org.echowear.rimcatbeta.data_log.DataLogService;
 import org.echowear.rimcatbeta.data_log.GenerateDirectory;
 import org.echowear.rimcatbeta.MainActivity;
 import org.echowear.rimcatbeta.R;
+import org.echowear.rimcatbeta.data_log.JSONDataLogService;
+import org.echowear.rimcatbeta.data_log.JSONLogcatExportService;
 import org.echowear.rimcatbeta.data_log.UseGSONapitoConvertJavaOBJtoJASONstring;
 
 import java.io.File;
@@ -116,6 +118,8 @@ public abstract class QuestionFragment extends Fragment {
         Log.d(TAG, "logEndTimeAndData: Logging the following result... \n" + resultString);
         String dateOfSurvey = endTime.substring(endTime.lastIndexOf(',') + 1);
         DataLogService.log(context, new File(GenerateDirectory.getRootFile(context), QuestionFragment.PATIENT_ID + '_' + dateOfSurvey + ".csv"), resultString);
+        JSONDataLogService.log(context, new File(GenerateDirectory.getRootFile(context), QuestionFragment.PATIENT_ID + '_' + dateOfSurvey + "coords.txt"), ((MainActivity)getActivity()).coordsJson());
+
     }
 
     protected long calculateResponseTime() {

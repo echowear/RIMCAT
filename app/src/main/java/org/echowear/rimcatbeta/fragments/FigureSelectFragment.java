@@ -40,6 +40,7 @@ public class FigureSelectFragment extends QuestionFragment {
     private ArrayList<ImageView> images;
     private Button nextButton;
     private int figureCount = 0, activityIndex = 0;
+    private View.OnTouchListener touchListener;
 
     @Nullable
     @Override
@@ -75,12 +76,25 @@ public class FigureSelectFragment extends QuestionFragment {
                     image.setBackgroundColor(getResources().getColor(R.color.white));
                 selectedImage.setBackgroundColor(getResources().getColor(R.color.colorAccent));
             }
+
+        };
+        final MainActivity mainActivity = new MainActivity();
+        touchListener = new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, android.view.MotionEvent event) {
+                mainActivity.callTouchEventInButton(event.getRawX(),event.getRawY(),23);
+                return false;
+            }
         };
 
         figure1.setOnClickListener(onSelectFigure);
+        figure1.setOnTouchListener(touchListener);
         figure2.setOnClickListener(onSelectFigure);
+        figure2.setOnTouchListener(touchListener);
         figure3.setOnClickListener(onSelectFigure);
+        figure3.setOnTouchListener(touchListener);
         figure4.setOnClickListener(onSelectFigure);
+        figure4.setOnTouchListener(touchListener);
 
         images = new ArrayList<>();
         images.add(figure1);

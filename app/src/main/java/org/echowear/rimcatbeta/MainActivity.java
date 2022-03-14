@@ -40,6 +40,7 @@ import android.widget.Toast;
 import org.echowear.rimcatbeta.data_log.CorrectAnswerDictionary;
 import org.echowear.rimcatbeta.data_log.GenerateDirectory;
 import org.echowear.rimcatbeta.data_log.LogcatExportService;
+import org.echowear.rimcatbeta.data_log.JSONLogcatExportService;
 import org.echowear.rimcatbeta.dialogs.RecallFinishDialog;
 import org.echowear.rimcatbeta.dialogs.RetryDialog;
 import org.echowear.rimcatbeta.fragments.BasicQuestionFragment;
@@ -117,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
 
         // Create log file and start logging
         LogcatExportService.log(this, new File(GenerateDirectory.getRootFile(this), "logcat_" + System.currentTimeMillis() + ".txt"));
+        JSONLogcatExportService.log(this, new File(GenerateDirectory.getRootFile(this), "Coordslogcat_" + System.currentTimeMillis() + ".txt"), coordsJson());
 
         savedState = GenerateDirectory.getRootFile(this);
         Log.d(TAG, "savedState: " + savedState);
@@ -194,8 +196,8 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     public boolean onTouchEvent(MotionEvent event)
     {
         // Return x and y correlated to position pressed
-        int x = (int)event.getX();
-        int y = (int)event.getY();
+        int x = (int)event.getRawX();
+        int y = (int)event.getRawY();
         // current time down to the milliseconds
         Date today = Calendar.getInstance().getTime();
         // this is checking if we have changed screens or not
@@ -219,11 +221,37 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
             coordinatesY += y + ",";
             coordinatesT += dateFormat.format(today) + ",";
         }
-
         viewHold = viewNumber;
         return super.onTouchEvent(event);
     }
-
+    public boolean callTouchEventInButton(float x, float y, int viewNumber) {
+        // current time down to the milliseconds
+        Log.d(TAG, "callTouchEventInButton: x:" + x + "y:" + y );
+        Date today = Calendar.getInstance().getTime();
+        // this is checking if we have changed screens or not
+        if (viewHold != viewNumber) {
+            // if we have, we want to past the string we made into our list, at the appropraite spot
+            if (viewNumber != 0) {
+                coordinatesX += ")";
+                coordinatesY += ")";
+                coordinatesT += ")";
+                data[viewNumber - 1][0][0] = coordinatesX;
+                data[viewNumber - 1][1][0] = coordinatesY;
+                data[viewNumber - 1][2][0] = coordinatesT;
+            }
+            coordinatesX = "(" + x + ",";
+            coordinatesY = "(" + y + ",";
+            coordinatesT = "(" + dateFormat.format(today) + ",";
+// if on the same screen we append to our current list
+        } else {
+            Log.d(TAG, "onTouchEvent: "+  viewHold + " __ " + viewNumber);
+            coordinatesX += x + ",";
+            coordinatesY += y + ",";
+            coordinatesT += dateFormat.format(today) + ",";
+        }
+        viewHold = viewNumber;
+        return false;
+    };
     public String[][][] coordsJson() {
         return data;
     }
@@ -492,6 +520,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE)
             LogcatExportService.log(this, new File(GenerateDirectory.getRootFile(this), "logcat_" + System.currentTimeMillis() + ".txt"));
+            JSONLogcatExportService.log(this, new File(GenerateDirectory.getRootFile(this), "Coordslogcat_" + System.currentTimeMillis() + ".txt"), coordsJson());
 
         // Calls getFragmentData again to attempt to move to the next page if all required permissions are granted
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
