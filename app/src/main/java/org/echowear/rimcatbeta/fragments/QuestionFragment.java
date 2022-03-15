@@ -203,6 +203,7 @@ public abstract class QuestionFragment extends Fragment {
             e.printStackTrace();
         }
         releaseMediaPlayer();
+        Log.d(TAG, "onDestroy: "+  xyTimes);
         super.onDestroy();
     }
 

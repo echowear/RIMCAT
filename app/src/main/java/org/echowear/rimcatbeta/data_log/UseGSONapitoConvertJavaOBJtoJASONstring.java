@@ -136,7 +136,7 @@ public class UseGSONapitoConvertJavaOBJtoJASONstring {
         );
         Gson gson = new Gson();
 
-        FileWriter writer = new FileWriter(new File(rootDir + "/" + ID + "_" + "_coords.json"));
+        FileWriter writer = new FileWriter(rootDir + "/" + ID + "_" + "_coords.json");
         gson.toJson(user, writer);
         writer.flush();
         writer.close();
