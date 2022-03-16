@@ -607,8 +607,8 @@
     <string name="finish_quit">Quit</string>
     <string name="finish_feedback_prompt">Did you experience any technical difficulties when taking this test?</string>
     <string name="instructions_next">
-        You will be asked to complete a number of questions. Some tasks might seem easy whereas others you might find challenging.
-        \n\nThroughout the test you can move on to the next screen by selecting the \"Next\" button at the bottom right.
+        You will be asked to complete a number of questions. Some tasks might seem easy whereas others you might find challenging
+        \n\nThroughout the test you can move on to the next screen by selecting the \"Next\" button on the bottom right
     </string>
     <string name="video_prompt">Please watch the video below, then complete the next activity.</string>
     <string name="keyboard_prompt1">Please type the word \"hello\", then select the button labeled \"Enter Next Word\".</string>
