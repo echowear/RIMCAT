@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -23,16 +22,11 @@ import org.echowear.rimcatbeta.data_log.DataLogService;
 import org.echowear.rimcatbeta.data_log.GenerateDirectory;
 import org.echowear.rimcatbeta.MainActivity;
 import org.echowear.rimcatbeta.R;
-import org.echowear.rimcatbeta.data_log.JSONDataLogService;
-import org.echowear.rimcatbeta.data_log.JSONLogcatExportService;
-import org.echowear.rimcatbeta.data_log.UseGSONapitoConvertJavaOBJtoJASONstring;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 public abstract class QuestionFragment extends Fragment {
@@ -118,7 +112,7 @@ public abstract class QuestionFragment extends Fragment {
         Log.d(TAG, "logEndTimeAndData: Logging the following result... \n" + resultString);
         String dateOfSurvey = endTime.substring(endTime.lastIndexOf(',') + 1);
         DataLogService.log(context, new File(GenerateDirectory.getRootFile(context), QuestionFragment.PATIENT_ID + '_' + dateOfSurvey + ".csv"), resultString);
-        JSONDataLogService.log(context, new File(GenerateDirectory.getRootFile(context), QuestionFragment.PATIENT_ID + '_' + dateOfSurvey + "coords.txt"), ((MainActivity)getActivity()).coordsJson());
+//        JSONDataLogService.log(context, new File(GenerateDirectory.getRootFile(context), QuestionFragment.PATIENT_ID + '_' + dateOfSurvey + "coords.txt"), ((MainActivity)getActivity()).coordsJson());
 
     }
 
@@ -191,19 +185,8 @@ public abstract class QuestionFragment extends Fragment {
 
     @Override
     public void onDestroy() {
-        String times = ((MainActivity)getActivity()).timesJson();
-        String[][][] xyTimes = ((MainActivity)getActivity()).coordsJson();
-        File rootDir = ((MainActivity)getActivity()).savedState();
-        String rootDirString = rootDir.toString();
         Log.d(TAG, "onDestroy: called.");
-        // This is where the json gets sent
-        try {
-            UseGSONapitoConvertJavaOBJtoJASONstring.main(PATIENT_ID, xyTimes, rootDirString);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         releaseMediaPlayer();
-        Log.d(TAG, "onDestroy: "+  xyTimes);
         super.onDestroy();
     }
 

@@ -72,7 +72,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 
@@ -89,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     public String                  coordinatesX;
     public String                  coordinatesY;
     public String                  coordinatesT;
-    public String                  dateTimes;
     private FrameLayout             container;
     private FragmentManager         fragmentManager;
     private FragmentTransaction     fragmentTransaction;
@@ -210,53 +208,39 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 data[viewNumber - 1][0][0] = coordinatesX;
                 data[viewNumber - 1][1][0] = coordinatesY;
                 data[viewNumber - 1][2][0] = coordinatesT;
+                Log.d("LogActivity", "x: " + data[viewNumber - 1][0][0]);
+                Log.d("LogActivity", "y: " + data[viewNumber - 1][1][0]);
+                Log.d("LogActivity", "t: " + data[viewNumber - 1][2][0]);
             }
             coordinatesX = "(" + x + ",";
             coordinatesY = "(" + y + ",";
             coordinatesT = "(" + dateFormat.format(today) + ",";
 // if on the same screen we append to our current list 
         } else {
-            Log.d(TAG, "onTouchEvent: "+  viewHold + " __ " + viewNumber);
-            coordinatesX += x + ",";
-            coordinatesY += y + ",";
-            coordinatesT += dateFormat.format(today) + ",";
-        }
-        viewHold = viewNumber;
-        return super.onTouchEvent(event);
-    }
-    public boolean callTouchEventInButton(float x, float y, int viewNumber) {
-        // current time down to the milliseconds
-        Log.d(TAG, "callTouchEventInButton: x:" + x + "y:" + y );
-        Date today = Calendar.getInstance().getTime();
-        // this is checking if we have changed screens or not
-        if (viewHold != viewNumber) {
-            // if we have, we want to past the string we made into our list, at the appropraite spot
-            if (viewNumber != 0) {
-                coordinatesX += ")";
-                coordinatesY += ")";
-                coordinatesT += ")";
-                data[viewNumber - 1][0][0] = coordinatesX;
-                data[viewNumber - 1][1][0] = coordinatesY;
-                data[viewNumber - 1][2][0] = coordinatesT;
-            }
-            coordinatesX = "(" + x + ",";
-            coordinatesY = "(" + y + ",";
-            coordinatesT = "(" + dateFormat.format(today) + ",";
-// if on the same screen we append to our current list
-        } else {
-            Log.d(TAG, "onTouchEvent: "+  viewHold + " __ " + viewNumber);
+//
             coordinatesX += x + ",";
             coordinatesY += y + ",";
             coordinatesT += dateFormat.format(today) + ",";
         }
         viewHold = viewNumber;
         return false;
-    };
+    }
+    public boolean callTouchEventInButton(float x, float y, int viewNumber) {
+        // current time down to the milliseconds
+        Date today = Calendar.getInstance().getTime();
+
+        Log.d("LogActivityButton", viewNumber + " x: " + x);
+        Log.d("LogActivityButton", viewNumber + " y: " + y);
+        Log.d("LogActivityButton", viewNumber + " t: " + dateFormat.format(today));
+//        Log.d(TAG, "callTouchEventInButton: " + dataButton[viewNumber -1][0][0]);
+        viewHold = viewNumber;
+        return false;
+    }
     public String[][][] coordsJson() {
         return data;
     }
-    public String timesJson() {
-        return dateTimes;
+    public String[][][] buttonCoordsJson() {
+        return data;
     }
 
 
@@ -806,7 +790,6 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
             textToSpeech.shutdown();
             isTTSInitialized = false;
         }
-        Log.d(TAG, "onDestroy: " + coordsJson());
         super.onDestroy();
     }
 }
