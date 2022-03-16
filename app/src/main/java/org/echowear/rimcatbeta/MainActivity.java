@@ -209,9 +209,9 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 data[viewNumber - 1][0][0] = coordinatesX;
                 data[viewNumber - 1][1][0] = coordinatesY;
                 data[viewNumber - 1][2][0] = coordinatesT;
-                Log.d("LogActivity", "x: " + data[viewNumber - 1][0][0]);
-                Log.d("LogActivity", "y: " + data[viewNumber - 1][1][0]);
-                Log.d("LogActivity", "t: " + data[viewNumber - 1][2][0]);
+                Log.d("LogActivity", viewNumber + " x: " + data[viewNumber - 1][0][0]);
+                Log.d("LogActivity", viewNumber + " y: " + data[viewNumber - 1][1][0]);
+                Log.d("LogActivity", viewNumber + " t: " + data[viewNumber - 1][2][0]);
             }
             coordinatesX = "(" + x + ",";
             coordinatesY = "(" + y + ",";
@@ -230,9 +230,9 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         // current time down to the milliseconds
         Date today = Calendar.getInstance().getTime();
 
-        Log.d("LogActivityButton", viewNumber + " x: " + x);
-        Log.d("LogActivityButton", viewNumber + " y: " + y);
-        Log.d("LogActivityButton", viewNumber + " t: " + dateFormat.format(today));
+        Log.d("LogActivityButton", (viewNumber - 1) + " x: " + x);
+        Log.d("LogActivityButton", (viewNumber - 1) + " y: " + y);
+        Log.d("LogActivityButton", (viewNumber - 1) + " t: " + dateFormat.format(today));
 //        Log.d(TAG, "callTouchEventInButton: " + dataButton[viewNumber -1][0][0]);
         viewHold = viewNumber;
         return false;
