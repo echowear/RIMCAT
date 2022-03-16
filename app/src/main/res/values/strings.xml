@@ -59,7 +59,7 @@
     <string name="instructions_appInst">
         First, I am going to ask you to answer some questions.
         \n\n
-        Remember to press the \"Next\" button at the bottom right of the screen to continue.
+        Remember to select the \"Next\" button on the bottom right of the screen to continue.
     </string>
     <string name="instructions_buttonInst">After you\'re finished, press this button to move on.</string>
     <string name="name_prompt">What is your full name?</string>
@@ -608,7 +608,7 @@
     <string name="finish_feedback_prompt">Did you experience any technical difficulties when taking this test?</string>
     <string name="instructions_next">
         You will be asked to complete a number of questions. Some tasks might seem easy whereas others you might find challenging.
-        \n\nThroughout the test you can move to the next screen by selecting the \"Next\" button at the bottom right.
+        \n\nThroughout the test you can move on to the next screen by selecting the \"Next\" button at the bottom right.
     </string>
     <string name="video_prompt">Please watch the video below, then complete the next activity.</string>
     <string name="keyboard_prompt1">Please type the word \"hello\", then select the button labeled \"Enter Next Word\".</string>

@@ -113,10 +113,11 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Date today = Calendar.getInstance().getTime();
 
         // Create log file and start logging
         LogcatExportService.log(this, new File(GenerateDirectory.getRootFile(this), "logcat_" + System.currentTimeMillis() + ".txt"));
-        JSONLogcatExportService.log(this, new File(GenerateDirectory.getRootFile(this), "Coordslogcat_" + System.currentTimeMillis() + ".txt"), coordsJson());
+        JSONLogcatExportService.log(this, new File(GenerateDirectory.getRootFile(this), "Coordslogcat_" + dateFormat.format(today) + ".txt"), coordsJson());
 
         savedState = GenerateDirectory.getRootFile(this);
         Log.d(TAG, "savedState: " + savedState);
@@ -511,17 +512,17 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
             getFragmentData(null);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.overflow_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        debugScreenSelect(item.getItemId());
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.overflow_menu, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        debugScreenSelect(item.getItemId());
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
     public void onBackPressed() {
