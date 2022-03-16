@@ -60,8 +60,9 @@ public class JSONLogcatExportService extends IntentService {
         try {
             // clear the previous logcat and then write the new one to the file
             Process process = Runtime.getRuntime().exec("logcat -c");
-            Log.d(TAG, "DATA: " + mainActivity.coordsJson());
-            process = Runtime.getRuntime().exec("logcat -f " + logFile);
+            Log.i(TAG, "DATA: " + mainActivity.coordsJson());
+            Log.i(TAG, "DATA: " + mainActivity.buttonCoordsJson());
+            process = Runtime.getRuntime().exec( "logcat -f " + logFile + " *:S LogActivity:V LogActivityButton:V");
             Log.i(TAG, "onHandleIntent: Logcat file successfully created.");
         } catch ( IOException e ) {
             Log.d(TAG, "onHandleIntent: Error");
