@@ -136,12 +136,12 @@ public abstract class QuestionFragment extends Fragment {
 
     protected void vibrateToastAndExecuteSound(String submitText, boolean shouldExecuteSound) {
         // Vibrate the device
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && mVibrator != null) {
-            mVibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-        } else if (mVibrator != null) {
-            //deprecated in API 26
-            mVibrator.vibrate(500);
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && mVibrator != null) {
+//            mVibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+//        } else if (mVibrator != null) {
+//            //deprecated in API 26
+//            mVibrator.vibrate(500);
+//        }
 
         // Toast affirmative message
         toastAtTopOfScreen("'" + submitText + "' submitted! Keep going!", Toast.LENGTH_SHORT);

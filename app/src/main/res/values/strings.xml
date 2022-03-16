@@ -194,7 +194,7 @@
     <string name="instructions_figure_study">
         You will now see a series of figures for 6 seconds each.
         \n\n
-        Pay attention to the details because you will be asked to recall each figure from a list of figures later on.
+        Pay attention to the details because you will have to select each figure that you saw later.
     </string>
     <string name="figure_select_prompt">Select the correct figure that you have seen before.</string>
     <string name="instructions_read_comp_story">
@@ -608,12 +608,11 @@
     <string name="finish_feedback_prompt">Did you experience any technical difficulties when taking this test?</string>
     <string name="instructions_next">
         You will be asked to complete a number of questions. Some tasks might seem easy whereas others you might find challenging.
-        \n\n
-        Throughout the test you can move to the next screen by clicking on the \"Next\" button at the bottom right.
+        \n\nThroughout the test you can move to the next screen by selecting the \"Next\" button at the bottom right.
     </string>
     <string name="video_prompt">Please watch the video below, then complete the next activity.</string>
-    <string name="keyboard_prompt1">Please type the word \"hello\", then press the button labeled \"Enter Next Word\".</string>
-    <string name="keyboard_prompt2">Use the audio button to record the word \"hello\", then press the button labeled \"Enter Next Word\".</string>
-    <string name="instructions_reaction">A series of gray rectangles will appear in a random location on the screen, one at a time. \nPress the rectangles as fast as you can using one finger.</string>
+    <string name="keyboard_prompt1">Please type the word \"hello\", then select the button labeled \"Enter Next Word\".</string>
+    <string name="keyboard_prompt2">Use the audio button to record the word \"hello\", then select the button labeled \"Enter Next Word\".</string>
+    <string name="instructions_reaction">A series of gray rectangles will appear in a random location on the screen, one at a time. \nSelect the rectangles as fast as you can using one finger.</string>
     <string name="reaction_prompt">Press the rectangle on the screen as quickly as you can.</string>
 </resources>
