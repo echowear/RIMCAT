@@ -14,8 +14,8 @@ android {
         applicationId "org.echowear.rimcatbeta"
         minSdkVersion 28
         targetSdkVersion 30
-        versionCode 2025
-        versionName "8.0"
+        versionCode 2030
+        versionName "10.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         signingConfig signingConfigs.release
     }
