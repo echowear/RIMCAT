@@ -512,9 +512,11 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
             getFragmentData(null);
     }
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.overflow_menu, menu);
+        getMenuInflater().inflate(R.menu.skip_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -523,6 +525,19 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         debugScreenSelect(item.getItemId());
         return super.onOptionsItemSelected(item);
     }
+
+    // Item menu for skipping around the app
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.overflow_menu, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        debugScreenSelect(item.getItemId());
+//        return super.onOptionsItemSelected(item);
+//    }
     // menu
 
     @Override
@@ -778,6 +793,10 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 this.viewNumber = ActivitiesModel.FINISH_SCREEN;
                 fragmentTag = "FinishFragment";
                 fragmentTransaction.replace(R.id.container, new FinishFragment(), "FinishFragment");
+                break;
+            case R.id.skip_button:
+                fragmentTag = "SkipButton";
+                fragmentTransaction.replace(R.id.container, new FinishFragment(), "Skipped Task");
                 break;
         }
         appProgress.setProgress(viewNumber);
