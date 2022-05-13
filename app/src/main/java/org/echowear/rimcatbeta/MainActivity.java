@@ -512,17 +512,29 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
             getFragmentData(null);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.overflow_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        debugScreenSelect(item.getItemId());
-        return super.onOptionsItemSelected(item);
+    public void frag(View view) {
+        final int nextView = this.viewNumber + 1;
+        Button button = (Button) findViewById(R.id.button_send);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                debugScreenSelect(nextView);
+                
+                Log.d(TAG, "onClick: " + nextView);
+            }
+        });
     }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.overflow_menu, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        debugScreenSelect(item.getItemId());
+//        return true;
+//    }
     // menu
 
     @Override
