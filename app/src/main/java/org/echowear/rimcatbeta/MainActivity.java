@@ -541,7 +541,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                         public boolean onLongClick(View v) {
                             QuestionFragment fragment = (QuestionFragment) fragmentManager.findFragmentByTag(fragmentTag);
 
-                            fragment.logEndTimeAndData(getApplicationContext(),"todays_date" + ",999");
+                            fragment.logEndTimeAndData(getApplicationContext(),loggingSkip(viewNumber) + ",999");
 
                             getFragmentData(null);
 
@@ -568,6 +568,91 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         return super.onOptionsItemSelected(item);
     }
 
+
+    private String loggingSkip(int viewNum) {
+        if (viewNum == 1) {
+            return "instructions_1";
+        } else if (viewNum == 2) {
+            return "video";
+        } else if (viewNum == 3) {
+            return "keyboard_test";
+        } else if (viewNum == 4) {
+            return "instructions_2";
+        } else if (viewNum == 5) {
+           return "todays_date";
+       } else if (viewNum == 6) {
+           return "day_of_week";
+       } else if (viewNum == 7) {
+           return "season";
+       } else if (viewNum == 8) {
+           return "instructions_3";
+       } else if (viewNum == 9) {
+           return "reaction_";
+       } else if (viewNum == 10) {
+           return "instructions_4";
+       } else if (viewNum == 11) {
+           return "image_name_";
+       } else if (viewNum == 12) {
+           return "instructions_5";
+       } else if (viewNum == 13) {
+           return "verbal_learning";
+       } else if (viewNum == 14) {
+           return "word_recall_1";
+       } else if (viewNum == 15) {
+           return "instructions_6";
+       } else if (viewNum == 16) {
+           return "verbal_learning";
+       } else if (viewNum == 17) {
+           return "word_recall_2";
+       } else if (viewNum == 18) {
+           return "instructions_7";
+       } else if (viewNum == 19) {
+           return "verbal_learning";
+       } else if (viewNum == 20) {
+           return "word_recall_3";
+       } else if (viewNum == 21) {
+           return "instructions_10";
+       } else if (viewNum == 22) {
+           return "figure_study";
+       } else if (viewNum == ActivitiesModel.FIGURE_SELECT_SCREEN) {
+           return "figure_select_";
+       } else if (viewNum == ActivitiesModel.INSTRUCTIONS_SCREEN_11) {
+           return "instructions_11";
+       } else if (viewNum == ActivitiesModel.DIGIT_SPAN_SCREEN) {
+           return "digit_span_";
+       } else if (viewNum == ActivitiesModel.INSTRUCTIONS_SCREEN_12) {
+           return "instructions_12";
+       } else if (viewNum == ActivitiesModel.READ_COMP_STORY_SCREEN) {
+           return "story_learning";
+       } else if (viewNum == ActivitiesModel.INSTRUCTIONS_SCREEN_13) {
+           return "instructions_13";
+       } else if (viewNum == ActivitiesModel.COMPUTATION_SCREEN) {
+           return "computation_";
+       } else if (viewNum == ActivitiesModel.INSTRUCTIONS_SCREEN_14) {
+           return "instructions_14";
+       } else if (viewNum == ActivitiesModel.VERBAL_RECALL_SCREEN_6) {
+           return "word_recall_6";
+       } else if (viewNum == ActivitiesModel.INSTRUCTIONS_SCREEN_16) {
+           return "instructions_16";
+       } else if (viewNum == ActivitiesModel.SEMANTIC_CHOICE_SCREEN) {
+           return "semantic_choice_";
+       } else if (viewNum == ActivitiesModel.INSTRUCTIONS_SCREEN_17) {
+           return "instructions_17";
+       } else if (viewNum == ActivitiesModel.FIGURE_SELECT_SCREEN_2) {
+           return "figure_select_";
+       } else if (viewNum == ActivitiesModel.INSTRUCTIONS_SCREEN_18) {
+           return "instructions_18";
+       } else if (viewNum == ActivitiesModel.READ_COMP_TEST_SCREEN) {
+           return "reading_comp_";
+       } else if (viewNum == ActivitiesModel.INSTRUCTIONS_SCREEN_19) {
+           return "instructions_19";
+       } else if (viewNum == ActivitiesModel.SEMANTIC_RELATEDNESS_SCREEN) {
+           return "semantic_relatedness_";
+       } else if (viewNum == ActivitiesModel.FINISH_SCREEN) {
+           return "finish";
+       }
+       return "no_screen";
+    }
     private void debugScreenSelect(int itemID) {
         fragmentTransaction = fragmentManager.beginTransaction();
 
