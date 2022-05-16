@@ -148,14 +148,11 @@ public class DigitSpanFragment extends QuestionFragment {
                         ((MainActivity)getActivity()).hideSoftKeyboard();
 
                         if (getCorrectAnswer().equals(dsEditText.getText().toString())) {
-                            Log.d(TAG, "DigitSpanCorreect: " + getCorrectAnswer() + "..." + dsEditText.getText().toString());
                             firstNumInSetAnsweredWrong = false;
                             moveToNextNumber();
                         }
                         else
-                            Log.d(TAG, "DigitSpanCorreect: " + getCorrectAnswer() + "..." + dsEditText.getText().toString());
-
-                        checkIfBothDigitsFailed();
+                            checkIfBothDigitsFailed();
                     }
                 }
             }
@@ -215,7 +212,7 @@ public class DigitSpanFragment extends QuestionFragment {
 
     private void checkIfBothDigitsFailed() {
         if (currentNumber == 0 || currentNumber % 2 == 0) {
-            Log.d(TAG, "User failed to recall the first number of a sequence.  " + currentNumber);
+            Log.d(TAG, "User failed to recall the first number of a sequence.");
             firstNumInSetAnsweredWrong = true;
         } else if (firstNumInSetAnsweredWrong) {
             Log.d(TAG, "User failed to recall two numbers with the same amount of digits. Moving to next part of activity.");
@@ -248,6 +245,7 @@ public class DigitSpanFragment extends QuestionFragment {
             readyBtn.setVisibility(View.VISIBLE);
             changeCardText();
             countdownCard.setVisibility(View.VISIBLE);
+
         } else {
             movingToNextActivity = true;
             ((MainActivity) getActivity()).getFragmentData(null);
@@ -255,20 +253,27 @@ public class DigitSpanFragment extends QuestionFragment {
     }
 
     private void changeCardText() {
+        ForegroundColorSpan fcs = new ForegroundColorSpan(getResources().getColor(R.color.red));
         String recallText = "";
+        int highlightTextLength = 0;
         if (currentNumber < NUMS_PER_LIST) {
             recallText = getResources().getString(R.string.ds_inorder_text);
+            highlightTextLength = "same order.".length();
         } else {
             recallText = getResources().getString(R.string.ds_reverse_text);
+            highlightTextLength = "reverse order.".length();
         }
         SpannableString recallTextSS = new SpannableString(recallText);
+        recallTextSS.setSpan(fcs, recallText.length() - highlightTextLength, recallText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         dsNumText.setText(getResources().getString(R.string.verbal_readyPrompt));
         dsRecallText.setText(recallTextSS);
 
         if (currentNumber == NUMS_PER_LIST) {
             String numText = getResources().getString(R.string.instructions2_digit_span);
+            highlightTextLength = "backwards.".length();
             SpannableString numTextSS = new SpannableString(numText);
+            numTextSS.setSpan(fcs, numText.length() - highlightTextLength, numText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             dsNumText.setText(numTextSS);
             dsNumText.setGravity(Gravity.LEFT);
 

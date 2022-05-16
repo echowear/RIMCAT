@@ -56,7 +56,6 @@ public class ReactionFragment extends QuestionFragment {
         layout2 = view.findViewById(R.id.reaction_layout2);
         layout1.setVisibility(View.VISIBLE);
         layout2.setVisibility(View.INVISIBLE);
-        MainActivity mainActivity = new MainActivity();
 
         readyBtn = view.findViewById(R.id.reaction_ready_btn);
         readyBtn.setOnClickListener(new View.OnClickListener() {

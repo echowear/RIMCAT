@@ -3,9 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.14114583333333333" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.187109375" />
+        <entry key="app/src/main/res/drawable/background_transition.xml" value="0.21015625" />
+        <entry key="app/src/main/res/drawable/gradient1.xml" value="0.21015625" />
+        <entry key="app/src/main/res/drawable/gradient2.xml" value="0.21015625" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.187109375" />
+        <entry key="app/src/main/res/drawable/roundbutton.xml" value="0.11484375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_day_of_week.xml" value="0.102734375" />
         <entry key="app/src/main/res/layout/fragment_education.xml" value="0.11915024630541872" />
         <entry key="app/src/main/res/layout/fragment_figure_select.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_figure_study.xml" value="0.1" />
@@ -16,7 +22,10 @@
         <entry key="app/src/main/res/layout/fragment_semantic_relatedness.xml" value="0.1188423645320197" />
         <entry key="app/src/main/res/layout/fragment_story_memory.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_video.xml" value="0.11545566502463055" />
+        <entry key="app/src/main/res/layout/list_white_text.xml" value="0.198046875" />
+        <entry key="app/src/main/res/layout/skip_layout.xml" value="0.229296875" />
         <entry key="app/src/main/res/menu/overflow_menu.xml" value="0.10375" />
+        <entry key="app/src/main/res/menu/skip_menu.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.15390625" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.15390625" />
       </map>

@@ -120,6 +120,7 @@ public class ImageNameFragment extends QuestionFragment {
 
             }
         };
+        
         touchListener = new View.OnTouchListener() {
             MainActivity mainActivity = new MainActivity();
             @Override
@@ -128,6 +129,7 @@ public class ImageNameFragment extends QuestionFragment {
                 return false;
             }
         };
+        
 
         btn1.setOnClickListener(recordImageChoice);
         btn2.setOnClickListener(recordImageChoice);
