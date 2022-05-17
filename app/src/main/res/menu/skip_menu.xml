@@ -4,6 +4,6 @@
         android:id="@+id/skip_button"
         android:title="Skip Task"
         app:showAsAction="always"
-        android:icon="@drawable/accordion"
+        android:icon="@drawable/skip_color"
         />
 </menu>

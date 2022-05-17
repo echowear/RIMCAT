@@ -540,11 +540,12 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                         @Override
                         public boolean onLongClick(View v) {
                             QuestionFragment fragment = (QuestionFragment) fragmentManager.findFragmentByTag(fragmentTag);
-
-                            fragment.logEndTimeAndData(getApplicationContext(),loggingSkip(viewNumber) + ",999");
-
-                            getFragmentData(null);
-
+                            try {
+                                fragment.logEndTimeAndData(getApplicationContext(), loggingSkip(viewNumber) + ",999");
+                                getFragmentData(null);
+                            } catch (Exception e) {
+                                Log.d(TAG, "Skip: Failed");
+                            }
                             Toast.makeText(getApplicationContext(), "Skip Pressed", Toast.LENGTH_SHORT).show();
 
                             return true;
