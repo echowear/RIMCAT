@@ -526,64 +526,64 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     }
 
 //
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//
-//        getMenuInflater().inflate(R.menu.skip_menu, menu);
-//        new Handler().post(new Runnable() {
-//            @Override
-//            public void run() {
-//                final View view = findViewById(R.id.skip_button);
-//
-//                if (view != null) {
-//                    view.setOnLongClickListener(new View.OnLongClickListener() {
-//                        @Override
-//                        public boolean onLongClick(View v) {
-//                            QuestionFragment fragment = (QuestionFragment) fragmentManager.findFragmentByTag(fragmentTag);
-//                            try {
-//                                fragment.logEndTimeAndData(getApplicationContext(), loggingSkip(viewNumber) + ",999");
-//                                getFragmentData(null);
-//                            } catch (Exception e) {
-//                                Log.d(TAG, "Skip: Failed");
-//                            }
-//                            Toast.makeText(getApplicationContext(), "Skip Pressed", Toast.LENGTH_SHORT).show();
-//
-//                            return true;
-//                        }
-//                    });
-//                }
-//            }
-//        });
-//
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//
-//        if (id == R.id.skip_button) {
-//            // do something here
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.overflow_menu, menu);
+
+        getMenuInflater().inflate(R.menu.skip_menu, menu);
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                final View view = findViewById(R.id.skip_button);
+
+                if (view != null) {
+                    view.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View v) {
+                            QuestionFragment fragment = (QuestionFragment) fragmentManager.findFragmentByTag(fragmentTag);
+                            try {
+                                fragment.logEndTimeAndData(getApplicationContext(), loggingSkip(viewNumber) + ",999");
+                                getFragmentData(null);
+                            } catch (Exception e) {
+                                Log.d(TAG, "Skip: Failed");
+                            }
+                            Toast.makeText(getApplicationContext(), "Skip Pressed", Toast.LENGTH_SHORT).show();
+
+                            return true;
+                        }
+                    });
+                }
+            }
+        });
+
         return super.onCreateOptionsMenu(menu);
     }
 
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-            debugScreenSelect(item.getItemId());
-            return super.onOptionsItemSelected(item);
-        }
 
-        @Override
-        public void onBackPressed() {
-            // Do nothing
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.skip_button) {
+            // do something here
         }
+        return super.onOptionsItemSelected(item);
+    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.overflow_menu, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//        @Override
+//        public boolean onOptionsItemSelected(MenuItem item) {
+//            debugScreenSelect(item.getItemId());
+//            return super.onOptionsItemSelected(item);
+//        }
+//
+//        @Override
+//        public void onBackPressed() {
+//            // Do nothing
+//        }
 
 
     private String loggingSkip(int viewNum) {

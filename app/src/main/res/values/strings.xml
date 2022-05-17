@@ -58,8 +58,7 @@
     <string name="home_patientID">Patient ID</string>
     <string name="instructions_appInst">
         First, I am going to ask you to answer some questions.
-        \n\n
-        Remember to select the \"Next\" button on the bottom right of the screen to continue.
+        \n\nRemember to select the \"Next\" button on the bottom right of the screen to continue.
     </string>
     <string name="instructions_buttonInst">After you\'re finished, press this button to move on.</string>
     <string name="name_prompt">What is your full name?</string>
@@ -105,12 +104,11 @@
     </string-array>
     <string name="instructions_verbalInst">
         Next, you will be presented with a list of words one at a time.
-        \n \n
-        Later you will be asked to recall the words in any order, so listen carefully.
+        \n \nLater you will be asked to recall the words in any order, so listen carefully.
     </string>
     <string name="instructions_verbalInst2">
-        Now you will see the same list again. \n \n
-        Please remember as many words as you can, in any order, whether or not you recalled them before.
+        Now you will see the same list again.
+        \n \nPlease remember as many words as you can, in any order, whether or not you recalled them before.
     </string>
     <string name="instructions_verbalInst3">
         Now you will be presented with a new list of words. Read and listen to each word carefully and try to remember it. \n\n
@@ -193,8 +191,7 @@
     </string-array>
     <string name="instructions_figure_study">
         You will now see a series of figures for 6 seconds each.
-        \n\n
-        Pay attention to the details because you will have to select each figure that you saw later.
+        \n\nPay attention to the details because you will have to select each figure that you saw later.
     </string>
     <string name="figure_select_prompt">Select the correct figure that you have seen before.</string>
     <string name="instructions_read_comp_story">
@@ -585,8 +582,7 @@
 
     <string name="instructions_digit_span">
         You will see and hear a series of numbers.
-        \n\n
-        Then you will be asked to enter them in the same order, using the keypad.
+        \n\nThen you will be asked to enter them in the same order, using the keypad.
     </string>
     <string name="instructions2_digit_span">
         You will see and hear a series of numbers.
