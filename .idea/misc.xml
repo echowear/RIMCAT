@@ -21,6 +21,8 @@
         <entry key="app/src/main/res/layout/fragment_reaction.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/fragment_semantic_relatedness.xml" value="0.1188423645320197" />
         <entry key="app/src/main/res/layout/fragment_story_memory.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_verbal_rec.xml" value="0.232421875" />
+        <entry key="app/src/main/res/layout/fragment_verbal_recall.xml" value="0.11381025248661056" />
         <entry key="app/src/main/res/layout/fragment_video.xml" value="0.11545566502463055" />
         <entry key="app/src/main/res/layout/list_white_text.xml" value="0.198046875" />
         <entry key="app/src/main/res/layout/skip_layout.xml" value="0.229296875" />

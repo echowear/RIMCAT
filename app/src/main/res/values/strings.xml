@@ -129,9 +129,9 @@
     <string name="verbal_readyBtn">Next</string>
     <string name="verbal_readyPrompt">Press the \"Next\" button when you are ready to start.</string>
     <string name="vresponse_prompt">
-        Type each word you can remember or press the microphone button to say it.
-        \n
-        Try your best. Start now!
+        Type each word you can remember or
+        \npress the microphone button to say it.
+        \nTry your best. Start now!
     </string>
     <string name="keyboard_addBtn">Submit Word</string>
     <string name="vresponse_addBtn">Enter Next Word</string>
