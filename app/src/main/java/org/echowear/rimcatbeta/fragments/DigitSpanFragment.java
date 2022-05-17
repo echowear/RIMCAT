@@ -33,7 +33,7 @@ public class DigitSpanFragment extends QuestionFragment {
     private static final String TAG = "DigitSpanFragment";
     private static final int[][] FULL_NUMBER_LIST = {
             { 3, 9, 8, 2 },
-            { 2, 7, 5, 3 },
+            { 2, 7, 5, 3},
             { 9, 5, 8, 2, 0 },
             { 1, 4, 9, 8, 6 },
             { 3, 7, 1, 2, 0, 5 },
@@ -49,7 +49,6 @@ public class DigitSpanFragment extends QuestionFragment {
             { 6, 3, 4, 1, 9 },
             { 2, 0, 1, 4, 9 }
     };
-
     private static final int NUMS_PER_LIST = 8;
     private static final String[] COUNTDOWN_TEXT = { "Ready", "Set", "Go!" };
     private HashMap<Integer, String> numberToTextMap;
@@ -254,7 +253,7 @@ public class DigitSpanFragment extends QuestionFragment {
     }
 
     private void changeCardText() {
-        ForegroundColorSpan fcs = new ForegroundColorSpan(getResources().getColor(R.color.colorAccent));
+        ForegroundColorSpan fcs = new ForegroundColorSpan(getResources().getColor(R.color.red));
         String recallText = "";
         int highlightTextLength = 0;
         if (currentNumber < NUMS_PER_LIST) {
