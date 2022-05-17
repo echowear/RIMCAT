@@ -121,8 +121,7 @@
     </string>
     <string name="instructions_verbalInst5">
         Do you remember the list of words that you saw a while ago? On the next page you will be asked to enter as many words as you can.
-        \n\n
-        The order in which you enter the words does not matter. Try to recall as many as you can.
+        \n\nThe order in which you enter the words does not matter. Try to recall as many as you can.
     </string>
     <string name="verbal_readyBtn">Next</string>
     <string name="verbal_readyPrompt">Press the \"Next\" button when you are ready to start.</string>
@@ -420,8 +419,7 @@
     </string>
     <string name="instructions_semantic_relatedness">
         For this task, a word will appear at the top of the screen, and answer choices will appear below.
-        \n\n
-        Please choose the word that is most similar to the word at the top as quickly as you can.</string>
+        \n\nPlease choose the word that is most similar to the word at the top as quickly as you can.</string>
     <string-array name="semantic_relatedness_headers">
         <item>Flower</item>
         <item>Cactus</item>
