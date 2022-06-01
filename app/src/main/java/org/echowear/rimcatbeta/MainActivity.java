@@ -75,7 +75,7 @@ import java.util.Date;
 import java.util.Locale;
 
 
-public class MainActivity extends AppCompatActivity implements RetryDialog.RetryDialogListener, RecallFinishDialog.RecallFinishDialogListener {
+public class MainActivity<var> extends AppCompatActivity implements RetryDialog.RetryDialogListener, RecallFinishDialog.RecallFinishDialogListener {
     private static final String     TAG = "MainActivity";
     private static final int        MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1400;
     private static final int        MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1401;
@@ -198,6 +198,9 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     @Override
     public boolean onTouchEvent(MotionEvent event)
     {
+        if (doubleTap) {
+            doubleTap = false;
+        }
         // Return x and y correlated to position pressed
         int x = (int)event.getRawX();
         int y = (int)event.getRawY();
@@ -525,7 +528,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
             getFragmentData(null);
     }
 
-//
+    boolean doubleTap = false;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -539,15 +542,21 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                     view.setOnLongClickListener(new View.OnLongClickListener() {
                         @Override
                         public boolean onLongClick(View v) {
-                            QuestionFragment fragment = (QuestionFragment) fragmentManager.findFragmentByTag(fragmentTag);
-                            try {
-                                fragment.logEndTimeAndData(getApplicationContext(), loggingSkip(viewNumber) + ",999");
-                                getFragmentData(null);
-                            } catch (Exception e) {
-                                Log.d(TAG, "Skip: Failed");
-                            }
-                            Toast.makeText(getApplicationContext(), "Skip Pressed", Toast.LENGTH_SHORT).show();
+                            if (doubleTap) {
+                                QuestionFragment fragment = (QuestionFragment) fragmentManager.findFragmentByTag(fragmentTag);
+                                try {
+                                    fragment.logEndTimeAndData(getApplicationContext(), loggingSkip(viewNumber) + ",999");
+                                    getFragmentData(null);
+                                } catch (Exception e) {
+                                    Log.d(TAG, "Skip: Failed");
+                                }
+                                Toast.makeText(getApplicationContext(), "Skip Pressed", Toast.LENGTH_SHORT).show();
+                                doubleTap = false;
 
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Hold Once More to Skip", Toast.LENGTH_SHORT).show();
+                                doubleTap = true;
+                            }
                             return true;
                         }
                     });
