@@ -2,9 +2,6 @@ package org.echowear.rimcatbeta.fragments;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +10,15 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+
 import org.echowear.rimcatbeta.MainActivity;
 import org.echowear.rimcatbeta.R;
 import org.echowear.rimcatbeta.data_log.CorrectAnswerDictionary;
 
 public class StoryMemoryFragment extends QuestionFragment {
-    private static final String TAG = "ReadCompTestFragment";
     /**
      * 0 = Yes or No (Two Question Group)
      * 1 = Four Question Group
@@ -27,19 +27,16 @@ public class StoryMemoryFragment extends QuestionFragment {
     private static final int[] QUESTION_TYPE = new int[] {
             1, 0, 1, 0, 1, 0, 1, 1, 1, 1
     };
-    private CardView card2;
     private RadioGroup twoQuestionGrp, fourQuestionGrp;
     private RadioButton radioButton1, radioButton2, radioButton3, radioButton4;
     private TextView    questionsText;
-    private Button      nextBtn;
     private String[]    questionsArray, answersArray;
     private int fourAnswerCount, questionCount;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_story_memory, container, false);
-        card2 = view.findViewById(R.id.card2);
+        CardView card2 = view.findViewById(R.id.card2);
         questionsText = view.findViewById(R.id.reading_comp_question);
         questionsText.setTypeface(null, Typeface.BOLD);
         twoQuestionGrp = view.findViewById(R.id.read_two_ans);
@@ -48,7 +45,7 @@ public class StoryMemoryFragment extends QuestionFragment {
         radioButton2 = view.findViewById(R.id.read_ans2);
         radioButton3 = view.findViewById(R.id.read_ans3);
         radioButton4 = view.findViewById(R.id.read_ans4);
-        nextBtn = view.findViewById(R.id.read_next_btn);
+        Button nextBtn = view.findViewById(R.id.read_next_btn);
         questionsArray = getResources().getStringArray(R.array.reading_comp_questions);
         answersArray = getResources().getStringArray(R.array.reading_comp_answers);
 
@@ -61,18 +58,15 @@ public class StoryMemoryFragment extends QuestionFragment {
         radioButton4.setText(answersArray[(fourAnswerCount * 4) + 3]);
         twoQuestionGrp.setVisibility(View.INVISIBLE);
 
-        nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Record the data based on current question
-                if (QUESTION_TYPE[questionCount] == 0 && twoQuestionGrp.getCheckedRadioButtonId() != -1) {
-                    resetRadioGroup(twoQuestionGrp);
-                    moveToNextQuestion();
-                }
-                else if (QUESTION_TYPE[questionCount] == 1 && fourQuestionGrp.getCheckedRadioButtonId() != -1) {
-                    resetRadioGroup(fourQuestionGrp);
-                    moveToNextQuestion();
-                }
+        nextBtn.setOnClickListener(v -> {
+            // Record the data based on current question
+            if (QUESTION_TYPE[questionCount] == 0 && twoQuestionGrp.getCheckedRadioButtonId() != -1) {
+                resetRadioGroup(twoQuestionGrp);
+                moveToNextQuestion();
+            }
+            else if (QUESTION_TYPE[questionCount] == 1 && fourQuestionGrp.getCheckedRadioButtonId() != -1) {
+                resetRadioGroup(fourQuestionGrp);
+                moveToNextQuestion();
             }
         });
 
@@ -88,7 +82,7 @@ public class StoryMemoryFragment extends QuestionFragment {
         View radioButton = group.findViewById(radioButtonID);
         int idx = group.indexOfChild(radioButton);
         RadioButton r = (RadioButton) group.getChildAt(idx);
-        logEndTimeAndData(getActivity().getApplicationContext(), "reading_comp_" + (questionCount + 1) + "," + r.getText().toString());
+        logEndTimeAndData(requireActivity().getApplicationContext(), "reading_comp_" + (questionCount + 1) + "," + r.getText().toString());
         group.clearCheck();
     }
 
@@ -111,7 +105,7 @@ public class StoryMemoryFragment extends QuestionFragment {
             }
             logStartTime();
         } else {
-            ((MainActivity)getActivity()).getFragmentData(null);
+            ((MainActivity) requireActivity()).getFragmentData(null);
         }
     }
 
@@ -122,7 +116,7 @@ public class StoryMemoryFragment extends QuestionFragment {
 
     @Override
     public void moveToNextPage() {
-        ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
+        ((MainActivity) requireActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
     }
 
     @Override

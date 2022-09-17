@@ -28,10 +28,6 @@ public class CorrectAnswerDictionary {
             "Parent", "Moon", "Garden", "Hat", "Farmer",
             "Nose", "Turkey"
     };
-    public static final String[] TRIAL_LIST_TWO = new String[] {
-            "Desk", "Ranger", "Bird", "Shoe", "Mountain", "Stove",
-            "Glasses", "Towel", "Cloud", "Boat", "Lamb", "Gum"
-    };
 
     public static void loadAnswers() {
         Log.d(TAG, "loadAnswers: loading correct answer dictionaries...");

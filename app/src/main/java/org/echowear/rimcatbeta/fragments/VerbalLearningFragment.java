@@ -2,14 +2,15 @@ package org.echowear.rimcatbeta.fragments;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.echowear.rimcatbeta.MainActivity;
 import org.echowear.rimcatbeta.R;
@@ -21,10 +22,6 @@ public class VerbalLearningFragment extends QuestionFragment {
             "Parent", "Moon", "Garden", "Hat", "Farmer",
             "Nose", "Turkey"
     };
-    private static final String[] TRIAL_LIST_TWO = new String[] {
-            "Desk", "Ranger", "Bird", "Shoe", "Mountain", "Stove",
-            "Glasses", "Towel", "Cloud", "Boat", "Lamb", "Gum"
-    };
 
     private TextView verbalText;
     private static final String[] COUNTDOWN_TEXT = { "Ready", "Set", "Go!" };
@@ -34,38 +31,28 @@ public class VerbalLearningFragment extends QuestionFragment {
     private String[] currentWordList;
     private boolean inWordList, inCountdown;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_verbal_learning, container, false);
 
         // Set the current word list to the correct trial list words
-        int currentView = ((MainActivity)getActivity()).getViewNumber();
-//        if (currentView == ActivitiesModel.VERBAL_LEARNING_SCREEN_4)
-//            currentWordList = TRIAL_LIST_TWO;
-//        else
-//            currentWordList = TRIAL_LIST_ONE;
+        int currentView = ((MainActivity) requireActivity()).getViewNumber();
         currentWordList = TRIAL_LIST_ONE;
 
         // Initialize and prepare views
         cardView = view.findViewById(R.id.card);
         verbalText = view.findViewById(R.id.verbalText);
         readyBtn = view.findViewById(R.id.figure_readyBtn);
-        readyBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                beginCountdownTimer();
-            }
-        });
+        readyBtn.setOnClickListener(v -> beginCountdownTimer());
 
         // Creates the timer that counts down the verbal recall section
         countDownTimer = new CountDownTimer(3000, 999) {
             @Override
             public void onTick(long millisUntilFinished) {
                 Log.d(TAG, "onTick: Tick: " + timerIndex);
-//                if (timerIndex > 0)
+                if (timerIndex > 0)
 //                    verbalText.setText("" + timerIndex);
-                verbalText.setText(COUNTDOWN_TEXT[timerIndex]);
+                    verbalText.setText(COUNTDOWN_TEXT[timerIndex]);
                 timerIndex++;
             }
 
@@ -77,16 +64,18 @@ public class VerbalLearningFragment extends QuestionFragment {
         };
 
         // Creates the timer that handles the word changing event during the verbal recall section
-        trialListCounter = new CountDownTimer(currentWordList.length * 2000, 1999) {
+        //trialListCounter = new CountDownTimer(currentWordList.length * 2000, 1999)
+        trialListCounter = new CountDownTimer(12*2000, 1999) {
+
             @Override
             public void onTick(long millisUntilFinished) {
                 if (wordIndex < currentWordList.length) {
                     Log.d(TAG, "onTick: Changing text --- " + currentWordList[wordIndex]);
                     verbalText.setText(currentWordList[wordIndex]);
-                    ((MainActivity)getActivity()).useTextToSpeech(currentWordList[wordIndex]);
+                    ((MainActivity) requireActivity()).useTextToSpeech(currentWordList[wordIndex]);
                     wordIndex++;
                 } else {
-                    logEndTimeAndData(getActivity().getApplicationContext(), "verbal_learning,null");
+                    logEndTimeAndData(requireActivity().getApplicationContext(), "verbal_learning,null");
                     ((MainActivity)getActivity()).getFragmentData(null);
                     trialListCounter.cancel();
                 }
@@ -94,7 +83,7 @@ public class VerbalLearningFragment extends QuestionFragment {
 
             @Override
             public void onFinish() {
-                logEndTimeAndData(getActivity().getApplicationContext(), "verbal_learning,null");
+                logEndTimeAndData(requireActivity().getApplicationContext(), "verbal_learning,null");
                 ((MainActivity)getActivity()).getFragmentData(null);
             }
         };
@@ -132,7 +121,7 @@ public class VerbalLearningFragment extends QuestionFragment {
 
     @Override
     public void moveToNextPage() {
-        ((MainActivity)getActivity()).addFragment(new VerbalRecallFragment(), "RecallResponseFragment");
+        ((MainActivity) requireActivity()).addFragment(new VerbalRecallFragment(), "RecallResponseFragment");
     }
 
     @Override

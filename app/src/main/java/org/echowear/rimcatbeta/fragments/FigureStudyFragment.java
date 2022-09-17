@@ -2,9 +2,6 @@ package org.echowear.rimcatbeta.fragments;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.echowear.rimcatbeta.MainActivity;
 import org.echowear.rimcatbeta.R;
@@ -26,7 +26,6 @@ public class FigureStudyFragment extends QuestionFragment {
             R.drawable.figure_e_1, R.drawable.figure_f_1
     };
     private CountDownTimer countDownTimer, figureListCounter;
-    private String[] figurePrompts;
     private ImageView figureImage;
     private TextView figureText;
     private View promptCard, imageCard;
@@ -36,9 +35,8 @@ public class FigureStudyFragment extends QuestionFragment {
     private int figCount = 0;
     private boolean showingFigures;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_figure_study, container, false);
 
 //        figurePrompts = getResources().getStringArray(R.array.figure_prompt_array);
@@ -51,19 +49,12 @@ public class FigureStudyFragment extends QuestionFragment {
         imageCard.setVisibility(View.INVISIBLE);
         figureText.setText(getResources().getString(R.string.verbal_readyPrompt));
 
-        figureReadyBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onReadyClick();
-            }
-        });
+        figureReadyBtn.setOnClickListener(v -> onReadyClick());
 
         // Creates the timer that counts down the verbal recall section
         countDownTimer = new CountDownTimer(3000, 990) {
             @Override
             public void onTick(long millisUntilFinished) {
-//                if (countdown > 0)
-//                    figureText.setText("" + countdown);
                 if (countdown < 3) {
 //                    reactionCountdownText.setText("" + timerIndex);
                     figureText.setText(COUNTDOWN_TEXT[countdown]);
@@ -135,8 +126,8 @@ public class FigureStudyFragment extends QuestionFragment {
             // Give the user 3 seconds to prepare
             figureListCounter.start();
         } else {
-            logEndTimeAndData(getActivity().getApplicationContext(), "figure_study,null");
-            ((MainActivity)getActivity()).getFragmentData(null);
+            logEndTimeAndData(requireActivity().getApplicationContext(), "figure_study,null");
+            ((MainActivity) requireActivity()).getFragmentData(null);
         }
     }
 
@@ -147,7 +138,7 @@ public class FigureStudyFragment extends QuestionFragment {
 
     @Override
     public void moveToNextPage() {
-        ((MainActivity)getActivity()).addFragment(new FigureSelectFragment(), "FigureSelectFragment");
+        ((MainActivity) requireActivity()).addFragment(new FigureSelectFragment(), "FigureSelectFragment");
     }
 
     @Override
@@ -165,8 +156,6 @@ public class FigureStudyFragment extends QuestionFragment {
         super.onPause();
         if (showingFigures) {
             figureListCounter.cancel();
-//            figCount = 0;
-//            figureImage.setImageResource(FIGURE_LIST[figCount]);
         }
     }
 

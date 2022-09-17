@@ -1,14 +1,16 @@
 package org.echowear.rimcatbeta.fragments;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import org.echowear.rimcatbeta.ActivitiesModel;
 import org.echowear.rimcatbeta.MainActivity;
 import org.echowear.rimcatbeta.R;
@@ -36,29 +38,26 @@ public class FigureSelectFragment extends QuestionFragment {
             R.drawable.figure_f_1, R.drawable.figure_f_2, R.drawable.figure_f_3, R.drawable.figure_f_4
     };
     private int[] currentImageSrcList;
-    private ImageView figure1, figure2, figure3, figure4, selectedImage;
+    private ImageView selectedImage;
     private ArrayList<ImageView> images;
-    private Button nextButton;
     private int figureCount = 0, activityIndex = 0;
-    private View.OnTouchListener touchListener;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_figure_select, container, false);
 
         // Set the current word list to the correct trial list words
-        int currentView = ((MainActivity)getActivity()).getViewNumber();
+        int currentView = ((MainActivity) requireActivity()).getViewNumber();
         if (currentView == ActivitiesModel.FIGURE_SELECT_SCREEN)
             currentImageSrcList = IMAGE_RESOURCES_1;
         else
             currentImageSrcList = IMAGE_RESOURCES_2;
 
         cardView = view.findViewById(R.id.figure_select_page);
-        figure1 = view.findViewById(R.id.figure_choice1);
-        figure2 = view.findViewById(R.id.figure_choice2);
-        figure3 = view.findViewById(R.id.figure_choice3);
-        figure4 = view.findViewById(R.id.figure_choice4);
+        ImageView figure1 = view.findViewById(R.id.figure_choice1);
+        ImageView figure2 = view.findViewById(R.id.figure_choice2);
+        ImageView figure3 = view.findViewById(R.id.figure_choice3);
+        ImageView figure4 = view.findViewById(R.id.figure_choice4);
         figure1.setImageResource(currentImageSrcList[0]);
         figure2.setImageResource(currentImageSrcList[1]);
         figure3.setImageResource(currentImageSrcList[2]);
@@ -68,23 +67,16 @@ public class FigureSelectFragment extends QuestionFragment {
         figure3.setTag(getResources().getResourceName(currentImageSrcList[2]));
         figure4.setTag(getResources().getResourceName(currentImageSrcList[3]));
 
-        View.OnClickListener onSelectFigure = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedImage =  (ImageView) v;
-                for (ImageView image : images)
-                    image.setBackgroundColor(getResources().getColor(R.color.white));
-                selectedImage.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-            }
-
+        View.OnClickListener onSelectFigure = v -> {
+            selectedImage =  (ImageView) v;
+            for (ImageView image : images)
+                image.setBackgroundColor(getResources().getColor(R.color.white));
+            selectedImage.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         };
         final MainActivity mainActivity = new MainActivity();
-        touchListener = new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, android.view.MotionEvent event) {
-                mainActivity.callTouchEventInButton(event.getRawX(),event.getRawY(),23);
-                return false;
-            }
+        View.OnTouchListener touchListener = (v, event) -> {
+            mainActivity.callTouchEventInButton(event.getRawX(), event.getRawY(), 23);
+            return false;
         };
 
         figure1.setOnClickListener(onSelectFigure);
@@ -102,13 +94,8 @@ public class FigureSelectFragment extends QuestionFragment {
         images.add(figure3);
         images.add(figure4);
 
-        nextButton = view.findViewById(R.id.figure_select_next);
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                recordDataAndPrepareImages();
-            }
-        });
+        Button nextButton = view.findViewById(R.id.figure_select_next);
+        nextButton.setOnClickListener(v -> recordDataAndPrepareImages());
 
         startAnimation(true);
         logStartTime();
@@ -121,7 +108,7 @@ public class FigureSelectFragment extends QuestionFragment {
             Log.d(TAG, "recordDataAndPrepareImages: Image - " + selectedImage.getTag());
             selectedImage.setBackgroundColor(getResources().getColor(R.color.white));
             String imageTag = selectedImage.getTag().toString();
-            logEndTimeAndData(getActivity().getApplicationContext(), "figure_select_" + (activityIndex + 1) + "," + imageTag.substring(imageTag.lastIndexOf("/") + 1));
+            logEndTimeAndData(requireActivity().getApplicationContext(), "figure_select_" + (activityIndex + 1) + "," + imageTag.substring(imageTag.lastIndexOf("/") + 1));
             selectedImage = null;
             figureCount += 4;
             activityIndex++;
@@ -134,7 +121,7 @@ public class FigureSelectFragment extends QuestionFragment {
                 }
                 logStartTime();
             } else {
-                ((MainActivity)getActivity()).getFragmentData(null);
+                ((MainActivity) requireActivity()).getFragmentData(null);
             }
         }
     }
@@ -146,7 +133,7 @@ public class FigureSelectFragment extends QuestionFragment {
 
     @Override
     public void moveToNextPage() {
-        ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
+        ((MainActivity) requireActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
     }
 
     @Override

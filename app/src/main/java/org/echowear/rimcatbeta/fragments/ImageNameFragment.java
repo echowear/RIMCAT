@@ -1,24 +1,24 @@
 package org.echowear.rimcatbeta.fragments;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import org.echowear.rimcatbeta.MainActivity;
 import org.echowear.rimcatbeta.R;
 import org.echowear.rimcatbeta.data_log.CorrectAnswerDictionary;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.util.Objects;
 
 public class ImageNameFragment extends QuestionFragment {
 
@@ -44,14 +44,11 @@ public class ImageNameFragment extends QuestionFragment {
     private ConstraintLayout imageNamePage;
     private ImageView imageView;
     private Button btn1, btn2, btn3;
-    private View.OnClickListener recordImageChoice;
     private Animation.AnimationListener animationListener;
-    private View.OnTouchListener touchListener;
     private boolean isAnimationActive;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_image_name, container, false);
 
         buttonOptions = getResources().getStringArray(R.array.image_name_array);
@@ -96,35 +93,34 @@ public class ImageNameFragment extends QuestionFragment {
             }
         };
 
-        recordImageChoice = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!isAnimationActive) {
-                    isAnimationActive = true;
+        //
+        // This is where the answer will be recorded
+        View.OnClickListener recordImageChoice = view1 -> {
+            if (!isAnimationActive) {
+                isAnimationActive = true;
 //
-                    Button selectedButton = (Button) view;
-                    // This is where the answer will be recorded
-                    Log.d(TAG, "onClick: Button value: " + selectedButton.getText().toString());
-                    logEndTimeAndData(getActivity().getApplicationContext(), "image_name_" + (imageCount + 1) + "," + selectedButton.getText().toString());
+                Button selectedButton = (Button) view1;
+                // This is where the answer will be recorded
+                Log.d(TAG, "onClick: Button value: " + selectedButton.getText().toString());
+                logEndTimeAndData(requireActivity().getApplicationContext(), "image_name_" + (imageCount + 1) + "," + selectedButton.getText().toString());
 
-                    imageCount++;
-                    if (imageCount == IMAGE_NAMES.length) {
-                        ((MainActivity)getActivity()).getFragmentData(null);
-                    }
-                    else {
-                        Animation fadeOutAnimation =  AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out);
-                        fadeOutAnimation.setAnimationListener(animationListener);
-                        imageNamePage.startAnimation(fadeOutAnimation);
-                    }
+                imageCount++;
+                if (imageCount == IMAGE_NAMES.length) {
+                    ((MainActivity) getActivity()).getFragmentData(null);
+                } else {
+                    Animation fadeOutAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_out);
+                    fadeOutAnimation.setAnimationListener(animationListener);
+                    imageNamePage.startAnimation(fadeOutAnimation);
                 }
-
             }
+
         };
-        touchListener = new View.OnTouchListener() {
+        View.OnTouchListener touchListener = new View.OnTouchListener() {
             MainActivity mainActivity = new MainActivity();
+
             @Override
             public boolean onTouch(View v, android.view.MotionEvent event) {
-                mainActivity.callTouchEventInButton(event.getRawX(),event.getRawY(),11);
+                mainActivity.callTouchEventInButton(event.getRawX(), event.getRawY(), 11);
                 return false;
             }
         };
@@ -154,7 +150,7 @@ public class ImageNameFragment extends QuestionFragment {
 
     @Override
     public void moveToNextPage() {
-        ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
+        ((MainActivity) requireActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
     }
 
     @Override

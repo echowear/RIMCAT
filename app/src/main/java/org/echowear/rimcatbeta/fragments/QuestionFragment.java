@@ -2,13 +2,8 @@ package org.echowear.rimcatbeta.fragments;
 
 import android.content.Context;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.VibrationEffect;
 import android.os.Vibrator;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -18,15 +13,20 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
-import org.echowear.rimcatbeta.data_log.DataLogService;
-import org.echowear.rimcatbeta.data_log.GenerateDirectory;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import org.echowear.rimcatbeta.MainActivity;
 import org.echowear.rimcatbeta.R;
+import org.echowear.rimcatbeta.data_log.DataLogService;
+import org.echowear.rimcatbeta.data_log.GenerateDirectory;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 public abstract class QuestionFragment extends Fragment {
@@ -38,8 +38,8 @@ public abstract class QuestionFragment extends Fragment {
     protected View cardView;
     protected String startTime;
     protected String endTime;
-    protected long startMilis;
-    protected long endMilis;
+    protected long startMillis;
+    protected long endMillis;
     protected MediaPlayer mediaPlayer;
     protected Context mContext;
     protected Vibrator mVibrator;
@@ -61,18 +61,15 @@ public abstract class QuestionFragment extends Fragment {
                     // TODO: This isn't good design. Look into this later
                     if (mediaPlayer != null) {
                         mediaPlayer.start();
-                        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                            @Override
-                            public void onCompletion(MediaPlayer mp) {
-                                releaseMediaPlayer();
-                                nextButtonReady();
-                            }
+                        mediaPlayer.setOnCompletionListener(mp -> {
+                            releaseMediaPlayer();
+                            nextButtonReady();
                         });
                     }
                 }
                 else {
                     moveToNextPage();
-                    ((MainActivity) Objects.requireNonNull(getActivity())).incrementViewNumber();
+                    ((MainActivity) requireActivity()).incrementViewNumber();
                 }
             }
 
@@ -83,23 +80,21 @@ public abstract class QuestionFragment extends Fragment {
         });
         if (cardView != null) {
             cardView.startAnimation(fadeOutAnimation);
-        } else {
-
         }
     }
 
     public void logStartTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_1);
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_1, Locale.US);
         Date today = Calendar.getInstance().getTime();
-        startMilis = today.getTime();
+        startMillis = today.getTime();
         startTime = dateFormat.format(today);
         Log.d(TAG, "logStartTime: " + startTime);
     }
 
     public void logEndTimeAndData(Context context, String data) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_2);
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_2, Locale.US);
         Date today = Calendar.getInstance().getTime();
-        endMilis = today.getTime();
+        endMillis = today.getTime();
         endTime = dateFormat.format(today);
         String resultString;
         //TODO: Simplify this to only have one string
@@ -111,30 +106,30 @@ public abstract class QuestionFragment extends Fragment {
 
         Log.d(TAG, "logEndTimeAndData: Logging the following result... \n" + resultString);
         String dateOfSurvey = endTime.substring(endTime.lastIndexOf(',') + 1);
-        DataLogService.log(context, new File(GenerateDirectory.getRootFile(context), QuestionFragment.PATIENT_ID + '_' + dateOfSurvey + ".csv"), resultString);
+        DataLogService.log(context, new File(GenerateDirectory.getRootFile(), QuestionFragment.PATIENT_ID + '_' + dateOfSurvey + ".csv"), resultString);
 //        JSONDataLogService.log(context, new File(GenerateDirectory.getRootFile(context), QuestionFragment.PATIENT_ID + '_' + dateOfSurvey + "coords.txt"), ((MainActivity)getActivity()).coordsJson());
 
     }
 
     protected long calculateResponseTime() {
-        return endMilis - startMilis;
+        return endMillis - startMillis;
     }
 
 
     public void nextButtonReady() {
-        ((MainActivity) Objects.requireNonNull(getActivity())).nextButtonReady();
+        ((MainActivity) requireActivity()).nextButtonReady();
     }
 
     protected void toastAtTopOfScreen(String message, int duration) {
-        Toast t = Toast.makeText(getActivity(), message, duration);
-        ViewGroup group = (ViewGroup) t.getView();
-        TextView toastTV = (TextView) group.getChildAt(0);
-        toastTV.setTextSize(20);
-        t.setGravity(Gravity.TOP, 0, 5);
-        t.show();
+        Toast.makeText(getActivity(), message, duration).setGravity(Gravity.TOP, 0, 5);
+//        ViewGroup group = (ViewGroup) t.getView();
+//        //TextView toastTV = (TextView) Objects.requireNonNull(group).getChildAt(0);
+//        //toastTV.setTextSize(20);
+//        t.setGravity(Gravity.TOP, 0, 5);
+//        t.show();
     }
 
-    protected void vibrateToastAndExecuteSound(String submitText, boolean shouldExecuteSound) {
+    protected void vibrateToastAndExecuteSound(String submitText) {
         // Vibrate the device
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && mVibrator != null) {
 //            mVibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
@@ -177,10 +172,9 @@ public abstract class QuestionFragment extends Fragment {
 
     public abstract String getTriedMicrophone();
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return null;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return Objects.requireNonNull(container).findFocus();
     }
 
     @Override

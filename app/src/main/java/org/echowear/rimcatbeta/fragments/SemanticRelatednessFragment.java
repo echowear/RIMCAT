@@ -1,12 +1,7 @@
 package org.echowear.rimcatbeta.fragments;
 
 import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.widget.AppCompatButton;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -16,9 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
+
 import org.echowear.rimcatbeta.MainActivity;
 import org.echowear.rimcatbeta.R;
 import org.echowear.rimcatbeta.data_log.CorrectAnswerDictionary;
+
+import java.util.Objects;
 
 public class SemanticRelatednessFragment extends QuestionFragment {
     private static final String TAG = "SemanticRelatedness";
@@ -31,9 +33,8 @@ public class SemanticRelatednessFragment extends QuestionFragment {
     private int                 pageCount;
     private View.OnTouchListener touchListener;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_semantic_relatedness, container, false);
         // Layout initialization
         cardView = view.findViewById(R.id.sr_page);
@@ -73,31 +74,22 @@ public class SemanticRelatednessFragment extends QuestionFragment {
     }
 
     private void initializeGrid() {
-        choiceListener = new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void onClick(View v) {
-                AppCompatButton b = (AppCompatButton) v;
-                String currentText = (String) b.getText();
-                if (!b.getText().toString().equals(wordChoice)) {
-                    wordChoice = (currentText.replace("\u2610   ", ""));
-                    wordChoice = wordChoice.toString();
-                    b.getBackground().setTint(getResources().getColor(R.color.colorAccent));
-                    b.setText(currentText.replace("\u2610","\u2611"));
-                    Log.d(TAG, wordChoice);
-                    prepareNextGrid();
-                    b.getBackground().setTint(getResources().getColor(R.color.backgroundColor));
-                }
+        choiceListener = v -> {
+            AppCompatButton b = (AppCompatButton) v;
+            String currentText = (String) b.getText();
+            if (!b.getText().toString().equals(wordChoice)) {
+                wordChoice = (currentText.replace("\u2610   ", ""));
+                b.getBackground().setTint(getResources().getColor(R.color.colorAccent));
+                b.setText(currentText.replace("\u2610","\u2611"));
+                Log.d(TAG, wordChoice);
+                prepareNextGrid();
+                b.getBackground().setTint(getResources().getColor(R.color.backgroundColor));
             }
-
         };
         final MainActivity mainActivity = new MainActivity();
-        touchListener = new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, android.view.MotionEvent event) {
-                mainActivity.callTouchEventInButton(event.getRawX(), event.getRawY(), 33);
-                return false;
-            }
+        touchListener = (v, event) -> {
+            mainActivity.callTouchEventInButton(event.getRawX(), event.getRawY(), 33);
+            return false;
         };
         changeButtonText();
     }
@@ -120,7 +112,7 @@ public class SemanticRelatednessFragment extends QuestionFragment {
             changeHeaderText();
             logStartTime();
         } else {
-            ((MainActivity)getActivity()).getFragmentData(null);
+            ((MainActivity) requireActivity()).getFragmentData(null);
         }
     }
 
@@ -141,7 +133,7 @@ public class SemanticRelatednessFragment extends QuestionFragment {
 
     @Override
     public void moveToNextPage() {
-        ((MainActivity)getActivity()).addFragment(new FinishFragment(), "FinishFragment");
+        ((MainActivity) requireActivity()).addFragment(new FinishFragment(), "FinishFragment");
     }
 
     @Override

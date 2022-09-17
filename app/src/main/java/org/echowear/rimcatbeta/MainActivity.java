@@ -9,19 +9,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.TransitionDrawable;
-import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,16 +22,26 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import org.echowear.rimcatbeta.data_log.CorrectAnswerDictionary;
 import org.echowear.rimcatbeta.data_log.GenerateDirectory;
-import org.echowear.rimcatbeta.data_log.LogcatExportService;
 import org.echowear.rimcatbeta.data_log.JSONLogcatExportService;
+import org.echowear.rimcatbeta.data_log.LogcatExportService;
 import org.echowear.rimcatbeta.dialogs.RecallFinishDialog;
 import org.echowear.rimcatbeta.dialogs.RetryDialog;
 import org.echowear.rimcatbeta.fragments.BasicQuestionFragment;
@@ -56,14 +57,14 @@ import org.echowear.rimcatbeta.fragments.InstructionsFragment;
 import org.echowear.rimcatbeta.fragments.KeyboardFragment;
 import org.echowear.rimcatbeta.fragments.QuestionFragment;
 import org.echowear.rimcatbeta.fragments.ReactionFragment;
-import org.echowear.rimcatbeta.fragments.StoryLearningFragment;
-import org.echowear.rimcatbeta.fragments.StoryMemoryFragment;
-import org.echowear.rimcatbeta.fragments.VerbalRecallFragment;
 import org.echowear.rimcatbeta.fragments.SeasonFragment;
 import org.echowear.rimcatbeta.fragments.SemanticChoiceFragment;
 import org.echowear.rimcatbeta.fragments.SemanticRelatednessFragment;
+import org.echowear.rimcatbeta.fragments.StoryLearningFragment;
+import org.echowear.rimcatbeta.fragments.StoryMemoryFragment;
 import org.echowear.rimcatbeta.fragments.TodayDateFragment;
 import org.echowear.rimcatbeta.fragments.VerbalLearningFragment;
+import org.echowear.rimcatbeta.fragments.VerbalRecallFragment;
 import org.echowear.rimcatbeta.fragments.VerbalRecognitionFragment;
 import org.echowear.rimcatbeta.fragments.VideoFragment;
 
@@ -73,6 +74,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity implements RetryDialog.RetryDialogListener, RecallFinishDialog.RecallFinishDialogListener {
@@ -80,15 +82,13 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     private static final int        MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1400;
     private static final int        MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1401;
     private static final int        MY_PERMISSIONS_REQUEST_RECORD_AUDIO = 1402;
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss:SSS");
-    private static final int        RESULT_SPEECH = 65676;
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss:SSS", Locale.US);
     private static final int        BACKGROUND_TRANSITION_TIME = 2000;
     private static final int        NUM_SCREENS = 43;
     private static final int        BLINKING_START_SECS = 5;
     public String                  coordinatesX;
     public String                  coordinatesY;
     public String                  coordinatesT;
-    private FrameLayout             container;
     private FragmentManager         fragmentManager;
     private FragmentTransaction     fragmentTransaction;
     private String                  fragmentTag;
@@ -106,9 +106,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     protected TextToSpeech          textToSpeech;
     protected boolean               isTTSInitialized;
     private int viewHold;
-    private File savedState;
     String[][][] data = new String[43][3][1];
-    private int pointCounter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,23 +114,18 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         Date today = Calendar.getInstance().getTime();
 
         // Create log file and start logging
-        LogcatExportService.log(this, new File(GenerateDirectory.getRootFile(this), "logcat_" + System.currentTimeMillis() + ".txt"));
-        JSONLogcatExportService.log(this, new File(GenerateDirectory.getRootFile(this), "Coordslogcat_" + dateFormat.format(today) + ".txt"), coordsJson());
+        LogcatExportService.log(this, new File(GenerateDirectory.getRootFile(), "logcat_" + System.currentTimeMillis() + ".txt"));
+        JSONLogcatExportService.log(this, new File(GenerateDirectory.getRootFile(), "Coordslogcat_" + dateFormat.format(today) + ".txt"), coordsJson());
 
-        savedState = GenerateDirectory.getRootFile(this);
+        File savedState = GenerateDirectory.getRootFile();
         Log.d(TAG, "savedState: " + savedState);
 
         // Set up text to speech. Main screen will be set up after text to speech initialization.
         setUpTextToSpeech();
     }
 
-    public File savedState() {
-        Log.d(TAG, "savedState: " + savedState);
-        return savedState;
-    }
 
-
-    @SuppressLint("ClickableViewAccessibility")
+    //@SuppressLint("ClickableViewAccessibility")
     private void setInitialHomeFragment() {
         setContentView(R.layout.activity_main);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
@@ -145,19 +138,16 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         nextButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.backgroundColor)));
         appProgress = findViewById(R.id.app_progress);
         appProgress.setMax(NUM_SCREENS);
-        container = findViewById(R.id.container);
-        container.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-               try {
-                   hideSoftKeyboard(MainActivity.this);
-               }
-               catch (Exception NullPointerException) {
-                   Log.d(TAG, "onTouch: Cant Close Keyboard");
-               }
-                viewOnTouch();
-                return false;
-            }
+        FrameLayout container = findViewById(R.id.container);
+        container.setOnTouchListener((v, event) -> {
+           try {
+               hideSoftKeyboard(MainActivity.this);
+           }
+           catch (Exception NullPointerException) {
+               Log.d(TAG, "onTouch: Cant Close Keyboard");
+           }
+            viewOnTouch();
+            return false;
         });
 
         // Initialize blinking arrow logic
@@ -166,12 +156,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         blinkingArrow.setImageResource(R.drawable.arrow_color);
         currentArrowDrawable = R.drawable.arrow_color;
         timerHandler = new Handler();
-        timerRunnable = new Runnable() {
-            @Override
-            public void run() {
-                timerRunnableOnTick();
-            }
-        };
+        timerRunnable = this::timerRunnableOnTick;
 
         // Initially change view to home fragment
         fragmentManager = getSupportFragmentManager();
@@ -226,7 +211,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         viewHold = viewNumber;
         return false;
     }
-    public boolean callTouchEventInButton(float x, float y, int viewNumber) {
+    public void callTouchEventInButton(float x, float y, int viewNumber) {
         // current time down to the milliseconds
         Date today = Calendar.getInstance().getTime();
 
@@ -235,7 +220,6 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         Log.d("LogActivityButton", (viewNumber - 1) + " t: " + dateFormat.format(today));
 //        Log.d(TAG, "callTouchEventInButton: " + dataButton[viewNumber -1][0][0]);
         viewHold = viewNumber;
-        return false;
     }
     public String[][][] coordsJson() {
         return data;
@@ -247,7 +231,6 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
 
     /** nextButton onClick function
      *
-     * @param activity
      */
     public void hideSoftKeyboard(Activity activity) {
         InputMethodManager inputMethodManager =
@@ -255,7 +238,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                         Activity.INPUT_METHOD_SERVICE);
         if(inputMethodManager.isAcceptingText()){
             inputMethodManager.hideSoftInputFromWindow(
-                    activity.getCurrentFocus().getWindowToken(),
+                    Objects.requireNonNull(activity.getCurrentFocus()).getWindowToken(),
                     0
             );
         }
@@ -271,21 +254,19 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.RECORD_AUDIO}, MY_PERMISSIONS_REQUEST_RECORD_AUDIO);
             } else {
                 QuestionFragment fragment = (QuestionFragment) fragmentManager.findFragmentByTag(fragmentTag);
-                if (fragment.loadDataModel()) {
+                if (Objects.requireNonNull(fragment).loadDataModel()) {
                     stopBlinkingArrows();
                     isNextButtonReady = false;
                     nextButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.backgroundColor)));
-//                    nextText.setTextColor(getResources().getColor(R.color.backgroundColor));
-//                    changeBackground();
                     fragment.startAnimation(false);
                     // Checks to hide or show the Next button
                     viewButtonVisibility();
                 } else {
-                    Toast toast = Toast.makeText(this, "Please fill out all fields before proceeding.", Toast.LENGTH_SHORT);
-                    ViewGroup group = (ViewGroup) toast.getView();
-                    TextView toastTV = (TextView) group.getChildAt(0);
-                    toastTV.setTextSize(20);
-                    toast.show();
+                    Toast.makeText(this, "Please fill out all fields before proceeding.", Toast.LENGTH_SHORT).show();
+//                    ViewGroup group = (ViewGroup) toast.getView();
+//                    TextView toastTV = (TextView) Objects.requireNonNull(group).getChildAt(0);
+//                    toastTV.setTextSize(20);
+//                    toast.show();
                 }
             }
         }
@@ -386,7 +367,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
         if (viewNumber == ActivitiesModel.HOME_SCREEN ||
                 (viewNumber >= ActivitiesModel.TODAYS_DATE_SCREEN && viewNumber <= ActivitiesModel.SEASON_SCREEN)) {
             BasicQuestionFragment fragment = (BasicQuestionFragment) fragmentManager.findFragmentByTag(fragmentTag);
-            if (!fragment.isQuestionAnswered())
+            if (!Objects.requireNonNull(fragment).isQuestionAnswered())
                 return false;
         }
         return  nextButton.getVisibility() == View.VISIBLE;
@@ -418,37 +399,29 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     }
 
     private void setUpTextToSpeech() {
-        textToSpeech = new TextToSpeech(this.getApplicationContext(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if(status == TextToSpeech.SUCCESS) {
-                    textToSpeech.setLanguage(Locale.US);
-                    textToSpeech.setSpeechRate(0.7f);
-                    isTTSInitialized = true;
-                    // wait a little for the initialization to complete
-                    Handler h = new Handler();
-                    h.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            // run your code here
-                            useTextToSpeech(" ");
-                        }
-                    }, 400);
-                    setInitialHomeFragment();
-                } else if (status == TextToSpeech.ERROR) {
-                    Log.e(TAG, "TTS Initialization Failed!");
-                    isTTSInitialized = false;
-                }
+        textToSpeech = new TextToSpeech(this.getApplicationContext(), status -> {
+            if(status == TextToSpeech.SUCCESS) {
+                textToSpeech.setLanguage(Locale.US);
+                textToSpeech.setSpeechRate(0.7f);
+                isTTSInitialized = true;
+                // wait a little for the initialization to complete
+                Handler h = new Handler();
+                h.postDelayed(() -> {
+                    // run your code here
+                    useTextToSpeech(" ");
+                }, 400);
+                setInitialHomeFragment();
+            } else if (status == TextToSpeech.ERROR) {
+                Log.e(TAG, "TTS Initialization Failed!");
+                isTTSInitialized = false;
             }
         });
     }
 
     public void useTextToSpeech(String text) {
         Log.d(TAG, "useTextToSpeech: " + text);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && isTTSInitialized) {
+        if (isTTSInitialized) {
             textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
-        } else if (isTTSInitialized) {
-            textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
         }
     }
 
@@ -461,7 +434,7 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
     @Override
     public void onRetryDialogPositiveClick(DialogFragment dialog) {
         VerbalRecallFragment fragment = (VerbalRecallFragment) fragmentManager.findFragmentByTag(fragmentTag);
-        fragment.executePostMessageSetup();
+        Objects.requireNonNull(fragment).executePostMessageSetup();
     }
 
     @Override
@@ -483,15 +456,13 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 case ActivitiesModel.VERBAL_RECALL_SCREEN_1:
                 case ActivitiesModel.VERBAL_RECALL_SCREEN_2:
                 case ActivitiesModel.VERBAL_RECALL_SCREEN_3:
-//                case ActivitiesModel.VERBAL_RECALL_SCREEN_4:
-//                case ActivitiesModel.VERBAL_RECALL_SCREEN_5:
                 case ActivitiesModel.VERBAL_RECALL_SCREEN_6:
                     VerbalRecallFragment verbalRecallFragment = (VerbalRecallFragment) fragmentManager.findFragmentByTag(fragmentTag);
-                    verbalRecallFragment.setResponseTextToSpeechText(speechText.get(0));
+                    Objects.requireNonNull(verbalRecallFragment).setResponseTextToSpeechText(speechText.get(0));
                     break;
                 case ActivitiesModel.KEYBOARD_SCREEN:
                     KeyboardFragment keyboardFragment = (KeyboardFragment) fragmentManager.findFragmentByTag(fragmentTag);
-                    keyboardFragment.setResponseTextToSpeechText(speechText.get(0));
+                    Objects.requireNonNull(keyboardFragment).setResponseTextToSpeechText(speechText.get(0));
                     break;
             }
         }
@@ -500,12 +471,12 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String[] permissions, int[] grantResults) {
+                                           @NonNull String[] permissions, @NonNull int[] grantResults) {
         // Start logging data to log file now that permission has been granted
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE)
-            LogcatExportService.log(this, new File(GenerateDirectory.getRootFile(this), "logcat_" + System.currentTimeMillis() + ".txt"));
-            JSONLogcatExportService.log(this, new File(GenerateDirectory.getRootFile(this), "Coordslogcat_" + System.currentTimeMillis() + ".txt"), coordsJson());
+            LogcatExportService.log(this, new File(GenerateDirectory.getRootFile(), "logcat_" + System.currentTimeMillis() + ".txt"));
+            JSONLogcatExportService.log(this, new File(GenerateDirectory.getRootFile(), "Coordslogcat_" + System.currentTimeMillis() + ".txt"), coordsJson());
 
         // Calls getFragmentData again to attempt to move to the next page if all required permissions are granted
         if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
@@ -559,11 +530,6 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 fragmentTag = "InstructionsFragment";
                 fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
                 break;
-//            case R.id.screen_education_om:
-//                this.viewNumber = ActivitiesModel.TODAYS_DATE_SCREEN;
-//                fragmentTag = "EducationFragment";
-//                fragmentTransaction.replace(R.id.container, new TodayDateFragment(), "EducationFragment");
-//                break;
             case R.id.screen_date_om:
                 this.viewNumber = ActivitiesModel.TODAYS_DATE_SCREEN;
                 fragmentTag = "TodayDateFragment";
@@ -644,31 +610,6 @@ public class MainActivity extends AppCompatActivity implements RetryDialog.Retry
                 fragmentTag = "RecallResponseFragment";
                 fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "RecallResponseFragment");
                 break;
-//            case R.id.screen_inst_8_om:
-//                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_8;
-//                fragmentTag = "InstructionsFragment";
-//                fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
-//                break;
-//            case R.id.screen_verbal_4_om:
-//                this.viewNumber = ActivitiesModel.VERBAL_LEARNING_SCREEN_4;
-//                fragmentTag = "VerbalRecallFragment";
-//                fragmentTransaction.replace(R.id.container, new VerbalLearningFragment(), "VerbalRecallFragment");
-//                break;
-//            case R.id.screen_recall_4_om:
-//                this.viewNumber = ActivitiesModel.VERBAL_RECALL_SCREEN_4;
-//                fragmentTag = "RecallResponseFragment";
-//                fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "RecallResponseFragment");
-//                break;
-//            case R.id.screen_inst_9_om:
-//                this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_9;
-//                fragmentTag = "InstructionsFragment";
-//                fragmentTransaction.replace(R.id.container, new InstructionsFragment(), "InstructionsFragment");
-//                break;
-//            case R.id.screen_recall_5_om:
-//                this.viewNumber = ActivitiesModel.VERBAL_RECALL_SCREEN_5;
-//                fragmentTag = "RecallResponseFragment";
-//                fragmentTransaction.replace(R.id.container, new VerbalRecallFragment(), "RecallResponseFragment");
-//                break;
             case R.id.screen_inst_10_om:
                 this.viewNumber = ActivitiesModel.INSTRUCTIONS_SCREEN_10;
                 fragmentTag = "InstructionsFragment";

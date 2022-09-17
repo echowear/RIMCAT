@@ -1,18 +1,18 @@
 package org.echowear.rimcatbeta.fragments;
 
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.VideoView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import org.echowear.rimcatbeta.MainActivity;
 import org.echowear.rimcatbeta.R;
-import java.util.Objects;
 
 public class VideoFragment extends QuestionFragment {
 
@@ -20,27 +20,18 @@ public class VideoFragment extends QuestionFragment {
     private VideoView videoView;
     int stopPosition;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_video, container, false);
 
         videoView = view.findViewById(R.id.videoView);
-        String path = "android.resource://" + Objects.requireNonNull(getActivity()).getPackageName() + "/" + R.raw.keyboard_entry_training;
+        String path = "android.resource://" + requireActivity().getPackageName() + "/" + R.raw.keyboard_entry_training;
         videoView.setVideoURI(Uri.parse(path));
-        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                logEndTimeAndData(getActivity().getApplicationContext(), "video,null");
-                ((MainActivity)getActivity()).getFragmentData(null);
-            }
+        videoView.setOnCompletionListener(mp -> {
+            logEndTimeAndData(requireActivity().getApplicationContext(), "video,null");
+            ((MainActivity) requireActivity()).getFragmentData(null);
         });
-        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.setScreenOnWhilePlaying(true);
-            }
-        });
+        videoView.setOnPreparedListener(mp -> mp.setScreenOnWhilePlaying(true));
         videoView.start();
 
         cardView = view.findViewById(R.id.main_page);
@@ -57,7 +48,7 @@ public class VideoFragment extends QuestionFragment {
 
     @Override
     public void moveToNextPage() {
-        ((MainActivity)getActivity()).addFragment(new KeyboardFragment(), "KeyboardFragment");
+        ((MainActivity) requireActivity()).addFragment(new KeyboardFragment(), "KeyboardFragment");
     }
 
     @Override

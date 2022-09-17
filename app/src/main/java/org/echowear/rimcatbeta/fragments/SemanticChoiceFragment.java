@@ -1,14 +1,8 @@
 package org.echowear.rimcatbeta.fragments;
 
 import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.appcompat.widget.AppCompatButton;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -19,11 +13,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import org.echowear.rimcatbeta.MainActivity;
 import org.echowear.rimcatbeta.R;
 import org.echowear.rimcatbeta.data_log.CorrectAnswerDictionary;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class SemanticChoiceFragment extends QuestionFragment {
     private static final String TAG = "SemanticChoiceFragment";
@@ -31,7 +32,6 @@ public class SemanticChoiceFragment extends QuestionFragment {
     private TableLayout         semanticGrid;
     private TextView            semanticChoicePrompt, semanticCountdownText;
     private ArrayList<String>   choiceList;
-    private Button              readyButton;
     private static final String[] COUNTDOWN_TEXT = { "Ready", "Set", "Go!" };
     private Button[]            choiceButtons;
     private View.OnClickListener choiceListener;
@@ -42,9 +42,8 @@ public class SemanticChoiceFragment extends QuestionFragment {
     private boolean             inSelectionState = false;
     private View.OnTouchListener touchListener;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_semantic_choice, container, false);
         // Layout initialization
         cardView = view.findViewById(R.id.semantic_choice_page);
@@ -81,23 +80,18 @@ public class SemanticChoiceFragment extends QuestionFragment {
         changeHeaderText();
         semanticChoicePrompt.setTypeface(null, Typeface.BOLD);
 
-        readyButton = view.findViewById(R.id.semantic_ready_btn);
-        readyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                layout1.setVisibility(View.INVISIBLE);
-                layout2.setVisibility(View.VISIBLE);
-                timerIndex = 0;
-                readyCountdown.start();
-            }
+        Button readyButton = view.findViewById(R.id.semantic_ready_btn);
+        readyButton.setOnClickListener(v -> {
+            layout1.setVisibility(View.INVISIBLE);
+            layout2.setVisibility(View.VISIBLE);
+            timerIndex = 0;
+            readyCountdown.start();
         });
 
         readyCountdown = new CountDownTimer(3000, 980) {
             @Override
             public void onTick(long millisUntilFinished) {
                 Log.d(TAG, "onTick: Tick: " + timerIndex);
-//                if (timerIndex > 0)
-//                    semanticCountdownText.setText("" + timerIndex);
                 if (timerIndex < 3) {
 //                    reactionCountdownText.setText("" + timerIndex);
                     semanticCountdownText.setText(COUNTDOWN_TEXT[timerIndex]);
@@ -134,7 +128,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
                 if (pageCount < semanticChoices.length) {
                     prepareNextGrid();
                 } else {
-                    ((MainActivity)getActivity()).getFragmentData(null);
+                    ((MainActivity) requireActivity()).getFragmentData(null);
                 }
 
             }
@@ -146,34 +140,26 @@ public class SemanticChoiceFragment extends QuestionFragment {
     }
 
     private void initializeGrid() {
-         choiceListener = new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void onClick(View v) {
-                AppCompatButton b = (AppCompatButton) v;
-                String currentText = (String) b.getText();
-                if (inSelectionState) {
-                    if (currentText.contains("\u2611")) {
-                        choiceList.remove(currentText.replace("   \u2611",""));
-                        b.getBackground().setTint(getResources().getColor(R.color.backgroundColor));
-                        b.setText(currentText.replace("\u2611", "\u2610"));
-                        Log.d(TAG, String.valueOf(choiceList));
-                    } else {
-                        choiceList.add(currentText.replace("   \u2610", ""));
-                        b.getBackground().setTint(getResources().getColor(R.color.colorAccent));
-                        b.setText(currentText.replace("\u2610","\u2611"));
-                        Log.d(TAG, String.valueOf(choiceList));
-                    }
-                }
-            }
-        };
+         choiceListener = v -> {
+             AppCompatButton b = (AppCompatButton) v;
+             String currentText = (String) b.getText();
+             if (inSelectionState) {
+                 if (currentText.contains("\u2611")) {
+                     choiceList.remove(currentText.replace("   \u2611",""));
+                     b.getBackground().setTint(getResources().getColor(R.color.backgroundColor));
+                     b.setText(currentText.replace("\u2611", "\u2610"));
+                 } else {
+                     choiceList.add(currentText.replace("   \u2610", ""));
+                     b.getBackground().setTint(getResources().getColor(R.color.colorAccent));
+                     b.setText(currentText.replace("\u2610","\u2611"));
+                 }
+                 Log.d(TAG, String.valueOf(choiceList));
+             }
+         };
         final MainActivity mainActivity = new MainActivity();
-        touchListener = new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, android.view.MotionEvent event) {
-                mainActivity.callTouchEventInButton(event.getRawX(), event.getRawY(), 35);
-                return false;
-            }
+        touchListener = (v, event) -> {
+            mainActivity.callTouchEventInButton(event.getRawX(), event.getRawY(), 35);
+            return false;
         };
         changeButtonText();
     }
@@ -182,9 +168,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
         String[] currentChoices = semanticChoices[pageCount];
         for (int i = 0; i < choiceButtons.length; i++) {
             choiceButtons[i].setText(currentChoices[i] + "   \u2610");
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                choiceButtons[i].getBackground().setTint(getResources().getColor(R.color.backgroundColor));
-            }
+            choiceButtons[i].getBackground().setTint(getResources().getColor(R.color.backgroundColor));
             if (choiceListener != null)
                 choiceButtons[i].setOnClickListener(choiceListener);
                 choiceButtons[i].setOnTouchListener(touchListener);
@@ -218,7 +202,7 @@ public class SemanticChoiceFragment extends QuestionFragment {
 
     @Override
     public void moveToNextPage() {
-        ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
+        ((MainActivity) requireActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
     }
 
     @Override

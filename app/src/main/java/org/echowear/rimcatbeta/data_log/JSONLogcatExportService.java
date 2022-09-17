@@ -11,20 +11,14 @@ import org.echowear.rimcatbeta.MainActivity;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Objects;
 
 public class JSONLogcatExportService extends IntentService {
     MainActivity mainActivity = new MainActivity();
     private static final String TAG = "LogcatExportService";
     private static final String EXTRA_FILE_DESTINATION = "rimcat.file_destination";
     private static final String EXTRA_DATA = "rimcat.data";
-    /**
-     * Creates an IntentService.  Invoked by your subclass's constructor.
-     *
-     * @param name Used to name the worker thread, important only for debugging.
-     */
-    public JSONLogcatExportService(String name) {
-        super(name);
-    }
 
     public JSONLogcatExportService() {
         super("LogcatExportService");
@@ -44,10 +38,10 @@ public class JSONLogcatExportService extends IntentService {
             return;
         }
 
-        File logFile = new File(intent.getStringExtra(EXTRA_FILE_DESTINATION));
+        File logFile = new File(Objects.requireNonNull(intent.getStringExtra(EXTRA_FILE_DESTINATION)));
         Log.d(TAG, "onHandleIntent: " + logFile);
         if (!logFile.exists()) {
-            logFile.getParentFile().mkdirs();
+            Objects.requireNonNull(logFile.getParentFile()).mkdirs();
             try {
                 if (!logFile.createNewFile()) {
                     return;
@@ -60,8 +54,8 @@ public class JSONLogcatExportService extends IntentService {
         try {
             // clear the previous logcat and then write the new one to the file
             Process process = Runtime.getRuntime().exec("logcat -c");
-            Log.i(TAG, "DATA: " + mainActivity.coordsJson());
-            Log.i(TAG, "DATA: " + mainActivity.buttonCoordsJson());
+            Log.i(TAG, "DATA: " + Arrays.deepToString(mainActivity.coordsJson()));
+            Log.i(TAG, "DATA: " + Arrays.deepToString(mainActivity.buttonCoordsJson()));
             process = Runtime.getRuntime().exec( "logcat -f " + logFile + " *:S LogActivity:V LogActivityButton:V");
             Log.i(TAG, "onHandleIntent: Logcat file successfully created.");
         } catch ( IOException e ) {

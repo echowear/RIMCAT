@@ -5,15 +5,20 @@
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.187109375" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.187109375" />
+        <entry key="app/src/main/res/layout/fragment_day_of_week.xml" value="0.315625" />
         <entry key="app/src/main/res/layout/fragment_education.xml" value="0.11915024630541872" />
         <entry key="app/src/main/res/layout/fragment_figure_select.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_figure_study.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_finish.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.315625" />
         <entry key="app/src/main/res/layout/fragment_instructions.xml" value="0.1188423645320197" />
         <entry key="app/src/main/res/layout/fragment_instructions1.xml" value="0.1188423645320197" />
         <entry key="app/src/main/res/layout/fragment_reaction.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/fragment_semantic_choice.xml" value="0.315625" />
         <entry key="app/src/main/res/layout/fragment_semantic_relatedness.xml" value="0.1188423645320197" />
+        <entry key="app/src/main/res/layout/fragment_story_learning.xml" value="0.315625" />
         <entry key="app/src/main/res/layout/fragment_story_memory.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_today_date.xml" value="0.315625" />
         <entry key="app/src/main/res/layout/fragment_video.xml" value="0.11545566502463055" />
         <entry key="app/src/main/res/menu/overflow_menu.xml" value="0.10375" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.15390625" />
@@ -23,7 +28,7 @@
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
-    <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />
+    <option name="myDefaultNotNull" value="androidx.annotation.NonNull" />
     <option name="myNullables">
       <value>
         <list size="15">

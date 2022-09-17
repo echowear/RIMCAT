@@ -8,18 +8,11 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class LogcatExportService extends IntentService {
     private static final String TAG = "LogcatExportService";
     private static final String EXTRA_FILE_DESTINATION = "rimcat.file_destination";
-    /**
-     * Creates an IntentService.  Invoked by your subclass's constructor.
-     *
-     * @param name Used to name the worker thread, important only for debugging.
-     */
-    public LogcatExportService(String name) {
-        super(name);
-    }
 
     public LogcatExportService() {
         super("LogcatExportService");
@@ -39,10 +32,10 @@ public class LogcatExportService extends IntentService {
             return;
         }
 
-        File logFile = new File(intent.getStringExtra(EXTRA_FILE_DESTINATION));
+        File logFile = new File(Objects.requireNonNull(intent.getStringExtra(EXTRA_FILE_DESTINATION)));
         Log.d(TAG, "onHandleIntent: " + logFile);
         if (!logFile.exists()) {
-            logFile.getParentFile().mkdirs();
+            Objects.requireNonNull(logFile.getParentFile()).mkdirs();
             try {
                 if (!logFile.createNewFile()) {
                     return;

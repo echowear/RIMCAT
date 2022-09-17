@@ -6,9 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.speech.RecognizerIntent;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -17,32 +14,34 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import org.echowear.rimcatbeta.ActivitiesModel;
 import org.echowear.rimcatbeta.MainActivity;
 import org.echowear.rimcatbeta.R;
 import org.echowear.rimcatbeta.data_log.CorrectAnswerDictionary;
 
 public class VerbalRecallFragment extends QuestionFragment {
-    private static final String     TAG = "RecallResponseFragment";
     private EditText                responseText;
-    private Button                  addBtn, doneRecallingBtn;
-    private FloatingActionButton    audioBtn;
-    private boolean                 firstFinish, micPressedLast;
+    private Button                  addBtn;
+    private boolean micPressedLast;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_verbal_recall, container, false);
         mContext = view.getContext();
         mVibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
 
         // Initialize views
         responseText = view.findViewById(R.id.vresponse_recall_word);
-        audioBtn = view.findViewById(R.id.recall_audio_btn);
+        FloatingActionButton audioBtn = view.findViewById(R.id.recall_audio_btn);
         addBtn = view.findViewById(R.id.vresponse_addBtn);
-        doneRecallingBtn = view.findViewById(R.id.done_recalling_btn);
+        Button doneRecallingBtn = view.findViewById(R.id.done_recalling_btn);
         doneRecallingBtn.setVisibility(View.VISIBLE);
 
         // Initialize text listener
@@ -61,54 +60,40 @@ public class VerbalRecallFragment extends QuestionFragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {}
         });
 
-        responseText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                micPressedLast = false;
-            }
-        });
+        responseText.setOnClickListener(v -> micPressedLast = false);
 
         // Initialize speech to text button
-        audioBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                micPressedLast = true;
-                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US");
+        audioBtn.setOnClickListener(v -> {
+            micPressedLast = true;
+            Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US");
 
-                try {
-                    startActivityForResult(intent, RESULT_SPEECH);
-                    responseText.setText("");
-                } catch (ActivityNotFoundException a) {
-                    toastAtTopOfScreen("Oops! Your device doesn't support Speech to Text", Toast.LENGTH_LONG);
-                }
+            try {
+                startActivityForResult(intent, RESULT_SPEECH);
+                responseText.setText("");
+            } catch (ActivityNotFoundException a) {
+                toastAtTopOfScreen("Oops! Your device doesn't support Speech to Text", Toast.LENGTH_LONG);
             }
         });
 
         // Initialize submit word button
         addBtn.getBackground().setTint(getResources().getColor(R.color.backgroundColor));
-        addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!responseText.getText().toString().equals("")) {
-                    String submitText = responseText.getText().toString();
-                    logResponse(submitText);
-                    responseText.setText("");
-                    vibrateToastAndExecuteSound(submitText, true);
-                    logStartTime();
-                }
+        addBtn.setOnClickListener(v -> {
+            if (!responseText.getText().toString().equals("")) {
+                String submitText = responseText.getText().toString();
+                logResponse(submitText);
+                responseText.setText("");
+                vibrateToastAndExecuteSound(submitText);
+                logStartTime();
             }
         });
 
         // Initialize done recalling button
-        doneRecallingBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!responseText.getText().toString().equals("")) {
-                    toastAtTopOfScreen("Please submit the word you entered before finishing.", Toast.LENGTH_SHORT);
-                } else {
-                    ((MainActivity)getActivity()).showRecallFinishDialog();
-                }
+        doneRecallingBtn.setOnClickListener(v -> {
+            if (!responseText.getText().toString().equals("")) {
+                toastAtTopOfScreen("Please submit the word you entered before finishing.", Toast.LENGTH_SHORT);
+            } else {
+                ((MainActivity) requireActivity()).showRecallFinishDialog();
             }
         });
 
@@ -120,7 +105,7 @@ public class VerbalRecallFragment extends QuestionFragment {
     }
 
     private void logResponse(String response) {
-        int currentView = ((MainActivity)getActivity()).getViewNumber();
+        int currentView = ((MainActivity) requireActivity()).getViewNumber();
         if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_1)
             logEndTimeAndData(getActivity().getApplicationContext(), "word_recall_1," + response);
         else if (currentView == ActivitiesModel.VERBAL_RECALL_SCREEN_2)
@@ -136,7 +121,6 @@ public class VerbalRecallFragment extends QuestionFragment {
     }
 
     public void executePostMessageSetup() {
-        firstFinish = true;
     }
 
     public void setResponseTextToSpeechText(String speechText) {
@@ -150,7 +134,7 @@ public class VerbalRecallFragment extends QuestionFragment {
 
     @Override
     public void moveToNextPage() {
-        ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
+        ((MainActivity) requireActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
     }
 
     @Override

@@ -4,8 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -15,6 +13,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import org.echowear.rimcatbeta.MainActivity;
 import org.echowear.rimcatbeta.R;
 import org.echowear.rimcatbeta.data_log.CorrectAnswerDictionary;
@@ -27,7 +29,6 @@ public class ComputationFragment extends QuestionFragment {
     private static final String[] COMPUTATION_LIST = {
             "7 + 12", "25 + 6", "41 - 7", "34 - 8", "8 x 4", "9 x 6", "36 ÷ 4", "68 ÷ 2"
     };
-    private HashMap<String, String> numberToTextMap;
     private CountDownTimer showComputationTimer;
     private TextView computationText;
     private EditText compEditText;
@@ -37,9 +38,8 @@ public class ComputationFragment extends QuestionFragment {
     private boolean movingToNextActivity = false;
     private boolean hasRepeated = false;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_computation, container, false);
         mContext = view.getContext();
         mVibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
@@ -49,7 +49,7 @@ public class ComputationFragment extends QuestionFragment {
         repeatBtn = view.findViewById(R.id.comp_repeat_btn);
         computationText = view.findViewById(R.id.comp_text);
 
-        numberToTextMap = new HashMap<>();
+        HashMap<String, String> numberToTextMap = new HashMap<>();
         numberToTextMap.put("-", "Minus");
         numberToTextMap.put("x", "Times");
         numberToTextMap.put("÷", "Divided by");
@@ -70,18 +70,8 @@ public class ComputationFragment extends QuestionFragment {
         });
 
         nextBtn.getBackground().setTint(getResources().getColor(R.color.backgroundColor));
-        nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                moveToNextComputation();
-            }
-        });
-        repeatBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                repeatComputationRead();
-            }
-        });
+        nextBtn.setOnClickListener(v -> moveToNextComputation());
+        repeatBtn.setOnClickListener(v -> repeatComputationRead());
 
         showComputationTimer = new CountDownTimer(MILLIS_TO_SHOW_COMPUTATION, MILLIS_TO_SHOW_COMPUTATION) {
             @Override
@@ -121,13 +111,13 @@ public class ComputationFragment extends QuestionFragment {
 
     private void moveToNextComputation() {
         if (!movingToNextActivity && !compEditText.getText().toString().equals("")) {
-            logEndTimeAndData(getActivity().getApplicationContext(), "computation_" + (currentCompNum + 1) + "," + compEditText.getText().toString());
-            vibrateToastAndExecuteSound(compEditText.getText().toString(), false);
+            logEndTimeAndData(requireActivity().getApplicationContext(), "computation_" + (currentCompNum + 1) + "," + compEditText.getText().toString());
+            vibrateToastAndExecuteSound(compEditText.getText().toString());
             currentCompNum++;
             if (currentCompNum < COMPUTATION_LIST.length) {
                 hasRepeated = false;
                 showComputationTimer.cancel();
-                ((MainActivity)getActivity()).pauseTextToSpeech();
+                ((MainActivity) requireActivity()).pauseTextToSpeech();
                 compEditText.setText("");
                 currentCompText = COMPUTATION_LIST[currentCompNum];
                 computationText.setText(currentCompText);
@@ -137,7 +127,7 @@ public class ComputationFragment extends QuestionFragment {
                 readCurrentComputation();
             } else {
                 movingToNextActivity = true;
-                ((MainActivity)getActivity()).getFragmentData(null);
+                ((MainActivity) requireActivity()).getFragmentData(null);
             }
         }
     }
@@ -145,7 +135,7 @@ public class ComputationFragment extends QuestionFragment {
     private void readCurrentComputation() {
         // Replace mispronounced words, then read the sentence
         String parsedText = currentCompText.replace("-", "Minus").replace("x", "Times").replace("÷", "Divided by");
-        ((MainActivity)getActivity()).useTextToSpeech(parsedText);
+        ((MainActivity) requireActivity()).useTextToSpeech(parsedText);
 
         // Grey out or keep repeat button color
         if (hasRepeated) {
@@ -185,7 +175,7 @@ public class ComputationFragment extends QuestionFragment {
 
     @Override
     public void moveToNextPage() {
-        ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
+        ((MainActivity) requireActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
     }
 
     @Override

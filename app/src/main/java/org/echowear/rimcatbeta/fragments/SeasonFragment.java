@@ -1,14 +1,15 @@
 package org.echowear.rimcatbeta.fragments;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.echowear.rimcatbeta.MainActivity;
 import org.echowear.rimcatbeta.R;
@@ -18,29 +19,26 @@ import java.util.Date;
 
 public class SeasonFragment extends BasicQuestionFragment {
 
-    private static final String TAG = "TodayDateFragment";
     private Spinner seasonSpinner;
-    private ArrayAdapter<CharSequence> adapter;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_season, container, false);
 
         seasonSpinner = view.findViewById(R.id.season_spinner);
-        adapter = ArrayAdapter.createFromResource(getActivity(), R.array.season_array, R.layout.spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(requireActivity(), R.array.season_array, R.layout.spinner_item);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         seasonSpinner.setAdapter(adapter);
 
         seasonSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                ((MainActivity)getActivity()).viewOnTouch();
+                ((MainActivity) requireActivity()).viewOnTouch();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                ((MainActivity)getActivity()).viewOnTouch();
+                ((MainActivity) requireActivity()).viewOnTouch();
             }
         });
 
@@ -55,13 +53,13 @@ public class SeasonFragment extends BasicQuestionFragment {
     public boolean loadDataModel() {
         if (!isQuestionAnswered())
             return false;
-        logEndTimeAndData(getActivity().getApplicationContext(), "season," + seasonSpinner.getSelectedItem().toString());
+        logEndTimeAndData(requireActivity().getApplicationContext(), "season," + seasonSpinner.getSelectedItem().toString());
         return true;
     }
 
     @Override
     public void moveToNextPage() {
-        ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
+        ((MainActivity) requireActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
     }
 
     @Override
@@ -72,9 +70,9 @@ public class SeasonFragment extends BasicQuestionFragment {
         int month = cal.get(Calendar.MONTH);
         if (month == 12 || month < 3) {
             return "Winter";
-        } else if (month >= 3 && month < 6) {
+        } else if (month < 6) {
             return "Spring";
-        } else if (month >= 6 && month < 9) {
+        } else if (month < 9) {
             return "Summer";
         }
         return "Fall";

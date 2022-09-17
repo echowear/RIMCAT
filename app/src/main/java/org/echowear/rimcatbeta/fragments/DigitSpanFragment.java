@@ -4,15 +4,10 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
+import android.os.Vibrator;
 import android.text.Editable;
 import android.text.SpannableString;
-import android.text.Spanned;
-import android.os.Vibrator;
 import android.text.TextWatcher;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -21,6 +16,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+
 import org.echowear.rimcatbeta.MainActivity;
 import org.echowear.rimcatbeta.R;
 import org.echowear.rimcatbeta.data_log.CorrectAnswerDictionary;
@@ -49,7 +49,7 @@ public class DigitSpanFragment extends QuestionFragment {
             { 6, 3, 4, 1, 9 },
             { 2, 0, 1, 4, 9 }
     };
-    private static final int NUMS_PER_LIST = 8;
+    private static final int NUMBS_PER_LIST = 8;
     private static final String[] COUNTDOWN_TEXT = { "Ready", "Set", "Go!" };
     private HashMap<Integer, String> numberToTextMap;
     private int[] currentNumberList;
@@ -62,9 +62,8 @@ public class DigitSpanFragment extends QuestionFragment {
     private EditText dsEditText;
     private MediaPlayer storyMedia;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_digit_span, container, false);
 
         mContext = view.getContext();
@@ -99,12 +98,7 @@ public class DigitSpanFragment extends QuestionFragment {
         numRecallCard.setVisibility(View.INVISIBLE);
 
         // Starts countdown timer and prepares views to show countdown
-        readyBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                beginCountdown();
-            }
-        });
+        readyBtn.setOnClickListener(v -> beginCountdown());
 
         // Sets up countdown timer. Starts trial list counter on finish
         countDownTimer = new CountDownTimer(3000, 999) {
@@ -138,25 +132,22 @@ public class DigitSpanFragment extends QuestionFragment {
         };
 
         nextBtn.getBackground().setTint(getResources().getColor(R.color.backgroundColor));
-        nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!movingToNextActivity) {
-                    if (!dsEditText.getText().toString().equals("")) {
-                        logEndTimeAndData(getActivity().getApplicationContext(), "digit_span_" + (currentNumber + 1) + "," + dsEditText.getText().toString());
-                        vibrateToastAndExecuteSound(dsEditText.getText().toString(), true);
-                        ((MainActivity)getActivity()).hideSoftKeyboard();
+        nextBtn.setOnClickListener(v -> {
+            if (!movingToNextActivity) {
+                if (!dsEditText.getText().toString().equals("")) {
+                    logEndTimeAndData(requireActivity().getApplicationContext(), "digit_span_" + (currentNumber + 1) + "," + dsEditText.getText().toString());
+                    vibrateToastAndExecuteSound(dsEditText.getText().toString());
+                    ((MainActivity)getActivity()).hideSoftKeyboard();
 
-                        if (getCorrectAnswer().equals(dsEditText.getText().toString())) {
-                            Log.d(TAG, "DigitSpanCorreect: " + getCorrectAnswer() + "..." + dsEditText.getText().toString());
-                            firstNumInSetAnsweredWrong = false;
-                            moveToNextNumber();
-                        }
-                        else
-                            Log.d(TAG, "DigitSpanCorreect: " + getCorrectAnswer() + "..." + dsEditText.getText().toString());
-
-                        checkIfBothDigitsFailed();
+                    if (getCorrectAnswer().equals(dsEditText.getText().toString())) {
+                        Log.d(TAG, "DigitSpanCorrect: " + getCorrectAnswer() + "..." + dsEditText.getText().toString());
+                        firstNumInSetAnsweredWrong = false;
+                        moveToNextNumber();
                     }
+                    else
+                        Log.d(TAG, "DigitSpanCorrect: " + getCorrectAnswer() + "..." + dsEditText.getText().toString());
+
+                    checkIfBothDigitsFailed();
                 }
             }
         });
@@ -197,7 +188,7 @@ public class DigitSpanFragment extends QuestionFragment {
         if (currentDigitPlace < currentNumberList.length) {
             Log.d(TAG, "onTick: Changing text --- " + currentNumberList[currentDigitPlace]);
             dsNumText.setText("" + currentNumberList[currentDigitPlace]);
-            ((MainActivity)getActivity()).useTextToSpeech(numberToTextMap.get(currentNumberList[currentDigitPlace]));
+            ((MainActivity) requireActivity()).useTextToSpeech(numberToTextMap.get(currentNumberList[currentDigitPlace]));
             currentDigitPlace++;
         } else {
             trialListCounter.cancel();
@@ -219,8 +210,8 @@ public class DigitSpanFragment extends QuestionFragment {
             firstNumInSetAnsweredWrong = true;
         } else if (firstNumInSetAnsweredWrong) {
             Log.d(TAG, "User failed to recall two numbers with the same amount of digits. Moving to next part of activity.");
-            if (currentNumber < NUMS_PER_LIST)
-                currentNumber = NUMS_PER_LIST - 1;
+            if (currentNumber < NUMBS_PER_LIST)
+                currentNumber = NUMBS_PER_LIST - 1;
             else
                 currentNumber = FULL_NUMBER_LIST.length - 1;
         }
@@ -250,13 +241,13 @@ public class DigitSpanFragment extends QuestionFragment {
             countdownCard.setVisibility(View.VISIBLE);
         } else {
             movingToNextActivity = true;
-            ((MainActivity) getActivity()).getFragmentData(null);
+            ((MainActivity) requireActivity()).getFragmentData(null);
         }
     }
 
     private void changeCardText() {
-        String recallText = "";
-        if (currentNumber < NUMS_PER_LIST) {
+        String recallText;
+        if (currentNumber < NUMBS_PER_LIST) {
             recallText = getResources().getString(R.string.ds_inorder_text);
         } else {
             recallText = getResources().getString(R.string.ds_reverse_text);
@@ -266,20 +257,17 @@ public class DigitSpanFragment extends QuestionFragment {
         dsNumText.setText(getResources().getString(R.string.verbal_readyPrompt));
         dsRecallText.setText(recallTextSS);
 
-        if (currentNumber == NUMS_PER_LIST) {
+        if (currentNumber == NUMBS_PER_LIST) {
             String numText = getResources().getString(R.string.instructions2_digit_span);
             SpannableString numTextSS = new SpannableString(numText);
             dsNumText.setText(numTextSS);
-            dsNumText.setGravity(Gravity.LEFT);
+            dsNumText.setGravity(Gravity.START);
 
             readyBtn.setVisibility(View.INVISIBLE);
-            storyMedia = MediaPlayer.create(getActivity().getApplicationContext(), R.raw.reverse);
-            storyMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    readyBtn.setVisibility(View.VISIBLE);
-                    stopStoryMedia();
-                }
+            storyMedia = MediaPlayer.create(requireActivity().getApplicationContext(), R.raw.reverse);
+            storyMedia.setOnCompletionListener(mp -> {
+                readyBtn.setVisibility(View.VISIBLE);
+                stopStoryMedia();
             });
             storyMedia.start();
         }
@@ -310,7 +298,7 @@ public class DigitSpanFragment extends QuestionFragment {
 
     @Override
     public void moveToNextPage() {
-        ((MainActivity) getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
+        ((MainActivity) requireActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
     }
 
     @Override

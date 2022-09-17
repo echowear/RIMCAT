@@ -3,15 +3,18 @@ package org.echowear.rimcatbeta.fragments;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import org.echowear.rimcatbeta.MainActivity;
 import org.echowear.rimcatbeta.R;
+
 import java.io.IOException;
 
 public class StoryLearningFragment extends QuestionFragment {
@@ -28,9 +31,8 @@ public class StoryLearningFragment extends QuestionFragment {
     private int         reading_comp_sec;
     private MediaPlayer storyMedia;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_story_learning, container, false);
 
         // Initialize all views
@@ -47,7 +49,7 @@ public class StoryLearningFragment extends QuestionFragment {
                         storyMedia.reset();
                     }
                     storyText.setText(READING_COMP_SECTIONS[reading_comp_sec]);
-                    AssetFileDescriptor afd = getActivity().getResources().openRawResourceFd(READING_COMP_AUDIO[reading_comp_sec]);
+                    AssetFileDescriptor afd = requireActivity().getResources().openRawResourceFd(READING_COMP_AUDIO[reading_comp_sec]);
                     try {
                         storyMedia.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
                         storyMedia.setOnCompletionListener(this);
@@ -64,12 +66,12 @@ public class StoryLearningFragment extends QuestionFragment {
                         storyMedia.release();
                         storyMedia = null;
                     }
-                    logEndTimeAndData(getActivity().getApplicationContext(), "story_learning,null");
-                    ((MainActivity)getActivity()).getFragmentData(null);
+                    logEndTimeAndData(requireActivity().getApplicationContext(), "story_learning,null");
+                    ((MainActivity) requireActivity()).getFragmentData(null);
                 }
             }
         };
-        storyMedia = MediaPlayer.create(getActivity().getApplicationContext(), READING_COMP_AUDIO[reading_comp_sec]);
+        storyMedia = MediaPlayer.create(requireActivity().getApplicationContext(), READING_COMP_AUDIO[reading_comp_sec]);
         storyMedia.setOnCompletionListener(onCompletionListener);
         storyMedia.start();
         cardView = view.findViewById(R.id.read_main_page);
@@ -86,7 +88,7 @@ public class StoryLearningFragment extends QuestionFragment {
 
     @Override
     public void moveToNextPage() {
-        ((MainActivity)getActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
+        ((MainActivity) requireActivity()).addFragment(new InstructionsFragment(), "InstructionsFragment");
     }
 
     @Override
